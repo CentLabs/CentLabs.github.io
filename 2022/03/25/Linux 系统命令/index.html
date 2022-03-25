@@ -1,0 +1,798 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Linux 系统命令 | CentLabs</title><meta name="keywords" content="Linux"><meta name="author" content="Cappuccino"><meta name="copyright" content="Cappuccino"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="文件相关操作 创建文件： touch 1touch test.txt 删除文件：rm 1rm test.txt 移动或重命名文件：mv  移动文件到mnt下  1mv test.txt &#x2F;mnt&#x2F;		   重命名文件  1mv test.txt test.doc   移动文件的同时重命名文件  12mv test.doc &#x2F;tmp&#x2F;test.txt&#x2F;&#x2F;将test.doc移动到tmp文件目录下，同时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 系统命令">
+<meta property="og:url" content="https://centlabs.github.io/2022/03/25/Linux%20%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="CentLabs">
+<meta property="og:description" content="文件相关操作 创建文件： touch 1touch test.txt 删除文件：rm 1rm test.txt 移动或重命名文件：mv  移动文件到mnt下  1mv test.txt &#x2F;mnt&#x2F;		   重命名文件  1mv test.txt test.doc   移动文件的同时重命名文件  12mv test.doc &#x2F;tmp&#x2F;test.txt&#x2F;&#x2F;将test.doc移动到tmp文件目录下，同时">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-03-25T00:50:44.504Z">
+<meta property="article:modified_time" content="2022-03-25T00:52:19.901Z">
+<meta property="article:author" content="Cappuccino">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://centlabs.github.io/2022/03/25/Linux%20%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux 系统命令',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-25 08:52:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">6</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CentLabs</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux 系统命令</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-03-25T00:50:44.504Z" title="Created 2022-03-25 08:50:44">2022-03-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-03-25T00:52:19.901Z" title="Updated 2022-03-25 08:52:19">2022-03-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux 系统命令"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="文件相关操作"><a href="#文件相关操作" class="headerlink" title="文件相关操作"></a>文件相关操作</h4><ol>
+<li><p><strong>创建文件： touch</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch test.txt</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>删除文件：rm</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm test.txt</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>移动或重命名文件：mv</strong></p>
+<ul>
+<li>移动文件到mnt下</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv test.txt /mnt/		</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重命名文件</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv test.txt test.doc</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>移动文件的同时重命名文件</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv test.doc /tmp/test.txt</span><br><span class="line">//将test.doc移动到tmp文件目录下，同时重命名test.txt</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>查看文件：cat</strong></p>
+<ul>
+<li>显示文件内容</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat install.log</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>加参数 <code>-n</code> 可以显示每行的行号</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -n install.log</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>查看头文件：head</strong></p>
+<p>有时候文件非常大，使用cat命令显示出来的内容太多，而我们并不想查看所有内容，只想看看文件开始部分的内容，这时候就可以使用head命令。默 认情况下，head将显示该文件前10行的内容。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head install.log</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -n 20 install.log      //指定显示的行数</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>查看文件尾：tail</strong></p>
+<ul>
+<li>tail命令与head命令非常类似。当文件很大时， 可以使用该命令查看文件尾部的内容，默认情况下 tail也是只显示文件的最后10行内容，同样可以使 用-n参数指定显示的行数。</li>
+<li>但是tail还有个更实用的功能，就是可以动态地 查看文件尾。这对查看一些不断改变的文件来说非 常有用。比如说，系统中会有很多日志文件，这些 文件是会随时变化的（具体地说，就是随时会有新 的日志写入），要动态地查看这些文件，使用-f参 数就可以做到。举个例子，/var/log/message文件是 默认的系统日志文件，系统在运行中将会有大量的 日志写入这个文件中，可以使用如下的命令，一旦 有新的日志内容写入，该命令会立即将新内容显示 出来。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f /var/log/messages</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>文件格式转换：dos2unix</strong></p>
+<p>该命令是DOS to UNIX的简写，也许你从字面上 可以大概猜到它的作用，就是可以把DOS格式的文 本文件转变成UNIX下的文本文件。之所以有这样 的需求是因为Linux和Windows系统是可以通过文件 共享的方式共享文件的，当把Windows下的文本文 件移动到Linux下时，会由于系统之间文本文件的 换行符不同而造成文件在Linux下的读写操作有问 题。该命令的使用方式非常简单直接，后面跟上需 要转换的文件名即可。</p>
+</li>
+</ol>
+<h4 id="目录相关的操作"><a href="#目录相关的操作" class="headerlink" title="目录相关的操作"></a>目录相关的操作</h4><ol>
+<li><p><strong>进入目录：cd</strong></p>
+<p>该命令是change directory的简写，方便用户切换 到不同的目录。以下是该命令使用方法的演示，示 例中使用的pwd命令可以显示当前所处的目录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>创建目录：mkdir</strong></p>
+<ul>
+<li>该命令是make directory的简写，其用途是创建 目录，使用方法是在后面跟上目录的名称。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir dir1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以使用-p参数一 次性创建所有目录</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdir -p dir3/dir4</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上面使用的是相对路径的方式，也可以使用绝对路径的方式来创建</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /root/dir1/dir2/dir3/dir4</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>删除目录：rmdir 和 rm</strong></p>
+<ul>
+<li>该命令是remove directory的简写，用来删除目 录。但是需要注意的是，它只能删除空目录，如果 目录不为空（存在文件或者子目录），那么该命令 将拒绝删除指定的目录。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir dir3/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>用rm来删除文件，如果需要使用它删除目录，只需要使用一个-r参数就可以做到</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -r dir1/</span><br></pre></td></tr></table></figure>
+
+<p>​        即可以删除了dir1目录，同时也删除了目录中的所有其他目录</p>
+<ul>
+<li>但是这里同样也存在一个问题：如果 dir1中有数百个文件，那我们就需要不厌其烦地输 入“y”来确认。命令rm在发现需要递归删除一个目录时，会尽量多地给你提示确认，希望以此引起管理员的注意，以加强操作的安全性，但是毕竟一次 又一次地确认还是很烦琐的。所以，在使用rm删除目录时，最常用的组合参数是<code>-rf</code>，这样就不会有任 何提醒了，可直接将目录删除干净。</li>
+<li>由于root用户在Linux系统中的权限 非常高，甚至可以用<code>rm–rf/</code>命令来删除全部的系统 文件。</li>
+</ul>
+</li>
+<li><p><strong>文件和目录复制：cp</strong></p>
+<ul>
+<li>该命令是copy的简写，用于复制文件和目录。如果是复制文件，其后接两个参数，第一个参数是要复制的源文件，第二个参数是要复制到的目录或复制后的文件名。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp anaconda-ks.cfg anaconda-ks-copy.cfg</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果是复制到其他目录中去，比如说复制到/tmp目录中。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp anaconda-ks.cfg /tmp/anaconda-ks- copy.cfg</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果想复制过去保持原文件名而不重命名，可以简单地写成下面的形式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp anaconda-ks.cfg /tmp/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>复制目录同样也是使用cp命令。相对于复制文件，复制目录只需要使用-r参数即可</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r a b</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="文件时间戳"><a href="#文件时间戳" class="headerlink" title="文件时间戳"></a>文件时间戳</h4><p>​        之前在介绍touch命令的时候，已经知道通过 touch可以创建新文件。如果文件已经存在，那么 touch命令仅仅会更新文件的创建时间而不会修改文件内容。请记住，在Linux下目录也是一种文件，所以如果touch一个目录，这个目录的创建时间也会被更新。</p>
+<ul>
+<li><p>在下面的例子中，创建了一个文件touch_file1和一个目录touch_dir1，注意看一下时间 </p>
+<p>是19：19，两分钟后，同时touch它们，再看一下时间就都变成了19：21</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir touch_dir1 </span><br><span class="line">[root@localhost ~]# touch touch_file1 </span><br><span class="line">[root@localhost ~]# ll </span><br><span class="line">drwxr-xr-x 2 root root 4096 Jan 3 19:19 touch_dir1 </span><br><span class="line">-rw-r--r-- 1 root root 0 Jan 3 19:19 touch_file1 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">两分钟后</span> </span><br><span class="line">[root@localhost ~]# touch touch_dir1 touch_file1 </span><br><span class="line">[root@localhost ~]# ll </span><br><span class="line">drwxr-xr-x 2 root root 4096 Jan 3 19:21 touch_dir1</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan 3 19:21 touch_file1</span><br></pre></td></tr></table></figure>
+
+<p>不管是哪种系统，几乎所有的程序都会读写系统文件，默认情况下，一旦发生写文件操作，该文件的时间戳将会立刻得到更新。因此可以利用这种 特性来有选择性地备份一些文件（又叫差异备份）。比如有一个目录中有若干个文件，我们每天需要备份一次。最简单的办法是每天使用cp操作全部备份一次，但是这种做法在文件总大小比较大的 情况下会显得效率不高。如果有一些文件很大，但是和上一次备份相比并没有发生任何变化，实际上 是不需要进行备份的，只需要找出在上一次备份之 后发生变化的文件，然后备份这些文件即可。</p>
+</li>
+</ul>
+<h4 id="文件和目录的权限"><a href="#文件和目录的权限" class="headerlink" title="文件和目录的权限"></a>文件和目录的权限</h4><ol>
+<li><h5 id="查看文件或目录的权限：ls-al"><a href="#查看文件或目录的权限：ls-al" class="headerlink" title="查看文件或目录的权限：ls-al"></a>查看文件或目录的权限：ls-al</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -al</span><br></pre></td></tr></table></figure>
+
+<p>  ls -al 格式化地输出了文件的详细信息</p>
+</li>
+<li><p><strong>文件隐藏属性</strong> </p>
+<p>1、Linux下的文件还有一些隐藏属性，必须使用lsattr来显示，默认情况下，文件的隐藏属性都是没有设置的。查看文件的隐藏属性需要使用lsattr命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# lsattr anaconda-ks.cfg </span><br><span class="line">------------- anaconda-ks.cfg</span><br></pre></td></tr></table></figure>
+
+<p>结果中的第一列是13个小短横，其中每一个小横线都是一个属性，如果当前位置上设置了该属性就会显示相对应的字符。</p>
+<p>2、如果要设置文件的隐藏属性，需要使用chattr命令。这里介绍几个常用的隐藏属性，第一种是a属性。拥有这种属性的文件只能在尾部增加数据而不能被删除。下面使用chattr来给该文件添加a属性：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# chattr +a anaconda-ks.cfg </span><br><span class="line">[root@localhost ~]# lsattr anaconda-ks.cfg </span><br><span class="line">-----a------- anaconda-ks.cfg </span><br><span class="line">[root@localhost ~]# rm anaconda-ks.cfg </span><br><span class="line">rm: remove regular file &#x27;anaconda-ks.cfg&#x27;? y </span><br><span class="line">rm: cannot remove &#x27;anaconda-ks.cfg&#x27;: Operation not permitted</span><br></pre></td></tr></table></figure>
+
+<p>如上所示，设置了a属性的文件，即便是root用户也不能删除它，但是实际上可以以尾部新增 （append）的方式继续向该文件中写入内容。</p>
+<p>3、更多隐藏属性请使用man chattr查看。 </p>
+</li>
+<li><p><strong>改变文件权限：chmod</strong> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 754 somefile</span><br></pre></td></tr></table></figure>
+
+<p>如果需要修改的不是一个文件而是一个目录，以及该目录下所有的文件、子目录、子目录下所有的文件和目录（即递归设置该目录下所有的文件和目录的权限），则需要使用-R参数。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 754 somedir</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>改变文件的拥有者：chown</strong> </p>
+<p>该命令用来更改文件的拥有者，同时它也具备更改文件拥有组的功能。默认情况下，使用什么用户登录系统，那么该用户新创建的文件和目录的拥有者就是这个用户。</p>
+</li>
+<li><p><strong>改变文件的拥有组：chgrp</strong> </p>
+<p>该命令用来更改文件的拥有组。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# touch b.txt </span><br><span class="line">[root@localhost ~]# ls -l b.txt </span><br><span class="line">-rw-r--r-- 1 root root 0 Jan 4 21:09 b.txt </span><br><span class="line">[root@localhost ~]# chgrp john b.txt </span><br><span class="line">[root@localhost ~]# ls -l b.txt </span><br><span class="line">-rw-r--r-- 1 root john 0 Jan 4 21:10 b.txt</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>查看文件类型：file</strong> </p>
+<p>使用ls-l命令可以通过查看第一个字符判断文件类型。字母d代表目录、字母l代表 </p>
+<p>连接文件，字母b代表块文件，字母c代表字符文 件，字母s代表socket文件，字符-代表普通文件，字母p代表管道文件，而file命令则可以直接告诉我们文件类型，还能给出更多的文件信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">/root 是一个目录</span> </span><br><span class="line">[john@localhost ~]$ file /root </span><br><span class="line">/root: directory </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">/tmp</span> </span><br><span class="line">是一个拥有sticky </span><br><span class="line">属性的目录 </span><br><span class="line">[john@localhost ~]$ file /tmp </span><br><span class="line">/tmp: sticky directory </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">使用<span class="built_in">ls</span> –l命令查看，显示这是一个普通文件</span> </span><br><span class="line">[john@localhost ~]$ ls -l /etc/passwd </span><br><span class="line">-rw-r--r-- 1 root root 1453 Jan 4 18:12 /etc/passwd </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">使用file 命令查看，显示这是一个ASCII 编码的文本文件</span> </span><br><span class="line">[john@localhost ~]$ file /etc/passwd </span><br><span class="line">/etc/passwd: ASCII text </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">使用<span class="built_in">ls</span> –l命令查看，显示这是一个普通文件，看不出与/etc/passwd 的差别 [john@localhost ~]$ <span class="built_in">ls</span> -l /usr/bin/passwd</span> </span><br><span class="line">-rwsr-xr-x 1 root root 22984 Jan 7 2007 /usr/bin/passwd </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">使用file命令查看，显示这是一个32 位的可执行性二进制文件</span> </span><br><span class="line">[john@localhost ~]$ file /usr/bin/passwd </span><br><span class="line">/usr/bin/passwd: setuid ELF 32- bit LSB executable, Intel 80386, version 1 (SYSV), for GNU/Linux 2.6.9, dynamically linked (uses shared libs)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h4><ol>
+<li><p><strong>一般查找：find</strong> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find PATH -name FILENAME  </span><br></pre></td></tr></table></figure>
+
+<p>在系统中找到一个名为httpd.conf的文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# find / -name httpd.conf</span><br><span class="line">//从根目录开始寻找名为 httpd.conf的文件</span><br></pre></td></tr></table></figure>
+
+<p>由于是从根目录开始寻找，find 命令会遍历/下的所有文件，然后打印出寻找结果。</p>
+<p>如果你有点经验，大概知道这个文件可能存在于/etc下，因为看起来这是一个配置文件，这时便可以优化一下查找语句，这样耗时会更少一点。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# find /etc -name httpd.conf</span><br></pre></td></tr></table></figure>
+
+<p>可以使用<strong>星号通配符</strong>来模糊匹配要查找的文件名，比如想找出系统中所有以.conf结尾的文件，或以httpd开头的文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# find / -name *.conf </span><br><span class="line">[root@localhost ~]# find / -name httpd*</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>数据库查找：locate</strong> </p>
+<p>1、与find不同，locate命令依赖于一个数据库文件，Linux系统默认每天会检索一下系统中的所有 文件，然后将检索到的文件记录到数据库中。在运 行locate命令的时候可直接到数据库中查找记录并 打印到屏幕上，所以使用locate命令要比find命令反馈更为迅速。</p>
+<p>2、在执行这个命令之前一般需要执行updatedb命令（这不是必须的，因为系统每天会自 动检索并更新数据库信息，但是有时候会因为文件发生了变化而系统还没有再次更新而无法找到实际上确实存在的文件。所以有时需要主动运行该命令，以创建最新的文件列表数据库），以及时更新数据库记录。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# updatedb </span><br><span class="line">[root@localhost ~]# locate httpd.conf </span><br><span class="line">/etc/httpd/conf/httpd.conf</span><br></pre></td></tr></table></figure>
+
+<p>3、locate的工作原理小实验</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">创建一个文件</span> </span><br><span class="line">[root@localhost ~]# touch test_locate </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">用find命令查找</span> </span><br><span class="line">[root@localhost ~]# find / -name test_locate </span><br><span class="line">/root/test_locate </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">找到了</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">再用locate 找一下</span> </span><br><span class="line">[root@localhost ~]# locate test_locate </span><br><span class="line">[root@localhost ~]# </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">没找到！为什么？</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">执行一下updatedb ，更新数据库</span> </span><br><span class="line">[root@localhost ~]# updatedb </span><br><span class="line">[root@localhost ~]# locate test_locate </span><br><span class="line">/root/test_locate </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">找到了！说明由于没有更新数据库，所以无法使用locate 命令找到刚创建的文件</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">将该文件删除</span> </span><br><span class="line">[root@localhost ~]# rm test_locate </span><br><span class="line">rm: remove regular empty file &#x27;test_locate&#x27;? y </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">确认删除了</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">再次locate ，但仍然可以找到</span> </span><br><span class="line">[root@localhost ~]# locate test_locate </span><br><span class="line">/root/test_locate </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">用updatedb 再次更新一下</span> </span><br><span class="line">[root@localhost ~]# updatedb </span><br><span class="line">[root@localhost ~]# locate test_locate </span><br><span class="line">[root@localhost ~]# </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">再找，没有这个文件了</span></span><br></pre></td></tr></table></figure>
+
+<p>locate命令依赖于其用于记录文件的数据库，该数据库需要使用updatedb来更新。当然，系统每天也会自动运行一次，但是不必等系统运行，必要的时候可主动进行手动更新。</p>
+</li>
+<li><p><strong>查找执行文件：which/whereis</strong> </p>
+<p>which用于从系统的PATH变量所定义的目录中查找可执行文件的绝对路径。比如说想查找passwd这个命令在系统中的绝对路径，使用方法如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# which passwd </span><br><span class="line">/usr/bin/passwd</span><br></pre></td></tr></table></figure>
+
+<p>使用whereis也能查到其路径，但是和which不同的是，它不但能找出其二进制文件，还能找出相关的man文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# whereis passwd </span><br><span class="line">passwd: /usr/bin/passwd /etc/passwd /usr/share/man/man5/passwd.5.gz /usr/share/man/man1/passwd.1.gz</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="文件压缩与打包"><a href="#文件压缩与打包" class="headerlink" title="文件压缩与打包"></a>文件压缩与打包</h4><ol>
+<li><p><strong>gzip/gunzip</strong> </p>
+<p>gzip/gunzip是用来压缩和解压缩单个文件的工具，使用方法比较简单。比如，在/root目录下压缩install.log文件，压缩后生成的文件是install.log.gz文件，然后再使用gunzip文件将其解压缩即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# gzip install.log </span><br><span class="line">[root@localhost ~]# ls install.log.gz </span><br><span class="line">install.log.gz </span><br><span class="line">[root@localhost ~]# gunzip install.log.gz</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>tar</strong></p>
+<p>tar不但可以打包文件，还可以将整个目录中的全部文件整合成一个包，整合包的同时还能使用gzip的功能进行压缩，比如说把整个/boot目录整合 并压缩成一个文件。一般来说，整合后的包习惯使 用.tar作为其后缀名，使用gzip压缩后的文件则使用.gz作为其后缀名。因为tar有同时整合和压缩的功 能，所以可使用.tar.gz作为后缀名，或者简写 为 .tgz。下面的命令将/boot目录整合压缩成了boot.tgz文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar -zcvf boot.tgz /boot</span><br></pre></td></tr></table></figure>
+
+<p>这里-z的含义是使用gzip压缩，-c是创建压缩文 件（create），-v是显示当前被压缩的文件，-f是指 使用文件名，也就是这里的boot.tgz文件。解压命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar -zxvf boot.tgz</span><br></pre></td></tr></table></figure>
+
+<p>上面的命令会直接将boot.tgz在当前目录中解压成boot目录，-z是解压的意思。<strong>如需要指定压缩后的目录存放的位置，需要再使用-C参数</strong>。比如说将boot目录解压到/tmp目录中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# tar -zxvf boot.tgz -C /tmp</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>bzip2</strong> </p>
+<p>使用bzip2压缩文件时，默认会产生以.bz2扩展名结尾的文件，这里使用-z参数进行压缩，使用-d参数进行解压缩。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# bzip2 install.log </span><br><span class="line">[root@localhost ~]# ls -l install.log.bz2 </span><br><span class="line">-rw-r--r-- 1 root root 3588 Dec 10 03:08 install.log.bz2 [root@localhost ~]# bzip2 -d install.log.bz2</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>cpio</strong> </p>
+<p>该命令一般是不单独使用的，需要和find命令一同使用。当由find按照条件找出需要备份的文件列 表后，可通过管道的方式传递给cpio进行备份，生 成/tmp/conf.cpio文件，然后再将生成的/tmp/conf.cpio文件中包含的文件列表完全还原回去。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">备份：</span> </span><br><span class="line">[root@localhost ~]# find /etc -name *.conf | cpio - cov &gt; /tmp/conf.cpio </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">还原：</span> </span><br><span class="line">[root@localhost ~]# cpio --absolute-filenames - icvu &lt; /tmp/conf.cpio</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="Linux文件系统"><a href="#Linux文件系统" class="headerlink" title="Linux文件系统"></a>Linux文件系统</h4><ol>
+<li><p><strong>文件系统 的概念</strong></p>
+<p>文件系统是操作系统用于明确磁盘或分区上相关文件的方法和数据结构，通俗的说法就是在磁盘上组织文件的方法。在使用前，都需要针对磁盘做 初始化操作，并将记录的数据结构写到磁盘上，这 种操作就是建立文件系统，在有些操作系统中称之为格式化。</p>
+<p>Linux支持多种不同的文件系统，包括ext2、ext3、ext4、zfs、iso9660、vfat、msdos、smbfs、nfs等，还能通过加载其他模块的方式支持更多的文件系统。</p>
+<p>虽然文件系统多种多样，但是大部分Linux系统都具有类似的通用结构，包括超级块 （superblock）、i节点（inode）、数据块（data block）、目录块（directory block）等。</p>
+<p>其中，超 级块包括文件系统的总体信息，是文件系统的核 心，所以在磁盘中会有多个超级块，以防止由于磁 盘出现坏块导致全部文件系统无法使用。i节点存储所有与文件有关的元数据，也就是文件所有者、权 限等属性数据以及指向的数据块，但是不包括文件 名和文件内容。数据块是真实存放文件数据的部 分，一个数据块默认情况下是4KB。</p>
+<p>目录块包括文件名和文件在目录中的位置，并包括文件的i节点信息。</p>
+</li>
+<li><p><strong>磁盘分区、创建文件系统、挂载</strong></p>
+<p>磁盘使用前需要对其进行分割，这种动作被形象地称为分区。磁盘的分区分为两类，即主分区和 扩展分区。受限制于磁盘的分区表大小（MBR大小 为512字节，其中分区表占64字节），由于每个分区信息使用16字节，所以一块磁盘最多只能创建4 个主分区，为了能支持更多分区，可以使用扩展分区（扩展分区中可以划分更多逻辑分区），但是即 便这样，分区还是要受主分区+扩展分区最多不能超过4个的限制。在完成磁盘分区后，需要进行创建文件系统的操作，最后将该分区挂载到系统中的某个挂载点才可以使用。</p>
+</li>
+<li><p><strong>磁盘挂载:mount</strong></p>
+<p>创建了文件系统的分区后，在Linux系统下还需要经过挂载才能使用，挂载设备的命令是mount，使用方法如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mount DEVICE MOUNT_POINT </span><br><span class="line">[root@localhost ~]# mkdir newDisk </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">挂载设备</span> </span><br><span class="line">[root@localhost ~]# mount /dev/sdb1 newDisk </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">没有参数的mount 会显示所有挂载</span> </span><br><span class="line">[root@localhost ~]# mount </span><br><span class="line">/dev/mapper/VolGroup00-LogVol00 on / type ext3 (rw) </span><br><span class="line">proc on /proc type proc (rw) </span><br><span class="line">sysfs on /sys type sysfs (rw) </span><br><span class="line">devpts on /dev/pts type devpts (rw,gid=5,mode=620) </span><br><span class="line">/dev/sda1 on /boot type ext3 (rw)</span><br><span class="line">tmpfs on /dev/shm type tmpfs (rw) </span><br><span class="line">none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw) </span><br><span class="line">sunrpc on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw) </span><br><span class="line">/dev/sdb1 on /root/newDisk type ext3 (rw) </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">挂载成功 <span class="comment">#查看可用空间</span></span> </span><br><span class="line">[root@localhost newDisk]# df -h | grep sdb1</span><br><span class="line">/dev/sdb1 1004M 18M 936M 2% /root/newDisk</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>磁盘解除挂载:umount</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# umount /DEVICE/PATH </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">或者</span></span><br><span class="line">[root@localhost ~]# umount MOUNT_POINT</span><br></pre></td></tr></table></figure>
+
+<p>以挂载的/dev/sdb1为例，如果当前是挂载状态，则需要先进行umount操作</p>
+<p>如果umount成功，系统将不会有任何提示</p>
+<p>如果umount失败，系统会有相应的报错信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# umount /dev/sdb1 </span><br><span class="line">[root@localhost ~]# </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这里没有任何报错，说明umount 成功</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="Linux逻辑卷"><a href="#Linux逻辑卷" class="headerlink" title="Linux逻辑卷"></a>Linux逻辑卷</h4><p>​         磁盘一旦经过分区后，再想改变磁盘中这个分区的大小就很难了。也就是说，在一个分区经过挂载使用后，随着存储文件的不断增多，可用空间越来越小。如果出现了原先分配的磁盘空间不够使用的情况，这时候是没有办法扩大这个分区的。既然直接使用物理卷的方式无法解决这个问题，那就只能靠分区的时候预估每个分区可能在后期使用中的容量，并划分足够的磁盘空间来最大限度地延迟这 个情况的发生了。但是俗话说，计划赶不上变化， 也许预估使用的比较多的分区后来实际使用得很少，而预估用得比较少的分区却又需要大量的空间。为了更好地使用磁盘空间，提高系统空间的可扩展性，此时就需要使用逻辑卷。</p>
+<h5 id="逻辑卷的概念"><a href="#逻辑卷的概念" class="headerlink" title="逻辑卷的概念"></a>逻辑卷的概念</h5><p>逻辑卷就是使用逻辑卷组管理（Logic VolumeManager）创建出来的设备，也是Linux操作系统可 以认识的设备。事实上，LVM是介于硬盘祼设备和 文件系统的中间层，这种说法比较抽象，不太好理 解，要想搞清楚这个问题，首先需要引入逻辑卷组管理中的一些概念。</p>
+<ul>
+<li>物理卷（Physical Volume，PV），也就是物理磁盘分区，比如说/dev/sdb1。如果要想使用LVM来管理这个物理卷，可使用fdisk工具将其ID改为LVM可以识别的值。</li>
+<li>卷组（Volume Group，VG），也就是PV的集合。</li>
+<li>逻辑卷（Logic Volume，LV），也就是PV中划出来的一块逻辑磁盘。</li>
+</ul>
+<p>首先创建一个或多个物理卷，物理卷按照相同（或不同）的组名称聚集形成一个（或多个）物理 卷组，而逻辑卷就是从某个物理卷组中抽象出来的 一块磁盘空间。</p>
+<h4 id="硬连接和软连接"><a href="#硬连接和软连接" class="headerlink" title="硬连接和软连接"></a>硬连接和软连接</h4><ol>
+<li><h5 id="硬连接的概念"><a href="#硬连接的概念" class="headerlink" title="硬连接的概念"></a>硬连接的概念</h5><p>硬链接（hard link）又称实际链接，是指通过索引节点来进行链接。在Linux文件系统中，所有的文件都会有一个编号，称为inode，多个文件名指向同一索引节点是被允许的，这种链接就是硬链接。 硬链接的作用是允许一个文件拥有多个有效路径 名，这样用户就可以建立硬链接指向同一文件，删除一个链接并不会影响索引节点本身和其他的链 接，只有当最后一个链接被删除时，文件的数据块及目录的链接才会被释放。也就是说，文件真正删除的前提条件是与之相关的所有硬链接均被删除。</p>
+<p>硬链接有两个限制： </p>
+<ul>
+<li>不允许给目录创建硬链接；</li>
+<li>只有在同一文件系统中的文件之间才能创建链接，即不同分区上的两个文件之间不能够建立硬链接。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">进入/root 目录</span></span><br><span class="line">[root@localhost ~]# cd </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">创建hard 目录</span></span><br><span class="line">[root@localhost ~]# mkdir hard </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">进入hard 目录</span></span><br><span class="line">[root@localhost ~]# cd hard </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">创建一个文件</span> </span><br><span class="line">[root@localhost hard]# touch hard01 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">ls</span> 后的-i 参数可以显示文件的inode ，此处显示3834061</span> </span><br><span class="line">[root@localhost hard]# ls -li </span><br><span class="line">total 0 </span><br><span class="line">3834061 -rw-r--r-- 1 root root 0 Jan 15 10:50 hard01 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">创建指向hard01 的硬链接hard01_hlink</span> </span><br><span class="line">[root@localhost hard]# ln hard01 hard01_hlink </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">硬链接hard01_hlink 指向的inode 和hard01 指向的inode 值是一致的 [root@localhost hard]<span class="comment"># ls -li</span></span> </span><br><span class="line">total 0 </span><br><span class="line">3834061 -rw-r--r-- 2 root root 0 Jan 15 10:50 hard01 </span><br><span class="line">3834061 -rw-r--r-- 2 root root 0 Jan 15 10:50 hard01_hlink</span><br></pre></td></tr></table></figure>
+
+<p>在创建硬链接的前后分别使用ls-li命令，你能发现hard01的输出有什么不同吗？答案是第三列的值变化了！这个值其实是源文件的关联数，文件创建之初该值为1，该文件每增加一个硬链接该值将增1，当此数为0的时候该文件才能真正被文件系统删除</p>
+</li>
+<li><h5 id="软连接的概念"><a href="#软连接的概念" class="headerlink" title="软连接的概念"></a>软连接的概念</h5><p>软链接（soft link）又称符号链接（symbolic link），是一个包含了另一个文件路径名的文件，可以指向任意文件或目录，也可以跨不同的文件系统。软链接和Windows下的“快捷方式”十分类似，删除软链接并不会删除其所指向的源文件，如果删除了源文件则软链接会出现“断链”。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">进入/root 目录</span></span><br><span class="line">[root@localhost ~]# cd </span><br><span class="line">[root@localhost ~]# mkdir soft </span><br><span class="line">[root@localhost ~]# cd soft </span><br><span class="line">[root@localhost soft]# touch file01 </span><br><span class="line">[root@localhost soft]# ln -s file01 file01_slink</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">创建软链接，使用了-s 参数</span></span><br><span class="line">[root@localhost soft]# ls -li </span><br><span class="line">total 0 </span><br><span class="line">3834063 -rw-r--r-- 1 root root 0 Jan 15 11:14 file01 [root@localhost soft]# ln -s file01 file01_slink </span><br><span class="line">[root@localhost soft]# ls -li </span><br><span class="line">total 0 </span><br><span class="line">3834063 -rw-r--r-- 1 root root 0 Jan 15 11:14 file01 </span><br><span class="line">3834064 lrwxrwxrwx 1 root root 6 Jan 15 11:14 file01_slink - &gt; file01</span><br></pre></td></tr></table></figure>
+
+<p>创建软链接需要使用-s参数。另外还请注意，在创建软链接的前后分别使用ls-li命令，会发现软链接的inode和源文件的inode不一样，这说明软链接本身就是一个文件。</p>
+</li>
+</ol>
+<h4 id="字符处理"><a href="#字符处理" class="headerlink" title="字符处理"></a>字符处理</h4><ol>
+<li><h5 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h5><p>在 Linux中存在着管道，它是一个固定大小的缓冲区，该缓冲区的大小为1页，即4K字节。管道是一 种使用非常频繁的通信机制，我们可以用管道 符“|”来连接进程，由管道连接起来的进程可以自动运行，如同有一个数据流一样，所以管道表现为输入输出重定向的一种方法，它可以把一个命令的输出内容当作下一个命令的输入内容，两个命令之间只需要使用管道符连接即可。</p>
+<p>例如：如果想要看一下/etc/init.d目录下文件的详细信息，可以使用ls-l/etc/init.d命令，不过这可 能会出现因输出内容过多而造成翻屏的情况，这样 一来，先输出的内容在屏幕上就看不到了。其实这里就可以利用管道功能，将命令的输出使用more程序一页一页地显示出来。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -l /etc/init.d | more</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="使用grep搜索文本"><a href="#使用grep搜索文本" class="headerlink" title="使用grep搜索文本"></a>使用grep搜索文本</h5><p>grep是Linux下非常强大的基于行的文本搜索工具，使用该工具时，如果匹配到相关信息就会打印出符合条件的所有行。该命令常用的参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep [-ivnc]  &#x27;需要匹配的字符&#x27; 文件名 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-i 不区分大小写</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-c 统计包含匹配的行数</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-n 输出行号</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-v 反向匹配</span></span><br></pre></td></tr></table></figure>
+
+<p>演示grep的用法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat tomAndJerry.txt </span><br><span class="line">The cat&#x27;s name is Tom, what&#x27;s the mouse&#x27;s name? </span><br><span class="line">The mouse&#x27;s NAME is Jerry They are good friends</span><br><span class="line">[root@localhost ~]# grep &#x27;name&#x27; tomAndJerry.txt </span><br><span class="line">The cat&#x27;s name is Tom, what&#x27;s the mouse&#x27;s name? </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">打印出含有name 的行的行编号</span> </span><br><span class="line">[root@localhost ~]# grep -n &#x27;name&#x27; tomAndJerry.txt </span><br><span class="line">1:The cat&#x27;s name is Tom, what&#x27;s the mouse&#x27;s name?</span><br></pre></td></tr></table></figure>
+
+<p>由于grep区分大小写，所以虽然第二行中含有大写的NAME，但是也不会匹配到。如果希望忽略大小写，可以加上-i参数。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep -i &#x27;name&#x27; tomAndJerry.txt </span><br><span class="line">The cat&#x27;s name is Tom, what&#x27;s the mouse&#x27;s name? </span><br><span class="line">The mouse&#x27;s Name is Jerry</span><br></pre></td></tr></table></figure>
+
+<p>如果想知道文件中一共有多少包含name的行，可以使用下面的命令。注意到第二条命令和第一条 命令只有一个参数的差别，但是输出的结果却是不一样的。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep -c &#x27;name&#x27; tomAndJerry.txt </span><br><span class="line">1</span><br><span class="line">[root@localhost ~]# grep -ci &#x27;name&#x27; tomAndJerry.txt </span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>如果想打印出文件中不包含name的行，可以使用grep的反选参数-v。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep -v &#x27;name&#x27; tomAndJerry.txt </span><br><span class="line">The mouse&#x27;s Name is Jerry</span><br><span class="line">They are good friends </span><br><span class="line">[root@localhost ~]# grep -vi &#x27;name&#x27; tomAndJerry.txt </span><br><span class="line">They are good friends</span><br></pre></td></tr></table></figure>
+
+<p>以上命令都可以使用cat命令+管道符改写。比如上一个命令可以这样改写： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat tomAndJerry.txt | grep -vi &#x27;name&#x27; </span><br><span class="line">They are good friends</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="使用sort排序"><a href="#使用sort排序" class="headerlink" title="使用sort排序"></a>使用sort排序</h5><p>很多情况下需要对无序的数据进行排序，这时就要用到sort排序了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sort [-ntkr] 文件名 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-n 采取数字排序</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-t 指定分隔符</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-k 指定第几列</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-r 反向排序</span></span><br></pre></td></tr></table></figure>
+
+<p>演示sort的用法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat sort.txt </span><br><span class="line">b:3 </span><br><span class="line">c:2 </span><br><span class="line">a:4 </span><br><span class="line">e:5 </span><br><span class="line">d:1</span><br><span class="line">f:11</span><br><span class="line">[root@localhost ~]# cat sort.txt | sort </span><br><span class="line">a:4 </span><br><span class="line">b:3</span><br><span class="line">c:2 </span><br><span class="line">d:1 </span><br><span class="line">e:5 </span><br><span class="line">f:11 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">对输出内容直接排序时，默认按照每行的第一个字符进行排序</span></span><br></pre></td></tr></table></figure>
+
+<p>对输出内容进行反向排序：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat sort.txt | sort -r </span><br><span class="line">f:11 </span><br><span class="line">e:5</span><br><span class="line">d:1</span><br><span class="line">c:2 </span><br><span class="line">b:3 </span><br><span class="line">a:4 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">和上面的例子的输出相反</span></span><br></pre></td></tr></table></figure>
+
+<p>sort.txt文件具有一个特点，第一个字符是字母，第三个字符是数字，中间用冒号隔开。这样就可以用-t指定分隔符，并用-k指定用于排序的列了。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat sort.txt | sort -t &quot;:&quot; -k 2 </span><br><span class="line">d:1 </span><br><span class="line">f:11 </span><br><span class="line">c:2 </span><br><span class="line">b:3 </span><br><span class="line">a:4 </span><br><span class="line">e:5 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">你可能已注意到，当前的排序是按照数字列的部分进行的。不过，第2 行为什么是11 呢？那是因为当前的排序并不是按照“数字值来进行的</span></span><br></pre></td></tr></table></figure>
+
+<p>在上面的命令中，当前的排序是按照以冒号隔开的第二部分进行的，不过读者是否注意到，第二行是f:11，这一行不应该在最后一行吗？因为11是最大的。但其实命令的输出并不是错误的，因为按照排序的方式，只会看第一个字符，而11第一个字符是1，按照字符来排序那它确实比2小。如果想要指定按照“数字”的方式进行排序，则需要加上-n参数。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat sort.txt | sort -t &quot;:&quot; -k 2 -n </span><br><span class="line">d:1 </span><br><span class="line">c:2 </span><br><span class="line">b:3</span><br><span class="line">a:4 </span><br><span class="line">e:5 </span><br><span class="line">f:11</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="使用uniq删除重复内容"><a href="#使用uniq删除重复内容" class="headerlink" title="使用uniq删除重复内容"></a>使用uniq删除重复内容</h5><p>如果文件（或标准输出）中有多行完全相同的内容，我们很自然希望能删除重复的行，同时还可 以统计出完全相同的行出现的总次数，uniq命令就能帮助解决这个问题。下面列出了该命令常用的参数。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# uniq [-ic] </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-i 忽略大小写</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-c 计算重复行数</span></span><br></pre></td></tr></table></figure>
+
+<p>演示uniq的用法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat uniq.txt </span><br><span class="line">abc </span><br><span class="line">123 </span><br><span class="line">abc </span><br><span class="line">123</span><br></pre></td></tr></table></figure>
+
+<p>需要说明的是，uniq一般都需要和sort命令一起使用，也就是先将文件使用sort进行排序（这样重 复的内容就能显示在连续的几行中），然后再使用 uniq删除掉重复的内容（uniq的作用就在于删除连续的完全一致的行）。观察一下以下两次命令 的输出，第一次直接cat输出文件，然后使用uniq命令，输出的内容居然和原文件uniq.txt的内容是一样 的，这是因为uniq命令只会对比相邻的行，如果有连续相同的若干行则删除重复内容，仅输出一行。如果相同的行非连续，则uniq命令不具备删除效果。第二次则在使用sort排序后再使用uniq命令，这 时就达到了预期的效果。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat uniq.txt | uniq </span><br><span class="line">abc </span><br><span class="line">123 </span><br><span class="line">abc </span><br><span class="line">123 </span><br><span class="line">[root@localhost ~]# cat uniq.txt | sort | uniq </span><br><span class="line">123 </span><br><span class="line">abc </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用-c 参数就会在每行前面打印出该行重复的次数</span> </span><br><span class="line">[root@localhost ~]# cat uniq.txt | sort | uniq -c </span><br><span class="line">2 123 </span><br><span class="line">2 abc</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="使用cut截取文本"><a href="#使用cut截取文本" class="headerlink" title="使用cut截取文本"></a>使用cut截取文本</h5><p>顾名思义，cut就是截取的意思，它能处理的对象是“一行”文本，可从中选取出用户所需要的部分。在有特定的分隔符时，可以指定分隔符，然后打印出以分隔符隔开的具体某一列或某几列。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cut -f 指定的列 -d &#x27;分隔符&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>在文件/etc/passwd中，每行都是使用6个冒号隔开的7列文本，那么很容易使用cut的这个 功能来提取出特定的信息。比如说我们需要打印出系统中的所有用户：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/passwd | cut -f1 -d&#x27;:&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>或者想同时打印出用户和这个用户的家目录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/passwd | cut -f1,6 -d&#x27;:&#x27; </span><br><span class="line">root:/root </span><br><span class="line">bin:/bin </span><br><span class="line">daemon:/sbin </span><br><span class="line">adm:/var/adm </span><br><span class="line">......( 略去内容)......</span><br></pre></td></tr></table></figure>
+
+<p>如果还想同时打印出每位用户的登录shell： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/passwd | cut -f1,6-7 -d&#x27;:&#x27; root:/root:/bin/bash</span><br><span class="line">bin:/bin:/sbin/nologin </span><br><span class="line">daemon:/sbin:/sbin/nologin </span><br><span class="line">adm:/var/adm:/sbin/nologin </span><br><span class="line">......( 略去内容)......</span><br></pre></td></tr></table></figure>
+
+<p>以上cut使用的场景是在处理的行中有特定分隔符的时候，但如果要处理的行是没有分隔符的，那就需要指定参数，打印指定的字符</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cut -c 指定列的字符</span><br></pre></td></tr></table></figure>
+
+<p>使用/etc/passwd为例，假设想要打印出每 行第1～5个字符，以及第7～10个字符的内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/passwd | cut -c 1-5,7-10 </span><br><span class="line">root::0:0 </span><br><span class="line">bin:x1:1: </span><br><span class="line">daemo:x:2 </span><br><span class="line">adm:x3:4: </span><br><span class="line">......( 略去内容)......</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="使用tr做文本转换"><a href="#使用tr做文本转换" class="headerlink" title="使用tr做文本转换"></a>使用tr做文本转换</h5><p>tr命令比较简单，其主要作用在于文本转换或删除。这里假设要把文件/etc/passwd中的小写字母转换为大写字母，然后再尝试删除文本中的冒号。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/passwd | tr &#x27;[a-z]&#x27; &#x27;[A-Z]&#x27; ROOT:X:0:0:ROOT:/ROOT:/BIN/BASH</span><br><span class="line">BIN:X:1:1:BIN:/BIN:/SBIN/NOLOGIN DAEMON:X:2:2:DAEMON:/SBIN:/SBIN/NOLOGIN ADM:X:3:4:ADM:/VAR/ADM:/SBIN/NOLOGIN</span><br><span class="line">......( 略去内容)...... </span><br><span class="line">[root@localhost ~]# cat /etc/passwd | tr -d &#x27;:&#x27; rootx00root/root/bin/bash </span><br><span class="line">binx11bin/bin/sbin/nologin </span><br><span class="line">daemonx22daemon/sbin/sbin/nologin </span><br><span class="line">admx34adm/var/adm/sbin/nologin </span><br><span class="line">......( 略去内容)......</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="使用paste做文本合并"><a href="#使用paste做文本合并" class="headerlink" title="使用paste做文本合并"></a>使用paste做文本合并</h5><p>paste的作用在于将文件按照行进行合并，中间使用tab隔开。假设有两个文件分别为a.txt、b.txt，下面使用paste命令来合并文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">文件a.txt 中的内容</span> </span><br><span class="line">[root@localhost ~]# cat a.txt </span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">文件b.txt 中的内容</span> </span><br><span class="line">[root@localhost ~]# cat b.txt </span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">C</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用<span class="built_in">paste</span> 连接这两个文件，可以看到只是将文件按照行做了合并 [root@localhost ~]<span class="comment"># paste a.txt b.txt</span></span> </span><br><span class="line">1 a</span><br><span class="line">2 b </span><br><span class="line">3 c </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">也可以使用-d 指定在合并文件时行间的分隔符</span> </span><br><span class="line">[root@localhost ~]# paste -d: a.txt b.txt </span><br><span class="line">1:a</span><br><span class="line">2:b </span><br><span class="line">3:c</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="使用split分割大文件"><a href="#使用split分割大文件" class="headerlink" title="使用split分割大文件"></a>使用split分割大文件</h5><p>在Linux下使用split命令来实现文件的分割，支持按照行数分割和按照大小分割这两种模式。要说 明的是，二进制文件因为没有“行”的概念，所以二 进制文件无法使用行分割，而只能按照文件大小进行分割。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">假设文件中有一个512MB 的大文件</span> </span><br><span class="line">[root@localhost ~]# ll -h big_file.txt </span><br><span class="line">-rw-r--r-- 1 root root 512M Jan 24 14:16 big_file.txt </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">按照行进行分割，-l 参数指定每500 行为一个小文件</span> </span><br><span class="line">[root@localhost ~]# split -l 500 big_file.txt small_file_</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">分割完成后，当前目录下会生成很多小文件</span> </span><br><span class="line">[root@localhost ~]# ls small_file_* </span><br><span class="line">small_file_aa small_file_ab small_file_ac small_file_ad </span><br><span class="line">......( 略去内容)...... </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">如果文件是二进制的，则只能按照文件大小分割</span> </span><br><span class="line">[root@localhost ~]# ll -h big_bin </span><br><span class="line">-rw-r--r-- 1 root root 512M Jan 24 14:51 big_bin</span><br><span class="line">[root@localhost ~]# split -b 64m big_bin small_bin_ </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">分割完成后，当前目录下会生成很多大小为64MB 的文件</span> </span><br><span class="line">[root@localhost ~]# ll -h small_bin_* </span><br><span class="line">-rw-r--r-- 1 root root 64M Jan 24 14:53 small_bin_aa </span><br><span class="line">-rw-r--r-- 1 root root 64M Jan 24 14:53 small_bin_ab </span><br><span class="line">-rw-r--r-- 1 root root 64M Jan 24 14:53 small_bin_ac </span><br><span class="line">-rw-r--r-- 1 root root 64M Jan 24 14:53 small_bin_ad </span><br><span class="line">-rw-r--r-- 1 root root 64M Jan 24 14:53 small_bin_ae </span><br><span class="line">-rw-r--r-- 1 root root 64M Jan 24 14:53 small_bin_af </span><br><span class="line">-rw-r--r-- 1 root root 64M Jan 24 14:53 small_bin_ag </span><br><span class="line">-rw-r--r-- 1 root root 64M Jan 24 14:53 small_bin_ah </span><br><span class="line">......( 略去内容)......</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h4><p>​           Linux作为一个越来越成熟的系统，在服务器市场、嵌入式设备等方面都取得了巨大的成功，在网络上的应用也越来越多。事实上，从Linux诞生时起，其就被赋予了强大的网络功能，所以掌握如何在Linux系统中配置、管理网络就变得非常必要。在安装Linux的过程中，网卡配置部分选择的是“从DHCP获得地址”，这样配置后，如果当前网络中存在DHCP服务器，就会自动 获得配置参数。不过，如果后期要检查或自主配置 网络相关参数，就必须熟练掌握Linux下的相关网络配置命名和方法了。</p>
+<ol>
+<li><h5 id="网络接口配置"><a href="#网络接口配置" class="headerlink" title="网络接口配置"></a>网络接口配置</h5><p>手工指定eth0的IP地址：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ifconfig eth0 192.168.159.130 netmask 255.255.255.0 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">可以简写为：</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[root@localhost ~]<span class="comment"># ifconfig eth0 192.168.159.130/24</span></span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">通过IP 地址和掩码系统能自行算出广播地址，也可以显式地指定广播地址，不过一般情况下没有必要这么做</span></span><br><span class="line">[root@localhost ~]# ifconfig eth0 192.168.159.130 broadcast 192.168.159.255 netmask 255.255.255.0</span><br></pre></td></tr></table></figure>
+
+<p>有时候需要手工断开/启用网卡，以eth0为例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ifconfig eth0 down </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在关闭了网卡后，再使用不加参数的ifconfig 命令时，将不再显示eth0</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">但是可以使用ifconfig –a显示所有包括当前不活动的网卡</span></span><br><span class="line">[root@localhost ~]# ifconfig eth0 up </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">启动网卡eth0</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">以上关闭和启动网卡的命令等同于如下两条命令</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">[root@localhost ~]<span class="comment"># ifdown eth0</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">[root@localhost ~]<span class="comment"># ifup</span></span></span><br></pre></td></tr></table></figure>
+
+<p>将IP配置信息写入配置文件 ：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost network-scripts]# cat ifcfg-eth0 </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Advanced Micro Devices [AMD] 79c970 [PCnet32 LANCE]</span></span><br><span class="line">DEVICE=eth0 </span><br><span class="line">BOOTPROTO=dhcp </span><br><span class="line">ONBOOT=yes</span><br></pre></td></tr></table></figure>
+
+<p>​         其中，DEVICE变量定义了设备的名称；BOOTPROTO变量定义了获取IP的方式，这里 BOOTPROTO=dhcp的含义是：系统在启用这块网 卡时，IP将会通过dhcp的方式获得；还有个可选的 值是static，表示静态设置的IP；ONBOOT变量定义了启动时是否激活使用该设备，yes表示激活，no表示不激活。 </p>
+<p>​        为了静态化地为该系统配置一个IP（这里假设IP为192.168.159.129，子网掩码为255.255.255.0），将配置文件修改如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost network-scripts]# cat ifcfg-eth0 </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Advanced Micro Devices [AMD] 79c970 [PCnet32 LANCE]</span> </span><br><span class="line">DEVICE=eth0 </span><br><span class="line">BOOTPROTO=static</span><br><span class="line">ONBOOT=yes </span><br><span class="line">IPADDR=192.168.159.129 </span><br><span class="line">NETMASK=255.255.255.0</span><br></pre></td></tr></table></figure>
+
+<p>修改完成后，如果要想立即生效，可以将端口先停用再启用，或者重启网络服务。虽然这两种方式的效果是一样的，但是在实际工作中也要注意， 第一种方式是不能远程操作的，因为一旦网卡被关 闭掉后远程连接就断开了，随后的启用命令也就无法输入了，所以这种方式只能在管理员可以物理地接触到服务器的时候使用（比如说你正坐在被操作 的这台服务器面前，使用本地终端操作服务器而不 是远程登录）。第二种方式虽然也经过了一次网络 断开，但是该命令会在断开后立即启用网络，因此只需要使用新的IP重新连接就可以了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ifconfig eth0 down </span><br><span class="line">[root@localhost ~]# ifconfig eth0 up </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">或者重启网络服务，也可以立即生效，推荐使用这种方式</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">[root@localhost ~]<span class="comment"># service network restart</span></span></span><br></pre></td></tr></table></figure></li>
+<li><h5 id="路由和网关设置"><a href="#路由和网关设置" class="headerlink" title="路由和网关设置"></a>路由和网关设置</h5><p>Linux主机之间是使用IP进行通信的，假设A主机和B主机同在一个网段内且网卡都处于激活状态，则A具备和B直接通信的能力（通过交换机或者简易HUB）。但是A主机和B主机处于两个不同的网段，则A必须通过路由器才能和B通信。一般来说，路由器属于IT设备的基础设施，每一个网段都应该有至少一个网关。在Linux中可使用route 命令添加默认网关。假设添加的网关是192.168.159.2，添加方式如下： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# route add default gw 192.168.159.2</span><br></pre></td></tr></table></figure>
+
+<p>在以上命令中，只需要将add改成del，就能删除刚才添加的路由。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# route del default gw 192.168.159.2 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">该命令可以简写成如下形式</span> </span><br><span class="line">[root@localhost ~]# route del default</span><br></pre></td></tr></table></figure>
+
+<p>添加网关后，可以使用route–n查看系统当前的路由表。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# route -n </span><br><span class="line">Kernel IP routing table</span><br><span class="line">Destination Gateway Genmask Flags Metric Ref Use Iface 192.168.159.0 0.0.0.0 255.255.255.0 U 0 0 0 eth0 169.254.0.0 0.0.0.0 255.255.0.0 U 0 0 0 eth0 0.0.0.0 192.168.159.2 0.0.0.0 UG 0</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>DNS客户端配置</strong> </p>
+<ul>
+<li><p>/etc/hosts </p>
+<p>加快域名解析。当访问网站时，系统会首先查看hosts文件中是否有记录，如果记录存在则直接解析出对应的IP，这时则不需要请求DNS服务器。</p>
+<p>方便小型局域网用户使用的内部设备。很多单位的局域网中都存在着不少内部应用系统（比如办 公自动化OA、公司论坛等），平时在工作中也都需要访问，但是由于这些局域网太小而不必为此专门设置DNS服务器，那么此时使用hosts文件则能简单地解决这个问题。 </p>
+</li>
+<li><p>/etc/resolv.conf </p>
+<p>使用hosts文件毕竟只能做有限的主机记录，无法将所有已知的主机名记录到hosts文件中。因此， 当今几乎所有的主机都在使用DNS来解析地址，从技术上来说，DNS就是全互联网上主机名及其IP地 址对应关系的数据库。设置主机为DNS客户端的配 置文件就是/etc/resolv.conf，其中包含nameserver、search、domain这3个关键字。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/resolv.conf </span><br><span class="line">; generated by /sbin/dhclient-script </span><br><span class="line">search localdomain </span><br><span class="line">nameserver 192.168.159.2</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h4 id="网络测试工具"><a href="#网络测试工具" class="headerlink" title="网络测试工具"></a>网络测试工具</h4><ul>
+<li><p>ping </p>
+<p>ping程序的目的在于测试另一台主机是否可达，一般来说，如果ping不到某台主机，就说明对方主机已经出现了问题，但是不排除由于链路中防火墙的因素，ping包被丢弃等原因而造成ping不通的情况。ping命令最简单的使用方式是接收一个主机名或IP作为其单一的参数，在按回车键后，执行ping命令的主机会向对端主机发送一个ICMP的echo请求包，对端主机在接收到这个包后会回应一个 </p>
+<p>ICMP的reply回应包。在Linux下ping命令并不会主动停止，需要使用Ctrl+C组合键来停止，ping命令将会对发出的请求包和收到的回应包进行计数，这样就能计算网络丢包率。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ping 10.1.1.145 </span><br><span class="line">PING 10.1.1.145 (10.1.1.145) 56(84) bytes of data. 64 bytes from 10.1.1.145: icmp_seq=1 ttl=64 time=3.60 ms 64 bytes from 10.1.1.145: icmp_seq=2 ttl=64 time=1.32 ms 64 bytes from 10.1.1.145: icmp_seq=3 ttl=64 time=0.619 ms 64 bytes from 10.1.1.145: icmp_seq=4 ttl=64 time=0.655 ms </span><br><span class="line">[Ctrl+C] </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">此处手工输入Ctrl+C 组合键</span> </span><br><span class="line">--- 10.1.1.145 ping statistics --- </span><br><span class="line">4 packets transmitted, 4 received, 0% packet loss, time 3072ms rtt min/avg/max/mdev = 0.619/1.551/3.604/1.218 ms</span><br></pre></td></tr></table></figure></li>
+<li><p>host </p>
+<p>host命令是用来查询DNS记录的，如果使用域名作为host的参数，命令返回该域名的IP。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# host www.google.com </span><br><span class="line">www.google.com has address 74.125.128.147</span><br><span class="line">www.google.com has address 74.125.128.103 </span><br><span class="line">www.google.com has address 74.125.128.99 </span><br><span class="line">www.google.com has address 74.125.128.104 </span><br><span class="line">www.google.com has address 74.125.128.105 </span><br><span class="line">www.google.com has address 74.125.128.106</span><br><span class="line">www.google.com has IPv6 address 2404:6800:4005:c00::67</span><br></pre></td></tr></table></figure></li>
+<li><p>traceroute</p>
+<p>​        在IP包结构中有一个定义数据包生命周期的TTL（Time To Live）字段，该字段用于表明IP数据包的生命值，当IP数据包在网络上传输时，每经过 一个路由器该值就减1，当该值减为0时此包就会被 路由器丢弃。这种设计可用于避免出现一些由于某 种原因始终无法到达目的地的包不断地在互联网上 传递（可以形象地称之为“幽灵包”），减少无谓的网络资源耗用。 </p>
+<p>​        不过路由器也不是“无声无息”地将TTL值为0的IP包丢弃的，它会同时给发送该IP数据包的主机发 送一个ICMP“超时”消息，主机在接收到这个ICMP包后就同时能得到该路由的IP地址。</p>
+<p>​        根据上面两个特点，人们写了一个检测数据包是如何经由路由器的工具——traceroute，可以 想象一下该工具的工作原理：它先构造出一个TTL 值为1的数据包发送给目的主机，这个数据包在经 由第一个路由器时，路由器先将TTL值减1变为0， 然后将该IP包丢弃，同时给发送一个ICMP消息，这样就得到了经过的第一台路由器的IP地址；然后 再构造出一个TTL值为2的数据包，以此类推，就能得到该IP包经历的整条链路的路由器IP。 </p>
+</li>
+</ul>
+</li>
+<li><h4 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h4><ol>
+<li><h5 id="进程的观察：ps、top"><a href="#进程的观察：ps、top" class="headerlink" title="进程的观察：ps、top"></a>进程的观察：ps、top</h5><p>如果想要查看进程，了解当前进程的情况就需要用到相关命令了。其中，ps命令就是一款非常强大的进程查看工具。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ps 参数</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">ps 的参数非常多, 在此列出一些常用的参数</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-A 列出所有的进程，和-e 有同样的效果</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-a 列出不和本终端有关的所有进程</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-w 显示加宽可以显示较多信息</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-u 显示有效使用者相关的进程</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">aux 显示所有包含其他使用者的进程</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用aux 参数的输出：</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND <span class="comment">#USER: 进程拥有者#PID: pid</span></span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">%CPU: 占用的CPU 使用率</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">%MEM: 占用的内存使用率</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">VSZ: 占用的虚拟内存大小</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">RSS: 占用的内存大小</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">TTY: 运行的终端的号码</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">STAT:进程状态:</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">D: 不可中断</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">R: 运行中</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">S: 休眠</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">T: 暂停</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Z: 僵尸进程</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">W: 没有足够的内存可分配</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">&lt;: 高优先级的行程</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">N: 低优先级的行程</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">START: 进程开始时间</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">TIME: 累计使用CPU 的时间</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">COMMAND: 执行的命令</span></span><br></pre></td></tr></table></figure>
+
+<p>命令ps输出的只是当前查询状态下进程瞬间的状态信息，如果要想及时动态地查看进程就需要使 用top命令了。top命令提供了实时的系统状态监 控，可以按照CPU使用、内存使用、执行时间等指标对进程进行排序。</p>
+</li>
+<li><h5 id="进程的终止：kill、killall"><a href="#进程的终止：kill、killall" class="headerlink" title="进程的终止：kill、killall"></a>进程的终止：kill、killall</h5><p>​        要终止一个进程，需要通过kill、killall等命令来实现。比如说有部分进程由于某种原因已经死掉或 者工作异常，或者要停止一些非关键或非数据业务的进程，那么这时就需要使用这些命令来终止进 程。这些命令的原理都是向内核发送一个系统操作信号以及某个进程的标识号，使得内核对指定标识号的进程进行相应的操作。</p>
+<p>​        一般来说，kill命令需要和ps命令联合使用。原因是kill后面跟的应该是需要被终止的进程的PID。典型用法是使用ps查出进程的PID，然后使用kill将其终止。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# kill [ 信号代码] 进程ID</span><br></pre></td></tr></table></figure>
+
+<p>假设系统中的dhcpd进程由于某种原因需要终止，那么首先要查找到该进程的PID（从下面的输 出中可以看到该PID为2877），然后kill这个PID。完成这个操作后再看dhcpd进程，就已经不在了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ps -ef | grep dhcp </span><br><span class="line">root 2877 1 0 18:59 ? 00:00:00 /usr/sbin/dhcpd </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这里找出dhcpd的PID 是2877</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">有个更快速的方式来寻找进程的PID ，即使用pidof 命令</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">[root@localhost ~]<span class="comment"># pidof dhcpd</span></span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">2877</span></span><br><span class="line">[root@localhost ~]# kill 2877</span><br></pre></td></tr></table></figure>
+
+<p>​        由于使用kill命令时要先查询到想要终止的进程的PID，也就是说操作对象是数字，相对来说会比较麻烦，而且在实际的工作中，如果看错了PID其 后果是无法估计的（想象一下，如果看错或是输错 了PID，恰巧将一个非常重要的应用程序给kill了， 那就无异于一场灾难）。事实上，想要终止进程时 还有第二个命令可以选择，即killall命令，它可以直接使用进程的名字而不是PID，如果要停止系统 中所有的httpd进程，那么只要按照以下方法操作就可以了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# killall httpd</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="查询进程打开的文件：lsof"><a href="#查询进程打开的文件：lsof" class="headerlink" title="查询进程打开的文件：lsof"></a>查询进程打开的文件：lsof</h5><p>lsof（list open files）是一个列出当前系统中所有打开文件的工具。早在第1章中就提到过，Linux中一切皆文件，所以在系统中，被打开的文件可以是普通文件、目录、网络文件系统中的文件、字符设备、管道、socket等。那么如何知晓现在系统打开的是哪些文件呢，这时lsof命令就有用武之地 了。不过，这个命令在系统中可能并未默认安装，在CentOS下如果可以联网，简单输入<code>yum install lsof -y</code>即可安装该工具，如果是在RedHat下，则需要到原始安装光盘中寻找lsof的rpm包进行安装。</p>
+<p>Linux系统中有很多日志文件会不断地被写入、更新，/var/log/messages就是其中的一个。现在来看一下当前有什么进程正在使用该文件（syslogd是系统中负责写系统日志的进程）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# lsof /var/log/messages</span><br><span class="line">COMMAND PID USER FD TYPE DEVICE SIZE NODE NAME </span><br><span class="line">syslogd 2428 root 1w REG 253,0 109860 4161767 /var/log/messag</span><br></pre></td></tr></table></figure>
+
+<p>现假设文件/var/log/messages不小心被删除了，首先来确认一下当前是否有进程正在使用这个文件，如果有则可以继续，如果没有就无法使用该方法继续了。本例中看到有个PID为2449的进程正在使用该文件，那么接下来只要找到对应/proc目录下的文件就可以了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# lsof | grep message </span><br><span class="line">syslogd 2449 root 1w REG 253,0 149423 4161767 /var/log/messages </span><br><span class="line">[root@localhost ~]# cat /proc/2449/fd/2 &gt; /var/log/messages </span><br><span class="line">[root@localhost ~]# Service syslogd restart</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="进程优先级调整：nice、renice"><a href="#进程优先级调整：nice、renice" class="headerlink" title="进程优先级调整：nice、renice"></a>进程优先级调整：nice、renice</h5><p>nice命令仅限于在启动一个进程的时候同时赋予其nice优先级，比如你自己写了一个脚本job.sh，你想以比较高的优先级来运行它，就可以这么做：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# nice -n -10 ./job.sh</span><br></pre></td></tr></table></figure>
+
+<p>对于已经启动的进程，可以用renice命令进行修改，不过，这需要先查询出该进程的PID（使用ps命令）。假设现在需要将PID为5555的进程的nice优先级调整为-10。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# renice -10 -p 5555</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h4 id="Linux下的软件安装"><a href="#Linux下的软件安装" class="headerlink" title="Linux下的软件安装"></a>Linux下的软件安装</h4><ol>
+<li><h5 id="编译、安装、打印HelloWorld程序"><a href="#编译、安装、打印HelloWorld程序" class="headerlink" title="编译、安装、打印HelloWorld程序"></a>编译、安装、打印HelloWorld程序</h5><p>可使用vi编译器编写HelloWorld.c文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vi HelloWorld.c</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">include &lt;stdio.h&gt;</span> </span><br><span class="line">int main(void) </span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;Hello,world!\n&quot;); </span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用gcc工具将HelloWorld.c这个源码文件编译成一个可执行的二进制程序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# gcc HelloWorld.c -o HelloWorld </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">如果没有gcc 命令，将会出现如下报错信息，否则将生成文件HelloWorld</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-bash: gcc: <span class="built_in">command</span> not found</span> </span><br><span class="line">[root@localhost ~]# ls HelloWorld </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">得到了HelloWorld 二进制文件</span></span><br><span class="line">HelloWorld</span><br></pre></td></tr></table></figure>
+
+<p>在这种情况下，为了方便软件安装，可以使用Makefile简化整 个过程，在/root目录中编辑Makefile。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat Makefile</span><br><span class="line">HelloWorld:HelloWorld.o </span><br><span class="line">	gcc -o HelloWorld HelloWorld.c </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">前面不是空格，而是一个Tab</span> </span><br><span class="line">install: </span><br><span class="line">	cp HelloWorld /bin/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">此处前面的也是一个Tab</span></span><br></pre></td></tr></table></figure>
+
+<p>有了Makefile之后，编译安装HelloWorld程序就变得更简单了，只需要以下两条命令即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">第一步，输入make 命令，这会自动完成编译的过程</span> </span><br><span class="line">[root@localhost ~]# make </span><br><span class="line">gcc -o HelloWorld HelloWorld.c </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这里是make 命令执行后的输出</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">第二步，输入make install 命令，这会自动完成软件的复制 [root@localhost ~]<span class="comment"># make install</span></span> </span><br><span class="line">cp HelloWorld /bin/ </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意这里是make install 的输出，不需要人工复制</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">然后就可以直接执行命令了</span></span><br><span class="line">[root@localhost ~]# HelloWorld </span><br><span class="line">Hello, world!</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="RPM安装软件"><a href="#RPM安装软件" class="headerlink" title="RPM安装软件"></a>RPM安装软件</h5><p>​        RPM是RedHat Package Manager的简写，顾名思义是红帽软件包管理器的意思。RPM通过一套本地数据库提供了一种更简单的软件安装管理方式，从 而使得不管是安装、升级还是卸载都较源码包安装更智能。比如说在初次安装某软件的时候会提醒我 们需要预先安装其他什么软件，升级的时候也会智 能地保存原先的配置文件，而在卸载的时候则能视 情况保留重要的数据文件等。由于Linux中一切皆 文件，所以说白了，RMP其实是一种集成了文件管理和软件版本控制的工具。</p>
+<p>​        RPM分为两类，第一类是二进制安装包（也就是预编译包）。事实上，如果将编译好的软件复制 到相同软件环境（内核版本一致、软硬件运行环境 一致）的服务器中，只要软件在原编译机中能运 行，那么在新主机中也同样可以运行。而RPM采用 的就是类似的方式，在特定的kernel版本下预先编 译好软件（编译时使用了大多数常见的编译参 数），并将所需要的文件（二进制程序、模块、配置文件等）整体打包，在新主机中安装该RPM包时，再将文件解压并复制到特定的目录中去。第二类是RPM源码包，当希望自定义编译参数，自行制作二进制安装包的时候使用。</p>
+<p>​        <strong>RPM包管理命令：rpm</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">安装参数 </span><br><span class="line">-i, --install 安装软件</span><br><span class="line">-v, --verbose 打印详细信息 </span><br><span class="line">-h, --hash 使用“# ”号打印安装进度（需要和-v 同时用）</span><br><span class="line">-e, --erase 删除软件 </span><br><span class="line">-U, --upgrade=&lt;packagefile&gt;+ 升级软件 </span><br><span class="line">--replacepkge 如果软件已经安装，则强行安装 </span><br><span class="line">--test 安装测试，并不实际安装 </span><br><span class="line">--nodeps 忽略软件包的依赖关系强行安装 </span><br><span class="line">--force 忽略软件包及文件的冲突 查询参数( 需要使用-q 或--query 参数) -a, --all 查询所有安装软件 </span><br><span class="line">-p, --package 查询某个安装软件 </span><br><span class="line">-l, --list 列出某个软件包所包含的所有文件</span><br><span class="line">-f, --file 查询某个文件的所属包</span><br></pre></td></tr></table></figure>
+
+<p>​        在实际使用中，往往需要组合使用。下面列出了rpm命令常见参数的使用方法，其中PACKAGE_NAME代表某个包的名字，VERSION代表版本。</p>
+<ul>
+<li><p>安装软件包。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -ivh PACKAGE_NAME-VERSION.rpm</span><br></pre></td></tr></table></figure></li>
+<li><p>测试安装软件包，不做真实的安装。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -ivh --test PACKAGE_NAME-VERSION.rpm</span><br></pre></td></tr></table></figure></li>
+<li><p>安装软件包，并重新定义安装路径。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -ivh -- relocate /=/usr/local/PACKAGE_NAME PACKAGE_NAME-VERSION.rpm</span><br></pre></td></tr></table></figure></li>
+<li><p>强行安装软件包，忽略依赖关系。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -ivh PACKAGE_NAME-VERSION.rpm -- force --nodeps</span><br></pre></td></tr></table></figure></li>
+<li><p>升级软件包。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -Uvh PACKAGE_NAME-VERSION.rpm</span><br></pre></td></tr></table></figure></li>
+<li><p>强行升级软件包，忽略依赖关系。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -Uvh PACKAGE_NAME-VERSION.rpm -- force --nodeps</span><br></pre></td></tr></table></figure></li>
+<li><p>删除软件包，并忽略依赖关系。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -e PACKAGE_NAME --nodeps # 只是包名，不需要跟版本号</span><br></pre></td></tr></table></figure></li>
+<li><p>导入签名。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm --import RPM-GPG-KEY</span><br></pre></td></tr></table></figure></li>
+<li><p>查询某个包是否已经安装。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -q PACKAGE_NAME</span><br></pre></td></tr></table></figure></li>
+<li><p>查询系统中所有已安装的包。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -qa</span><br></pre></td></tr></table></figure></li>
+<li><p>查询某个文件属于哪个包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -qf /etc/auto.misc</span><br></pre></td></tr></table></figure></li>
+<li><p>查询某个已安装软件所包含的所有文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -ql PACKAGE_NAME</span><br></pre></td></tr></table></figure></li>
+<li><p>查询某个包的依赖关系。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -qpR PACKAGE_NAME-VERSION.rpm</span><br></pre></td></tr></table></figure></li>
+<li><p>查询某个包的信息。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -qpi PACKAGE_NAME-VERSION.rpm</span><br></pre></td></tr></table></figure></li>
+<li><p>删除软件包。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -e PACKAGE_NAME</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h5 id="使用RPM包安装Apache"><a href="#使用RPM包安装Apache" class="headerlink" title="使用RPM包安装Apache"></a>使用RPM包安装Apache</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost CentOS]# rpm -ivh</span><br></pre></td></tr></table></figure>
+
+<p>启动httpd服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost CentOS]# service httpd start</span><br><span class="line">Starting httpd: [ OK ] </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">看到这里出现OK 说明启动成功了</span></span><br></pre></td></tr></table></figure></li>
+<li><h5 id="yum安装软件"><a href="#yum安装软件" class="headerlink" title="yum安装软件"></a>yum安装软件</h5><p>​        yum的全称为Yellow dog Updater，Modified，是一个基于RPM的shell前端包管理器，能够从指定的服务器上（一个或多个）自动下载并安装或更新软 件、删除软件。其最大的好处是可以自动解决依赖 关系。RedHat和CentOS的版本为5以上的都会默认安装yum，所以该命令可以直接使用。</p>
+<p>​        yum命令的形式一般如下。要说明的是以下演示中所使用到的PACKAGE、GROUP都是变量，需要 保证运行yum命令的主机能连接外网，否则大部分命令将由于没有网络连接而不能输出结果。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">yum [options] [command] [package] </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">以下演示中大写的单词是变量</span> </span><br><span class="line">1.安装操作 </span><br><span class="line">yum install PACKAGE </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装某个包 例：yum install httpd</span> </span><br><span class="line">yum groupinstall GROUP </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装某个软件组 例：yum groupinstall <span class="string">&quot;KDE&quot;</span> <span class="comment"># 安装KDE 桌面</span></span></span><br><span class="line">2.升级操作 </span><br><span class="line">yum update </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新系统中所有需要更新的包</span> </span><br><span class="line">yum update PACKAGE</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新某个包 例：yum update httpd</span> </span><br><span class="line">yum groupupdate GROUP </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新某个软件组 例：yum groupupdate <span class="string">&quot;KDE&quot;</span> <span class="comment"># 升级KDE 桌面</span></span></span><br><span class="line">yum check-update</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查当前系统中需要更新的包</span> </span><br><span class="line">3.查找操作 </span><br><span class="line">yum list </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示软件源中所有可用的包，一般不用</span> </span><br><span class="line">yum list installed </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示系统中已经安装过的包</span></span><br><span class="line">yum info PACKAGE</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示某个包的信息 例：yum info httpd</span> </span><br><span class="line">yum groupinfo GROUP </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示某个软件组的信息 例：yum groupinfo <span class="string">&quot;KDE&quot;</span> <span class="comment"># 显示KDE 桌面软件的信息</span></span> </span><br><span class="line">yum grouplist </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示软件源宏所有的可用软件组</span> </span><br><span class="line">4.删除操作 </span><br><span class="line">yum remove PACKAGE </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除某个包  例：yum remove httpd <span class="comment"># 删除httpd 包</span></span></span><br><span class="line">yum groupremove GROUP </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除某个软件组 例：yum groupremove <span class="string">&quot;KDE&quot;</span> <span class="comment"># 删除KDE 桌面</span></span></span><br><span class="line">5.清除操作 </span><br><span class="line">yum clean </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">清除使用yum 所生成的缓存文件</span></span><br></pre></td></tr></table></figure>
+
+<p>其中options是可选参数，包括帮助参数-h，确认参数-y，静默安装参数-q等；command参数为需要进行的操作；package参数为具体的包或者软件组，按照功能分类，yum支持安装、升级、查找、删除、清理缓存等操作。</p>
+</li>
+<li><h5 id="重建RPM包"><a href="#重建RPM包" class="headerlink" title="重建RPM包"></a>重建RPM包</h5><ul>
+<li><strong>创建重建环境</strong> </li>
+</ul>
+<p>首先需要确定系统中存在rpmbuild命令，如果没有这个命令则会出现如下报错： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpmbuild </span><br><span class="line">-bash: rpmbuild: command not found</span><br></pre></td></tr></table></figure>
+
+<p>​        通过yum来安装这个软件，完成后再运行rpmbuild–version命令来检查是否安装成功。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install rpm-build </span><br><span class="line">[root@localhost ~]# rpmbuild --version </span><br><span class="line">RPM version 4.4.2.3</span><br></pre></td></tr></table></figure>
+
+<p>​        由于通过srpm包创建RPM包实际上也是一个编译过程，所以必须保证gcc编译器和make命令已经安装了。可以通过以下命令一并安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# yum install gcc make</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>快速重建RPM包</strong></p>
+<p>重建RPM包最快速的方法是使用如下命令，但是也可能遇到包依赖的问题，只需要按照系统给出的错误提示修正即可。 </p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpmbuild --rebuild /PATH/TO/SRPM</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>以spec文件重建RPM包</strong></li>
+</ul>
+<p>spec文件是一个重建RPM包的配置文件，描述了RPM包的相关信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost i386]# rpm -i rsh-0.17-40.el5.src.rpm</span><br></pre></td></tr></table></figure>
+
+<p>使用该spec文件重建RPM包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost SPECS]# rpmbuild -ba rsh.spec</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><ol>
+<li><h5 id="正则表达式基础"><a href="#正则表达式基础" class="headerlink" title="正则表达式基础"></a>正则表达式基础</h5><p>正则表达式就是能用某种模式去匹配一类字符串的公式，它是由一串字符和元字符构成的字符串。所谓元字符，就是用以阐述字符表达式的内容、转换和描述各种操作信息的字符。</p>
+</li>
+<li><h5 id="基础的正则表达式"><a href="#基础的正则表达式" class="headerlink" title="基础的正则表达式"></a>基础的正则表达式</h5><ul>
+<li><strong>“.”（一个点）符号</strong></li>
+</ul>
+<p>​         点符号用于匹配除换行符之外的任意一个字符。例如：r.t可以匹配rot、rut，但是不能匹配root，若使用r..t就可以匹配root、ruut、rt（中间是两个空格）等。下面的例子是从/etc/passwd中搜索出“包含r，紧跟着两个字符，后面再接t”的行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep &#x27;r..t&#x27; </span><br><span class="line">/etc/passwd root:x:0:0:root:/root:/bin/bash operator:x:11:0:operator:/root:/sbin/nologin ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>“*”符号</strong> </li>
+</ul>
+<p>​        “*”符号用于匹配前一个字符0次或任意多次，比如ab *，可以匹配a、ab、abb等。“ *”号经常和“.”符号加在一起使用。比如“ . *”代表任意长度的 不包含换行的字符。下面的例子是试图找到连续的r字母紧跟着字母t的行。由于在/etc/passwd中没有rt、rrt这样的匹配，所以该表达式实际上只找出了 包含t的行r匹配了0次）。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep &#x27;r*t&#x27; /etc/passwd root:x:0:0:root:/root:/bin/bash shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown halt:x:7:0:halt:/sbin:/sbin/halt </span><br><span class="line">news:x:9:13:news:/etc/news: operator:x:11:0:operator:/root:/sbin/nologin </span><br><span class="line">......( 略去内容)...... </span><br><span class="line">xfs:x:43:43:X Font Server:/etc/X11/fs:/sbin/nologin</span><br></pre></td></tr></table></figure>
+
+<p>​         如果把上面的‘r*t’换成‘r.*t’，代表查找包含字母r，后面紧跟任意长度的字符，再跟一个字母t的行。如下所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep &#x27;r.*t&#x27; /etc/passwd </span><br><span class="line">root:x:0:0:root:/root:/bin/bash operator:x:11:0:operator:/root:/sbin/nologin ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin vcsa:x:69:69:virtual console memory owner:/dev:/sbin/nologin rpc:x:32:32:Portmapper RPC user:/:/sbin/nologin pcap:x:77:77::/var/arpwatch:/sbin/nologin sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin avahi-autoipd:x:100:101:avahi-autoipd:/var/lib/avahi- autoipd:/sbin/nologin xfs:x:43:43:X Font Server:/etc/X11/fs:/sbin/nologin</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>“{n,m}”符号</strong></li>
+</ul>
+<p>​       虽然“*”可用于重复匹配前一个字符，但却不能精确地控制匹配的重复次数，使用“{n,m}”符号则 能更加灵活地控制字符的重复次数，典型的有以下 3种形式： </p>
+<p>​        ·{n}匹配前面的字符n次。下例匹配的是包含 root的行（r和t中包含两个o）。 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep &#x27;ro\&#123;2\&#125;t&#x27; /etc/passwd </span><br><span class="line">root:x:0:0:root:/root:/bin/bash operator:x:11:0:operator:/root:/sbin/nologin</span><br></pre></td></tr></table></figure>
+
+<p>​        ·{n,}匹配前面的字符至少n次以上（含n次）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep &#x27;ro\&#123;0,\&#125;t&#x27; /etc/passwd </span><br><span class="line">root:x:0:0:root:/root:/bin/bash operator:x:11:0:operator:/root:/sbin/nologin vcsa:x:69:69:virtual console memory owner:/dev:/sbin/nologin rpc:x:32:32:Portmapper RPC user:/:/sbin/nolog</span><br></pre></td></tr></table></figure>
+
+<p>​        ·{n,m}匹配前面的字符n到m次。 </p>
+<ul>
+<li><strong>“^”符号</strong></li>
+</ul>
+<p>​        这个符号位于键盘数字6的上面，又称尖角号。这个符号用于匹配开头的字符。比如说“^root”匹配的是以字母root开始的行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep &#x27;^root&#x27; /etc/passwd  </span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>“$”符号</strong></li>
+</ul>
+<p>​       和上面的尖角号相对，“$”用于匹配尾部，比如说“abc$”代表的是以abc结尾的行。如果是<code>“^$”则代表该行为空，因为 ^ 和 $</code> 间什么都没有。下例匹配的是以r开头，中间有一串任意字符，以h结尾的行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep &#x27;^r.*h$&#x27; /etc/passwd </span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>“[]”符号</strong> </li>
+</ul>
+<p>​        这是一对方括号，用于匹配方括号内出现的任一字符。比如说单项选择题的答案，可能是A、B、C、D选项中的任意一种，用正则表达式表示就是[ABCD]。如果遇到比较大范围的匹配，比如说要匹配任意一个大写字母，就需要使用“-”号做范围限定，写成[A-Z]，要匹配所有字母则写成[A-Za-z]。一定要注意，这里“-”的作用不是充当一个字符。</p>
+<p>​        如果是要匹配不是大写字母A、B、C、D的字符又该怎么写呢？还记得上面的“^”号吗，如果这个符号出现在[]中，则代表取反，也就是“不是”的意 思。那这里的写法就是<code>[^A-D]</code>，事情变得有点复杂了。</p>
+<ul>
+<li><strong>“\”符号</strong> </li>
+</ul>
+<p>​       假设有个固定电话号码021-88888888，当然也可以写成021 88888888（区号和电话号码之间用空格隔开），它们的不同之处就是区号和电话号码之间使用的符号不同，一个是“-”，一个是空格。那么， 对于这个电话号码要怎么匹配呢，很容易地想到应 该使用“[]”来匹配。但是这么写：[-]，对吗？答案 是否定的，因为“-”放到“[]”中有特别的含义。为了表示其作为一个字符的本意，就要使用“\”符了。这 个符号代表转义字符，我们可以对很多特殊的字符 进行“转义”，让它只代表字符本身，因此这里的写法就应该是[\-]。 </p>
+<ul>
+<li><strong><code>“\&lt;”符号和“\&gt;”</code>符号</strong></li>
+</ul>
+<p>​        这两个符号分别用于界定单词的左边界和右边界。比如说“&lt;hello”用于匹配以“hello”开头的单词；而“hello&gt;”则用于匹配以“hello”结尾的单词。还可以使用它们的组合——“&lt;&gt;”用于精确匹配一个字符串。所以“&lt;hello&gt;”可精确匹配单词hello，而不是helloworld等。如下所示： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# echo &quot;hello&quot; | grep &#x27;\&lt;hello\&gt;&#x27;</span><br><span class="line">hello </span><br><span class="line">[root@localhost ~]# echo &quot;hellod&quot; | grep &#x27;\&lt;hello\&gt;&#x27; </span><br><span class="line">[root@localhost ~]# </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">没有输出，表示匹配不成功</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>“\d”符号</strong> </li>
+</ul>
+<p>​       匹配一个数字，等价于[0-9]，使用grep匹配这种正则表达式时可能会遇到无法匹配的问题。示例如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">123 是一个数字，用[0-9] 匹配成功</span> </span><br><span class="line">[root@localhost ~]# echo 123 | grep [0-9] </span><br><span class="line">123 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">但是用这种方式却匹配不成功</span></span><br><span class="line">[root@localhost ~]# echo 123 | grep &#x27;\d&#x27; </span><br><span class="line">[root@localhost ~]# </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">没有输出，表示匹配不成功，为什么呢？</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这是因为“\d ”是一种Perl 兼容模式的表达式，又称作PCRE ，要想使用这种模式的匹配符， 需要加上-P 参数</span></span><br><span class="line">[root@localhost ~]# echo 123 | grep -P &#x27;\d&#x27; </span><br><span class="line">123 </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这样就匹配成功了</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>“\b”符号</strong> </li>
+</ul>
+<p>​     匹配单词的边界，比如“\bhello\b”可精确匹配“hello”单词。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# echo &quot;hello world&quot; | grep &#x27;\bhello\b&#x27; </span><br><span class="line">hello world </span><br><span class="line">[root@localhost ~]# echo &quot;helloworld&quot; | grep &#x27;\bhello\b&#x27; </span><br><span class="line">[root@localhost ~]#</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这里没有匹配</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>“\B”符号</strong></li>
+</ul>
+<p>​       匹配非单词的边界，比如hello\B可以匹配“helloworld”中的“hello”。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# echo &quot;helloworld&quot; | grep &#x27;hello\B&#x27; </span><br><span class="line">helloworld</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="扩展的正则表达式"><a href="#扩展的正则表达式" class="headerlink" title="扩展的正则表达式"></a>扩展的正则表达式</h5><p>​        顾名思义，扩展的正则表达式一定是针对基础正则表达式的一些补充。实际上，扩展正则表达式 比基础正则表达式多了几个重要的符号。不过要注意的是，在使用这些扩展符号时，需要使用egrep命令。</p>
+<ul>
+<li><strong>“?”符号</strong> </li>
+</ul>
+<p>​       “?”符号用于匹配前一个字符0次或1次，所以“ro?t”仅能匹配rot或rt。</p>
+<ul>
+<li><strong>“+”符号</strong></li>
+</ul>
+<p>​       “+”符号用于匹配前一个字符1次以上，所以“ro+t”就可以匹配rot、root等。</p>
+<ul>
+<li><strong>“|”符号</strong></li>
+</ul>
+<p>​       “|”符号是“或”的意思，即多种可能的罗列，彼此间是一种分支关系。比如说有些地区固定电话的区号是4位数，有些地方却是3位数，这样针对不同 的区号就有不同的固定电话的表示方式。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">区号是3 位的固定电话的正则表达式方式</span></span><br><span class="line">^0[0-9]\&#123;2\&#125;-[0-9]\&#123;8\&#125; </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">区号是4 位的固定电话的正则表达式方式</span> </span><br><span class="line">^0[0-9]\&#123;3\&#125;-[0-9]\&#123;8\&#125; </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">两种区号的固定电话号码可以如下写</span></span><br><span class="line">^0[0-9]\&#123;2,3\&#125;-[0-9]\&#123;8\&#125; </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用<span class="string">&quot;|&quot;</span> 符号也可以，但是显然比上面的方式麻烦</span> </span><br><span class="line">^0[0-9]\&#123;2\&#125;-[0-9]\&#123;8\&#125;|^0[0-9]\&#123;3\&#125;-[0-9]\&#123;8\&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> <strong>“()”符号</strong></li>
+</ul>
+<p>​        “()”符号通常需要和“|”符号联合使用，用于枚举一系列可替换的字符。比如说固定电话的区号和电 话号码之间，可能用“-”符号或者用一个空格连接，用于匹配的正则表达式如下： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用<span class="string">&quot;()&quot;</span> 和<span class="string">&quot;|&quot;</span> 定义连接符的写法</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这样021-88888888 和0511 88888888 都可以匹配</span> </span><br><span class="line">^0[0-9]\&#123;2,3\&#125;(-| )[0-9]\&#123;8\&#125;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这种写法可以换用<span class="string">&quot;[]&quot;</span> 符号表示</span> </span><br><span class="line">^0[0-9]\&#123;2,3\&#125;[\ \-][0-9]\&#123;8\&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h5><p>​        或许这是你第一次听说“通配符”，但实际上你一定用过它，只是你并没有意识到。相信所有人都曾经用过Windows下的文件搜索功能。你可能某一次想找个.doc文件，但是又一时想不起该文件名和放置的位置（确实没有养成归档的好习惯），所以你决定把计算机上所有的.doc文件全部找出来，然后再进行人工挑选，于是你用“*”号来代替该文件的名字。</p>
+<p>​        通配符是一种特殊的语句，主要包含“*”号和“?”号（还有“{}”、“^”、“!”）。主要用来模糊搜索文件，使用它替代一个或多个真正的字符，尤其是在不知道或者不确定完整的文件名时，用来匹配符合条件的文件。</p>
+<ul>
+<li><strong>“*”符号</strong> </li>
+</ul>
+<p>​       这里的<code>“*”</code>就是提到的第一个通配符，代表0个或多个字符。那么之前的<code>*.doc</code>就是指所有以<code>.doc</code>结 尾的文件。如果想要找的文档是以字母A开头，则 可用<code>A*.doc</code>来查找。在Linux中，列出当前目录中是否存在以.doc结尾的文件，可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -l *.doc </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">该命令执行后，shell 先要解析出命令和参数，这里的命令是<span class="built_in">ls</span>，参数是*.doc ，一旦发现了* 符号，shell 就会将*.doc 解析成所有匹配的文件名，然后显示结果</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>“?”符号</strong></li>
+</ul>
+<p>​       如果要列出以字母A开头、但是只有两个字母的文件名、以.doc结尾的文件，就需要使用“?”了。当它作为通配符使用时，代表的是任意一个字符。其写法如下： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -l A?.doc</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>“{}”符号</strong></li>
+</ul>
+<p>​       “{}”可拥有匹配所有括号内包含的以逗号隔开的字符。例如，下面列出了所有以字母A、B、C开头，以.doc结尾的文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">第一种方法：用“&#123;&#125; ”</span></span><br><span class="line">[root@localhost ~]# ls -l &#123;A,B,C&#125;.doc</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">第二种方法：用“[] ”</span></span><br><span class="line">[root@localhost ~]# ls -l [A-C].doc </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">以上两种方法都能满足题意，但是如果要列出以字母AB或者CD 开头、以.doc结尾的文件， 就只能用“&#123;&#125; ”了</span></span><br></pre></td></tr></table></figure>
+
+<p>​        有意思的是，“{}”还支持嵌套的通配。以“{x，y}”为例，如果x和y各自本身也是通配符，则就变得更强大了，想一想下面例子的含义。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -l &#123;[A-Z]*.doc,[0-9]??.txt&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>“^”符号和“!”符号</strong> </li>
+</ul>
+<p>​        这两个符号往往和“[]”一起使用，当出现在“[]”中的时候，代表取反。所以<code>[^A]</code>（或[!A]）代表不是A。 </p>
+</li>
+<li></li>
+</ol>
+</li>
+<li><h4 id="正则表达式示例"><a href="#正则表达式示例" class="headerlink" title="正则表达式示例"></a>正则表达式示例</h4><p>​        了解了grep的一些基本用法，但是它的功能还远远不止这些。grep的英文是Global search Regular Expression and print out the line，即全面搜索正则表达式并打印出匹配行。</p>
+<p>​         <strong>grep和正则表达式结合使用后产生了强大的搜索效果。</strong></p>
+<p>​         注意：由于正则表达式中含有较多特殊的字符，所以结合grep时，最好使用单引号将 正则表达式括起来，以免造成错误。</p>
+<p>为了演示grep命令的用法，首先创建一个文件RegExp.txt，文件内容如下所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat RegExp.txt </span><br><span class="line">----TEXT BEGIN---- </span><br><span class="line">good morning teacher</span><br><span class="line">hello world is a script </span><br><span class="line">gold sunshine looks beautiful </span><br><span class="line">golden time flies </span><br><span class="line">god bless me </span><br><span class="line">what a delicious food </span><br><span class="line">they teast Good </span><br><span class="line">you fell glad </span><br><span class="line">wrong word gooood </span><br><span class="line">wrong word gl0d </span><br><span class="line">wrong word gl2d </span><br><span class="line">wrong word gl3d </span><br><span class="line">www.helloworld.com</span><br><span class="line">www@helloworld@com </span><br><span class="line">Upper case </span><br><span class="line"><span class="meta prompt_">100% </span><span class="language-bash">means pure</span></span><br><span class="line">php have a gd module </span><br><span class="line">-----TEXT END-----</span><br></pre></td></tr></table></figure>
+
+<p> 回顾一下grep的基本用法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索含有good 单词的行</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">注意：Grep 默认是区分大小写的，所以这里只会打印出包含小写good 的行</span></span><br><span class="line">[root@localhost ~]# grep &#x27;good&#x27; RegExp.txt </span><br><span class="line">good morning teacher</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索含有good 单词的行，不区分大小写</span> </span><br><span class="line">[root@localhost ~]# grep -i &#x27;good&#x27; RegExp.txt </span><br><span class="line">good morning teacher they teast Good</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">统计不含good 单词的行的行数，不区分大小写</span> </span><br><span class="line">[root@localhost ~]# grep -ivc &#x27;good&#x27; RegExp.txt</span><br><span class="line">19</span><br></pre></td></tr></table></figure>
+
+<p>正则表达式和grep结合的用法：</p>
+<p>1、<strong>使用“^”匹配行首：</strong> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索以good 开头的行</span> </span><br><span class="line">[root@localhost ~]# grep &#x27;^good&#x27; RegExp.txt</span><br><span class="line">good morning teacher</span><br></pre></td></tr></table></figure>
+
+<p>2、<strong>使用“$”匹配行尾：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索以Good 结尾的行</span> </span><br><span class="line">[root@localhost ~]# grep &#x27;Good$&#x27; RegExp.txt </span><br><span class="line">they teast Good</span><br></pre></td></tr></table></figure>
+
+<p>3、<strong>使用“^$”组合，匹配空行，下面的命令可计算文件中共有多少行空行：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索空行的行数</span> </span><br><span class="line">[root@localhost ~]# grep -c &#x27;^$&#x27; RegExp.txt</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>4、<strong>使用方括号匹配多种可能：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索包含Good 和good 的行</span></span><br><span class="line">[root@localhost ~]# grep &#x27;[Gg]ood&#x27; RegExp.txt </span><br><span class="line">good morning teacher </span><br><span class="line">they teast Good</span><br></pre></td></tr></table></figure>
+
+<p>5、<strong>在方括号中使用“^”做反选：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索一个包含ood 的行，但是不能是Good</span></span><br><span class="line">或good #记住在方括号中使用尖角号表示的是“非” </span><br><span class="line">[root@localhost ~]# grep &#x27;[^Gg]ood&#x27; RegExp.txt</span><br><span class="line">what a delicious food </span><br><span class="line">wrong word gooood</span><br></pre></td></tr></table></figure>
+
+<p>6、<strong>使用“.”号：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索包含一个词，该词以g开头、紧接着是两个任意字符、再接着是一个d的行</span></span><br><span class="line">[root@localhost ~]# grep &#x27;g..d&#x27; RegExp.txt </span><br><span class="line">good morning teacher </span><br><span class="line">gold sunshine looks beautiful </span><br><span class="line">golden time flies </span><br><span class="line">you fell glad</span><br><span class="line">wrong word gl0d </span><br><span class="line">wrong word gl2d </span><br><span class="line">wrong word gl3d </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索包含一个词，该词以G 或g 开头、紧接着是两个任意字符、再接着是一个d 的行</span></span><br><span class="line">[root@localhost ~]# grep &#x27;[Gg]..d&#x27; RegExp.txt </span><br><span class="line">good morning teacher </span><br><span class="line">gold sunshine looks beautiful </span><br><span class="line">golden time flies </span><br><span class="line">they teast Good </span><br><span class="line">you fell glad </span><br><span class="line">wrong word gl0d </span><br><span class="line">wrong word gl2d </span><br><span class="line">wrong word gl3d </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索这样一些行，该行包含某个单词，该词满足如下条件：</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">1. 第一个字符可以是G 或g</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">2. 第二个字符可以是l 或o</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">3.第三个字符可以是换行符之外的任意字符</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">4. 第四个字符一定是d</span> </span><br><span class="line">[root@localhost ~]# grep &#x27;[Gg][lo].d&#x27; RegExp.txt </span><br><span class="line">good morning teacher </span><br><span class="line">gold sunshine looks beautiful </span><br><span class="line">golden time flies </span><br><span class="line">they teast Good </span><br><span class="line">you fell glad </span><br><span class="line">wrong word gl0d </span><br><span class="line">wrong word gl2d</span><br><span class="line">wrong word gl3d</span><br></pre></td></tr></table></figure>
+
+<p>7、<strong>使用精确匹配：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索含有gold 的行<span class="comment">#从搜索结果中发现golden 也被匹配出来了</span></span> </span><br><span class="line">[root@localhost ~]# grep &#x27;gold&#x27; RegExp.txt </span><br><span class="line">gold sunshine looks beautiful </span><br><span class="line">golden time flies </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">正如上例所示，一般搜索时，想要搜索含有gold 的行，发现golden 也匹配了</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">现在我们需要精确匹配含有gold 这个单词的行</span> </span><br><span class="line">[root@localhost ~]# grep &#x27;\&lt;gold\&gt;&#x27; RegExp.txt</span><br><span class="line">gold sunshine looks beautiful </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">用“\b ”的效果和“\&lt;\&gt; ”一致</span></span><br><span class="line">[root@localhost ~]# grep &#x27;\bgold\b&#x27; RegExp.txt </span><br><span class="line">gold sunshine looks beautiful</span><br></pre></td></tr></table></figure>
+
+<p>8、<strong>使用“*”号：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索这样一些行，该行包含某个单词，该词满足如下条件：</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">1. 以g 开头</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">2.g 后面跟零到无限个o</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">3. 零到无限个o 后面跟d</span></span><br><span class="line">[root@localhost ~]# grep go*d RegExp.txt </span><br><span class="line">good morning teacher </span><br><span class="line">god bless me </span><br><span class="line">wrong word gooood </span><br><span class="line">php have a gd module</span><br></pre></td></tr></table></figure>
+
+<p>9、*<em>使用“.<em>”号：</em></em></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索这样一些行，该行包含某个单词，该词满足如下条件：</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">1. 以g 开头</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">2.g 后面一定有字符</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">3. 最后是d</span> </span><br><span class="line">[root@localhost ~]# grep &#x27;g.*d&#x27; RegExp.txt good morning teacher gold sunshine looks beautiful golden time flies god bless me you fell glad wrong word gooood wrong word gl0d wrong word gl2d wrong word gl3d php have a gd module</span><br></pre></td></tr></table></figure>
+
+<p>10、<strong>使用“-”号：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">文件中有一些拼写错误的单词，发现是把glod 中的o 字母写成数字0了</span></span><br><span class="line">[root@localhost ~]# grep &#x27;gl[0-9]d&#x27; RegExp.txt </span><br><span class="line">wrong word gl0d </span><br><span class="line">wrong word gl2d </span><br><span class="line">wrong word gl3d</span><br></pre></td></tr></table></figure>
+
+<p>11、<strong>使用“\”做字符转义：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索文件中包含域名www.helloworld.com 的行</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">从搜索的结果来看，这里的“. ”号被解析成了除换行符外的任意字符</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">想要把这个点只当作一个字符点来用，就需要对其使用转义符</span> </span><br><span class="line">[root@localhost ~]# grep &#x27;www.helloworld.com&#x27; RegExp.txt </span><br><span class="line">www.helloworld.com </span><br><span class="line">www@helloworld@com</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这里将点做转义，则输出的结果满足预期</span></span><br><span class="line">[root@localhost ~]# grep &#x27;www\.helloworld\.com&#x27; RegExp.txt </span><br><span class="line">www.helloworld.com</span><br></pre></td></tr></table></figure>
+
+<p>12、<strong>使用“{}”号：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">文档中有一个单词good 被拼写错了，多写了几个o</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索以字母g 开头包含两个以上o 的单词</span> </span><br><span class="line">[root@localhost ~]# grep &#x27;go\&#123;2,\&#125;&#x27; RegExp.txt</span><br><span class="line">good morning teacher</span><br><span class="line">wrong word gooood</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索以字母g 开头，中间正好包含4 个o 的单词</span> </span><br><span class="line">[root@localhost ~]# grep &#x27;go\&#123;4\&#125;&#x27; RegExp.txt </span><br><span class="line">wrong word gooood</span><br></pre></td></tr></table></figure>
+
+<p>13、<strong>特殊的POSIX字符：</strong></p>
+<p>grep支持一类特殊的POSIX字符</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[:alnum:] 文字数字字符</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[:alpha:] 文字字符</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[:digit:] 数字字符</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[:graph:] 非空字符( 非空格、控制字符)</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[:lower:] 小写字符</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[:cntrl:] 控制字符</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[:<span class="built_in">print</span>:] 非空字符( 包括空格)</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[:punct:] 标点符号</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[:space:] 所有空白字符( 新行，空格，制表符)</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[:upper:] 大写字符</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[:xdigit:] 十六进制数字(0-9 ，a-f ，A-F) <span class="comment">#搜索以大写字母开头的行</span></span> </span><br><span class="line">[root@localhost ~]# grep ^[[:upper:]] RegExp.txt</span><br><span class="line">Upper case </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索以数字开头的行</span></span><br><span class="line">[root@localhost ~]# grep ^[[:digit:]] RegExp.txt </span><br><span class="line"><span class="meta prompt_">100% </span><span class="language-bash">means pure</span></span><br></pre></td></tr></table></figure>
+
+<p>14、<strong>使用扩展的正则表达式egrep：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索g 和d 之间至少有一个o 的行</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">“+”代表匹配前面的字符1 次以上（含1 次）</span></span><br><span class="line">[root@localhost ~]# egrep &#x27;go+d&#x27; RegExp.txt </span><br><span class="line">good morning teacher </span><br><span class="line">god bless me </span><br><span class="line">wrong word gooood </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索g 和d 之间只有0 个或1 个o 的行（0 次或1 次）<span class="comment">#“?”代表匹配前面的字符1 次以上</span></span> </span><br><span class="line">[root@localhost ~]# egrep &#x27;go?d&#x27; RegExp.txt</span><br><span class="line">god bless me </span><br><span class="line">php have a gd module </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索有glad 或gold 的行</span></span><br><span class="line">[root@localhost ~]# egrep &#x27;glad|gold&#x27; RegExp.txt </span><br><span class="line">gold sunshine looks beautiful</span><br><span class="line">golden time flies </span><br><span class="line">you fell glad </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">搜索有glad 或gold 的行的另一种写法</span></span><br><span class="line">[root@localhost ~]# egrep &#x27;g(la|ol)d&#x27; RegExp.txt </span><br><span class="line">gold sunshine looks beautiful</span><br><span class="line">golden time flies </span><br><span class="line">you fell glad</span><br></pre></td></tr></table></figure></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Cappuccino</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://centlabs.github.io/2022/03/25/Linux%20%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/">https://centlabs.github.io/2022/03/25/Linux%20%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/03/23/C%20plus%20plus/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">C plus plus</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cappuccino</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">6</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">文件相关操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%9B%B8%E5%85%B3%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">目录相关的操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%97%B6%E9%97%B4%E6%88%B3"><span class="toc-number">3.</span> <span class="toc-text">文件时间戳</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">4.</span> <span class="toc-text">文件和目录的权限</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E7%9A%84%E6%9D%83%E9%99%90%EF%BC%9Als-al"><span class="toc-number">4.1.</span> <span class="toc-text">查看文件或目录的权限：ls-al</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text">查找文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8E%8B%E7%BC%A9%E4%B8%8E%E6%89%93%E5%8C%85"><span class="toc-number">6.</span> <span class="toc-text">文件压缩与打包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">7.</span> <span class="toc-text">Linux文件系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux%E9%80%BB%E8%BE%91%E5%8D%B7"><span class="toc-number">8.</span> <span class="toc-text">Linux逻辑卷</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%8D%B7%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">8.1.</span> <span class="toc-text">逻辑卷的概念</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AC%E8%BF%9E%E6%8E%A5%E5%92%8C%E8%BD%AF%E8%BF%9E%E6%8E%A5"><span class="toc-number">9.</span> <span class="toc-text">硬连接和软连接</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A1%AC%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">9.1.</span> <span class="toc-text">硬连接的概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BD%AF%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">9.2.</span> <span class="toc-text">软连接的概念</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86"><span class="toc-number">10.</span> <span class="toc-text">字符处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%A1%E9%81%93"><span class="toc-number">10.1.</span> <span class="toc-text">管道</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8grep%E6%90%9C%E7%B4%A2%E6%96%87%E6%9C%AC"><span class="toc-number">10.2.</span> <span class="toc-text">使用grep搜索文本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8sort%E6%8E%92%E5%BA%8F"><span class="toc-number">10.3.</span> <span class="toc-text">使用sort排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8uniq%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E5%86%85%E5%AE%B9"><span class="toc-number">10.4.</span> <span class="toc-text">使用uniq删除重复内容</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8cut%E6%88%AA%E5%8F%96%E6%96%87%E6%9C%AC"><span class="toc-number">10.5.</span> <span class="toc-text">使用cut截取文本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8tr%E5%81%9A%E6%96%87%E6%9C%AC%E8%BD%AC%E6%8D%A2"><span class="toc-number">10.6.</span> <span class="toc-text">使用tr做文本转换</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8paste%E5%81%9A%E6%96%87%E6%9C%AC%E5%90%88%E5%B9%B6"><span class="toc-number">10.7.</span> <span class="toc-text">使用paste做文本合并</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8split%E5%88%86%E5%89%B2%E5%A4%A7%E6%96%87%E4%BB%B6"><span class="toc-number">10.8.</span> <span class="toc-text">使用split分割大文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86"><span class="toc-number">11.</span> <span class="toc-text">网络管理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3%E9%85%8D%E7%BD%AE"><span class="toc-number">11.1.</span> <span class="toc-text">网络接口配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%92%8C%E7%BD%91%E5%85%B3%E8%AE%BE%E7%BD%AE"><span class="toc-number">11.2.</span> <span class="toc-text">路由和网关设置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-number">12.</span> <span class="toc-text">网络测试工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-number">13.</span> <span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%A7%82%E5%AF%9F%EF%BC%9Aps%E3%80%81top"><span class="toc-number">13.1.</span> <span class="toc-text">进程的观察：ps、top</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%88%E6%AD%A2%EF%BC%9Akill%E3%80%81killall"><span class="toc-number">13.2.</span> <span class="toc-text">进程的终止：kill、killall</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9Alsof"><span class="toc-number">13.3.</span> <span class="toc-text">查询进程打开的文件：lsof</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E6%95%B4%EF%BC%9Anice%E3%80%81renice"><span class="toc-number">13.4.</span> <span class="toc-text">进程优先级调整：nice、renice</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux%E4%B8%8B%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">14.</span> <span class="toc-text">Linux下的软件安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E6%89%93%E5%8D%B0HelloWorld%E7%A8%8B%E5%BA%8F"><span class="toc-number">14.1.</span> <span class="toc-text">编译、安装、打印HelloWorld程序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RPM%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="toc-number">14.2.</span> <span class="toc-text">RPM安装软件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8RPM%E5%8C%85%E5%AE%89%E8%A3%85Apache"><span class="toc-number">14.3.</span> <span class="toc-text">使用RPM包安装Apache</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#yum%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="toc-number">14.4.</span> <span class="toc-text">yum安装软件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%87%8D%E5%BB%BARPM%E5%8C%85"><span class="toc-number">14.5.</span> <span class="toc-text">重建RPM包</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">15.</span> <span class="toc-text">正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%9F%BA%E7%A1%80"><span class="toc-number">15.1.</span> <span class="toc-text">正则表达式基础</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">15.2.</span> <span class="toc-text">基础的正则表达式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">15.3.</span> <span class="toc-text">扩展的正则表达式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="toc-number">15.4.</span> <span class="toc-text">通配符</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%A4%BA%E4%BE%8B"><span class="toc-number">16.</span> <span class="toc-text">正则表达式示例</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/25/Linux%20%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/" title="Linux 系统命令"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux 系统命令"/></a><div class="content"><a class="title" href="/2022/03/25/Linux%20%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4/" title="Linux 系统命令">Linux 系统命令</a><time datetime="2022-03-25T00:50:44.504Z" title="Created 2022-03-25 08:50:44">2022-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/23/C%20plus%20plus/" title="C plus plus"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C plus plus"/></a><div class="content"><a class="title" href="/2022/03/23/C%20plus%20plus/" title="C plus plus">C plus plus</a><time datetime="2022-03-23T06:45:29.682Z" title="Created 2022-03-23 14:45:29">2022-03-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/23/Hexo%20%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/" title="Hexo 命令操作"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo 命令操作"/></a><div class="content"><a class="title" href="/2022/03/23/Hexo%20%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/" title="Hexo 命令操作">Hexo 命令操作</a><time datetime="2022-03-23T06:39:20.780Z" title="Created 2022-03-23 14:39:20">2022-03-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/23/README/" title="KQEvent"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KQEvent"/></a><div class="content"><a class="title" href="/2022/03/23/README/" title="KQEvent">KQEvent</a><time datetime="2022-03-23T00:29:44.000Z" title="Created 2022-03-23 08:29:44">2022-03-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/22/Server/" title="Server"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Server"/></a><div class="content"><a class="title" href="/2022/03/22/Server/" title="Server">Server</a><time datetime="2022-03-22T15:09:44.020Z" title="Created 2022-03-22 23:09:44">2022-03-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Cappuccino</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
