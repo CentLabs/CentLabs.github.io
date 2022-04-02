@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>C++ Learning 2 | CentLabs</title><meta name="keywords" content="C++"><meta name="author" content="Cappuccino"><meta name="copyright" content="Cappuccino"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第五章  循环和关系表达式5.1 for循环使用for循环访问字符串123456789101112131415#include &lt;iostream&gt;#include &lt;string&gt;using namespace std;int main()&amp;#123;    cout &lt;&lt; &quot;Enter a word: &quot;;    string word;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ Learning 2">
+<meta property="og:url" content="https://centlabs.github.io/2022/04/02/C++%20%20Primer%EF%BC%88%E4%B8%8B%EF%BC%89/index.html">
+<meta property="og:site_name" content="CentLabs">
+<meta property="og:description" content="第五章  循环和关系表达式5.1 for循环使用for循环访问字符串123456789101112131415#include &lt;iostream&gt;#include &lt;string&gt;using namespace std;int main()&amp;#123;    cout &lt;&lt; &quot;Enter a word: &quot;;    string word;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-04-02T12:12:16.498Z">
+<meta property="article:modified_time" content="2022-04-02T12:14:15.570Z">
+<meta property="article:author" content="Cappuccino">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://centlabs.github.io/2022/04/02/C++%20%20Primer%EF%BC%88%E4%B8%8B%EF%BC%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++ Learning 2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-02 20:14:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">7</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CentLabs</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C++ Learning 2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-04-02T12:12:16.498Z" title="Created 2022-04-02 20:12:16">2022-04-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-04-02T12:14:15.570Z" title="Updated 2022-04-02 20:14:15">2022-04-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C++ Learning 2"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="第五章-循环和关系表达式"><a href="#第五章-循环和关系表达式" class="headerlink" title="第五章  循环和关系表达式"></a>第五章  循环和关系表达式</h3><h4 id="5-1-for循环"><a href="#5-1-for循环" class="headerlink" title="5.1 for循环"></a>5.1 for循环</h4><h5 id="使用for循环访问字符串"><a href="#使用for循环访问字符串" class="headerlink" title="使用for循环访问字符串"></a>使用for循环访问字符串</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Enter a word: &quot;</span>;</span><br><span class="line">    string word;</span><br><span class="line">    cin &gt;&gt; word;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//display letters in reverse order</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = word.<span class="built_in">size</span>() - <span class="number">1</span>;i &gt;= <span class="number">0</span>;i--)	<span class="comment">//长度减1是去掉末尾的\0	</span></span><br><span class="line">        cout &lt;&lt; word[i];</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;\nByte.\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Enter a word: animal</span><br><span class="line">lamina</span><br><span class="line">Byte.</span><br></pre></td></tr></table></figure>
+
+<h5 id="前缀格式和后缀格式："><a href="#前缀格式和后缀格式：" class="headerlink" title="前缀格式和后缀格式："></a>前缀格式和后缀格式：</h5><p><strong>i++是后缀递增，</strong></p>
+<p><strong>++i是前缀递增。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for(n = lim; n &gt; 0; --n)		// 前缀</span><br><span class="line">......</span><br><span class="line">for(n = lim; n &gt; 0; n--)		// 后缀</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>从逻辑上说，在上述两种情形下，使用前缀格式和后缀格式没有任何区别。表达式的值未被使用，因此只存在副作用。在上述的例子中，使用这些运算符的表达式为完整表达式，因此将n加1和n减1的副作用将在程序进入下一步之前完成，前缀格式和后缀格式的最终效果相同。</p>
+<p>然而，虽然选择使用前缀格式还是后缀格式对程序的行为没有影响，但执行速度可能有细微的差别。对于内置类型的当代的编译器而言，没有什么问题。<strong>对于类而言，前缀版本的效率比后缀版本的高。</strong></p>
+<p>总之，对于内置类型，采用哪种格式不会有差别；==<strong>但对于用户定义的类型，如果有用户定义的递增和递减运算符，则前缀格式的效率更高</strong>==。</p>
+<h5 id="递增-递减运算符和指针"><a href="#递增-递减运算符和指针" class="headerlink" title="递增/递减运算符和指针"></a>递增/递减运算符和指针</h5><p>可以将递增运算符用于指针和基本变量。将递增运算符用于指针时，将把指针的值增加其指向的数据类型占用的字节数，这种规则适用于对指针递增和递减：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> arr[<span class="number">5</span>] = &#123;<span class="number">21.1</span>,<span class="number">32.8</span>,<span class="number">23.4</span>,<span class="number">45.2</span>,<span class="number">3.4</span>&#125;;</span><br><span class="line"><span class="type">double</span> *pt  = arr;	<span class="comment">// pt points to arr[0] i.e to 21.1</span></span><br><span class="line">++pt;			<span class="comment">// pt points to arr[1] i.e to 32.8</span></span><br></pre></td></tr></table></figure>
+
+<p>可以结合使用这些运算符和<code>*运算符</code>来修改指针指向的值。前缀递增/递减和解除引用运算符的优先级相同，以从右到左的方式结合。后缀递增和后缀递减的优先级相同，但比前缀运算符的优先级高，这两个运算符以从左到右的方式结合。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">double x = *++pt;	// increment pointer,take the value; arr[2],or 23.4</span><br></pre></td></tr></table></figure>
+
+<p>前缀运算符的从右到左的结合规则意味着<code>*++pt</code>的含义：先将++应用于pt，然后将* 应用于被递增后的pt。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">++*pt;		<span class="comment">// increment the pointed to value; i.e.,change 23.4 to 24.4</span></span><br></pre></td></tr></table></figure>
+
+<p>意味着先取pt指向的值，然后将这个值加1。在这种情况下，pt仍然指向arr[2]。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(*pt)++;	<span class="comment">// increment pointed-to value</span></span><br></pre></td></tr></table></figure>
+
+<p>圆括号指出，首先对指针解除引用，得到24.4。然后，运算符++将这个值递增到25.4，pt仍然指向arr[2]。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = *pt++;	<span class="comment">// dereference original location, then increment pointer</span></span><br><span class="line"><span class="comment">//先解引用，再将指针pt自增</span></span><br></pre></td></tr></table></figure>
+
+<p>后缀运算符++的优先级更高，这意味着将运算符用于pt，而不是<code>*pt</code>，因此对指针递增。</p>
+<p>然后后缀运算符意味着将对原来的地址（&amp;arr[2]）而不是递增后的新地址解除引用，因此<code>*pt++</code>的值为arr[2]，即25.4,但该语句执行完毕后，pt的值将为arr[3]的地址。</p>
+<p>程序清单：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Please enter five values:\n&quot;</span>;</span><br><span class="line">    <span class="type">double</span> number;</span><br><span class="line">    <span class="type">double</span> sum = <span class="number">0.0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Value &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;:&quot;</span>;</span><br><span class="line">        cin &gt;&gt; number;</span><br><span class="line">        sum += number;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;The sum to &quot;</span> &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;and average to &quot;</span> &lt;&lt; sum/<span class="number">5</span> &lt;&lt; <span class="string">&quot;.\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Please enter five values:</span><br><span class="line">Value 1:1942</span><br><span class="line">Value 2:1948</span><br><span class="line">Value 3:1957</span><br><span class="line">Value 4:1974</span><br><span class="line">Value 5:1980</span><br><span class="line">The sum to 9801</span><br><span class="line">and average to 1960.2.</span><br></pre></td></tr></table></figure>
+
+<h5 id="C风格字符串的比较"><a href="#C风格字符串的比较" class="headerlink" title="C风格字符串的比较"></a>C风格字符串的比较</h5><p>数组名是数组的地址，同样，用引号括起来的字符串常量也是其地址。</p>
+<p>C风格字符串库中的strcmp()函数来比较，该函数接受两个字符串地址作为参数，这意味着参数可以是指针、字符串常量或字符数组名。如果两个字符串相同，该函数将返回零；如果第一个字符串按字母顺序排在第二个字符串之前，则strcmp()将返回一个负值；如果第一个字符串按字母顺序排在第二个字符串之后，则strcpm()将返回一个正数值。</p>
+<p>在有些语言（如BASIC和标准Pascal）中，存储在不同长度的数组中的字符串彼此不相等。但在C风格字符串是通过结尾的空值字符定义的，而不是由其所在数组的长度定义的。这意味着两个字符串即使被存储在长度不同的数组中，也可能是相同的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> big[<span class="number">80</span>] = <span class="string">&quot;Daffy&quot;</span>;			<span class="comment">// 5 letters plus \0</span></span><br><span class="line"><span class="type">char</span> little[<span class="number">6</span>] = <span class="string">&quot;Daffy&quot;</span>;		<span class="comment">// 5 letters plus \0</span></span><br></pre></td></tr></table></figure>
+
+<p>虽然不能用关系运算符比较字符串，但却可以用它们来比较字符，因为字符实际上是整型。</p>
+<p>因此下面的代码可以用来显示字母表中的字符，至少对于ASCII字符集和Unicode字符集来说是有效的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(ch = <span class="string">&#x27;a&#x27;</span>;ch &lt;= <span class="string">&#x27;z&#x27;</span>;ch++)</span><br><span class="line">    cout &lt;&lt; ch;</span><br></pre></td></tr></table></figure>
+
+<p>程序清单：<br>例如：在for循环的测试条件中使用了strcmp()。该程序显示一个单词，修改其字母，然后再次显示这个单词，这样循环往复，查到strcmp()确定该单词与字符串”matc”相同为止。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span>		<span class="comment">// prototype for strcmp()</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> word[<span class="number">5</span>] = <span class="string">&quot;?ate&quot;</span>;		<span class="comment">// or string word = &quot;?ate&quot;;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">char</span> ch = <span class="string">&#x27;a&#x27;</span>;<span class="built_in">strcmp</span>(word,<span class="string">&quot;mate&quot;</span>);ch++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; word &lt;&lt; endl;</span><br><span class="line">        word[<span class="number">0</span>] = ch;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;After loop end,word is &quot;</span> &lt;&lt; word &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">?ate</span><br><span class="line">aate</span><br><span class="line">bate</span><br><span class="line">cate</span><br><span class="line">date</span><br><span class="line">eate</span><br><span class="line">fate</span><br><span class="line">gate</span><br><span class="line">hate</span><br><span class="line">iate</span><br><span class="line">jate</span><br><span class="line">kate</span><br><span class="line">late</span><br><span class="line">After loop end,word is mate</span><br></pre></td></tr></table></figure>
+
+<p>程序说明：</p>
+<p>strcmp()判断出两个字符串不相同，测试就继续进行，最显而易见的测试是这样的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(word,<span class="string">&quot;mate&quot;</span>) = <span class="number">0</span>;	</span><br></pre></td></tr></table></figure>
+
+<p>如果字符串不相等，则该语句的值为1（true）。如果字符串相等，则语句的值为0（false）。</p>
+<h5 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h5><p>C++为类型建立别名的方式有两种。一种是使用预处理器：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> BYTE char;	<span class="comment">// preprocessor replaces BYTE with char</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这样，预处理器将在编译程序时用char替换所有的BYTE，从而使BYTE成为char的别名。</p>
+<p>第二种方法是使用C++（和C）的关键字typedef来创建别名。</p>
+<p>例如：要将byte作为char的别名，可以这样做：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">char</span> byte;		<span class="comment">// make byte an alias for char</span></span><br></pre></td></tr></table></figure>
+
+<p>通用格式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> typeName aliasName;</span><br></pre></td></tr></table></figure>
+
+<p>换句话说，如果要将aliasName作为某种类型的别名，可以声明aliasName，如同将aliasName声明为这种类型的变量那样，然后在声明的前面加上关键字typedef。</p>
+<p>例如：要让byte_pointer成为char指针的别名，<strong>可将byte_pointer声明为char指针</strong>，然后在前面加上typedef：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">char</span> *  byte_pointer;	<span class="comment">// pointer to char type</span></span><br></pre></td></tr></table></figure>
+
+<p>相比于#define，使用typedef是一种更佳的选择，有时候，也是唯一的选择。</p>
+<p>注意：==typedef不会创建新类型，而只是为已有的类型建立一个新名称==。如果将word作为int的别名，则cout将把word类型的值视为int类型。</p>
+<h4 id="5-2-基于范围的for循环（C-11）"><a href="#5-2-基于范围的for循环（C-11）" class="headerlink" title="5.2  基于范围的for循环（C++11）"></a>5.2  基于范围的for循环（C++11）</h4><p>C++11 新增了一种循环：基于范围（range-based）的for循环。</p>
+<p>这简化了一种常见的循环任务：对于数组（或容器类，如vector和array）的每个元素执行相同的操作。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> prices[<span class="number">5</span>] = &#123;<span class="number">4.99</span>,<span class="number">10.99</span>,<span class="number">6.87</span>,<span class="number">7.99</span>,<span class="number">8.49</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">double</span> x : prices)</span><br><span class="line">    cout &lt;&lt; x &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
+
+<p>其中，x最初表示数组prices的第一个元素。显示第一个元素后，不断执行循环，而x依次表示数组的其他元素。因此，上述代码显示全部5个元素，每个元素占据一行。总之，该循环显示数组中的每个值。</p>
+<p>要修改数组的元素，需要使用不同的循环变量语法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">double</span> &amp;x : prices)</span><br><span class="line">   x = x + <span class="number">0.80</span>;		<span class="comment">// 20% of sale</span></span><br></pre></td></tr></table></figure>
+
+<p>符号&amp;表明x是一个引用变量。这种声明让接下来的代码能够修改数组的内容。</p>
+<p>还可以结合使用基于范围的for循环和初始化列表：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> x:&#123;<span class="number">3</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">6</span>&#125;)</span><br><span class="line">    cout &lt;&lt; x &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-循环和文本输入"><a href="#5-3-循环和文本输入" class="headerlink" title="5.3 循环和文本输入"></a>5.3 循环和文本输入</h4><p>循环完成的一项最常见、最重要的任务：逐字符地读取来自文件或键盘的文本。例如：可能想要编写一个能够计算输入中的字符数、行数和字数的程序。传统上，C++和C语言一样，也使用while循环来完成这类任务。</p>
+<p>cin对象支持3种不同模式的单字符输入，其用户接口各不相同。</p>
+<p><strong>1、使用原始的cin进行输入：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Enter characters;enter # to quit:\n&quot;</span>;</span><br><span class="line">    cin &gt;&gt; ch;</span><br><span class="line">    <span class="keyword">while</span>(ch != <span class="string">&#x27;#&#x27;</span>)	<span class="comment">// test the character</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; ch;		<span class="comment">// echo the character</span></span><br><span class="line">        ++count;		<span class="comment">// count the character</span></span><br><span class="line">        cin &gt;&gt; ch;		<span class="comment">// get the next character</span></span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl &lt;&lt; count &lt;&lt; <span class="string">&quot; characters read\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Enter characters;enter # to quit:</span><br><span class="line">see ken run#really fast</span><br><span class="line">seekenrun</span><br><span class="line">9 characters read</span><br></pre></td></tr></table></figure>
+
+<p>注意：cIn在读取char值时，将忽略空格和换行符。因此输入中的空格没有被回显，也没有被包括在计数内。</p>
+<p>更为复杂的是，发送给cin的输入被缓冲。这意味着只有在用户按下回车键后，他输入的内容才会被发送给程序。这就是在运行该程序时，  在#后面输入字符的原因。按下回车键后，整个字符序列将被发送给程序，但程序在遇到#字符后将结束对输入的处理。</p>
+<p><strong>2、使用cin.get(char)进行补救</strong></p>
+<p> 通常，逐个字符读取输入的程序需要检查每个字符，包括空格、制表符和换行符。cin所属的istream类中包含一个能够满足这种要求的成员函数。具体地说，成员函数cin.get(ch)读取输入中的下一个字符（即使它是空格），并将其赋给变量ch。</p>
+<p>程序清单：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Enter characters;enter # to quit:\n&quot;</span>;</span><br><span class="line">    cin.<span class="built_in">get</span>(ch);		<span class="comment">// use the cin.get(ch) function</span></span><br><span class="line">    <span class="keyword">while</span>(ch != <span class="string">&#x27;#&#x27;</span>)	</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; ch;		</span><br><span class="line">        ++count;		</span><br><span class="line">        cin.<span class="built_in">get</span>(ch);		</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl &lt;&lt; count &lt;&lt; <span class="string">&quot; characters read\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Enter characters;enter # to quit:</span><br><span class="line">Did you use a #2 pencil?</span><br><span class="line">Did you use a</span><br><span class="line">14 characters read</span><br></pre></td></tr></table></figure>
+
+<p>现在，该程序回显了每个字符，并将全部字符计算在内，其中包括空格。输入仍被缓冲，因此输入的字符个数仍可能比最终到达程序的要多。</p>
+<p><strong>3、使用哪一个cin.get()</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> name[ArSize];</span><br><span class="line">...</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Enter your name:\n&quot;</span>;</span><br><span class="line">cin.<span class="built_in">get</span>(name,ArSize).<span class="built_in">get</span>();			</span><br></pre></td></tr></table></figure>
+
+<p>最后一行相当于两个连续的函数调用：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cin.<span class="built_in">get</span>(name,ArSize);</span><br><span class="line">cin.<span class="built_in">get</span>();</span><br></pre></td></tr></table></figure>
+
+<p>cin.get()的一个版本接受两个参数：数组名（字符串（<code>char *</code> 类型）的地址）和ArSize（int类型的整数）。其中，数组名是第一个元素的地址，因此字符数组名的类型为<code>char *</code>。</p>
+<p>另一种用法：只接受一个char参数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> ch;</span><br><span class="line">cin.<span class="built_in">get</span>(ch);</span><br></pre></td></tr></table></figure>
+
+<p>在C++中可以这样使用，因此该语言支持被称为函数重载的OOP特性。</p>
+<p><strong>函数重载：允许创建多个同名函数，条件是它们的参数列表不同。</strong></p>
+<p>例如：如果在C++中使用cin.get(name,ArSize)，则编译器将找到<code>char *</code>和int作为参数的cin.get()版本。如果使用cin.get(ch)，则编译器将使用接受一个char参数的版本。如果没有提供参数，则编译器将使用不接受任何参数的cin.get()版本。</p>
+<p>函数重载允许对多个相关的函数使用相同的名称，这些函数以不同方式或针对不同类型执行相同的基本任务。</p>
+<p><strong>4、文件尾条件</strong></p>
+<p>如果输入来自于文件，则可以使用一种功能更强大的技术：检测文件尾（EOF）。</p>
+<p>很多操作系统都允许通过键盘来模拟文件尾条件。在Unix中，可以在行首按下Ctrl+D来实现；在Windows命令提示符模式下，可以在任意位置按Ctrl+Z和Enter。用于PC的Microsoft Visual C++、Borland C++ 5.5 和 GNU C++ 都能够识别行首的Ctrl + Z，但用户必须随后按下回车键。</p>
+<p>很多PC编程环境都将Ctrl + Z视为模拟的EOF。</p>
+<p>程序清单：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    cin.<span class="built_in">get</span>(ch);		<span class="comment">// attempt to read a char</span></span><br><span class="line">    <span class="keyword">while</span>(cin.<span class="built_in">fail</span>() == <span class="literal">false</span> )		<span class="comment">// test for EOF</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; ch;		<span class="comment">// echo character</span></span><br><span class="line">        ++count;</span><br><span class="line">        cin.<span class="built_in">get</span>(ch);	</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl &lt;&lt; count &lt;&lt; <span class="string">&quot; characters read\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-4-嵌套循环和二维数组"><a href="#5-4-嵌套循环和二维数组" class="headerlink" title="5.4  嵌套循环和二维数组"></a>5.4  嵌套循环和二维数组</h4><p>假设要打印数组所有的内容，可以用一个for循环来改变行，用另一个被嵌套的for循环来改变列：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> row = <span class="number">0</span>; row &lt; <span class="number">4</span>; row++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> col = <span class="number">0</span>; col &lt; <span class="number">5</span>; ++col)</span><br><span class="line">        cout &lt;&lt; maxtemps[row][col] &lt;&lt; <span class="string">&quot;\t&quot;</span>;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在每个值之后打印一个制表符（使用C++转义字符表示时为\t），打印完每行后，打印一个换行符。</p>
+<h3 id="第六章-函数：C-的编程模块"><a href="#第六章-函数：C-的编程模块" class="headerlink" title="第六章 函数：C++的编程模块"></a>第六章 函数：C++的编程模块</h3><h4 id="6-1-函数的基本知识"><a href="#6-1-函数的基本知识" class="headerlink" title="6.1  函数的基本知识"></a>6.1  函数的基本知识</h4><p>自定义函数时，需要定义函数、提供函数原型和调用函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">simple</span><span class="params">()</span></span>;			<span class="comment">// function prototype</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;main() will call the simple() function:\n&quot;</span>;</span><br><span class="line">    <span class="built_in">simple</span>();			<span class="comment">// function call</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;main() is finished with the simple() function.\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// function definition</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">simple</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;I&#x27;m but a simple function.\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>定义函数：</strong><br>可以将函数分成两类：没有返回值的函数和有返回值的函数。没有返回值的函数被称为void函数。其通用格式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">functionName</span><span class="params">(parameterList)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">statement</span>(s)</span><br><span class="line">    <span class="keyword">return</span>;				<span class="comment">// optional</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，parameterList指定了传递给函数的参数类型和数量。</p>
+<p>void函数相当于Pascal中的过程、FORTRAN中的字程序和现代BASIC中的子程序。</p>
+<p>通常，可以用void函数来执行某种操作。例如，将Cheers！打印指定次数（n）的函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">cheers</span><span class="params">(<span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; n ;i++)</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Cheers! &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有返回值的函数将生成一个值，并将它返回给调用函数。这种函数的类型被声明为返回值的类型。其通用格式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">typeName <span class="title">functionName</span><span class="params">(parameterList)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    statements</span><br><span class="line">        <span class="keyword">return</span> value;		<span class="comment">// value is type cast to type typeName</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于有返回值的函数，必须使用返回语句，以便将值返回给调用函数。值本身可以是常量、变量，也可以是表达式，只是其结果的类型必须为typeName类型或可以被转换为typeName。</p>
+<p>（例如，如果声明的返回值类型为double，而函数返回一个int表达式，则该int值将被强制转换为double类型）。</p>
+<p>C++对于返回值的类型有一定的限制：不能是数组，但可以是其他任何类型：整数、浮点数、指针，甚至可以是结构和对象！（有趣的是，虽然C++函数不能直接返回数组，但可以将数组作为结构或对象组成部分来返回。）</p>
+<p><strong>函数原型和函数调用</strong></p>
+<p>我们已经熟悉了函数调用，但对函数原型可能不太熟悉，因为它经常隐藏在include文件中。</p>
+<p>程序清单：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">cheers</span><span class="params">(<span class="type">int</span>)</span></span>;		<span class="comment">// prototype: no return value</span></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">cube</span><span class="params">(<span class="type">double</span> x)</span></span>;	<span class="comment">// prototype: return a double</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cheers</span>(<span class="number">5</span>);			<span class="comment">// function call</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Give me a number: &quot;</span>;</span><br><span class="line">    <span class="type">double</span> side;</span><br><span class="line">    cin &gt;&gt; side;</span><br><span class="line">    <span class="type">double</span> volume = <span class="built_in">cube</span>(side);		<span class="comment">// function call</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;A &quot;</span> &lt;&lt; side &lt;&lt; <span class="string">&quot;-foot cube has a volume of &quot;</span>;</span><br><span class="line">    cout &lt;&lt; volume &lt;&lt; <span class="string">&quot; cubic feet.\n&quot;</span>;</span><br><span class="line">    <span class="built_in">cheers</span>(<span class="built_in">cube</span>(<span class="number">2</span>));		<span class="comment">// prototype protection at work</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">cheers</span><span class="params">(<span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Cheers! &quot;</span>;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">cube</span><span class="params">(<span class="type">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x*x*x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Cheers! Cheers! Cheers! Cheers! Cheers! </span><br><span class="line">Give me a number: 5</span><br><span class="line">A 5-foot cube has a volume of 125 cubic feet.</span><br><span class="line">Cheers! Cheers! Cheers! Cheers! Cheers! Cheers! Cheers! Cheers! </span><br></pre></td></tr></table></figure>
+
+<p><strong>为什么需要原型：</strong></p>
+<p>原型描述了函数到编译器的接口，也就是说，它将函数返回值的类型以及参数的类型和数量告诉编译器。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> volume = <span class="built_in">cube</span>(side);</span><br></pre></td></tr></table></figure>
+
+<p>首先，原型告诉编译器，cube()有一个double参数。如果程序没有提供这样的参数，原型将让编译器能够捕获这种错误。其次，cube()函数完成计算后，将把返回值放置在指定的位置——可能是CPU寄存器，也可能是内存中。然后调用函数将从这个位置取得返回值。由于原型指出了cube()的类型为double，因此编译器知道应检索多少个字节以及如何解释它们。</p>
+<p><strong>原型的语法：</strong></p>
+<p>函数原型是一条语句，因此必须以分号结束。获得原型最简单的方法是，复制函数定义的函数头，并添加分号。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">cube</span><span class="params">(<span class="type">double</span> x)</span></span>;	<span class="comment">// add ; to header to get prototype</span></span><br></pre></td></tr></table></figure>
+
+<p>然而，函数原型不要求提供变量名，有类型列表就足够了。对于cheer()的原型，该程序只提供了参数类型：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">cheers</span><span class="params">(<span class="type">int</span>)</span></span>;		<span class="comment">// okay to drop variable names in prototype</span></span><br></pre></td></tr></table></figure>
+
+<p>通常，在原型的参数列表中，可以包括变量名，也可以不包括。原型中的变量名相当于占位符，因此不必与函数定义中的变量名相同。</p>
+<h4 id="6-2-函数参数和按值传递"><a href="#6-2-函数参数和按值传递" class="headerlink" title="6.2  函数参数和按值传递"></a>6.2  函数参数和按值传递</h4><p>C++通常按值传递参数，这意味着将数值参数传递给函数，而后者将其赋值给一个新的变量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> volume = <span class="built_in">cube</span>(side);</span><br></pre></td></tr></table></figure>
+
+<p>cube()的函数头：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">cube</span><span class="params">(<span class="type">double</span> x)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>==用于接受传递值的变量被称为形参，传递给函数的值被称为实参==。出于简化的目的，C++标准使用参数（argument）来表示实参，使用参量（parameter）来表示形参，因此参数传递将参量赋给参数。</p>
+<p>在函数中声明的变量（包括参数）是该函数私有的。在函数被调用时，计算机将为这些变量分配内存；在函数结束时，计算机将释放这些变量使用的内存。这样的变量被称为局部变量。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Cappuccino</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://centlabs.github.io/2022/04/02/C++%20%20Primer%EF%BC%88%E4%B8%8B%EF%BC%89/">https://centlabs.github.io/2022/04/02/C++%20%20Primer%EF%BC%88%E4%B8%8B%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/04/01/%E7%96%AB%E6%83%85%E4%B8%8B%E7%9A%84%E6%88%91%E4%BB%AC/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">同一个世界，同一个疫情</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/03/23/C%20plus%20plus/" title="C plus plus"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-23</div><div class="title">C plus plus</div></div></a></div><div><a href="/2022/03/31/C++%20Primer%20Plus/" title="C++ Learning"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-31</div><div class="title">C++ Learning</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cappuccino</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">7</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%BE%AA%E7%8E%AF%E5%92%8C%E5%85%B3%E7%B3%BB%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">第五章  循环和关系表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-for%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.1.</span> <span class="toc-text">5.1 for循环</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8for%E5%BE%AA%E7%8E%AF%E8%AE%BF%E9%97%AE%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.1.1.</span> <span class="toc-text">使用for循环访问字符串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%89%8D%E7%BC%80%E6%A0%BC%E5%BC%8F%E5%92%8C%E5%90%8E%E7%BC%80%E6%A0%BC%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">前缀格式和后缀格式：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%92%E5%A2%9E-%E9%80%92%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%8C%87%E9%92%88"><span class="toc-number">1.1.3.</span> <span class="toc-text">递增&#x2F;递减运算符和指针</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#C%E9%A3%8E%E6%A0%BC%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">1.1.4.</span> <span class="toc-text">C风格字符串的比较</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="toc-number">1.1.5.</span> <span class="toc-text">类型别名</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E5%9F%BA%E4%BA%8E%E8%8C%83%E5%9B%B4%E7%9A%84for%E5%BE%AA%E7%8E%AF%EF%BC%88C-11%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">5.2  基于范围的for循环（C++11）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-%E5%BE%AA%E7%8E%AF%E5%92%8C%E6%96%87%E6%9C%AC%E8%BE%93%E5%85%A5"><span class="toc-number">1.3.</span> <span class="toc-text">5.3 循环和文本输入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF%E5%92%8C%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="toc-number">1.4.</span> <span class="toc-text">5.4  嵌套循环和二维数组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%87%BD%E6%95%B0%EF%BC%9AC-%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">第六章 函数：C++的编程模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="toc-number">2.1.</span> <span class="toc-text">6.1  函数的基本知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E5%92%8C%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92"><span class="toc-number">2.2.</span> <span class="toc-text">6.2  函数参数和按值传递</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/02/C++%20%20Primer%EF%BC%88%E4%B8%8B%EF%BC%89/" title="C++ Learning 2"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++ Learning 2"/></a><div class="content"><a class="title" href="/2022/04/02/C++%20%20Primer%EF%BC%88%E4%B8%8B%EF%BC%89/" title="C++ Learning 2">C++ Learning 2</a><time datetime="2022-04-02T12:12:16.498Z" title="Created 2022-04-02 20:12:16">2022-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/01/%E7%96%AB%E6%83%85%E4%B8%8B%E7%9A%84%E6%88%91%E4%BB%AC/" title="同一个世界，同一个疫情"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="同一个世界，同一个疫情"/></a><div class="content"><a class="title" href="/2022/04/01/%E7%96%AB%E6%83%85%E4%B8%8B%E7%9A%84%E6%88%91%E4%BB%AC/" title="同一个世界，同一个疫情">同一个世界，同一个疫情</a><time datetime="2022-04-01T15:43:24.955Z" title="Created 2022-04-01 23:43:24">2022-04-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/31/C++%20Primer%20Plus/" title="C++ Learning"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++ Learning"/></a><div class="content"><a class="title" href="/2022/03/31/C++%20Primer%20Plus/" title="C++ Learning">C++ Learning</a><time datetime="2022-03-31T14:50:54.350Z" title="Created 2022-03-31 22:50:54">2022-03-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/30/Qt%205%20%E5%BC%80%E5%8F%91%E5%8F%8A%E5%AE%9E%E4%BE%8B/" title="Qt 5 模板库、工具类及控件"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qt 5 模板库、工具类及控件"/></a><div class="content"><a class="title" href="/2022/03/30/Qt%205%20%E5%BC%80%E5%8F%91%E5%8F%8A%E5%AE%9E%E4%BE%8B/" title="Qt 5 模板库、工具类及控件">Qt 5 模板库、工具类及控件</a><time datetime="2022-03-30T09:03:06.304Z" title="Created 2022-03-30 17:03:06">2022-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/26/ACM/" title="Coding"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Coding"/></a><div class="content"><a class="title" href="/2022/03/26/ACM/" title="Coding">Coding</a><time datetime="2022-03-26T15:48:18.173Z" title="Created 2022-03-26 23:48:18">2022-03-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Cappuccino</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
