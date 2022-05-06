@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Qmake VS Cmake | CentLabs</title><meta name="keywords" content="QT"><meta name="author" content="Cappuccino"><meta name="copyright" content="Cappuccino"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Qmake VS Cmake&#x3D;&#x3D;用cmake构建Qt工程（对比qmake进行学习）&#x3D;&#x3D; cmake vs qmake qmake 是为 Qt 量身打造的，使用起来非常方便 cmake 使用上不如qmake简单直接，但复杂换来的是强大的功能 内置的 out-of source 构建。（目前QtCreator为qmake也默认启用了该功能。参考：浅谈qmake之shadow build） 为各种平台和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qmake VS Cmake">
+<meta property="og:url" content="https://centlabs.github.io/2022/05/06/Qmake%20VS%20Cmake/index.html">
+<meta property="og:site_name" content="CentLabs">
+<meta property="og:description" content="Qmake VS Cmake&#x3D;&#x3D;用cmake构建Qt工程（对比qmake进行学习）&#x3D;&#x3D; cmake vs qmake qmake 是为 Qt 量身打造的，使用起来非常方便 cmake 使用上不如qmake简单直接，但复杂换来的是强大的功能 内置的 out-of source 构建。（目前QtCreator为qmake也默认启用了该功能。参考：浅谈qmake之shadow build） 为各种平台和">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-05-06T02:36:03.351Z">
+<meta property="article:modified_time" content="2022-05-06T02:37:17.199Z">
+<meta property="article:author" content="Cappuccino">
+<meta property="article:tag" content="QT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://centlabs.github.io/2022/05/06/Qmake%20VS%20Cmake/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Qmake VS Cmake',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-06 10:37:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CentLabs</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Qmake VS Cmake</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-05-06T02:36:03.351Z" title="Created 2022-05-06 10:36:03">2022-05-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-05-06T02:37:17.199Z" title="Updated 2022-05-06 10:37:17">2022-05-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Qmake VS Cmake"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="Qmake-VS-Cmake"><a href="#Qmake-VS-Cmake" class="headerlink" title="Qmake VS Cmake"></a>Qmake VS Cmake</h3><p>==用cmake构建Qt工程（对比qmake进行学习）==</p>
+<h3 id="cmake-vs-qmake"><a href="#cmake-vs-qmake" class="headerlink" title="cmake vs qmake"></a>cmake vs qmake</h3><ul>
+<li>qmake 是为 Qt 量身打造的，使用起来非常方便</li>
+<li>cmake 使用上不如qmake简单直接，但复杂换来的是强大的功能<ul>
+<li>内置的 out-of source 构建。（目前QtCreator为qmake也默认启用了该功能。参考：浅谈qmake之shadow build）</li>
+<li>为各种平台和场景提供条件编译</li>
+<li>可处理多个可执行文件情况，和很好配合 QtTest 工作</li>
+</ul>
+</li>
+</ul>
+<p>如何选择?</p>
+<p>Using CMake to Build Qt Projects 一文中说：</p>
+<ul>
+<li>对简单的Qt工程，采用 qmake</li>
+<li>对复杂度超过 qmake 处理能力的，采用 cmake</li>
+</ul>
+<p>尽管如此，如果简单Qt的工程都不知道怎么用 cmake 构建，复杂的工程，就更不知道如何使用 cmake 了。还是从简单的学起。</p>
+<h3 id="简单的-Qt-程序"><a href="#简单的-Qt-程序" class="headerlink" title="简单的 Qt 程序"></a>简单的 Qt 程序</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtCore/QCoreApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtCore/QDebug&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QCoreApplication <span class="title">app</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line">    <span class="built_in">qDebug</span>()&lt;&lt;<span class="string">&quot;hello qt!&quot;</span>;</span><br><span class="line">    app.<span class="built_in">exec</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果不使用构建工具，直接调用编译器来编译的话，只需要类似这样的一条命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ main.cpp -Ie:\Qt\4.7.0\include -o main -Le:\Qt\4.7.0\lib -lQtCore4</span><br></pre></td></tr></table></figure>
+
+<p>指定头文件目录，以及需要链接的库</p>
+<hr>
+<h4 id="qmake"><a href="#qmake" class="headerlink" title="qmake"></a>qmake</h4><p>qmake 需要一个 .pro 文件:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CONFIG += qt</span><br><span class="line">QT -= gui</span><br><span class="line">SOURCES += main.cpp</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>因为我们需要 Qt的库和头文件，所以需要<code>CONFIG += qt</code>。<ul>
+<li>这是默认项，可直接去掉该行</li>
+</ul>
+</li>
+<li>启用qt后，可以通过 QT -= gui 来进一步细调我们需要的模块<ul>
+<li>默认是 core gui。我们不需要gui模块，故去掉。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h4><p>cmake 需要一个 CMakeLists.txt 文件：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">PROJECT</span>(example)</span><br><span class="line"><span class="keyword">FIND_PACKAGE</span>(Qt4 REQUIRED)</span><br><span class="line"><span class="keyword">SET</span>(QT_DONT_USE_QTGUI <span class="keyword">TRUE</span>)</span><br><span class="line"><span class="keyword">INCLUDE</span>(<span class="variable">$&#123;QT_USE_FILE&#125;</span>)</span><br><span class="line"><span class="keyword">ADD_EXECUTABLE</span>(example main.cpp)</span><br><span class="line"><span class="keyword">TARGET_LINK_LIBRARIES</span>(example <span class="variable">$&#123;QT_LIBRARIES&#125;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>FIND_PACKAGE 来启用 Qt4</li>
+<li>默认使用了core 和 gui，故手动禁用 QTGUI<ul>
+<li>这两行可以直接使用 <code>FIND_PACKAGE(Qt4 COMPONENTS QtCore REQUIRED)</code>，未指定的模块将被禁用</li>
+</ul>
+</li>
+<li>包含一个CMake为Qt提供的配置文件，${QT_USE_FILE}变量是一个文件名</li>
+<li>添加可执行程序目标</li>
+<li>链接到 Qt 的库</li>
+</ul>
+<h3 id="复杂一点"><a href="#复杂一点" class="headerlink" title="复杂一点"></a>复杂一点</h3><p>考虑一个常规Qt程序：</p>
+<ul>
+<li>main.cpp</li>
+<li>mainwindows.ui</li>
+<li>mainwindows.h</li>
+<li>mainwindows.cpp</li>
+</ul>
+<p>如果手动编译的话：</p>
+<ul>
+<li>mainwindow.ui 需要使用 uic 预处理</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uic mainwindow.ui -o ui_mainwindow.h</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mainwindow.h 需要 moc 预处理</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">moc mainwindow.h -o moc_mainwindow.cpp</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>调用编译器进行编译</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ main.cpp mainwindow.cpp  moc_mainwindow.cpp -Ie:\Qt\4.7.0\include -o main  -Le:\Qt\4.7.0\lib -lQtCore4 -lQtGui4</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="qmake-1"><a href="#qmake-1" class="headerlink" title="qmake"></a>qmake</h4><p>使用 qmake 的的话，一个简单的 pro 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TARGET = example</span><br><span class="line">TEMPLATE = app</span><br><span class="line">SOURCES += main.cpp mainwindow.cpp</span><br><span class="line">HEADERS  += mainwindow.h</span><br><span class="line">FORMS    += mainwindow.ui</span><br></pre></td></tr></table></figure>
+
+<p>HEADERS 中的文件是否需要 moc 进行预处理，qmake 运行时会根据其是否含有Q_OBJECT自动判断。</p>
+<p>这也是为什么 很多人添加Q_OBJECT宏后不重新运行qmake会出错误的原因。</p>
+<h4 id="cmake-1"><a href="#cmake-1" class="headerlink" title="cmake"></a>cmake</h4><p>看看相应的 cmake 的 CMakeLists.txt 文件</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">PROJECT</span>(example)</span><br><span class="line"><span class="keyword">CMAKE_MINIMUM_REQUIRED</span>(VERSION <span class="number">2.6</span>)</span><br><span class="line"><span class="keyword">FIND_PACKAGE</span>(Qt4 REQUIRED)</span><br><span class="line"><span class="keyword">INCLUDE</span>(<span class="variable">$&#123;QT_USE_FILE&#125;</span>)</span><br><span class="line"><span class="keyword">INCLUDE_DIRECTORIES</span>(<span class="variable">$&#123;CMAKE_CURRENT_BINARY_DIR&#125;</span>)</span><br><span class="line">QT4_WRAP_CPP(example_MOCS mainwindow.h)</span><br><span class="line">QT4_WRAP_UI(example_UIS mainwindow.ui)</span><br><span class="line"><span class="keyword">ADD_EXECUTABLE</span>(example main.cpp mainwindow.cpp <span class="variable">$&#123;example_MOCS&#125;</span>)</span><br><span class="line"><span class="keyword">TARGET_LINK_LIBRARIES</span>(example <span class="variable">$&#123;QT_LIBRARIES&#125;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>需要 moc 的文件，用 QT4_WRAP_CPP 处理<ul>
+<li>生成的文件放入变量 example_MOCS 中，最后一块链接到可执行程序</li>
+</ul>
+</li>
+<li>需要 uic 的文件，用 QT4_WRAP_UI 处理</li>
+</ul>
+<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>因为windows下链接时分为 console 和 windows 两个子系统，所以windows下有些问题需要特殊处理。</p>
+<p>用 qmake 时：</p>
+<ul>
+<li>默认是 windows 子系统</li>
+<li>可以通过 CONFIG += console 使用 console 子系统</li>
+</ul>
+<p>用 cmake 是：</p>
+<ul>
+<li>默认是 console 子系统</li>
+<li>使用 windows 子系统需要</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET(QT_USE_QTMAIN TRUE)</span><br><span class="line">ADD_EXECUTABLE(example WIN32 main.cpp mainwindow.cpp $&#123;example_MOCS&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>前者启用 qtmain.lib 库来提供windows下的 WinMain 入口函数。后者链接 windows 子系统</p>
+<h3 id="再复杂一点"><a href="#再复杂一点" class="headerlink" title="再复杂一点"></a>再复杂一点</h3><ul>
+<li>main.cpp</li>
+<li>mainwindows.ui</li>
+<li>mainwindows.h</li>
+<li>mainwindows.cpp</li>
+<li>main.qrc</li>
+<li>main.rc</li>
+</ul>
+<p>前面已经用到了Qt的 moc 和 uic，这次增加了资源系统 需要用 rcc</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rcc main.qrc -o qrc_main.cpp</span><br></pre></td></tr></table></figure>
+
+<p>同时，使用了windows下的资源文件 .rc (比如给程序添加图标)</p>
+<ul>
+<li>MVSC 中使用 rc.exe 对 .rc 文件进行处理</li>
+<li>MinGW 中使用 windres.exe 处理 .rc 文件</li>
+</ul>
+<h4 id="qmake-2"><a href="#qmake-2" class="headerlink" title="qmake"></a>qmake</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">TARGET = example</span><br><span class="line">TEMPLATE = lib</span><br><span class="line">HEADERS = mainwindow.h widget.h</span><br><span class="line">SOURCES = main.cpp widget.cpp  mainwindow.cpp</span><br><span class="line">RESOURCES = main.qrc</span><br><span class="line">RC_FILE = main.rc</span><br></pre></td></tr></table></figure>
+
+<h4 id="cmake-2"><a href="#cmake-2" class="headerlink" title="cmake"></a>cmake</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">PROJECT</span>(example)</span><br><span class="line"><span class="keyword">CMAKE_MINIMUM_REQUIRED</span>(VERSION <span class="number">2.6</span>)</span><br><span class="line"><span class="keyword">FIND_PACKAGE</span>(Qt4 REQUIRED)</span><br><span class="line"><span class="keyword">SET</span>(QT_USE_QTMAIN <span class="keyword">TRUE</span>)</span><br><span class="line"><span class="keyword">INCLUDE</span>(<span class="variable">$&#123;QT_USE_FILE&#125;</span>)</span><br><span class="line"><span class="keyword">INCLUDE_DIRECTORIES</span>(<span class="variable">$&#123;CMAKE_CURRENT_BINARY_DIR&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(MINGW)</span><br><span class="line">  <span class="keyword">set</span>(CMAKE_RC_COMPILER_INIT windres)</span><br><span class="line">  <span class="keyword">ENABLE_LANGUAGE</span>(RC)</span><br><span class="line">  <span class="keyword">SET</span>(CMAKE_RC_COMPILE_OBJECT</span><br><span class="line">    <span class="string">&quot;&lt;CMAKE_RC_COMPILER&gt; &lt;FLAGS&gt; -O coff &lt;DEFINES&gt; -i &lt;SOURCE&gt; -o &lt;OBJECT&gt;&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>(MINGW)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span>(example_SRCS main.cpp mainwindow.cpp widget.cpp res/main.rc)</span><br><span class="line"><span class="keyword">SET</span>(example_MOC_SRCS mainwindow.h widget.h)</span><br><span class="line">QT4_WRAP_CPP(example_MOCS <span class="variable">$&#123;example_MOC_SRCS&#125;</span>)</span><br><span class="line">QT4_ADD_RESOURCES(example_RCC_SRCS main.qrc)</span><br><span class="line"><span class="keyword">SET</span>(example_SRCS <span class="variable">$&#123;example_SRCS&#125;</span> <span class="variable">$&#123;example_MOCS&#125;</span> <span class="variable">$&#123;example_RCC_SRCS&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">ADD_EXECUTABLE</span>(example WIN32 main.cpp mainwindow.cpp <span class="variable">$&#123;example_SRCS&#125;</span>)</span><br><span class="line"><span class="keyword">TARGET_LINK_LIBRARIES</span>(example <span class="variable">$&#123;QT_LIBRARIES&#125;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对Qt的资源文件，使用 QT4_ADD_RESOURCES 来调用rcc进行预处理</li>
+<li>对 Windows 资源文件，直接和源文件一样，添加到列表中即可。只是：<ul>
+<li>MinGW 下仅仅这么做还不行，上面的 MinGW 块用来修复这个问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="Debug-与-Release"><a href="#Debug-与-Release" class="headerlink" title="Debug 与 Release"></a>Debug 与 Release</h3><h4 id="qmake-3"><a href="#qmake-3" class="headerlink" title="qmake"></a>qmake</h4><p>使用 qmake 时，可以在 pro 文件内分别为两种模式设置不同的选项。</p>
+<p>使用时，可以直接 make release 或 make debug 来编译不同的版本</p>
+<h4 id="cmake-3"><a href="#cmake-3" class="headerlink" title="cmake"></a>cmake</h4><p>不同于 qmake，由于 cmake 采用 out-of-source 方式。故：</p>
+<ul>
+<li>建立debug release两目录，分别在其中执行cmake -DCMAKE_BUILD_TYPE=Debug（或Release）</li>
+<li>需要编译不同版本时进入不同目录执行make</li>
+</ul>
+<p>对生成 msvc 工程的情况, CMAKE_BUILD_TYPE 不起作用。生成工程后使用IDE自带的模式选择。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Cappuccino</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://centlabs.github.io/2022/05/06/Qmake%20VS%20Cmake/">https://centlabs.github.io/2022/05/06/Qmake%20VS%20Cmake/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/QT/">QT</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/05/06/Qt%EF%BC%9AMinGW%20%E4%B8%8EMSVC%E7%9A%84%E5%8C%BA%E5%88%AB/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Qt： MinGW 与 MSVC的区别</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/05/06/Qt%EF%BC%9AMinGW%20%E4%B8%8EMSVC%E7%9A%84%E5%8C%BA%E5%88%AB/" title="Qt： MinGW 与 MSVC的区别"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">Qt： MinGW 与 MSVC的区别</div></div></a></div><div><a href="/2022/03/30/Qt%205%20%E5%BC%80%E5%8F%91%E5%8F%8A%E5%AE%9E%E4%BE%8B/" title="Qt 5 模板库、工具类及控件"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-30</div><div class="title">Qt 5 模板库、工具类及控件</div></div></a></div><div><a href="/2022/05/06/%E5%90%84%E7%A7%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E5%90%8D%E8%AF%8D%E7%9A%84%E8%A7%A3%E9%87%8A/" title="捋一捋gcc/g++/MingW/MSVC与make/CMake的关系"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-06</div><div class="title">捋一捋gcc/g++/MingW/MSVC与make/CMake的关系</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cappuccino</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Qmake-VS-Cmake"><span class="toc-number">1.</span> <span class="toc-text">Qmake VS Cmake</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cmake-vs-qmake"><span class="toc-number">2.</span> <span class="toc-text">cmake vs qmake</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84-Qt-%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.</span> <span class="toc-text">简单的 Qt 程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qmake"><span class="toc-number">3.1.</span> <span class="toc-text">qmake</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cmake"><span class="toc-number">3.2.</span> <span class="toc-text">cmake</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E4%B8%80%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">复杂一点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qmake-1"><span class="toc-number">4.1.</span> <span class="toc-text">qmake</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cmake-1"><span class="toc-number">4.2.</span> <span class="toc-text">cmake</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows"><span class="toc-number">4.3.</span> <span class="toc-text">Windows</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%8D%E5%A4%8D%E6%9D%82%E4%B8%80%E7%82%B9"><span class="toc-number">5.</span> <span class="toc-text">再复杂一点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qmake-2"><span class="toc-number">5.1.</span> <span class="toc-text">qmake</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cmake-2"><span class="toc-number">5.2.</span> <span class="toc-text">cmake</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debug-%E4%B8%8E-Release"><span class="toc-number">6.</span> <span class="toc-text">Debug 与 Release</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#qmake-3"><span class="toc-number">6.1.</span> <span class="toc-text">qmake</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cmake-3"><span class="toc-number">6.2.</span> <span class="toc-text">cmake</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/06/Qmake%20VS%20Cmake/" title="Qmake VS Cmake"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qmake VS Cmake"/></a><div class="content"><a class="title" href="/2022/05/06/Qmake%20VS%20Cmake/" title="Qmake VS Cmake">Qmake VS Cmake</a><time datetime="2022-05-06T02:36:03.351Z" title="Created 2022-05-06 10:36:03">2022-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/06/Qt%EF%BC%9AMinGW%20%E4%B8%8EMSVC%E7%9A%84%E5%8C%BA%E5%88%AB/" title="Qt： MinGW 与 MSVC的区别"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qt： MinGW 与 MSVC的区别"/></a><div class="content"><a class="title" href="/2022/05/06/Qt%EF%BC%9AMinGW%20%E4%B8%8EMSVC%E7%9A%84%E5%8C%BA%E5%88%AB/" title="Qt： MinGW 与 MSVC的区别">Qt： MinGW 与 MSVC的区别</a><time datetime="2022-05-06T01:42:36.943Z" title="Created 2022-05-06 09:42:36">2022-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/06/%E5%90%84%E7%A7%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E5%90%8D%E8%AF%8D%E7%9A%84%E8%A7%A3%E9%87%8A/" title="捋一捋gcc/g++/MingW/MSVC与make/CMake的关系"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="捋一捋gcc/g++/MingW/MSVC与make/CMake的关系"/></a><div class="content"><a class="title" href="/2022/05/06/%E5%90%84%E7%A7%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E5%90%8D%E8%AF%8D%E7%9A%84%E8%A7%A3%E9%87%8A/" title="捋一捋gcc/g++/MingW/MSVC与make/CMake的关系">捋一捋gcc/g++/MingW/MSVC与make/CMake的关系</a><time datetime="2022-05-06T01:42:36.943Z" title="Created 2022-05-06 09:42:36">2022-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/23/Mediapipe%E5%85%A5%E9%97%A8/" title="Mediapipe入门:搭建姿态检测模型并实时输出人体关节点3d坐标"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mediapipe入门:搭建姿态检测模型并实时输出人体关节点3d坐标"/></a><div class="content"><a class="title" href="/2022/04/23/Mediapipe%E5%85%A5%E9%97%A8/" title="Mediapipe入门:搭建姿态检测模型并实时输出人体关节点3d坐标">Mediapipe入门:搭建姿态检测模型并实时输出人体关节点3d坐标</a><time datetime="2022-04-23T07:49:34.475Z" title="Created 2022-04-23 15:49:34">2022-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/23/%E7%BC%96%E7%A8%8B%E4%BF%AE%E5%85%BB/" title="编程修养"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="编程修养"/></a><div class="content"><a class="title" href="/2022/04/23/%E7%BC%96%E7%A8%8B%E4%BF%AE%E5%85%BB/" title="编程修养">编程修养</a><time datetime="2022-04-23T07:38:10.494Z" title="Created 2022-04-23 15:38:10">2022-04-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Cappuccino</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
