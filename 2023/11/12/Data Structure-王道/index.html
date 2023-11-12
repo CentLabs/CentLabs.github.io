@@ -1,0 +1,684 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Data Structure - 王道 | CentLabs</title><meta name="keywords" content="408"><meta name="author" content="Cappuccino"><meta name="copyright" content="Cappuccino"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第一章 绪论1.1数据结构的基本概念 在探讨一种数据结构时：①定义逻辑结构(数据元素之间的关系)②定义数据的运算(针对现实需求，应该对这种逻辑结构进行什么样的运算)③确定某种存储结构，实现数据结构，并实现一些对数据结构的基本运算 1.2算法和算法评论1.2.1算法的基本概论 1.2.2算法的时间复杂度 1.2.3算法的空间复杂度 第二章 线性表2.1线性表的定义和基本操作2.1.1线性表的定义 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Structure - 王道">
+<meta property="og:url" content="https://centlabs.github.io/2023/11/12/Data%20Structure-%E7%8E%8B%E9%81%93/index.html">
+<meta property="og:site_name" content="CentLabs">
+<meta property="og:description" content="第一章 绪论1.1数据结构的基本概念 在探讨一种数据结构时：①定义逻辑结构(数据元素之间的关系)②定义数据的运算(针对现实需求，应该对这种逻辑结构进行什么样的运算)③确定某种存储结构，实现数据结构，并实现一些对数据结构的基本运算 1.2算法和算法评论1.2.1算法的基本概论 1.2.2算法的时间复杂度 1.2.3算法的空间复杂度 第二章 线性表2.1线性表的定义和基本操作2.1.1线性表的定义 2">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2023-11-12T15:05:01.134Z">
+<meta property="article:modified_time" content="2023-11-12T15:06:53.367Z">
+<meta property="article:author" content="Cappuccino">
+<meta property="article:tag" content="408">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://centlabs.github.io/2023/11/12/Data%20Structure-%E7%8E%8B%E9%81%93/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Data Structure - 王道',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-12 23:06:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">31</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">CentLabs</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Data Structure - 王道</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-11-12T15:05:01.134Z" title="Created 2023-11-12 23:05:01">2023-11-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-11-12T15:06:53.367Z" title="Updated 2023-11-12 23:06:53">2023-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E7%A7%91%E4%B8%93%E4%B8%9A%E5%9F%BA%E7%A1%80/">计算机学科专业基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Data Structure - 王道"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h3><h4 id="1-1数据结构的基本概念"><a href="#1-1数据结构的基本概念" class="headerlink" title="1.1数据结构的基本概念"></a>1.1数据结构的基本概念</h4><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/b7e6ed3c81a9482093826c45c8ef9251.png" alt="alt"></p>
+<p>在探讨一种数据结构时：<br>①定义逻辑结构(数据元素之间的关系)<br>②定义数据的运算(针对现实需求，应该对这种逻辑结构进行什么样的运算)<br>③确定某种存储结构，实现数据结构，并实现一些对数据结构的基本运算</p>
+<h4 id="1-2算法和算法评论"><a href="#1-2算法和算法评论" class="headerlink" title="1.2算法和算法评论"></a>1.2算法和算法评论</h4><h5 id="1-2-1算法的基本概论"><a href="#1-2-1算法的基本概论" class="headerlink" title="1.2.1算法的基本概论"></a>1.2.1算法的基本概论</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/9cc0a5c4da2e4dc6a4962cd070274b74.png" alt="alt"></p>
+<h5 id="1-2-2算法的时间复杂度"><a href="#1-2-2算法的时间复杂度" class="headerlink" title="1.2.2算法的时间复杂度"></a>1.2.2算法的时间复杂度</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/95f03848b82045bb917fab768a441d32.png" alt="alt"></p>
+<h5 id="1-2-3算法的空间复杂度"><a href="#1-2-3算法的空间复杂度" class="headerlink" title="1.2.3算法的空间复杂度"></a>1.2.3算法的空间复杂度</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/07e6dffdada64890a87e86a57f01b5ed.png" alt="alt"></p>
+<h3 id="第二章-线性表"><a href="#第二章-线性表" class="headerlink" title="第二章 线性表"></a>第二章 线性表</h3><h4 id="2-1线性表的定义和基本操作"><a href="#2-1线性表的定义和基本操作" class="headerlink" title="2.1线性表的定义和基本操作"></a>2.1线性表的定义和基本操作</h4><h5 id="2-1-1线性表的定义"><a href="#2-1-1线性表的定义" class="headerlink" title="2.1.1线性表的定义"></a>2.1.1线性表的定义</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4a23e9c9fbce4a0fa26cefd3e18ed223.png" alt="alt"></p>
+<h5 id="2-1-2线性表的基本操作"><a href="#2-1-2线性表的基本操作" class="headerlink" title="2.1.2线性表的基本操作"></a>2.1.2线性表的基本操作</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/bf1c90f2e82645c3aed05ae16b245633.png" alt="alt"></p>
+<h4 id="2-2线性表的顺序表示"><a href="#2-2线性表的顺序表示" class="headerlink" title="2.2线性表的顺序表示"></a>2.2线性表的顺序表示</h4><h5 id="2-2-1顺序表的定义"><a href="#2-2-1顺序表的定义" class="headerlink" title="2.2.1顺序表的定义"></a>2.2.1顺序表的定义</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/66644be8a3354093b3e7a450e99a8cfa.png" alt="alt"></p>
+<p>1、静态分配</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/77214088028844f1a2b0180bdba5f223.png" alt="静态分配"></p>
+<p>表长无法改变<br>2、动态分配</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/48545a14eb19427ba3dde26407d75d5e.png" alt="动态分配"></p>
+<p>动态分配表长扩展</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/cd0b78e82c244ec4ab75e16d8ae90412.png" alt="表长扩展"></p>
+<p>顺序表的特点</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/28d87e69779a4935af49142245c908d5.png" alt="特点"></p>
+<p>总结</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/eb8f92217d664b0ba6e0ee3adff3d955.png" alt="总结"></p>
+<h5 id="2-2-2顺序表上基本操作的实现"><a href="#2-2-2顺序表上基本操作的实现" class="headerlink" title="2.2.2顺序表上基本操作的实现"></a>2.2.2顺序表上基本操作的实现</h5><p><strong>1、插入</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/ba7090f3f5984c5e8e6d241ae3c7d29b.png" alt="插入"></p>
+<p>时间复杂度O(n)<br><strong>2、删除</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/b3dd7bd622d5477d80a727a5d00df66d.png" alt="删除"></p>
+<p>时间复杂度O(n)<br><strong>3、查找</strong><br>3.1、按位查找<br>GetElem(L, i)：按位查找。获取表L中第i个位置的元素的值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ElemType <span class="title">GetElem</span><span class="params">(SqList L, <span class="type">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> L.data[i - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.2、按值查找</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/af7fb66f0feb4fda8cb0e25449415106.png" alt="alt"></p>
+<p>总结</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4848bc41e81e44e5aa0c28daf9def059.png" alt="总结"></p>
+<h4 id="2-3线性表的链式表示"><a href="#2-3线性表的链式表示" class="headerlink" title="2.3线性表的链式表示"></a>2.3线性表的链式表示</h4><h5 id="2-3-1单链表的定义"><a href="#2-3-1单链表的定义" class="headerlink" title="2.3.1单链表的定义"></a>2.3.1单链表的定义</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/38f14ab4751d4f559755837077d18deb.png" alt="定义"></p>
+<p>强调这是一个单链表：使用LinkList<br>强调这是一个结点：使用LNode *<br>总结</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/c6345b1327af42b69448596cc9c721a9.png" alt="总结"></p>
+<h5 id="2-3-2单链表上基本操作的实现"><a href="#2-3-2单链表上基本操作的实现" class="headerlink" title="2.3.2单链表上基本操作的实现"></a>2.3.2单链表上基本操作的实现</h5><p>1、插入</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4be4a2128d4d4b1cbf7eac18e4d065cb.png" alt="插入"></p>
+<p>时间复杂度O(n)<br>前插操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/bc9002c4af3d49fa9157b4506dd62dca.png" alt="alt"></p>
+<p>时间复杂度O(1)<br>后插操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/1721aea3d2a8463ba2b76d4dde6b323a.png" alt="alt"></p>
+<p>时间复杂度O(1)<br>2、删除</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/ae20999b75ab48b694cc21cc881283da.png" alt="删除"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/e8e7aa86b9a04038b2b29f3a105a384c.png" alt="alt"></p>
+<p>当p为最后一个结点时会出错<br>3、查找<br>3.1、按位查找</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a54850e6c7474df6b758f31cee102984.png" alt="alt"></p>
+<p>3.2、按值查找</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/6919f2182282496d8e35c5887d1d6f6b.png" alt="alt"></p>
+<p>4、建立<br>4.1、尾插法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2ce64f07b7a64d68b6fbda5e39050b60.png" alt="alt"></p>
+<p>4.2、头插法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/513321b503fe4fb5a8e7d0b260158770.png" alt="alt"></p>
+<h5 id="2-3-3双链表"><a href="#2-3-3双链表" class="headerlink" title="2.3.3双链表"></a>2.3.3双链表</h5><p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2dfd61bf795a48f0a4a6d34a915feb48.png" alt="alt"></p>
+<p>2、初始化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/3f28546773454df8b45439de7b74679c.png" alt="alt"></p>
+<p>3、插入</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/6205fe1b08fd41e3a12b3d8202699f4f.png" alt="alt"></p>
+<p>4、删除</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/c348f26782a3402ca8b7d6a52d7cc950.png" alt="alt"></p>
+<p>5、销毁</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/1530c33a9ece4faab35d94cc1e10f3d2.png" alt="alt"></p>
+<h5 id="2-3-4循环链表"><a href="#2-3-4循环链表" class="headerlink" title="2.3.4循环链表"></a>2.3.4循环链表</h5><p>1、循环单链表<br>1.1、初始化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a5d2e102542041daa8f410f7459700f3.png" alt="alt"></p>
+<p>2、循环双链表</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/d89cccd1cf744ab69878cffe47dd1dd7.png" alt="alt"></p>
+<p>2.1、初始化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/5d09ce6ce32244ed854a7556fc23f1ab.png" alt="alt"></p>
+<h5 id="2-3-5静态链表"><a href="#2-3-5静态链表" class="headerlink" title="2.3.5静态链表"></a>2.3.5静态链表</h5><p>静态链表：分配一整片连续的内存空间，各个结点集中安置。用数组的方式实现的链表。<br>优点：增、删操作不需要大量移动元素<br>缺点：不能随机存取，只能从头结点开始依次往后查找；容量固定不可变</p>
+<p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/fbd9205f13a24d07aa33a1b884d1c245.png" alt="alt"></p>
+<p>2、初始化静态链表：把a[0]的next设为-1</p>
+<h5 id="2-3-6顺序表和链表的比较"><a href="#2-3-6顺序表和链表的比较" class="headerlink" title="2.3.6顺序表和链表的比较"></a>2.3.6顺序表和链表的比较</h5><p>1、逻辑结构<br>都属于线性表，都是线性结构<br>2、存储结构<br>顺序表：顺序存储<br>优点：可随机存取，存储密度高<br>缺点：要求大片连续空间，改变容量不方便<br>链表：链式存储<br>优点：不要求大片连续空间，改变容量方便<br>缺点：不可随机存取，要耗费一定空间存放指针<br>3、基本操作<br>查找、插入和删除操作<br>按值查找。若顺序表无序时，两者的时间复杂度均为O(n)；顺序表有序时可以采取折半查找，此时的时间复杂度为O(logn)。<br>按序号查找。顺序表支持随机访问，时间复杂度为O(1)。链表的时间复杂度为O(n)。<br>插入和删除操作。顺序表平均需要移动半个表长的元素，而链表只需要修改相关结点的指针即可。由于链表的每个结点都存有指针域，故存储密度不够大。</p>
+<h3 id="第三章-栈、队列和数组"><a href="#第三章-栈、队列和数组" class="headerlink" title="第三章 栈、队列和数组"></a>第三章 栈、队列和数组</h3><h4 id="3-1栈"><a href="#3-1栈" class="headerlink" title="3.1栈"></a>3.1栈</h4><h5 id="3-1-1栈的基本概念"><a href="#3-1-1栈的基本概念" class="headerlink" title="3.1.1栈的基本概念"></a>3.1.1栈的基本概念</h5><p>栈的定义：栈是只允许在一端进行插入或删除操作的线性表<br>栈顶：允许插入和删除的一端<br>栈底：不允许插入和删除的一端<br>特点：后进先出<br>Last In First Out(LIFO)<br>合法栈序列：卡特兰数：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4a82fd7c79504247a2e0cc48fbf3062d.png" alt="alt"></p>
+<p>栈的基本操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/e22f3fa8fdd84c1a963d369eccacca62.png" alt="alt"></p>
+<h5 id="3-1-2栈的顺序存储实现"><a href="#3-1-2栈的顺序存储实现" class="headerlink" title="3.1.2栈的顺序存储实现"></a>3.1.2栈的顺序存储实现</h5><p>顺序栈的定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/e5f96464bd764b9f819b0d90e1e806ce.png" alt="alt"></p>
+<p>基本操作<br>1、初始化栈</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/66de9f4a1ace4983ba9fb02d470d587e.png" alt="alt"></p>
+<p>2、判断栈空</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f3603490c15445f9ab6613c122c9ae59.png" alt="alt"></p>
+<p>3、进栈</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/38f10e6138f2461e8bc33a7675f8e16b.png" alt="alt"></p>
+<p>4、出栈</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f9ce4439432f49be8bab8847c0202570.png" alt="alt"></p>
+<p>5、读栈顶元素</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/7fa693c128494d6ba2611334227c1c8d.png" alt="alt"></p>
+<p>6、共享栈</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/318e6835135f42ca99dc556ab21a8c64.png" alt="alt"></p>
+<p>栈满的条件：top0 + 1 &#x3D;&#x3D; top1<br>总结：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/6911479bdf4744eab8754d6cede8aa7d.png" alt="alt"></p>
+<h5 id="3-1-3栈的链式存储实现"><a href="#3-1-3栈的链式存储实现" class="headerlink" title="3.1.3栈的链式存储实现"></a>3.1.3栈的链式存储实现</h5><p>1、链栈的定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/d4d8d2a860cc4ce2a8809f32cb9f0a27.png" alt="alt"></p>
+<p>2、初始化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//链栈的初始化</span></span><br><span class="line"><span class="function">Status <span class="title">InitStack</span><span class="params">(LinkStack&amp; S)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">//构造一个空栈S，栈顶指针置空</span></span><br><span class="line">	S = <span class="literal">NULL</span>;	</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3、判栈空</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判栈空</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">LinkedStack_Empty</span><span class="params">(LinkedStack top)</span>                            </span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">	<span class="keyword">if</span>(top == <span class="literal">NULL</span>)<span class="comment">//检查栈顶指针的值 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;<span class="comment">//栈S为空，函数返回1</span></span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4、入栈</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//链栈的入栈</span></span><br><span class="line"><span class="function">Status <span class="title">Push</span><span class="params">(LinkStack&amp; S, SElemType e)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">//在栈顶插入元素e,链栈不需要判断栈满</span></span><br><span class="line">	StackNode* p = <span class="keyword">new</span> StackNode;  </span><br><span class="line">	p-&gt;data = e;    </span><br><span class="line">	p-&gt;next = S;    </span><br><span class="line">	S = p;          </span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5、出栈</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//链栈的出栈</span></span><br><span class="line"><span class="function">Status <span class="title">Pop</span><span class="params">(LinkStack&amp; S, SElemType&amp; e)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">//删除S的栈顶元素，用e返回其值</span></span><br><span class="line">	<span class="keyword">if</span> (S == <span class="literal">NULL</span>)          <span class="comment">//判断是否为栈空</span></span><br><span class="line">		<span class="keyword">return</span> ERROR;    </span><br><span class="line">	e = S-&gt;data;</span><br><span class="line">	StackNode* p = S;</span><br><span class="line">	S = S-&gt;next;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6、取栈顶元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//取链栈的栈顶元素</span></span><br><span class="line"><span class="function">SElemType <span class="title">GetTop</span><span class="params">(LinkStack S, SElemType &amp;e)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">//返回S的栈顶元素，不修改栈顶指针</span></span><br><span class="line">	<span class="keyword">if</span> (S != <span class="literal">NULL</span>)	   <span class="comment">//非栈空时返回</span></span><br><span class="line">		<span class="keyword">return</span> S-&gt;data;</span><br><span class="line">	<span class="keyword">return</span> ERROR;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>7、遍历输出</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历输出链栈</span></span><br><span class="line"><span class="function">Status <span class="title">StackTraverse</span><span class="params">(LinkStack S)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	StackNode* p = S;</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;链栈为空！&quot;</span> &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">return</span> ERROR;</span><br><span class="line">	&#125;	</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;栈顶-&gt;&quot;</span>;</span><br><span class="line">	<span class="keyword">while</span> (p != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; p-&gt;data &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2队列"><a href="#3-2队列" class="headerlink" title="3.2队列"></a>3.2队列</h4><h5 id="3-2-1队列的基本概念"><a href="#3-2-1队列的基本概念" class="headerlink" title="3.2.1队列的基本概念"></a>3.2.1队列的基本概念</h5><p>1、队列的定义：队列是只允许在一端进行插入，在另一端删除的线性表<br>队头：允许删除的一端<br>队尾：允许插入的一端<br>队列的特点：先进先出<br>First In First Out(FIFO)<br>基本操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/edff1ad1f7334cb2b2e5f9115ce2c1ec.png" alt="alt"></p>
+<h5 id="3-2-2队列的顺序实现"><a href="#3-2-2队列的顺序实现" class="headerlink" title="3.2.2队列的顺序实现"></a>3.2.2队列的顺序实现</h5><p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4ccbabf394774950a73dff1d09e04501.png" alt="alt"></p>
+<p>2、初始化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/9e72bb4f41964952bc94cc433827596a.png" alt="alt"></p>
+<p>3、判空</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/356e2bd8abb14808ab9b7cf2d00dbfcf.png" alt="alt"></p>
+<p>4、入队</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/c546d8291ae74730a87b3a0c08a9bea2.png" alt="alt"></p>
+<p>5、出队</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/5b1a7865ec594200bf78ef8720d53fbc.png" alt="alt"></p>
+<p>6、取队头元素</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/ae4e1e1d21244e6fa1d16db569a39192.png" alt="alt"></p>
+<p>7、队列元素个数：(rear + MaxSize - front) % MaxSize<br>8、队满的三种处理方式<br>(1)、牺牲一个单元来区分队空和队满<br>约定以“队头指针在队尾指针的下一个位置作为队满的标志”<br>(2)、计数count——队列中有效元素个数<br>队列为空时，count &#x3D;&#x3D; 0<br>当有元素入队时，count++，出队，count–<br>当count和队列的maxsize相等时，代表队列已满<br>(3)、设置一个标记位<br>设置初始标记： boolean flag&#x3D;false<br>当入队列时，让rear往后移动，让flag&#x3D;true<br>当出队列时，让front往后移动，让flag&#x3D;false</p>
+<p>当队列为空时：rear &#x3D;&#x3D; front &amp;&amp; flag&#x3D;&#x3D;false<br>当队列为满时：rear &#x3D;&#x3D; front &amp;&amp; flag &#x3D;&#x3D; true<br>9、总结</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/153a4126abba4a7d95aef70ae397d82d.png" alt="alt"></p>
+<h5 id="3-2-3队列的链式实现"><a href="#3-2-3队列的链式实现" class="headerlink" title="3.2.3队列的链式实现"></a>3.2.3队列的链式实现</h5><p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/bd98e58badbb4708a5e162065bf2f29c.png" alt="alt"></p>
+<p>2、初始化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/122d9bf2797d43f9b4dc3d3e6da2d5d1.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/1a001cc614894d50b60a3d94ceefb650.png" alt="alt"></p>
+<p>3、判空</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/c0ee8ee430fc4468a8b519d4e5e10d92.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/96ec500969114e5baa3d19f01ccef167.png" alt="alt"></p>
+<p>4、入队</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/8ed624a8ee534732b01aaf7d6271b144.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/1aeea56e0c50445397c1a087a05c5f2d.png" alt="alt"></p>
+<p>5、出队</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a17c725fa82c4dee9141bc6fc02a1c0b.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/92801f81471743c99a879140b0a7984b.png" alt="alt"></p>
+<p>6、队满：链式存储——一般不会队满，除非内存不足</p>
+<h5 id="3-2-4双端队列"><a href="#3-2-4双端队列" class="headerlink" title="3.2.4双端队列"></a>3.2.4双端队列</h5><p>双端队列：只允许从两端插入、两端删除的线性表<br>输入受限的双端队列：只允许从两端删除、从一端插入的队列<br>输出受限的双端队列：只允许从两端插入、从一端删除的队列<br>考点：对输出序列合法性的判断</p>
+<h4 id="3-3栈和队列的应用"><a href="#3-3栈和队列的应用" class="headerlink" title="3.3栈和队列的应用"></a>3.3栈和队列的应用</h4><h5 id="3-3-1栈在括号匹配中的应用"><a href="#3-3-1栈在括号匹配中的应用" class="headerlink" title="3.3.1栈在括号匹配中的应用"></a>3.3.1栈在括号匹配中的应用</h5><p>1、逻辑图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f99368935e6c4244b0b356666d5f1db7.png" alt="alt"></p>
+<p>2、算法实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/dcdb965a96f946f0a91eb2d5b67f0b93.png" alt="alt"></p>
+<h5 id="3-3-2栈在表达式求值中的应用"><a href="#3-3-2栈在表达式求值中的应用" class="headerlink" title="3.3.2栈在表达式求值中的应用"></a>3.3.2栈在表达式求值中的应用</h5><p>1、中缀表达式：运算符在两个操作数中间<br>后缀表达式：运算符在两个操作数后间<br>前缀表达式：运算符在两个操作数前间<br>2、中缀表达式转后缀表达式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2946a04d593648aab71056d822f01ceb.png" alt="alt"></p>
+<p>“左优先原则”：只要左边的运算符能先计算，就优先算左边的<br>3、用栈实现后缀表达式的计算</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f095621cfc0a4944974c07992822d3aa.png" alt="alt"></p>
+<p>4、中缀表达式转前缀表达式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/c194c06d39f74c9cbc13a3ec32ec0ea2.png" alt="alt"></p>
+<p>5、用栈实现前缀表达式的计算</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2ba8d5b594554caa848b8239fcf367e0.png" alt="alt"></p>
+<p>6、总结</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/767b4110cde74bcabc37177041d2161c.png" alt="alt"></p>
+<p>1、中缀表达式转后缀表达式(机算)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/d0561183e79c4e398f1407ae32c838d6.png" alt="alt"></p>
+<p>2、用栈实现中缀表达式的计算</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/c437cde4e3ea424d8c99d455caa8b45e.png" alt="alt"></p>
+<p>3、总结</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/7524e393dce1424eb75cc5118c4e5148.png" alt="alt"></p>
+<h4 id="3-4特殊矩阵的压缩存储"><a href="#3-4特殊矩阵的压缩存储" class="headerlink" title="3.4特殊矩阵的压缩存储"></a>3.4特殊矩阵的压缩存储</h4><p>1、一维数组<br>起始地址：LOC<br>各数组元素大小相同，且物理上连续存放<br>数组元素a[i]的存放地址 &#x3D; LOC + i * sizeof(ElemType)<br>下标默认从0开始<br>2、二维数组</p>
+<p>M行N列的二维数组<code>b[M][N]</code>中<br>若按行优先存储，则<code>b[i][j]</code>的存储地址 &#x3D; LOC + (i * N + j) * sizeof(ElemType)<br>若按列优先存储，则<code>b[i][j]</code>的存储地址 &#x3D; LOC + (j * M + i) * sizeof(ElemType)<br>3、对称矩阵<br>策略：只存储主对角线 + 下三角区<br>按行优先原则将各元素存入一维数组中B[n(n + 1) &#x2F; 2 - 1]<br>ai,j是第i(i - 1) &#x2F; 2 + j个元素，k&#x3D;i(i - 1) &#x2F; 2 + j - 1<br>4、三对角矩阵，又称带状矩阵</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/051a8946988846be8ec7c9a4f04805b9.png" alt="alt"></p>
+<p>当|i - j| &gt; 1时，有ai,j &#x3D; 0(1 &lt;&#x3D; i, j &lt;&#x3D; n)<br>压缩存储策略：按行优先(或列优先)原则，只存储带状部分B[3n - 3]<br><strong>第ai,j是第几个元素？</strong><br>前i - 1行共3(i - 1) - 1个元素<br>ai,j是i行第j - i + 2个元素<br>ai,j是第2i + j - 2个元素，k &#x3D; 2i + j - 3</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/6d99bacca2ac418ca70ea6ca4a3bdb87.png" alt="alt"></p>
+<p>5、稀疏矩阵<br>稀疏矩阵：非零元素远远少于矩阵元素的个数<br>压缩存储策略：顺序存储——三元组&lt;行，列，值&gt;<br>压缩策略二：链式存储——十字链表法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/dae0f66dbd514f67b450116fa5e9f3f5.png" alt="alt"></p>
+<p>6、总结</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/eac8091141ca467aaaa820388e0e5886.png" alt="alt"></p>
+<h3 id="第四章-串"><a href="#第四章-串" class="headerlink" title="第四章 串"></a>第四章 串</h3><h4 id="4-1串的定义和实现"><a href="#4-1串的定义和实现" class="headerlink" title="4.1串的定义和实现"></a>4.1串的定义和实现</h4><h5 id="4-1-1串的定义和基本操作"><a href="#4-1-1串的定义和基本操作" class="headerlink" title="4.1.1串的定义和基本操作"></a>4.1.1串的定义和基本操作</h5><p>1、串的定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/822c91867dab429c9c5cace32994f306.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/0c1f62b0ad0a428a9e4ec4d642e2adf4.png" alt="alt"></p>
+<p>2、基本操作</p>
+<p><img src="https://img-blog.csdnimg.cn/58c590115bf144b4b56355ac42e2beae.png" alt="alt"></p>
+<h5 id="4-1-2串的存储结构"><a href="#4-1-2串的存储结构" class="headerlink" title="4.1.2串的存储结构"></a>4.1.2串的存储结构</h5><p>1、顺序存储</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//静态存储</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXLEN 255		<span class="comment">//预定义最大串长255</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;</span><br><span class="line">	<span class="type">char</span> ch[MAXLEN];	<span class="comment">//每个分量存储一个字符</span></span><br><span class="line">	<span class="type">int</span> length;			<span class="comment">//串的实际长度</span></span><br><span class="line">&#125;SString;</span><br><span class="line"><span class="comment">//动态存储</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;</span><br><span class="line">	<span class="type">char</span> *ch;		<span class="comment">//按串长分配存储区，ch指向串的基地址</span></span><br><span class="line">	<span class="type">int</span> length;		<span class="comment">//串的长度</span></span><br><span class="line">&#125;HString;</span><br></pre></td></tr></table></figure>
+
+<p>2、链式结构</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">StringNode</span>&#123;</span><br><span class="line">	<span class="type">char</span> ch[num];		<span class="comment">//每个结点存多个字符</span></span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">StringNode</span> *next;</span><br><span class="line">&#125;StringNode, *String;</span><br></pre></td></tr></table></figure>
+
+<p>3、基本操作<br>3.1、求子串</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/58bd20b80a6145ccbc6f238c289a8d25.png" alt="alt"></p>
+<p>3.2、比较操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/68a8c7ffb92b475d83bec82487540c64.png" alt="alt"></p>
+<p>3.3、定位操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/498d2e5d34b74eed9696980900908121.png" alt="alt"></p>
+<p>3.4、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/e6cf3ea275f04cb5b605beb68bdee0b2.png" alt="alt"></p>
+<h4 id="4-2串的模式匹配"><a href="#4-2串的模式匹配" class="headerlink" title="4.2串的模式匹配"></a>4.2串的模式匹配</h4><h5 id="4-2-1串的朴素模式匹配算法"><a href="#4-2-1串的朴素模式匹配算法" class="headerlink" title="4.2.1串的朴素模式匹配算法"></a>4.2.1串的朴素模式匹配算法</h5><p>1、串的模式匹配：在主串中找到与模式串相同的子串，并返回其所在位置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/5260def722444cfc99bb2fee7c4da778.png" alt="alt"></p>
+<p>2、算法思想<br>将主串中与模式串长度相同的子串拿出来依次与模式串对比，当子串与模式串某个对于字符不匹配是，就立即放弃当前子串，转而检索下一个子串<br>缺点：当某些子串与模式串能部分匹配时，主串的扫描指针i经常回溯，导致时间开销增加<br>3、算法性能分析</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/b027f8ee63f244c9814a1d2e811d5af4.png" alt="alt"></p>
+<h5 id="4-2-2KMP算法"><a href="#4-2-2KMP算法" class="headerlink" title="4.2.2KMP算法"></a>4.2.2KMP算法</h5><p>1、算法代码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4a3fbca9208c4fdba89842fcae1d8019.png" alt="alt"></p>
+<p>2、手算求next数组</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/afa6228785a148e1bd61ff1b2930d333.png" alt="alt"></p>
+<p>3、KMP算法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2aaa243ed87d4dde8b350e3293d9c2ec.png" alt="alt"></p>
+<p>时间复杂度O(m+n)</p>
+<h5 id="4-2-3KMP算法的进一步优化"><a href="#4-2-3KMP算法的进一步优化" class="headerlink" title="4.2.3KMP算法的进一步优化"></a>4.2.3KMP算法的进一步优化</h5><p>KMP算法优化：当子串和模式串不匹配时j &#x3D; nextval[ j ];</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/d07b82be76194078b5b2a7bc8d3f37a1.png" alt="alt"></p>
+<h3 id="第五章-树与二叉树"><a href="#第五章-树与二叉树" class="headerlink" title="第五章 树与二叉树"></a>第五章 树与二叉树</h3><h4 id="5-1树的基本概念"><a href="#5-1树的基本概念" class="headerlink" title="5.1树的基本概念"></a>5.1树的基本概念</h4><h5 id="5-1-1树的定义和基本术语"><a href="#5-1-1树的定义和基本术语" class="headerlink" title="5.1.1树的定义和基本术语"></a>5.1.1树的定义和基本术语</h5><p>1、树的基本概念</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/47ebd4261b3d4b64b168b457706d610b.png" alt="alt"></p>
+<p>树是一种递归定义的数据结构<br>2、非空树的特性：<br>●有且仅有一个根结点<br>●没有后继的结点称为“叶子结点”（或终端结点）<br>●有后继的结点称为“分支结点”（或非终端结点）<br>●除了根结点外，任何一个结点都有且仅有一个前驱<br>●每个结点可以有0个或多个后继<br>3、结点的属性<br>●结点的层次(深度)：从上往下数<br>●结点的高度：从下往上数<br>●树的高度(深度)：总共多少层<br>●结点的度：有几个分支<br>●树的度：各结点的度的最大值<br>4、其他定义<br>有序树：逻辑上看，树中结点的各子树从左至右是有次序的，不能互换<br>无序树：逻辑上看，树中结点的各子树从左至右是无次序的，可以互换<br>森林：森林是m(m ≥ 0)颗互不相交的树的集合<br>5、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/35c5578196984943bc6acf563c34d999.png" alt="alt"></p>
+<h5 id="5-1-2树的性质"><a href="#5-1-2树的性质" class="headerlink" title="5.1.2树的性质"></a>5.1.2树的性质</h5><p>1、树的常考性质<br>●结点数 &#x3D; 总度数 + 1<br>●度为m的树、m叉树的区别</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a404dd2756f84ad9a0f49bba0c7047a6.png" alt="alt"></p>
+<p>●度为m的树第i层至多有m^(i-1)个结点(i ≥ 1)<br>●<img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/5dcc3fc78c6c439db9d4df5e6e8b3cf3.png" alt="alt"><br>●高度为h的m叉树至少有h个结点；高度为h、度为m的树至少有h+m-1个结点<br>●<img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/353c93db47fa480fb19e06171e96865e.png" alt="alt"><br>2、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/9d357c6eea8448f18e3de896765a6a4d.png" alt="alt"></p>
+<h4 id="5-2二叉树的概念"><a href="#5-2二叉树的概念" class="headerlink" title="5.2二叉树的概念"></a>5.2二叉树的概念</h4><h5 id="5-2-1二叉树的定义和基本术语"><a href="#5-2-1二叉树的定义和基本术语" class="headerlink" title="5.2.1二叉树的定义和基本术语"></a>5.2.1二叉树的定义和基本术语</h5><p>1、二叉树的基本概念</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/26066b01167b4952bded63e529ca4fb5.png" alt="alt"></p>
+<p>2、几个特殊二叉树</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/dfca1794383745f39e3f5541a0233ce2.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/3dee96b52ed6432e980413276a508275.png" alt="alt"></p>
+<p>●平衡二叉树：树上任一结点的左子树和右子树的深度只差不超过1，平衡二叉树能有更高的搜索效率<br>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/52f6c3b3a12f4f41b83261a55ae87a13.png" alt="alt"></p>
+<h5 id="5-2-2二叉树的性质"><a href="#5-2-2二叉树的性质" class="headerlink" title="5.2.2二叉树的性质"></a>5.2.2二叉树的性质</h5><p>1、二叉树的常考性质</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a8d49d100fbd4facb1abc515558c9eee.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/0e31db923ff045c982d9b217bfa8c0b9.png" alt="alt"></p>
+<p><img src="https://img-blog.csdnimg.cn/be0781d57e5d4c1193d77b97cebff2a9.png" alt="alt"></p>
+<p>2、完全二叉树的常考性质</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/0271d185b6044a99988a75236885378f.png" alt="alt"></p>
+<p>有k个结点，n0&#x3D;k&#x2F;2向上取整，n1&#x3D;0&#x2F;1，n2&#x3D;k&#x2F;2向下取整<br>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/678256dff5ce43d397a06de9bba8c2ea.png" alt="alt"></p>
+<h5 id="5-2-3二叉树的存储结构"><a href="#5-2-3二叉树的存储结构" class="headerlink" title="5.2.3二叉树的存储结构"></a>5.2.3二叉树的存储结构</h5><p>1、顺序存储</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/87573c3090704016af026e9435fea077.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f0609384753d4267a2c5ab4efe6f07b4.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f4ba3dbe02034ce3b1ff389e34b5278e.png" alt="alt"></p>
+<p>二叉树的顺序存储结构，只适合存储完全二叉树<br>2、链式存储</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/25740eb325ef424998beb101f6d74678.png" alt="alt"></p>
+<h4 id="5-3二叉树的遍历和线索二叉树"><a href="#5-3二叉树的遍历和线索二叉树" class="headerlink" title="5.3二叉树的遍历和线索二叉树"></a>5.3二叉树的遍历和线索二叉树</h4><h5 id="5-3-1二叉树的先中后序遍历"><a href="#5-3-1二叉树的先中后序遍历" class="headerlink" title="5.3.1二叉树的先中后序遍历"></a>5.3.1二叉树的先中后序遍历</h5><p>1、先序遍历（中左右）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a019f09b3ff24f39bbcaa8785efce2bb.png" alt="alt"></p>
+<p>2、中序遍历（左中右）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/ce0c2819078947a1932054f30b659476.png" alt="alt"></p>
+<p>3、后序遍历（左右中）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f5e1807981d841abb7c01009901a58e7.png" alt="alt"></p>
+<p>4、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/7db322e9f4d447f68548afceabcfddae.png" alt="alt"></p>
+<h5 id="5-3-2二叉树的层次遍历"><a href="#5-3-2二叉树的层次遍历" class="headerlink" title="5.3.2二叉树的层次遍历"></a>5.3.2二叉树的层次遍历</h5><p>1、算法思想</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/fa6ce055a3914c7ca861a61bfc19e900.png" alt="alt"></p>
+<p>2、代码实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/7f23733416c94ed0a2b9203bf401a194.png" alt="alt"></p>
+<h5 id="5-3-3由遍历序列构造二叉树"><a href="#5-3-3由遍历序列构造二叉树" class="headerlink" title="5.3.3由遍历序列构造二叉树"></a>5.3.3由遍历序列构造二叉树</h5><p>1、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/b7a5930a7dd74343bf4a92c80b37cdd9.png" alt="alt"></p>
+<h5 id="5-3-4线索二叉树的概念"><a href="#5-3-4线索二叉树的概念" class="headerlink" title="5.3.4线索二叉树的概念"></a>5.3.4线索二叉树的概念</h5><p>建立线索的意义是为了更方便的找到前驱和后继<br>1、中序线索二叉树</p>
+<p><img src="https://img-blog.csdnimg.cn/b62659c5b5a04d6b88166d1f0d33479d.png" alt="alt"></p>
+<p>2、线索链表</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/c115549332fd449aa39ca55007fa17fa.png" alt="alt"></p>
+<p>3、三种线索二叉树的对比</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a7f1a6b8a8974b3c88ed8bd7e005ab13.png" alt="alt"></p>
+<p>4、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2f3e0b41aae945c39b76e730f72a7e38.png" alt="alt"></p>
+<h5 id="5-3-5二叉树的线索化"><a href="#5-3-5二叉树的线索化" class="headerlink" title="5.3.5二叉树的线索化"></a>5.3.5二叉树的线索化</h5><p>1、中序线索化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/ce342c64c06a4a5480ecaac7f35d35fb.png" alt="alt"></p>
+<p>2、先序线索化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2e74bbacd85d469a963c0c42e7d05cdc.png" alt="alt"></p>
+<p>3、后序线索化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/3862f1a475fa40bca7e58e7b59ea592c.png" alt="alt"></p>
+<p>4、知识回顾</p>
+<p><img src="https://img-blog.csdnimg.cn/5461e608ebec45179a4cc3ce309402a3.png" alt="alt"></p>
+<h5 id="5-3-6在线索二叉树中找前驱后继"><a href="#5-3-6在线索二叉树中找前驱后继" class="headerlink" title="5.3.6在线索二叉树中找前驱后继"></a>5.3.6在线索二叉树中找前驱后继</h5><p>1、中序线索二叉树找中序后继</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/761e477da7904288826f1e5786ccaa64.png" alt="alt"></p>
+<p><img src="https://img-blog.csdnimg.cn/5c1803a3076b467fbcb31a91ebb1be4b.png" alt="alt"></p>
+<p>2、中序线索二叉树找中序前驱</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/af261fa58c314a6bb07d91638613a05b.png" alt="alt"></p>
+<p>3、先序线索二叉树找先序后继<br>若p有左孩子，则先序后继为左孩子<br>若p有右孩子，则先序后继为右孩子<br>4、先序线索二叉树找先序前驱</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/ae285abfbb2f4299a8eacd274cfdf1c7.png" alt="alt"></p>
+<p>5、后序线索二叉树找后序前驱<br>若p有右孩子，则后序前驱为右孩子<br>若p没有右孩子，则后序前驱为左孩子<br>6、后序线索二叉树找后序后继</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/65986962225247138d2de08d2f8d013d.png" alt="alt"></p>
+<p>7、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/03dab96e8f854c86b36034f8cbde56a2.png" alt="alt"></p>
+<h4 id="5-4树、森林"><a href="#5-4树、森林" class="headerlink" title="5.4树、森林"></a>5.4树、森林</h4><h5 id="5-4-1树的存储结构"><a href="#5-4-1树的存储结构" class="headerlink" title="5.4.1树的存储结构"></a>5.4.1树的存储结构</h5><p>1、双亲表示法（顺序存储）<br>双亲表示法：每个结点中保存指向双亲的“指针”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/08708899cf2b43adaa85df5bb27b8453.png" alt="alt"></p>
+<p>新增数据元素无需按逻辑上的次序存储<br>优点：查指定结点的双亲很方便<br>缺点：查指定结点的孩子只能从头遍历<br>2、孩子表示法（顺序+链式存储）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f4dd7b3709ab4d05862ff0fd273e97b5.png" alt="alt"></p>
+<p>优点：查指定结点的孩子很方便<br>缺点：查指定结点的双亲不方便<br>3、孩子兄弟表示法（链式存储）<br>3.1、树和二叉树的转化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/3852918d349b487d9e32eaf8c5455f5e.png" alt="alt"></p>
+<p>左孩子，右兄弟<br>3.2、森林和二叉树的转化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/813e51cb088845a9adf9e0f59df1718a.png" alt="alt"></p>
+<p>4、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/cc44b74a71b0494aae934b4436079b5c.png" alt="alt"></p>
+<h5 id="5-4-2树和森林的遍历"><a href="#5-4-2树和森林的遍历" class="headerlink" title="5.4.2树和森林的遍历"></a>5.4.2树和森林的遍历</h5><p>1、树的遍历<br>1.1、先根遍历</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/468b6c3435674ec7b09348869437d65b.png" alt="alt"></p>
+<p>树的先根遍历序列与这棵树相应的二叉树的先序序列相同<br>1.2、后根遍历</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/d472c1356d5d4f1b9e91cd97e48307fc.png" alt="alt"></p>
+<p>树的后根遍历序列与这棵树相应的二叉树的中序序列相同<br>2、森林的遍历<br>2.1、先序遍历森林</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4cf9e803901a4ce9b9ddb6895557385f.png" alt="alt"></p>
+<p>效果等同于依次对各个树进行先根遍历，等同于依次对二叉树的先序遍历<br>2.2、中序遍历森林</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/270c861c6f314c24be6b7daef0b33970.png" alt="alt"></p>
+<p>效果等同于依次对各个树进行后根遍历，等同于依次对二叉树的中序遍历</p>
+<h4 id="5-5树和二叉树的应用"><a href="#5-5树和二叉树的应用" class="headerlink" title="5.5树和二叉树的应用"></a>5.5树和二叉树的应用</h4><h5 id="5-5-1二叉排序树"><a href="#5-5-1二叉排序树" class="headerlink" title="5.5.1二叉排序树"></a>5.5.1二叉排序树</h5><p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/1b8a4e1caf4f4132a1b6c13538e63a1d.png" alt="alt">左子树结点值&lt;根结点值&lt;右子树结点值<br>进行中序遍历，可以得到一个递增的有序序列<br>二叉排序树可用于元素的有序组织、搜索<br>2、查找</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f5d5ea9b33cf4dd18be923b45a5fdff9.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/22d565bf749f4585839e89f9e856c8eb.png" alt="alt"></p>
+<p>3、插入</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2f08712d2edb4885a2bc788011d3d9f5.png" alt="alt"></p>
+<p>4、二叉排序树的构造</p>
+<p><img src="https://img-blog.csdnimg.cn/745fca735d7a49269654ef654703b58b.png" alt="alt"></p>
+<p>5、删除<br>先搜索找到目标结点：<br>(1)若被删除结点z是叶结点，则直接删除，不会破坏二叉排序树的性质<br>(2)若结点z只有一棵左子树或右子树，则让z的子树成为z父结点的子树，替代z的位置<br>(3)若结点z有左、右两棵子树，则令z的直接后继(或直接前驱)替代z，然后从二叉排序树中删去这个直接后继(或直接前驱)，这样就转换成了第一或第二种情况<br>6、查找效率分析<br>查找长度——在查找运算中，需要对比关键字的次数称为查找长度，反映了查找操作时间复杂度<br>查找成功的平均查找长度ASL：平均查找次数<br>查找失败的平均查找长度ASL：平均查找次数<br>7、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/220355d8987740b999204eb4444a8574.png" alt="alt"></p>
+<h5 id="5-5-2平衡二叉树"><a href="#5-5-2平衡二叉树" class="headerlink" title="5.5.2平衡二叉树"></a>5.5.2平衡二叉树</h5><p>1、定义<br>平衡二叉树，简称平衡树（AVL树）：树上任一结点的左子树和右子树的深度之差不超过1<br>结点的平衡因子&#x3D;左子树高-右子树高</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/8130fe9d55f54a48a55596a6c7c73eef.png" alt="alt"></p>
+<p>2、平衡二叉树的插入<br>2.1、插入新结点后，从插入点往回找到第一个不平衡结点，调整以该结点为根的子树<br>每次调整的对象都是“最小不平衡子树”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f1fbacd4152b4a71a895417b71ba5e61.png" alt="alt"></p>
+<p>2.2、调整最小不平衡子树（LL）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/3a49bc3409704defa028f8ab081f8e87.png" alt="alt"></p>
+<p>2.3、调整最小不平衡子树（RR）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/43756f03ee1d4bcabcbd7e388abcded8.png" alt="alt"></p>
+<p>2.4、调整最小不平衡子树（LR）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a8cf0897ac9a43379809de6387c85d9f.png" alt="alt"></p>
+<p>2.5、调整最小不平衡子树（RL）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/0f6d3bfbceab42f8a0eb363ab1064369.png" alt="alt"></p>
+<p>2.6、代码思路</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/9d9338dd9a824c1986536ff1fa163733.png" alt="alt"></p>
+<p>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/1a96234719874f56beb2d94d338fd2ce.png" alt="alt"></p>
+<p>假设Nh表示深度为h的平衡树中含有的最少结点数，则有N0&#x3D;0，N1&#x3D;1，N2&#x3D;2，并且有Nh &#x3D; Nh-1 + Nh-2 + 1</p>
+<h5 id="5-5-3哈夫曼树"><a href="#5-5-3哈夫曼树" class="headerlink" title="5.5.3哈夫曼树"></a>5.5.3哈夫曼树</h5><p>1、定义<br>结点的权：有某种现实含义的数值(如：表示结点的重要性等)<br>结点的带权路径长度：从树的根到该结点的路径长度(经过的边数)与该结点上权值的乘积<br>树的带权路径长度：树中所有叶结点的带权路径长度之和（WPL, Weighted Path Length）WPL&#x3D;∑wl<br>哈夫曼树：在含有n个带权叶结点的二叉树中，其中带权路径长度（WPL）最小的二叉树称为哈夫曼树，也称最优二叉树<br>2、哈夫曼树的构造</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a8753a2d297946808c47c0d075e705d3.png" alt="alt"></p>
+<p>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/31fe7e3f63944abab70b54eff021d296.png" alt="alt"></p>
+<h3 id="第六章-图"><a href="#第六章-图" class="headerlink" title="第六章 图"></a>第六章 图</h3><h4 id="6-1图的基本概念"><a href="#6-1图的基本概念" class="headerlink" title="6.1图的基本概念"></a>6.1图的基本概念</h4><p>1、图的定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/e81e4e5c66de46e89adbe12abe792229.png" alt="alt"></p>
+<p>2、有向图、无向图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/98977a1838174cca832e20b7d449cf94.png" alt="alt"></p>
+<p>3、顶点的度、入度、出度</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/0c4ed499d8454fc9907b7b4a00a0f1e6.png" alt="alt"></p>
+<p>4、顶点—顶点的关系描述</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/e8515092a0a64c6d823aa3a59b4af451.png" alt="alt"></p>
+<p>5、连通图、强连通图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a0e692b132134b048aad32953fbb92c4.png" alt="alt"></p>
+<p>6、子图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/d9bff731841a42b68ed5b8c958cbd899.png" alt="alt"></p>
+<p>7、连通分量、强连通分量<br>连通分量：无向图中的极大连通子图称为连通分量<br>子图必须连通，且包含尽可能多的顶点和边<br>强连通分量：无向图中的极大强连通子图称为强连通分量<br>子图必须强连通，同时保留尽可能多的边<br>8、生成树、生成森林<br>生成树：连通图的生成树是包含图中全部顶点的一个极小连通子图。若图中顶点数为n，则它的生成树含有n-1条边。对生成树而言，若砍去它的一条边，则会变成非连通图，若加上一条边则会形成一个回路)<br>生成森林：在非连通图中，连通分量的生成树构成了非连通图的生成森林<br>9、边的权、带权图&#x2F;网</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/86b8569bf818424aa4680506644c2bdf.png" alt="alt"></p>
+<p>10、几种特殊形态的图<br>无向完全图——无向图中任意两个顶点之间都存在边<br>有向完全图——有向图中任意两个顶点之间都存在方向相反的两条弧<br>边数很少的图称为稀疏图，反之称为稠密图<br>树——不存在回路，且连通的无向图<br>有向图——一个顶点的入度为0，其余顶点的入度均为1的有向图，称为有向树<br>11、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/33bc3e2c1782415c92c28594df51004c.png" alt="alt"></p>
+<h4 id="6-2图的存储及基本操作"><a href="#6-2图的存储及基本操作" class="headerlink" title="6.2图的存储及基本操作"></a>6.2图的存储及基本操作</h4><h5 id="6-2-1邻接矩阵法（顺序存储）"><a href="#6-2-1邻接矩阵法（顺序存储）" class="headerlink" title="6.2.1邻接矩阵法（顺序存储）"></a>6.2.1邻接矩阵法（顺序存储）</h5><p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a87c6d50f7dc4875b697c5c57206e627.png" alt="alt"></p>
+<p>缺点：数组实现的顺序存储，空间复杂度高，不适合存储稀疏图<br>2、度</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/adf248ca80ac4523b41d440f7441cc43.png" alt="alt"></p>
+<p>3、带权图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/321981e7128842eabfaa299233ad184d.png" alt="alt"></p>
+<p>4、性能分析</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/bce17a956e83458ea00e453fb4853039.png" alt="alt"></p>
+<p>5、性质</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/365e4c282e744fa49cebdb1c0e6ec5dd.png" alt="alt"></p>
+<p>6、知识回顾</p>
+<p><img src="https://img-blog.csdnimg.cn/11ef14b73f254ecca8f28600ae5f1883.png" alt="alt"></p>
+<h5 id="6-2-2邻接表法（顺序-链式存储）"><a href="#6-2-2邻接表法（顺序-链式存储）" class="headerlink" title="6.2.2邻接表法（顺序+链式存储）"></a>6.2.2邻接表法（顺序+链式存储）</h5><p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/ed4b5527295e41b49f653090de7346dc.png" alt="alt"></p>
+<p>2、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/8846c316a48149469219cbc1046f6ca5.png" alt="alt"></p>
+<h5 id="6-2-3十字链表、邻接多重表"><a href="#6-2-3十字链表、邻接多重表" class="headerlink" title="6.2.3十字链表、邻接多重表"></a>6.2.3十字链表、邻接多重表</h5><p>1、十字链表</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/ad33f420ef074976b15f4115553f3e7b.png" alt="alt"></p>
+<p>2、邻接多重表</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/795f620a99f74bbf90fae2e15658f1fc.png" alt="alt"></p>
+<p>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/b3d73cf992c44b89ac9e72794bd37649.png" alt="alt"></p>
+<h5 id="6-2-4图的基本操作"><a href="#6-2-4图的基本操作" class="headerlink" title="6.2.4图的基本操作"></a>6.2.4图的基本操作</h5><p>1、基本操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/852661aa22bb4671a9e6ed6a96296536.png" alt="alt"></p>
+<h4 id="6-3图的遍历"><a href="#6-3图的遍历" class="headerlink" title="6.3图的遍历"></a>6.3图的遍历</h4><h5 id="6-3-1图的广度优先遍历"><a href="#6-3-1图的广度优先遍历" class="headerlink" title="6.3.1图的广度优先遍历"></a>6.3.1图的广度优先遍历</h5><p>1、代码实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/626a775116854e31bd5dba5bffdaf8a7.png" alt="alt"></p>
+<p>缺点：如果是非连通图，则无法遍历完所有结点<br>2、final版</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/3c3382ddca274f2a950eeeec80ec0ac3.png" alt="alt"></p>
+<p>结论：对于无向图，调用BFS函数的次数&#x3D;连通分量数<br>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/0b55ef704ce944ff8eea285aa0e3bc84.png" alt="alt"></p>
+<h5 id="6-3-2图的深度优先遍历"><a href="#6-3-2图的深度优先遍历" class="headerlink" title="6.3.2图的深度优先遍历"></a>6.3.2图的深度优先遍历</h5><p>1、代码实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/7186a125c67e4c0787108ae75d7500bc.png" alt="alt"></p>
+<p>2、final版</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2b1a8acfbc57411bb732aeba202f1115.png" alt="alt"></p>
+<p>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/e53aaebd98474b4f89bf2f87eb88104a.png" alt="alt"></p>
+<h4 id="6-4图的应用"><a href="#6-4图的应用" class="headerlink" title="6.4图的应用"></a>6.4图的应用</h4><h5 id="6-4-1最小生成树"><a href="#6-4-1最小生成树" class="headerlink" title="6.4.1最小生成树"></a>6.4.1最小生成树</h5><p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a46ea6ee69374134817a71f88e7f9543.png" alt="alt"></p>
+<p>2、算法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/cbd932934b7642cdb9e0845999385eae.png" alt="alt"></p>
+<h5 id="6-4-2最短路径问题"><a href="#6-4-2最短路径问题" class="headerlink" title="6.4.2最短路径问题"></a>6.4.2最短路径问题</h5><p>1、最短路径问题</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/cde63b64228447c38f4db93853ac1293.png" alt="alt">2、BFS算法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/e5505ceca90c495282e3b26e88e57ccb.png" alt="alt"></p>
+<p>3、Dijkstra算法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4ca702dda36b4ceca50269776ffbf42f.png" alt="alt"></p>
+<p>结论：Dijkstra算法不适合用于有负权值的带权图<br>4、Floyd算法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/d2abc7683a1c45d090b4063e655af756.png" alt="alt"></p>
+<p>Floyd算法不能解决带有“负权回路”的图（有负权值得边组成回路），这种图有可能没有最短路径<br>5、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/868e9347faf8418197100f1247dc480a.png" alt="alt"></p>
+<h5 id="6-4-3有向无环图描述表达式"><a href="#6-4-3有向无环图描述表达式" class="headerlink" title="6.4.3有向无环图描述表达式"></a>6.4.3有向无环图描述表达式</h5><p>1、定义<br>有向无环图：若一个有向图中不存在环，则称为有向无环图，简称DAG图<br>2、DAG描述表达式<br>2.1、解题步骤：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/671a7de48194402fac29f5252eda48d7.png" alt="alt"></p>
+<p>2.2、案例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/9a984e57c6054b838ec1fb0c65dda93c.png" alt="alt"></p>
+<h5 id="6-4-4拓扑排序"><a href="#6-4-4拓扑排序" class="headerlink" title="6.4.4拓扑排序"></a>6.4.4拓扑排序</h5><p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/88d3a5b829b74d3c95a3955f881e172e.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/7d8405ac80e84d118e83b7706ed2a305.png" alt="alt"></p>
+<p>2、代码实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f41c98d3d81a4defa35af02f4c16b929.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/65c22e849d054866b578dd5ef5da8862.png" alt="alt"></p>
+<p>3、逆拓扑排序<br>3.1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/fda49963613b409bb0bbc26521d332f6.png" alt="alt"></p>
+<p>实现时把入度改为出度即可<br>3.2、DFS算法实现逆拓扑</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4c9013b08b864f9b9741cf4445e2c8db.png" alt="alt"></p>
+<p>4、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/6858730fa34b44649e65a6976f630a4f.png" alt="alt"></p>
+<h5 id="6-4-5关键路径"><a href="#6-4-5关键路径" class="headerlink" title="6.4.5关键路径"></a>6.4.5关键路径</h5><p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/866fadd02956450abbde5ba23478f1c5.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/756e617170744e5f998affcdcee32439.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/668d1a90a4c7452796d49133d7df1da7.png" alt="alt"></p>
+<p>2、求解方法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/fa93fbe6bea04919bf9b19192269c7b3.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/657e9714c56c465d855f46a0d6af69a8.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/6da989bda20b4972bfa3d5515c208667.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4f644cec670f41609667823d77df08e0.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/daf55710d1a24bd299afc658c6110ad0.png" alt="alt"></p>
+<p>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/132b333ce19243bfbe869e430c107bc8.png" alt="alt"></p>
+<h3 id="第七章-查找"><a href="#第七章-查找" class="headerlink" title="第七章 查找"></a>第七章 查找</h3><h4 id="7-1查找的基本概念"><a href="#7-1查找的基本概念" class="headerlink" title="7.1查找的基本概念"></a>7.1查找的基本概念</h4><p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/453b0ca4115f4748b9e74662fba45ed7.png" alt="alt"></p>
+<p>2、常见操作<br>（1）、查找符合条件的数据元素<br>静态查找表：仅关注查找速度即可<br>（2）、插入、删除某个数据元素<br>动态查找表：除了查找速度，也要关注插&#x2F;删操作是否方便实现<br>3、评价指标</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/1771f394a31e4498afc6426a76277951.png" alt="alt"></p>
+<p>4、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/335a385364e84eb9baef52563bed4359.png" alt="alt"></p>
+<h4 id="7-2顺序查找和折半查找"><a href="#7-2顺序查找和折半查找" class="headerlink" title="7.2顺序查找和折半查找"></a>7.2顺序查找和折半查找</h4><h5 id="7-2-1顺序查找"><a href="#7-2-1顺序查找" class="headerlink" title="7.2.1顺序查找"></a>7.2.1顺序查找</h5><p>1、定义<br>顺序查找，又叫“线性查找”，通常用于线性表<br>算法思想：从头到尾挨个对比（或者反过来）<br>2、实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2e78faedeacf4a009189d4c98c5c1be5.png" alt="alt"></p>
+<p>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/7f158d4223bc49cfa03e10c3c9646ccd.png" alt="alt"></p>
+<h5 id="7-2-2折半查找"><a href="#7-2-2折半查找" class="headerlink" title="7.2.2折半查找"></a>7.2.2折半查找</h5><p>1、定义<br>折半查找，又称“二分查找”，仅适用于有序的顺序表<br>2、实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/5156eeffd90547a0993f5ac8df9a7834.png" alt="alt"></p>
+<p>3、折半查找判定树的构造</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/6085bc84f6b7405bbd53f756cc14fc88.png" alt="alt"></p>
+<p>4、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/1e06049bd9fe437899781e3be28acc9e.png" alt="alt"></p>
+<h5 id="7-2-3分块查找（不考察代码）"><a href="#7-2-3分块查找（不考察代码）" class="headerlink" title="7.2.3分块查找（不考察代码）"></a>7.2.3分块查找（不考察代码）</h5><p>1、定义<br>“索引表”中保存每个分块的最大关键字和分块的存储区间<br>特点：块内无序、块间有序<br>超出分块范围，查找失败</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/d4effb7fbf3c4480a8749c166ce72e13.png" alt="alt"></p>
+<p>若索引表中不包含目标关键字，则折半查找索引表最终停在low&gt;high，要在low所指分块中查找</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/3f83239840fe45829f473c1498aa8243.png" alt="alt"></p>
+<p>2、查找效率分析</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/b76de1818f76442194f42b9ad9e85225.png" alt="alt"></p>
+<p>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a04ec8828f9b48c9b75f560f703e365e.png" alt="alt"></p>
+<h4 id="7-3B树和B-树"><a href="#7-3B树和B-树" class="headerlink" title="7.3B树和B+树"></a>7.3B树和B+树</h4><h5 id="7-3-1B树"><a href="#7-3-1B树" class="headerlink" title="7.3.1B树"></a>7.3.1B树</h5><p>1、定义</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/c1eec236b57f4236a3c24b680f71af2e.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/e276c296048f4684a523c158424827d1.png" alt="alt"></p>
+<p>m阶B树的核心特性：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/b53702fab31d47238da68e5e19e676e6.png" alt="alt"></p>
+<p>保证效率：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/65ce313e6c9f4a1c91731800fd8dc082.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/07ba8535fab84b36ba6a4c3566162113.png" alt="alt"></p>
+<p>2、B树的高度</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/9398a01517b74d35962a4e261997d4c8.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/582b135d1dce42409d42ce830c24cbd3.png" alt="alt"></p>
+<h5 id="7-3-2B树的插入删除"><a href="#7-3-2B树的插入删除" class="headerlink" title="7.3.2B树的插入删除"></a>7.3.2B树的插入删除</h5><p>1、插入</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a550bab3bd324947a451afe16f533c43.png" alt="alt"></p>
+<p>2、删除</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a0da7c7a456442d79fa4b3fa6dd4564b.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/e148ba2586be487280dcb06657297bc2.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/061b82d0c239442680d5e8b66366b95a.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/b916d5c082e54de49461adb74ea01b13.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/50463b5c3dfd40aeacc7538ccb05f8b9.png" alt="alt"></p>
+<p>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/b7e26c4e6c974a9e98c62fcb155af196.png" alt="alt"></p>
+<h5 id="7-3-3B-树"><a href="#7-3-3B-树" class="headerlink" title="7.3.3B+树"></a>7.3.3B+树</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/1145dc5841ce41edae8c19e74b35457d.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/138075c1b8824ec3a7dca4f4bdc63535.png" alt="alt"></p>
+<h4 id="7-4散列查找"><a href="#7-4散列查找" class="headerlink" title="7.4散列查找"></a>7.4散列查找</h4><p>1、定义<br>散列表，又称哈希表，是一种数据结构，特点是：数据元素的关键字与其存储地址直接相关<br>装填因子α&#x3D;表中记录数&#x2F;散列表长度<br>2、常见的散列函数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/1b07d38b6fb84a818a9951288df5aff5.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4ddc9e7bce9b4e11941be88445c22fbb.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/8c70bae9fa794c7491cbcb8643c99dbc.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/51c132e87d09479d843cc1e02db181f4.png" alt="alt"></p>
+<p>3、处理冲突的方法<br>3.1、拉链法<br>把所以“同义词”存储在一个链表中<br>3.2、开放地址法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a024609f589e4214addf53d66a8affc6.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2e239ba537d64898bbb859c4c35d43dd.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/7280a74b3197421f949f78ef9b37b239.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/33e5694bbef24f93a0ababe90522e12c.png" alt="alt"></p>
+<p>4、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/0e9abca9b40249848a1e0fc30dea1c99.png" alt="alt"></p>
+<h3 id="第八章-排序"><a href="#第八章-排序" class="headerlink" title="第八章 排序"></a>第八章 排序</h3><h4 id="8-1排序的基本概念"><a href="#8-1排序的基本概念" class="headerlink" title="8.1排序的基本概念"></a>8.1排序的基本概念</h4><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a1a97c9a97704ec3be616981cc9e720a.png" alt="alt"></p>
+<h4 id="8-2插入排序"><a href="#8-2插入排序" class="headerlink" title="8.2插入排序"></a>8.2插入排序</h4><h5 id="8-2-1插入排序"><a href="#8-2-1插入排序" class="headerlink" title="8.2.1插入排序"></a>8.2.1插入排序</h5><p>1、算法思想</p>
+<p><img src="https://img-blog.csdnimg.cn/7dd046f422ef4d9b94ad8f3d3d52152e.png" alt="alt"></p>
+<p>2、算法实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/363860395bfe49208d891e262fefd21f.png" alt="alt"></p>
+<p>3、算法效率分析<br>最好——O（n）<br>最坏——O（n^2）<br>4、折半插入排序</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/e7b845b4a9e64569acd45bd97ee32ed2.png" alt="alt"></p>
+<p>5、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a00b1bad314743dc8cbd2624309749b0.png" alt="alt"></p>
+<h5 id="8-2-2希尔排序"><a href="#8-2-2希尔排序" class="headerlink" title="8.2.2希尔排序"></a>8.2.2希尔排序</h5><p>1、算法思想</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/d9d56ca3f0554b4293620c9cdc38b894.png" alt="alt"></p>
+<p>2、代码实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/571d07b1022e4aa8bbfdb8cfe920cf0a.png" alt="alt"></p>
+<p>3、算法效率分析</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/48dc56607f4648c7959a468525690a13.png" alt="alt"></p>
+<p>4、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/f649e1ae1ff4495cbcccb11fe60e23bb.png" alt="alt"></p>
+<h4 id="8-3交换排序"><a href="#8-3交换排序" class="headerlink" title="8.3交换排序"></a>8.3交换排序</h4><h5 id="8-3-1冒泡排序"><a href="#8-3-1冒泡排序" class="headerlink" title="8.3.1冒泡排序"></a>8.3.1冒泡排序</h5><p>1、算法思想</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/33f1c856cdd6474a9098e56bae471cf8.png" alt="alt"></p>
+<p>2、代码实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/0925f25c465b4887a1490e06a1f918ca.png" alt="alt"></p>
+<p>3、算法效率分析</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/ac4c0add32cc4527b9a8fb3abfa560dc.png" alt="alt"></p>
+<p>4、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/351a54797ffd4949a1c9dc99d6999fa2.png" alt="alt"></p>
+<h5 id="8-3-2快速排序★"><a href="#8-3-2快速排序★" class="headerlink" title="8.3.2快速排序★"></a>8.3.2快速排序★</h5><p>1、算法思想</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/ff38b0d8c11a4083809a7bf34c53837a.png" alt="alt"></p>
+<p>2、代码实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/3d44282773ce438795d8d2dd51c0a7ed.png" alt="alt"></p>
+<p>3、算法效率分析</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/98c98756cb694113ae05f289df3baaad.png" alt="alt"></p>
+<p>空间复杂度&#x3D;O（递归层数）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/6464e26c0b574e07a56ce1d2edaba79d.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/d58a7217202542b0a5446883c6891b58.png" alt="alt"></p>
+<p>4、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/afb6a55e1bd24f20b24a19dc3fcf23e1.png" alt="alt"></p>
+<h4 id="8-4选择排序"><a href="#8-4选择排序" class="headerlink" title="8.4选择排序"></a>8.4选择排序</h4><h5 id="8-4-1简单选择排序"><a href="#8-4-1简单选择排序" class="headerlink" title="8.4.1简单选择排序"></a>8.4.1简单选择排序</h5><p>1、算法思想<br>选择排序：每一趟在待排序元素中选取关键字最小（或最大）的元素加入有序子序列<br>2、代码实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/dd9ece42d069461ba6e6dfd2b1b8b281.png" alt="alt"></p>
+<p>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/0549910ebc7945969cb722533efedacb.png" alt="alt"></p>
+<h5 id="8-4-2堆排序"><a href="#8-4-2堆排序" class="headerlink" title="8.4.2堆排序"></a>8.4.2堆排序</h5><p>1、算法思想</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/0d805f655a984822a46f18cf0b8569d9.png" alt="alt"></p>
+<p>根≥（或≤）左右孩子称为大（或小）根堆<br><strong>建立大根堆</strong><br>思路:把所有非终端结点都检查一遍，是否满足大根堆的要求，如果不满足，则进行调整。检查当前结点是否满足根≥左、右，若不满足，将当前结点与更大的一-个孩子互换。若元素互换破坏了下一级的堆，则采用相同的方法继续往下调整(小元素不断“下坠”)<br><strong>堆排序</strong>：每一趟将堆顶元素加入有序子序列（与待排序序列中的最后一个元素交换）并将待排序元素序列再次调整为大根堆<br>2、代码实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/72a8bd7d50f2456e82928b2c63b14955.png" alt="alt"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/7856e5a42eff4b47950bad8e7a548704.png" alt="alt"></p>
+<p>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/2fa8a52de90243bf9246ecebcfcabf90.png" alt="alt"></p>
+<h5 id="8-4-3堆的插入删除"><a href="#8-4-3堆的插入删除" class="headerlink" title="8.4.3堆的插入删除"></a>8.4.3堆的插入删除</h5><p>1、插入删除<br>1.1、插入<br>对于小根堆，新元素放到表尾，与父节点对比，若新元素比父节点更小，则将二者互换。新元素就这样一路“ 上升”，直到无法继续上升为止<br>1.2、删除<br>被删除的元素用堆底元素替代，然后让该元素不断“下坠”，直到无法下坠为止<br>2、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/03df82cf8a864dfb8fe844b00aff3407.png" alt="alt"></p>
+<h4 id="8-5归并排序和基数排序"><a href="#8-5归并排序和基数排序" class="headerlink" title="8.5归并排序和基数排序"></a>8.5归并排序和基数排序</h4><h5 id="8-5-1归并排序"><a href="#8-5-1归并排序" class="headerlink" title="8.5.1归并排序"></a>8.5.1归并排序</h5><p>1、代码实现</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/6e1e7f26648b4d328a40659448cbe4bf.png" alt="alt"></p>
+<p>2、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/a6ba3234ff4840daa3e9473bf008a7ba.png" alt="alt"></p>
+<h5 id="8-5-2基数排序（手动模拟）"><a href="#8-5-2基数排序（手动模拟）" class="headerlink" title="8.5.2基数排序（手动模拟）"></a>8.5.2基数排序（手动模拟）</h5><p>1、算法思想</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/78e0ccd5acda40df8ee3d68f4e791408.png" alt="alt"></p>
+<p>2、算法效率分析</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/595c9f5d13e04f88a4be386d3de78483.png" alt="alt"></p>
+<p>3、知识回顾</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/1010be1ff9ac4166ad91de062f96b425.png" alt="alt"></p>
+<h4 id="8-6外部排序"><a href="#8-6外部排序" class="headerlink" title="8.6外部排序"></a>8.6外部排序</h4><h5 id="8-6-1外部排序"><a href="#8-6-1外部排序" class="headerlink" title="8.6.1外部排序"></a>8.6.1外部排序</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/3ce981a12a8d4031bebc1751bb726b2f.png" alt="alt"></p>
+<h5 id="8-6-2败者树（手动模拟）"><a href="#8-6-2败者树（手动模拟）" class="headerlink" title="8.6.2败者树（手动模拟）"></a>8.6.2败者树（手动模拟）</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/42fdb0200425426585cea42fabc43454.png" alt="alt"></p>
+<h5 id="8-6-3置换-选择排序"><a href="#8-6-3置换-选择排序" class="headerlink" title="8.6.3置换-选择排序"></a>8.6.3置换-选择排序</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/4f6ff85a09164f688ddf4fae3c905048.png" alt="alt"></p>
+<h5 id="8-6-4最佳归并树"><a href="#8-6-4最佳归并树" class="headerlink" title="8.6.4最佳归并树"></a>8.6.4最佳归并树</h5><p><img src="https://cdn.jsdelivr.net/gh/CentLabs/PictureRepository@master/img/7839591f0959470a8dd7793349fe0bbd.png" alt="alt"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Cappuccino</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://centlabs.github.io/2023/11/12/Data%20Structure-%E7%8E%8B%E9%81%93/">https://centlabs.github.io/2023/11/12/Data%20Structure-%E7%8E%8B%E9%81%93/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/408/">408</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/11/12/Data%20Structure%20Algorithm/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Data Structure Algorithm</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/11/12/Data%20Structure%20Algorithm/" title="Data Structure Algorithm"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-12</div><div class="title">Data Structure Algorithm</div></div></a></div><div><a href="/2023/11/12/Data%20Structure/" title="Data Structure"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-12</div><div class="title">Data Structure</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Cappuccino</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">31</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%AA%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">1.1数据结构的基本概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2%E7%AE%97%E6%B3%95%E5%92%8C%E7%AE%97%E6%B3%95%E8%AF%84%E8%AE%BA"><span class="toc-number">1.2.</span> <span class="toc-text">1.2算法和算法评论</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-1%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E8%AE%BA"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1算法的基本概论</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-2%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2算法的时间复杂度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-3%E7%AE%97%E6%B3%95%E7%9A%84%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3算法的空间复杂度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">第二章 线性表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">2.1线性表的定义和基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-1%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1线性表的定义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-2%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2线性表的基本操作</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.2.</span> <span class="toc-text">2.2线性表的顺序表示</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-1%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1顺序表的定义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-2%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.2顺序表上基本操作的实现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.3.</span> <span class="toc-text">2.3线性表的链式表示</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-1%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1单链表的定义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-2%E5%8D%95%E9%93%BE%E8%A1%A8%E4%B8%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2单链表上基本操作的实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-3%E5%8F%8C%E9%93%BE%E8%A1%A8"><span class="toc-number">2.3.3.</span> <span class="toc-text">2.3.3双链表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-4%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8"><span class="toc-number">2.3.4.</span> <span class="toc-text">2.3.4循环链表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-5%E9%9D%99%E6%80%81%E9%93%BE%E8%A1%A8"><span class="toc-number">2.3.5.</span> <span class="toc-text">2.3.5静态链表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-6%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%92%8C%E9%93%BE%E8%A1%A8%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">2.3.6.</span> <span class="toc-text">2.3.6顺序表和链表的比较</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97%E5%92%8C%E6%95%B0%E7%BB%84"><span class="toc-number">3.</span> <span class="toc-text">第三章 栈、队列和数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1%E6%A0%88"><span class="toc-number">3.1.</span> <span class="toc-text">3.1栈</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1%E6%A0%88%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.1.1栈的基本概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-2%E6%A0%88%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.1.2栈的顺序存储实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-3%E6%A0%88%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.1.3栈的链式存储实现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2%E9%98%9F%E5%88%97"><span class="toc-number">3.2.</span> <span class="toc-text">3.2队列</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-1%E9%98%9F%E5%88%97%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">3.2.1.</span> <span class="toc-text">3.2.1队列的基本概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-2%E9%98%9F%E5%88%97%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.2.2.</span> <span class="toc-text">3.2.2队列的顺序实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-3%E9%98%9F%E5%88%97%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.2.3.</span> <span class="toc-text">3.2.3队列的链式实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-4%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="toc-number">3.2.4.</span> <span class="toc-text">3.2.4双端队列</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">3.3.</span> <span class="toc-text">3.3栈和队列的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3-1%E6%A0%88%E5%9C%A8%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">3.3.1.</span> <span class="toc-text">3.3.1栈在括号匹配中的应用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3-2%E6%A0%88%E5%9C%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">3.3.2.</span> <span class="toc-text">3.3.2栈在表达式求值中的应用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4%E7%89%B9%E6%AE%8A%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8"><span class="toc-number">3.4.</span> <span class="toc-text">3.4特殊矩阵的压缩存储</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E4%B8%B2"><span class="toc-number">4.</span> <span class="toc-text">第四章 串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1%E4%B8%B2%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.1.</span> <span class="toc-text">4.1串的定义和实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1-1%E4%B8%B2%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">4.1.1.</span> <span class="toc-text">4.1.1串的定义和基本操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1-2%E4%B8%B2%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">4.1.2.</span> <span class="toc-text">4.1.2串的存储结构</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2%E4%B8%B2%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="toc-number">4.2.</span> <span class="toc-text">4.2串的模式匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-1%E4%B8%B2%E7%9A%84%E6%9C%B4%E7%B4%A0%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1串的朴素模式匹配算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-2KMP%E7%AE%97%E6%B3%95"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2KMP算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-3KMP%E7%AE%97%E6%B3%95%E7%9A%84%E8%BF%9B%E4%B8%80%E6%AD%A5%E4%BC%98%E5%8C%96"><span class="toc-number">4.2.3.</span> <span class="toc-text">4.2.3KMP算法的进一步优化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">5.</span> <span class="toc-text">第五章 树与二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">5.1.</span> <span class="toc-text">5.1树的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-1-1%E6%A0%91%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="toc-number">5.1.1.</span> <span class="toc-text">5.1.1树的定义和基本术语</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-1-2%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">5.1.2.</span> <span class="toc-text">5.1.2树的性质</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">5.2.</span> <span class="toc-text">5.2二叉树的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2-1%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="toc-number">5.2.1.</span> <span class="toc-text">5.2.1二叉树的定义和基本术语</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2-2%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">5.2.2.</span> <span class="toc-text">5.2.2二叉树的性质</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2-3%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">5.2.3.</span> <span class="toc-text">5.2.3二叉树的存储结构</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E5%92%8C%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">5.3.</span> <span class="toc-text">5.3二叉树的遍历和线索二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-1%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%85%88%E4%B8%AD%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">5.3.1.</span> <span class="toc-text">5.3.1二叉树的先中后序遍历</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-2%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86"><span class="toc-number">5.3.2.</span> <span class="toc-text">5.3.2二叉树的层次遍历</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-3%E7%94%B1%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">5.3.3.</span> <span class="toc-text">5.3.3由遍历序列构造二叉树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-4%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">5.3.4.</span> <span class="toc-text">5.3.4线索二叉树的概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-5%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%BA%BF%E7%B4%A2%E5%8C%96"><span class="toc-number">5.3.5.</span> <span class="toc-text">5.3.5二叉树的线索化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-6%E5%9C%A8%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%89%BE%E5%89%8D%E9%A9%B1%E5%90%8E%E7%BB%A7"><span class="toc-number">5.3.6.</span> <span class="toc-text">5.3.6在线索二叉树中找前驱后继</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4%E6%A0%91%E3%80%81%E6%A3%AE%E6%9E%97"><span class="toc-number">5.4.</span> <span class="toc-text">5.4树、森林</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-4-1%E6%A0%91%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">5.4.1.</span> <span class="toc-text">5.4.1树的存储结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-4-2%E6%A0%91%E5%92%8C%E6%A3%AE%E6%9E%97%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">5.4.2.</span> <span class="toc-text">5.4.2树和森林的遍历</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">5.5.</span> <span class="toc-text">5.5树和二叉树的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-5-1%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91"><span class="toc-number">5.5.1.</span> <span class="toc-text">5.5.1二叉排序树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-5-2%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">5.5.2.</span> <span class="toc-text">5.5.2平衡二叉树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-5-3%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91"><span class="toc-number">5.5.3.</span> <span class="toc-text">5.5.3哈夫曼树</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%9B%BE"><span class="toc-number">6.</span> <span class="toc-text">第六章 图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">6.1.</span> <span class="toc-text">6.1图的基本概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2%E5%9B%BE%E7%9A%84%E5%AD%98%E5%82%A8%E5%8F%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">6.2.</span> <span class="toc-text">6.2图的存储及基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-1%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E6%B3%95%EF%BC%88%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%EF%BC%89"><span class="toc-number">6.2.1.</span> <span class="toc-text">6.2.1邻接矩阵法（顺序存储）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-2%E9%82%BB%E6%8E%A5%E8%A1%A8%E6%B3%95%EF%BC%88%E9%A1%BA%E5%BA%8F-%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%EF%BC%89"><span class="toc-number">6.2.2.</span> <span class="toc-text">6.2.2邻接表法（顺序+链式存储）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-3%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E3%80%81%E9%82%BB%E6%8E%A5%E5%A4%9A%E9%87%8D%E8%A1%A8"><span class="toc-number">6.2.3.</span> <span class="toc-text">6.2.3十字链表、邻接多重表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-4%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">6.2.4.</span> <span class="toc-text">6.2.4图的基本操作</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">6.3.</span> <span class="toc-text">6.3图的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3-1%E5%9B%BE%E7%9A%84%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86"><span class="toc-number">6.3.1.</span> <span class="toc-text">6.3.1图的广度优先遍历</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3-2%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86"><span class="toc-number">6.3.2.</span> <span class="toc-text">6.3.2图的深度优先遍历</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">6.4.</span> <span class="toc-text">6.4图的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-4-1%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="toc-number">6.4.1.</span> <span class="toc-text">6.4.1最小生成树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-4-2%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="toc-number">6.4.2.</span> <span class="toc-text">6.4.2最短路径问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-4-3%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E6%8F%8F%E8%BF%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">6.4.3.</span> <span class="toc-text">6.4.3有向无环图描述表达式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-4-4%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F"><span class="toc-number">6.4.4.</span> <span class="toc-text">6.4.4拓扑排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-4-5%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84"><span class="toc-number">6.4.5.</span> <span class="toc-text">6.4.5关键路径</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E6%9F%A5%E6%89%BE"><span class="toc-number">7.</span> <span class="toc-text">第七章 查找</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1%E6%9F%A5%E6%89%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">7.1.</span> <span class="toc-text">7.1查找的基本概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE%E5%92%8C%E6%8A%98%E5%8D%8A%E6%9F%A5%E6%89%BE"><span class="toc-number">7.2.</span> <span class="toc-text">7.2顺序查找和折半查找</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#7-2-1%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE"><span class="toc-number">7.2.1.</span> <span class="toc-text">7.2.1顺序查找</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-2-2%E6%8A%98%E5%8D%8A%E6%9F%A5%E6%89%BE"><span class="toc-number">7.2.2.</span> <span class="toc-text">7.2.2折半查找</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-2-3%E5%88%86%E5%9D%97%E6%9F%A5%E6%89%BE%EF%BC%88%E4%B8%8D%E8%80%83%E5%AF%9F%E4%BB%A3%E7%A0%81%EF%BC%89"><span class="toc-number">7.2.3.</span> <span class="toc-text">7.2.3分块查找（不考察代码）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3B%E6%A0%91%E5%92%8CB-%E6%A0%91"><span class="toc-number">7.3.</span> <span class="toc-text">7.3B树和B+树</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#7-3-1B%E6%A0%91"><span class="toc-number">7.3.1.</span> <span class="toc-text">7.3.1B树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-3-2B%E6%A0%91%E7%9A%84%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4"><span class="toc-number">7.3.2.</span> <span class="toc-text">7.3.2B树的插入删除</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-3-3B-%E6%A0%91"><span class="toc-number">7.3.3.</span> <span class="toc-text">7.3.3B+树</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4%E6%95%A3%E5%88%97%E6%9F%A5%E6%89%BE"><span class="toc-number">7.4.</span> <span class="toc-text">7.4散列查找</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%8E%92%E5%BA%8F"><span class="toc-number">8.</span> <span class="toc-text">第八章 排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-1%E6%8E%92%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">8.1.</span> <span class="toc-text">8.1排序的基本概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">8.2.</span> <span class="toc-text">8.2插入排序</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#8-2-1%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">8.2.1.</span> <span class="toc-text">8.2.1插入排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-2-2%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="toc-number">8.2.2.</span> <span class="toc-text">8.2.2希尔排序</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-3%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F"><span class="toc-number">8.3.</span> <span class="toc-text">8.3交换排序</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#8-3-1%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">8.3.1.</span> <span class="toc-text">8.3.1冒泡排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-3-2%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E2%98%85"><span class="toc-number">8.3.2.</span> <span class="toc-text">8.3.2快速排序★</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-4%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-number">8.4.</span> <span class="toc-text">8.4选择排序</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#8-4-1%E7%AE%80%E5%8D%95%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-number">8.4.1.</span> <span class="toc-text">8.4.1简单选择排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-4-2%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="toc-number">8.4.2.</span> <span class="toc-text">8.4.2堆排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-4-3%E5%A0%86%E7%9A%84%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4"><span class="toc-number">8.4.3.</span> <span class="toc-text">8.4.3堆的插入删除</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-5%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E5%92%8C%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-number">8.5.</span> <span class="toc-text">8.5归并排序和基数排序</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#8-5-1%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="toc-number">8.5.1.</span> <span class="toc-text">8.5.1归并排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-5-2%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F%EF%BC%88%E6%89%8B%E5%8A%A8%E6%A8%A1%E6%8B%9F%EF%BC%89"><span class="toc-number">8.5.2.</span> <span class="toc-text">8.5.2基数排序（手动模拟）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-6%E5%A4%96%E9%83%A8%E6%8E%92%E5%BA%8F"><span class="toc-number">8.6.</span> <span class="toc-text">8.6外部排序</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#8-6-1%E5%A4%96%E9%83%A8%E6%8E%92%E5%BA%8F"><span class="toc-number">8.6.1.</span> <span class="toc-text">8.6.1外部排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-6-2%E8%B4%A5%E8%80%85%E6%A0%91%EF%BC%88%E6%89%8B%E5%8A%A8%E6%A8%A1%E6%8B%9F%EF%BC%89"><span class="toc-number">8.6.2.</span> <span class="toc-text">8.6.2败者树（手动模拟）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-6-3%E7%BD%AE%E6%8D%A2-%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-number">8.6.3.</span> <span class="toc-text">8.6.3置换-选择排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-6-4%E6%9C%80%E4%BD%B3%E5%BD%92%E5%B9%B6%E6%A0%91"><span class="toc-number">8.6.4.</span> <span class="toc-text">8.6.4最佳归并树</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/11/12/Data%20Structure-%E7%8E%8B%E9%81%93/" title="Data Structure - 王道"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Data Structure - 王道"/></a><div class="content"><a class="title" href="/2023/11/12/Data%20Structure-%E7%8E%8B%E9%81%93/" title="Data Structure - 王道">Data Structure - 王道</a><time datetime="2023-11-12T15:05:01.134Z" title="Created 2023-11-12 23:05:01">2023-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/12/Data%20Structure%20Algorithm/" title="Data Structure Algorithm"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Data Structure Algorithm"/></a><div class="content"><a class="title" href="/2023/11/12/Data%20Structure%20Algorithm/" title="Data Structure Algorithm">Data Structure Algorithm</a><time datetime="2023-11-12T13:02:28.408Z" title="Created 2023-11-12 21:02:28">2023-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/12/Data%20Structure/" title="Data Structure"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Data Structure"/></a><div class="content"><a class="title" href="/2023/11/12/Data%20Structure/" title="Data Structure">Data Structure</a><time datetime="2023-11-12T09:47:27.180Z" title="Created 2023-11-12 17:47:27">2023-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/11/CTF%E7%AB%9E%E8%B5%9B%E4%BB%8B%E7%BB%8D%E4%BB%A5%E5%8F%8A%E5%88%B7%E9%A2%98%E7%BD%91%E5%9D%80/" title="CTF竞赛介绍以及刷题网址"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF竞赛介绍以及刷题网址"/></a><div class="content"><a class="title" href="/2023/03/11/CTF%E7%AB%9E%E8%B5%9B%E4%BB%8B%E7%BB%8D%E4%BB%A5%E5%8F%8A%E5%88%B7%E9%A2%98%E7%BD%91%E5%9D%80/" title="CTF竞赛介绍以及刷题网址">CTF竞赛介绍以及刷题网址</a><time datetime="2023-03-11T03:46:03.959Z" title="Created 2023-03-11 11:46:03">2023-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/09/Qt%E9%A1%B9%E7%9B%AE%EF%BC%9A%E8%87%AA%E5%88%B6Wireshark/" title="Qt项目：自制Wireshark"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qt项目：自制Wireshark"/></a><div class="content"><a class="title" href="/2022/08/09/Qt%E9%A1%B9%E7%9B%AE%EF%BC%9A%E8%87%AA%E5%88%B6Wireshark/" title="Qt项目：自制Wireshark">Qt项目：自制Wireshark</a><time datetime="2022-08-09T15:22:32.533Z" title="Created 2022-08-09 23:22:32">2022-08-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Cappuccino</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
