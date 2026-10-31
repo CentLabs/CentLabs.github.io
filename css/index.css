@@ -4191,10 +4191,30 @@ h1.page-title + .tag-cloud-list {
 }
 .mermaid-wrap {
   margin: 0 0 20px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
   text-align: center;
 }
-.mermaid-wrap > svg {
-  height: 100%;
+.mermaid-wrap .mermaid-rendered {
+  width: max-content;
+  min-width: 100%;
+}
+.mermaid-wrap .mermaid-rendered svg {
+  max-width: none !important;
+  height: auto;
+}
+.mermaid-wrap .mermaid-src {
+  margin: 0;
+  padding: 12px;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.mermaid-wrap .mermaid-error-message {
+  margin: 0 0 8px;
+  color: var(--font-color);
+  text-align: left;
 }
 .utterances,
 .fb-comments iframe {
