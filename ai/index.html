@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Portal · JayDreamy 人工智能内容中心</title>
+<meta name="description" content="JayDreamy AI Portal — 覆盖 AI 模型、AI 工具、AI Agent、AI 编程、AI 知识库、AI 价格、Prompt 提示词与 AI 资讯的一站式人工智能内容中心。">
+<meta name="keywords" content="AI,人工智能,AI模型,AI工具,AI Agent,AI编程,AI知识库,AI价格,Prompt,提示词,AI资讯,ChatGPT,Claude,DeepSeek,JayDreamy">
+<meta name="author" content="JayDreamy">
+<link rel="canonical" href="https://www.jaydreamy.com/ai/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Portal · JayDreamy 人工智能内容中心">
+<meta property="og:description" content="覆盖模型、工具、Agent、编程、知识库、价格、Prompt 与资讯的一站式 AI 内容中心。">
+<meta property="og:url" content="https://www.jaydreamy.com/ai/">
+<meta property="og:site_name" content="JayDreamy">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" type="image/svg+xml" href="/ai/assets/images/favicon.svg">
+<link rel="stylesheet" href="/ai/assets/css/portal.css">
+</head>
+<body data-page="home">
+
+<!-- 顶部导航 -->
+<nav class="ai-nav">
+  <div class="ai-nav-inner ai-container">
+    <a class="ai-nav-brand" href="/ai/">
+      <span class="logo">AI</span>
+      <span>AI Portal <span class="sub">JayDreamy</span></span>
+    </a>
+    <button class="ai-nav-toggle" id="aiNavToggle" aria-label="菜单">☰</button>
+    <div class="ai-nav-links" id="aiNavLinks">
+      <a href="/ai/models/">模型</a>
+      <a href="/ai/tools/">工具</a>
+      <a href="/ai/agents/">Agent</a>
+      <a href="/ai/coding/">编程</a>
+      <a href="/ai/knowledge/">知识库</a>
+      <a href="/ai/pricing/">价格</a>
+      <a href="/ai/prompts/">提示词</a>
+      <a href="/ai/news/">资讯</a>
+      <a href="/" class="ai-nav-home">返回主站</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="ai-hero">
+  <div class="ai-hero-inner ai-container">
+    <span class="ai-badge"><span class="dot"></span>AI 内容中心 · 持续更新</span>
+    <h1>探索 <span class="grad">人工智能</span><br>的完整生态</h1>
+    <p class="lead">从主流大模型到实用工具，从 Agent 到编程助手，从价格对比到提示词库 —— 一站式掌握 AI 世界的全貌。</p>
+
+    <!-- 搜索框 -->
+    <div class="ai-search">
+      <input type="text" id="aiSearchInput" placeholder="搜索模型、工具、Agent、提示词…" autocomplete="off">
+      <button class="ai-search-btn" id="aiSearchBtn" aria-label="搜索">⌕</button>
+      <div class="ai-search-suggest" id="aiSearchSuggest"></div>
+    </div>
+    <div class="ai-hot">热门：
+      <a href="/ai/models/?q=deepseek">DeepSeek</a>
+      <a href="/ai/models/?q=claude">Claude</a>
+      <a href="/ai/tools/?q=绘图">AI 绘图</a>
+      <a href="/ai/coding/">Cursor</a>
+      <a href="/ai/prompts/">Prompt</a>
+    </div>
+  </div>
+</header>
+
+<!-- 八大模块入口 -->
+<main class="ai-container">
+
+  <section class="ai-section">
+    <div class="ai-section-head">
+      <h2 class="ai-section-title"><span class="ico">🧩</span>核心模块</h2>
+    </div>
+    <div class="ai-grid cols-2" id="moduleGrid">
+      <!-- 由 JS 渲染八大模块入口 -->
+    </div>
+  </section>
+
+  <!-- 热门模型 -->
+  <section class="ai-section">
+    <div class="ai-section-head">
+      <h2 class="ai-section-title"><span class="ico">🤖</span>热门 AI 模型</h2>
+      <a class="ai-section-more" href="/ai/models/">查看全部 →</a>
+    </div>
+    <div class="ai-grid cols-4" id="hotModels">
+      <div class="ai-loading"><div class="spinner"></div></div>
+    </div>
+  </section>
+
+  <!-- 工具分类入口 -->
+  <section class="ai-section">
+    <div class="ai-section-head">
+      <h2 class="ai-section-title"><span class="ico">🛠️</span>AI 工具分类</h2>
+      <a class="ai-section-more" href="/ai/tools/">全部工具 →</a>
+    </div>
+    <div class="ai-grid cols-4" id="toolCats">
+      <div class="ai-loading"><div class="spinner"></div></div>
+    </div>
+  </section>
+
+  <!-- AI Coding -->
+  <section class="ai-section">
+    <div class="ai-section-head">
+      <h2 class="ai-section-title"><span class="ico">💻</span>AI 编程助手</h2>
+      <a class="ai-section-more" href="/ai/coding/">查看全部 →</a>
+    </div>
+    <div class="ai-grid cols-4" id="codingTools">
+      <div class="ai-loading"><div class="spinner"></div></div>
+    </div>
+  </section>
+
+  <!-- 知识库 + 价格 -->
+  <section class="ai-section">
+    <div class="ai-grid cols-2">
+      <div class="ai-card ai-module" style="cursor:pointer" onclick="location.href='/ai/knowledge/'">
+        <div class="ai-card-ico">📚</div>
+        <div>
+          <h3>AI 知识库</h3>
+          <div class="desc">DroidX 深度研究专题 · 模型技术资料 · 开源项目研究</div>
+        </div>
+        <span class="arrow">→</span>
+      </div>
+      <div class="ai-card ai-module" style="cursor:pointer" onclick="location.href='/ai/pricing/'">
+        <div class="ai-card-ico">💰</div>
+        <div>
+          <h3>AI 价格比较</h3>
+          <div class="desc">订阅价格 · API 计费 · 免费额度，一目了然</div>
+        </div>
+        <span class="arrow">→</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 最新资讯 -->
+  <section class="ai-section">
+    <div class="ai-section-head">
+      <h2 class="ai-section-title"><span class="ico">📰</span>最新 AI 资讯</h2>
+      <a class="ai-section-more" href="/ai/news/">全部资讯 →</a>
+    </div>
+    <div class="ai-card" id="newsList" style="padding:0">
+      <div class="ai-loading"><div class="spinner"></div></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 页脚 -->
+<footer class="ai-footer">
+  <div class="ai-footer-inner ai-container">
+    <div class="ai-footer-brand">
+      <div class="logo-row"><span class="logo">AI</span><span>JayDreamy AI Portal</span></div>
+      <p>覆盖 AI 模型、工具、Agent、编程、知识库、价格、提示词与资讯的一站式人工智能内容中心。数据以官方来源为依据，持续核实更新。</p>
+    </div>
+    <div class="ai-footer-col">
+      <h4>模块</h4>
+      <a href="/ai/models/">AI 模型</a>
+      <a href="/ai/tools/">AI 工具</a>
+      <a href="/ai/agents/">AI Agent</a>
+      <a href="/ai/coding/">AI 编程</a>
+    </div>
+    <div class="ai-footer-col">
+      <h4>更多</h4>
+      <a href="/ai/knowledge/">知识库</a>
+      <a href="/ai/pricing/">价格比较</a>
+      <a href="/ai/prompts/">提示词</a>
+      <a href="/ai/news/">资讯</a>
+    </div>
+    <div class="ai-footer-col">
+      <h4>主站</h4>
+      <a href="/">返回首页</a>
+      <a href="/nexus/">Nexus</a>
+      <a href="/resources/">资源中心</a>
+      <a href="/knowledge/">考研知识库</a>
+    </div>
+  </div>
+  <div class="ai-footer-bottom ai-container">
+    <span>© 2026 JayDreamy · CentLabs</span>
+    <span>本站信息仅供参考，价格与功能以官方最新公告为准</span>
+  </div>
+</footer>
+
+<script src="/ai/assets/js/portal.js"></script>
+<script>
+/* 首页渲染逻辑 */
+window.AI_PAGE = window.AI_PAGE || {};
+window.AI_PAGE.home = {
+  init: function () {
+    var AI = window.AI;
+    // 八大模块入口
+    var modules = [
+      { ico: '🤖', name: 'AI Models', desc: '国内外主流大模型，含能力、上下文与价格', url: '/ai/models/', tag: '模型中心' },
+      { ico: '🛠️', name: 'AI Tools', desc: '对话、绘图、视频、写作、办公等实用工具', url: '/ai/tools/', tag: '工具导航' },
+      { ico: '🕵️', name: 'AI Agents', desc: 'DroidX、Dify、n8n、LangChain 等 Agent 生态', url: '/ai/agents/', tag: 'Agent 中心' },
+      { ico: '💻', name: 'AI Coding', desc: 'Copilot、Cursor、Claude Code 等编程助手', url: '/ai/coding/', tag: '编程中心' },
+      { ico: '📚', name: 'AI Knowledge', desc: 'DroidX 专题与模型、开源项目研究资料', url: '/ai/knowledge/', tag: '知识库' },
+      { ico: '💰', name: 'AI Pricing', desc: '订阅与 API 价格、免费额度对比', url: '/ai/pricing/', tag: '价格' },
+      { ico: '💬', name: 'AI Prompts', desc: '按用途分类的提示词库，支持一键复制', url: '/ai/prompts/', tag: '提示词' },
+      { ico: '📰', name: 'AI News', desc: '新模型发布、产品更新与行业动态', url: '/ai/news/', tag: '资讯' }
+    ];
+    var grid = document.getElementById('moduleGrid');
+    grid.innerHTML = modules.map(function (m) {
+      return '<a class="ai-card ai-module" href="' + m.url + '">' +
+        '<div class="ai-card-ico">' + m.ico + '</div>' +
+        '<div><h3>' + m.name + '</h3><div class="desc">' + m.desc + '</div>' +
+        '<div class="ai-tags"><span class="ai-tag hot">' + m.tag + '</span></div></div>' +
+        '<span class="arrow">→</span></a>';
+    }).join('');
+
+    // 热门模型
+    AI.fetchJSON('/ai/data/models.json').then(function (data) {
+      var list = (data.models || data || []).filter(function (m) { return m.featured; }).slice(0, 4);
+      AI.renderGrid('hotModels', list, function (m) {
+        return '<a class="ai-card" href="/ai/models/?q=' + encodeURIComponent(m.name) + '">' +
+          '<div class="glow"></div>' +
+          '<div class="ai-card-ico">' + (m.icon || '🤖') + '</div>' +
+          '<h3>' + AI.esc(m.name) + '</h3>' +
+          '<div class="desc">' + AI.esc(m.vendor || '') + '</div>' +
+          '<div class="ai-tags">' + (m.categories || []).slice(0, 2).map(function (c) { return '<span class="ai-tag">' + AI.esc(c) + '</span>'; }).join('') + '</div>' +
+          '</a>';
+      });
+    }).catch(function () { AI.renderGrid('hotModels', [], null); });
+
+    // 工具分类
+    AI.fetchJSON('/ai/data/tools.json').then(function (data) {
+      var cats = (data.categories || []);
+      var list = (data.tools || []);
+      var counts = {};
+      list.forEach(function (t) { counts[t.category] = (counts[t.category] || 0) + 1; });
+      var items = cats.slice(0, 8).map(function (c) {
+        return { ico: c.icon || '🛠️', name: c.name, count: counts[c.id] || 0, id: c.id };
+      });
+      AI.renderGrid('toolCats', items, function (c) {
+        return '<a class="ai-card ai-cat-card" href="/ai/tools/?cat=' + encodeURIComponent(c.id) + '">' +
+          '<div class="ai-card-ico">' + c.ico + '</div>' +
+          '<div><h3>' + AI.esc(c.name) + '</h3><div class="count">' + c.count + ' 个工具</div></div></a>';
+      });
+    }).catch(function () { AI.renderGrid('toolCats', [], null); });
+
+    // 编程工具
+    AI.fetchJSON('/ai/data/coding.json').then(function (data) {
+      var list = (data.coding || data || []).filter(function (t) { return t.featured; }).slice(0, 4);
+      AI.renderGrid('codingTools', list, function (t) {
+        return '<a class="ai-card" href="/ai/coding/?q=' + encodeURIComponent(t.name) + '">' +
+          '<div class="glow"></div>' +
+          '<div class="ai-card-ico">' + (t.icon || '💻') + '</div>' +
+          '<h3>' + AI.esc(t.name) + '</h3>' +
+          '<div class="desc">' + AI.esc(t.desc || '') + '</div>' +
+          '</a>';
+      });
+    }).catch(function () { AI.renderGrid('codingTools', [], null); });
+
+    // 最新资讯
+    AI.fetchJSON('/ai/data/news.json').then(function (data) {
+      var list = (data.news || data || []).slice(0, 5);
+      AI.renderGrid('newsList', list, function (n) {
+        var d = String(n.date || '');
+        var parts = d.split('-');
+        return '<div class="ai-news-item">' +
+          '<div class="ai-news-date"><div class="d">' + (parts[2] || '') + '</div><div class="m">' + ((parts[0] || '') + '-' + (parts[1] || '')) + '</div></div>' +
+          '<div class="ai-news-body"><h3>' + AI.esc(n.title) + '</h3>' +
+          '<div class="meta">来源：<span class="src">' + AI.esc(n.source || '') + '</span></div></div>' +
+          '</div>';
+      });
+    }).catch(function () { AI.renderGrid('newsList', [], null); });
+  }
+};
+</script>
+</body>
+</html>

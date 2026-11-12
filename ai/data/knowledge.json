@@ -1,0 +1,53 @@
+{
+  "last_updated": "2026-11-12",
+  "topics": [
+    {
+      "id": "droidx",
+      "title": "DroidX 平台深度研究",
+      "icon": "🤖",
+      "category": "Agent 专题",
+      "summary": "卓壹AI 旗下 DroidX 平台（droidx.cn）公开资料深度研究：平台定位、模型接入、功能特性、使用方式与产品分析。",
+      "keywords": ["DroidX", "卓壹AI", "Agent", "多模型聚合"],
+      "url": "/ai/knowledge/droidx/",
+      "status": "verified",
+      "last_verified": "2026-11-12",
+      "featured": true
+    },
+    {
+      "id": "model-basics",
+      "title": "大模型基础知识",
+      "icon": "🧠",
+      "category": "模型技术",
+      "summary": "理解大语言模型的核心概念：Token、上下文窗口、温度参数、推理模型等基础知识。",
+      "keywords": ["大模型", "Token", "上下文", "推理"],
+      "url": "/ai/knowledge/#",
+      "status": "draft",
+      "last_verified": "2026-11-12",
+      "featured": false
+    },
+    {
+      "id": "api-guide",
+      "title": "官方 API 使用入门",
+      "icon": "🔌",
+      "category": "API 文档",
+      "summary": "OpenAI、Anthropic、DeepSeek 等主流 API 的接入方式与最佳实践。",
+      "keywords": ["API", "OpenAI", "DeepSeek", "接入"],
+      "url": "/ai/knowledge/#",
+      "status": "draft",
+      "last_verified": "2026-11-12",
+      "featured": false
+    },
+    {
+      "id": "local-deploy",
+      "title": "模型本地部署教程",
+      "icon": "🖥️",
+      "category": "部署运行",
+      "summary": "Ollama、vLLM 等工具本地运行开源大模型的完整教程。",
+      "keywords": ["本地部署", "Ollama", "vLLM", "开源模型"],
+      "url": "/ai/knowledge/#",
+      "status": "draft",
+      "last_verified": "2026-11-12",
+      "featured": false
+    }
+  ]
+}

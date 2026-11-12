@@ -1,0 +1,90 @@
+{
+  "last_updated": "2026-11-12",
+  "agents": [
+    {
+      "id": "droidx",
+      "name": "DroidX",
+      "vendor": "卓壹AI",
+      "icon": "🤖",
+      "type": "聚合 Agent 平台",
+      "desc": "一站式 AI 平台，聚合全球顶尖大模型（含 Gemini 2.5 Flash 等），提供对话、学习、写作、创意等场景的无限制使用体验",
+      "features": ["多模型聚合", "无限制使用", "视频理解", "推理可视化"],
+      "pricing": "会员订阅制",
+      "url": "https://droidx.cn",
+      "source_url": "https://droidx.cn",
+      "last_verified": "2026-11-12",
+      "featured": true,
+      "note": "重点研究专题，详见知识库 DroidX 专题"
+    },
+    {
+      "id": "dify",
+      "name": "Dify",
+      "vendor": "Dify.AI",
+      "icon": "🧩",
+      "type": "LLM 应用开发平台",
+      "desc": "开源 LLM 应用开发平台，可视化构建 Agent、工作流与 RAG 应用",
+      "features": ["可视化编排", "RAG", "工作流", "开源"],
+      "pricing": "开源免费 / 云订阅",
+      "url": "https://dify.ai/",
+      "source_url": "https://github.com/langgenius/dify",
+      "last_verified": "2026-11-12",
+      "featured": true
+    },
+    {
+      "id": "n8n-agent",
+      "name": "n8n",
+      "vendor": "n8n",
+      "icon": "🔗",
+      "type": "自动化 Agent 平台",
+      "desc": "开源工作流自动化，内置 AI Agent 节点，可自托管",
+      "features": ["开源", "自托管", "AI Agent", "400+ 集成"],
+      "pricing": "免费 / 云订阅",
+      "url": "https://n8n.io/",
+      "source_url": "https://github.com/n8n-io/n8n",
+      "last_verified": "2026-11-12",
+      "featured": true
+    },
+    {
+      "id": "langchain",
+      "name": "LangChain",
+      "vendor": "LangChain",
+      "icon": "🦜",
+      "type": "开发框架",
+      "desc": "LLM 应用开发框架，LangGraph 支持复杂 Agent 状态机编排",
+      "features": ["框架", "LangGraph", "生态丰富"],
+      "pricing": "开源",
+      "url": "https://www.langchain.com/",
+      "source_url": "https://github.com/langchain-ai/langchain",
+      "last_verified": "2026-11-12",
+      "featured": false
+    },
+    {
+      "id": "autogen",
+      "name": "AutoGen",
+      "vendor": "Microsoft",
+      "icon": "🔄",
+      "type": "多 Agent 框架",
+      "desc": "微软开源多 Agent 对话框架，支持多智能体协作",
+      "features": ["多 Agent", "开源", "协作"],
+      "pricing": "开源",
+      "url": "https://microsoft.github.io/autogen/",
+      "source_url": "https://github.com/microsoft/autogen",
+      "last_verified": "2026-11-12",
+      "featured": false
+    },
+    {
+      "id": "openai-agent",
+      "name": "OpenAI Agent 生态",
+      "vendor": "OpenAI",
+      "icon": "🕹️",
+      "type": "Agent 平台",
+      "desc": "Operator、AgentKit、Function Calling 等组成的 Agent 生态",
+      "features": ["Operator", "Function Calling", "AgentKit"],
+      "pricing": "随 API / 订阅",
+      "url": "https://openai.com/",
+      "source_url": "https://platform.openai.com/docs",
+      "last_verified": "2026-11-12",
+      "featured": false
+    }
+  ]
+}

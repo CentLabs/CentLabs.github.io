@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 提示词库 · JayDreamy AI Portal</title>
+<meta name="description" content="按用途分类的 AI 提示词库，涵盖通用对话、编程、写作、绘图、视频、学习、数据分析、办公、自动化与网站开发，支持一键复制。">
+<meta name="keywords" content="Prompt,提示词,提示词库,AI提示词,Prompt模板">
+<link rel="canonical" href="https://www.jaydreamy.com/ai/prompts/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI 提示词库 · JayDreamy AI Portal">
+<meta property="og:description" content="按用途分类的 AI 提示词库，支持一键复制。">
+<meta property="og:url" content="https://www.jaydreamy.com/ai/prompts/">
+<link rel="icon" type="image/svg+xml" href="/ai/assets/images/favicon.svg">
+<link rel="stylesheet" href="/ai/assets/css/portal.css">
+</head>
+<body data-page="prompts">
+
+<nav class="ai-nav">
+  <div class="ai-nav-inner ai-container">
+    <a class="ai-nav-brand" href="/ai/"><span class="logo">AI</span><span>AI Portal <span class="sub">JayDreamy</span></span></a>
+    <button class="ai-nav-toggle" id="aiNavToggle" aria-label="菜单">☰</button>
+    <div class="ai-nav-links" id="aiNavLinks">
+      <a href="/ai/models/">模型</a>
+      <a href="/ai/tools/">工具</a>
+      <a href="/ai/agents/">Agent</a>
+      <a href="/ai/coding/">编程</a>
+      <a href="/ai/knowledge/">知识库</a>
+      <a href="/ai/pricing/">价格</a>
+      <a href="/ai/prompts/">提示词</a>
+      <a href="/ai/news/">资讯</a>
+      <a href="/" class="ai-nav-home">返回主站</a>
+    </div>
+  </div>
+</nav>
+
+<header class="ai-page-head ai-container">
+  <div class="crumb"><a href="/ai/">AI Portal</a> / 提示词</div>
+  <h1>AI 提示词库</h1>
+  <p class="sub">按用途分类的提示词模板，支持分类浏览、关键词搜索与一键复制。</p>
+</header>
+
+<main class="ai-container ai-section">
+  <div class="ai-filters" id="aiFilters">
+    <button class="ai-filter active" data-filter="all">全部</button>
+  </div>
+  <div class="ai-grid cols-2" id="promptsGrid">
+    <div class="ai-loading"><div class="spinner"></div></div>
+  </div>
+</main>
+
+<footer class="ai-footer">
+  <div class="ai-footer-bottom ai-container">
+    <span>© 2026 JayDreamy · CentLabs</span>
+    <span>提示词供参考，可自由修改使用</span>
+  </div>
+</footer>
+
+<script src="/ai/assets/js/portal.js"></script>
+<script>
+window.AI_PAGE = window.AI_PAGE || {};
+window.AI_PAGE.prompts = {
+  init: function () {
+    var AI = window.AI;
+    var cats = [], prompts = [];
+    AI.fetchJSON('/ai/data/prompts.json').then(function (data) {
+      cats = data.categories || [];
+      prompts = data.prompts || [];
+
+      var bar = document.getElementById('aiFilters');
+      bar.innerHTML = '<button class="ai-filter active" data-filter="all">全部</button>' +
+        cats.map(function (c) {
+          return '<button class="ai-filter" data-filter="' + c.id + '">' + c.icon + ' ' + c.name + '</button>';
+        }).join('');
+      AI.initFilters(function (f) { render(f === 'all' ? prompts : prompts.filter(function (p) { return p.category === f; })); });
+      render(prompts);
+    });
+
+    function render(list) {
+      AI.renderGrid('promptsGrid', list, function (p) {
+        var cat = cats.find(function (c) { return c.id === p.category; });
+        var promptEsc = AI.esc(p.prompt);
+        return '<div class="ai-card ai-prompt">' +
+          '<div class="glow"></div>' +
+          '<h3>' + AI.esc(p.title) + (cat ? ' <span style="font-size:12px;color:var(--txt-faint);font-weight:400">' + cat.icon + ' ' + AI.esc(cat.name) + '</span>' : '') + '</h3>' +
+          '<div class="desc" style="margin:8px 0">' + AI.esc(p.desc) + '</div>' +
+          '<pre style="white-space:pre-wrap;font-family:inherit;font-size:13px;color:var(--txt-dim);background:rgba(7,11,20,.5);border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0">' + promptEsc + '</pre>' +
+          '<div class="ai-tags">' + (p.tags || []).map(function (t) { return '<span class="ai-tag">' + AI.esc(t) + '</span>'; }).join('') + '</div>' +
+          '<button class="copy ai-copy" data-copy="' + promptEsc + '">复制提示词</button>' +
+          '</div>';
+      });
+    }
+  }
+};
+</script>
+</body>
+</html>

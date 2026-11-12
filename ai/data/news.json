@@ -1,0 +1,41 @@
+{
+  "last_updated": "2026-11-12",
+  "news": [
+    {
+      "id": "n1",
+      "title": "DeepSeek V4 全系列正式版上线，采用峰谷定价",
+      "date": "2026-08-17",
+      "published_date": "2026-08-13",
+      "source": "央视财经 / 北京商报",
+      "category": "价格调整",
+      "summary": "DeepSeek V4 系列正式版上线，API 价格采用峰谷定价，高峰时段为北京时间 9:00-12:00、14:00-18:00，闲时价格为高峰一半。",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "verified_date": "2026-11-12",
+      "status": "verified"
+    },
+    {
+      "id": "n2",
+      "title": "DeepSeek V4-Flash 登顶 OpenRouter 全球调用量榜单",
+      "date": "2026-08-04",
+      "published_date": "2026-08-04",
+      "source": "OpenRouter",
+      "category": "行业动态",
+      "summary": "OpenRouter 数据显示，DeepSeek-V4-Flash 预览版登顶过去一周模型调用量全球榜单。",
+      "url": "https://openrouter.ai/",
+      "verified_date": "2026-11-12",
+      "status": "verified"
+    },
+    {
+      "id": "n3",
+      "title": "DroidX 平台上线 Gemini 2.5 Flash 模型",
+      "date": "2026-11-12",
+      "published_date": "2026-11-12",
+      "source": "卓壹AI DroidX",
+      "category": "产品更新",
+      "summary": "卓壹AI 旗下 Droidx 平台上线 Gemini 2.5 Flash 模型，支持最长 45 分钟视频分析并展示推理过程，会员可无限制使用。",
+      "url": "https://droidx.cn",
+      "verified_date": "2026-11-12",
+      "status": "verified"
+    }
+  ]
+}

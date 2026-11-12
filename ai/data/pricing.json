@@ -1,0 +1,189 @@
+{
+  "last_updated": "2026-11-12",
+  "disclaimer": "价格以各厂商官方定价页为准，核实日期见每条 last_verified。订阅价格可能因地区、税费与促销活动而变化。",
+  "subscriptions": [
+    {
+      "product": "ChatGPT",
+      "vendor": "OpenAI",
+      "tiers": [
+        { "name": "Free", "price": "$0", "billing": "—", "note": "GPT-5 限量使用" },
+        { "name": "Plus", "price": "$20", "billing": "月付", "note": "完整 GPT-5、更高额度" },
+        { "name": "Pro", "price": "$200", "billing": "月付", "note": "无限推理、深度研究" }
+      ],
+      "region": "全球",
+      "free_quota": "免费层限量使用",
+      "source_url": "https://openai.com/chatgpt/pricing",
+      "last_verified": "2026-11-12"
+    },
+    {
+      "product": "Claude",
+      "vendor": "Anthropic",
+      "tiers": [
+        { "name": "Free", "price": "$0", "billing": "—", "note": "Sonnet 限量" },
+        { "name": "Pro", "price": "$20", "billing": "月付", "note": "Opus/Sonnet 更高额度" },
+        { "name": "Max", "price": "$100-$200", "billing": "月付", "note": "5x-20x 配额" }
+      ],
+      "region": "全球",
+      "free_quota": "免费层限量使用",
+      "source_url": "https://www.anthropic.com/pricing",
+      "last_verified": "2026-11-12"
+    },
+    {
+      "product": "Gemini (Google AI)",
+      "vendor": "Google",
+      "tiers": [
+        { "name": "Free", "price": "$0", "billing": "—", "note": "Flash 限量" },
+        { "name": "AI Pro", "price": "$19.99", "billing": "月付", "note": "含 2TB 云存储" },
+        { "name": "AI Ultra", "price": "$99.99 起", "billing": "月付", "note": "Ultra 模型 + Veo" }
+      ],
+      "region": "全球",
+      "free_quota": "免费层较慷慨",
+      "source_url": "https://gemini.google.com/",
+      "last_verified": "2026-11-12"
+    },
+    {
+      "product": "Grok",
+      "vendor": "xAI",
+      "tiers": [
+        { "name": "Free", "price": "$0", "billing": "—", "note": "限量" },
+        { "name": "SuperGrok", "price": "见官方", "billing": "月付", "note": "更高额度与高级功能" }
+      ],
+      "region": "全球",
+      "free_quota": "免费层限量",
+      "source_url": "https://x.ai/",
+      "last_verified": "2026-11-12"
+    },
+    {
+      "product": "Perplexity",
+      "vendor": "Perplexity AI",
+      "tiers": [
+        { "name": "Free", "price": "$0", "billing": "—", "note": "基础搜索" },
+        { "name": "Pro", "price": "$20", "billing": "月付", "note": "高级模型与深度研究" }
+      ],
+      "region": "全球",
+      "free_quota": "免费层基础使用",
+      "source_url": "https://www.perplexity.ai/",
+      "last_verified": "2026-11-12"
+    }
+  ],
+  "api_pricing": [
+    {
+      "product": "GPT-5",
+      "vendor": "OpenAI",
+      "price_input": "$5 / 1M tokens",
+      "price_output": "$15 / 1M tokens",
+      "currency": "USD",
+      "context": "200K",
+      "free_quota": "新用户有限额度",
+      "source_url": "https://platform.openai.com/docs/pricing",
+      "last_verified": "2026-11-12"
+    },
+    {
+      "product": "Claude Opus 4.x",
+      "vendor": "Anthropic",
+      "price_input": "$15 / 1M tokens",
+      "price_output": "$75 / 1M tokens",
+      "currency": "USD",
+      "context": "1M",
+      "free_quota": "无长期免费",
+      "source_url": "https://www.anthropic.com/pricing",
+      "last_verified": "2026-11-12"
+    },
+    {
+      "product": "Claude Sonnet 4.x",
+      "vendor": "Anthropic",
+      "price_input": "$3 / 1M tokens",
+      "price_output": "$15 / 1M tokens",
+      "currency": "USD",
+      "context": "1M",
+      "free_quota": "无长期免费",
+      "source_url": "https://www.anthropic.com/pricing",
+      "last_verified": "2026-11-12"
+    },
+    {
+      "product": "Gemini 2.5 Pro",
+      "vendor": "Google",
+      "price_input": "$1.25 / 1M tokens",
+      "price_output": "$5 / 1M tokens",
+      "currency": "USD",
+      "context": "2M",
+      "free_quota": "有免费层",
+      "source_url": "https://ai.google.dev/pricing",
+      "last_verified": "2026-11-12"
+    },
+    {
+      "product": "Gemini Flash",
+      "vendor": "Google",
+      "price_input": "$0.10 / 1M tokens",
+      "price_output": "$0.40 / 1M tokens",
+      "currency": "USD",
+      "context": "1M",
+      "free_quota": "有免费层",
+      "source_url": "https://ai.google.dev/pricing",
+      "last_verified": "2026-11-12"
+    },
+    {
+      "product": "DeepSeek V4 Flash",
+      "vendor": "深度求索",
+      "price_input": "闲时 ¥1.5 / 高峰 ¥3",
+      "price_output": "闲时 ¥4.5 / 高峰 ¥9",
+      "currency": "CNY",
+      "context": "1M",
+      "free_quota": "新用户赠送额度",
+      "source_url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "last_verified": "2026-11-12",
+      "note": "2026-08-17 起峰谷定价"
+    },
+    {
+      "product": "DeepSeek V4 Pro",
+      "vendor": "深度求索",
+      "price_input": "闲时 ¥4.5 / 高峰 ¥9",
+      "price_output": "闲时 ¥13.5 / 高峰 ¥27",
+      "currency": "CNY",
+      "context": "1M",
+      "free_quota": "新用户赠送额度",
+      "source_url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "last_verified": "2026-11-12",
+      "note": "2026-08-17 起峰谷定价"
+    },
+    {
+      "product": "GLM-4-Air",
+      "vendor": "智谱 AI",
+      "price_input": "¥0.5 / 1M tokens",
+      "price_output": "¥0.5 / 1M tokens",
+      "currency": "CNY",
+      "context": "128K",
+      "free_quota": "GLM-4-Flash 免费",
+      "source_url": "https://open.bigmodel.cn/pricing",
+      "last_verified": "2026-11-12"
+    },
+    {
+      "product": "Qwen-Plus",
+      "vendor": "阿里云",
+      "price_input": "¥2 / 1M tokens",
+      "price_output": "¥6 / 1M tokens",
+      "currency": "CNY",
+      "context": "128K",
+      "free_quota": "新用户免费额度",
+      "source_url": "https://help.aliyun.com/zh/model-studio/",
+      "last_verified": "2026-11-12"
+    },
+    {
+      "product": "ERNIE-4.5",
+      "vendor": "百度",
+      "price_input": "¥4 / 1M tokens",
+      "price_output": "¥8 / 1M tokens",
+      "currency": "CNY",
+      "context": "200K",
+      "free_quota": "有免费额度",
+      "source_url": "https://cloud.baidu.com/doc/WENXINWORKSHOP/",
+      "last_verified": "2026-11-12"
+    }
+  ],
+  "image_video": [
+    { "product": "DALL·E 3", "vendor": "OpenAI", "pricing": "随 ChatGPT 订阅", "source_url": "https://openai.com/dall-e-3", "last_verified": "2026-11-12" },
+    { "product": "Midjourney", "vendor": "Midjourney", "pricing": "订阅 $10 起", "source_url": "https://www.midjourney.com/", "last_verified": "2026-11-12" },
+    { "product": "Sora", "vendor": "OpenAI", "pricing": "随 ChatGPT 订阅", "source_url": "https://openai.com/sora", "last_verified": "2026-11-12" },
+    { "product": "Veo", "vendor": "Google", "pricing": "随 AI Pro/Ultra 订阅", "source_url": "https://deepmind.google/", "last_verified": "2026-11-12" }
+  ]
+}

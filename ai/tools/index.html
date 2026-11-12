@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 工具导航 · JayDreamy AI Portal</title>
+<meta name="description" content="分类收录 AI 对话、搜索、绘图、视频、音频、写作、翻译、办公、设计、自动化、数据分析、学习等实用 AI 工具。">
+<meta name="keywords" content="AI工具,AI对话,AI绘图,AI视频,AI写作,AI翻译,AI办公,AI自动化,工具导航">
+<link rel="canonical" href="https://www.jaydreamy.com/ai/tools/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI 工具导航 · JayDreamy AI Portal">
+<meta property="og:description" content="分类收录各类实用 AI 工具，助你快速找到合适的生产力工具。">
+<meta property="og:url" content="https://www.jaydreamy.com/ai/tools/">
+<link rel="icon" type="image/svg+xml" href="/ai/assets/images/favicon.svg">
+<link rel="stylesheet" href="/ai/assets/css/portal.css">
+</head>
+<body data-page="tools">
+
+<nav class="ai-nav">
+  <div class="ai-nav-inner ai-container">
+    <a class="ai-nav-brand" href="/ai/"><span class="logo">AI</span><span>AI Portal <span class="sub">JayDreamy</span></span></a>
+    <button class="ai-nav-toggle" id="aiNavToggle" aria-label="菜单">☰</button>
+    <div class="ai-nav-links" id="aiNavLinks">
+      <a href="/ai/models/">模型</a>
+      <a href="/ai/tools/">工具</a>
+      <a href="/ai/agents/">Agent</a>
+      <a href="/ai/coding/">编程</a>
+      <a href="/ai/knowledge/">知识库</a>
+      <a href="/ai/pricing/">价格</a>
+      <a href="/ai/prompts/">提示词</a>
+      <a href="/ai/news/">资讯</a>
+      <a href="/" class="ai-nav-home">返回主站</a>
+    </div>
+  </div>
+</nav>
+
+<header class="ai-page-head ai-container">
+  <div class="crumb"><a href="/ai/">AI Portal</a> / 工具</div>
+  <h1>AI 工具导航</h1>
+  <p class="sub">按用途分类收录实用 AI 工具，涵盖对话、绘图、视频、写作、办公、自动化等场景。</p>
+</header>
+
+<main class="ai-container ai-section">
+  <div class="ai-filters" id="aiFilters">
+    <button class="ai-filter active" data-filter="all">全部</button>
+  </div>
+  <div class="ai-grid cols-3" id="toolsGrid">
+    <div class="ai-loading"><div class="spinner"></div></div>
+  </div>
+</main>
+
+<footer class="ai-footer">
+  <div class="ai-footer-bottom ai-container">
+    <span>© 2026 JayDreamy · CentLabs</span>
+    <span>工具信息以官方为准</span>
+  </div>
+</footer>
+
+<script src="/ai/assets/js/portal.js"></script>
+<script>
+window.AI_PAGE = window.AI_PAGE || {};
+window.AI_PAGE.tools = {
+  init: function () {
+    var AI = window.AI;
+    var cats = [], tools = [];
+    var urlCat = new URLSearchParams(location.search).get('cat');
+    var urlQ = new URLSearchParams(location.search).get('q');
+
+    AI.fetchJSON('/ai/data/tools.json').then(function (data) {
+      cats = data.categories || [];
+      tools = data.tools || [];
+
+      // 构建筛选按钮
+      var bar = document.getElementById('aiFilters');
+      bar.innerHTML = '<button class="ai-filter active" data-filter="all">全部</button>' +
+        cats.map(function (c) {
+          return '<button class="ai-filter" data-filter="' + c.id + '">' + c.icon + ' ' + c.name + '</button>';
+        }).join('');
+      AI.initFilters(function (f) { render(f === 'all' ? tools : tools.filter(function (t) { return t.category === f; })); });
+
+      var list = tools;
+      if (urlCat) {
+        list = tools.filter(function (t) { return t.category === urlCat; });
+        var btn = bar.querySelector('[data-filter="' + urlCat + '"]');
+        if (btn) { bar.querySelectorAll('.ai-filter').forEach(function (b) { b.classList.remove('active'); }); btn.classList.add('active'); }
+      } else if (urlQ) {
+        var kw = urlQ.toLowerCase();
+        list = tools.filter(function (t) { return (t.name + t.desc).toLowerCase().indexOf(kw) >= 0; });
+      }
+      render(list);
+    });
+
+    function render(list) {
+      AI.renderGrid('toolsGrid', list, function (t) {
+        var cat = cats.find(function (c) { return c.id === t.category; });
+        return '<div class="ai-card">' +
+          '<div class="glow"></div>' +
+          '<div class="ai-card-ico">' + (t.icon || '🛠️') + '</div>' +
+          '<h3>' + AI.esc(t.name) + (cat ? ' <span style="font-size:12px;color:var(--txt-faint);font-weight:400">' + cat.icon + ' ' + AI.esc(cat.name) + '</span>' : '') + '</h3>' +
+          '<div class="desc" style="margin-bottom:12px">' + AI.esc(t.desc || '') + '</div>' +
+          '<div class="ai-tags">' +
+          (t.features || []).slice(0, 3).map(function (f) { return '<span class="ai-tag">' + AI.esc(f) + '</span>'; }).join('') +
+          '</div>' +
+          '<div class="ai-tags" style="margin-top:8px">' +
+          '<span class="ai-tag new">' + AI.esc(t.pricing || '') + '</span>' +
+          '<a class="ai-tag hot" href="' + AI.esc(t.url) + '" target="_blank" rel="noopener">访问 ↗</a>' +
+          '</div>' +
+          '</div>';
+      });
+    }
+  }
+};
+</script>
+</body>
+</html>

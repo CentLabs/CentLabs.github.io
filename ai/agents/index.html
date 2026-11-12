@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 中心 · JayDreamy AI Portal</title>
+<meta name="description" content="收录 DroidX、Dify、n8n、LangChain、AutoGen 等 AI Agent 产品与开源项目，重点研究 DroidX 平台。">
+<meta name="keywords" content="AI Agent,智能体,DroidX,Dify,n8n,LangChain,AutoGen,Agent">
+<link rel="canonical" href="https://www.jaydreamy.com/ai/agents/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Agent 中心 · JayDreamy AI Portal">
+<meta property="og:description" content="AI Agent 产品与开源项目收录，含 DroidX 重点研究专题。">
+<meta property="og:url" content="https://www.jaydreamy.com/ai/agents/">
+<link rel="icon" type="image/svg+xml" href="/ai/assets/images/favicon.svg">
+<link rel="stylesheet" href="/ai/assets/css/portal.css">
+</head>
+<body data-page="agents">
+
+<nav class="ai-nav">
+  <div class="ai-nav-inner ai-container">
+    <a class="ai-nav-brand" href="/ai/"><span class="logo">AI</span><span>AI Portal <span class="sub">JayDreamy</span></span></a>
+    <button class="ai-nav-toggle" id="aiNavToggle" aria-label="菜单">☰</button>
+    <div class="ai-nav-links" id="aiNavLinks">
+      <a href="/ai/models/">模型</a>
+      <a href="/ai/tools/">工具</a>
+      <a href="/ai/agents/">Agent</a>
+      <a href="/ai/coding/">编程</a>
+      <a href="/ai/knowledge/">知识库</a>
+      <a href="/ai/pricing/">价格</a>
+      <a href="/ai/prompts/">提示词</a>
+      <a href="/ai/news/">资讯</a>
+      <a href="/" class="ai-nav-home">返回主站</a>
+    </div>
+  </div>
+</nav>
+
+<header class="ai-page-head ai-container">
+  <div class="crumb"><a href="/ai/">AI Portal</a> / Agent</div>
+  <h1>AI Agent 中心</h1>
+  <p class="sub">收录值得关注的 AI Agent 产品与开源项目。其中 DroidX 为本期重点研究专题，详见知识库。</p>
+</header>
+
+<main class="ai-container ai-section">
+  <div class="ai-grid cols-2" id="agentsGrid">
+    <div class="ai-loading"><div class="spinner"></div></div>
+  </div>
+</main>
+
+<footer class="ai-footer">
+  <div class="ai-footer-bottom ai-container">
+    <span>© 2026 JayDreamy · CentLabs</span>
+    <span>仅采集公开可访问信息</span>
+  </div>
+</footer>
+
+<script src="/ai/assets/js/portal.js"></script>
+<script>
+window.AI_PAGE = window.AI_PAGE || {};
+window.AI_PAGE.agents = {
+  init: function () {
+    var AI = window.AI;
+    AI.fetchJSON('/ai/data/agents.json').then(function (data) {
+      var list = data.agents || [];
+      AI.renderGrid('agentsGrid', list, function (a) {
+        return '<div class="ai-card ai-module" style="align-items:flex-start;cursor:pointer" onclick="location.href=\'' + AI.esc(a.url) + '\'">' +
+          '<div class="ai-card-ico" style="flex-shrink:0">' + (a.icon || '🤖') + '</div>' +
+          '<div style="flex:1">' +
+          '<h3>' + AI.esc(a.name) + ' <span style="font-size:12px;color:var(--txt-faint);font-weight:400">' + AI.esc(a.vendor || '') + '</span></h3>' +
+          '<div class="ai-tags" style="margin-top:6px"><span class="ai-tag hot">' + AI.esc(a.type || '') + '</span></div>' +
+          '<div class="desc" style="margin-top:10px">' + AI.esc(a.desc || '') + '</div>' +
+          '<div class="ai-tags" style="margin-top:10px">' +
+          (a.features || []).slice(0, 4).map(function (f) { return '<span class="ai-tag">' + AI.esc(f) + '</span>'; }).join('') +
+          '</div>' +
+          '<div class="ai-tags" style="margin-top:10px">' +
+          '<span class="ai-tag new">' + AI.esc(a.pricing || '') + '</span>' +
+          (a.note ? '<a class="ai-tag hot" href="/ai/knowledge/">' + AI.esc(a.note) + ' →</a>' : '') +
+          '</div>' +
+          '</div>' +
+          '<span class="arrow" style="margin-top:6px">↗</span>' +
+          '</div>';
+      });
+    });
+  }
+};
+</script>
+</body>
+</html>

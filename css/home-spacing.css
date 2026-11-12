@@ -1,0 +1,20 @@
+/* 首页文章卡片留白微调 —— 独立文件，零改动主题 CSS
+   ------------------------------------------------------------
+   主题默认（桌面）：卡片之间 margin-top: 20px；
+                     卡片文字区 padding: 0 40px（上下为 0，文字贴边）。
+   本文件把卡片间距调到 32px、文字区上下各补 20px，恢复更宽松的观感。
+   只在 >= 769px 生效；手机端仍使用主题自带的 20px / 30px padding。
+
+   撤销方式：删除本文件，并移除 _config.butterfly.yml 中 inject.head 的那一行，
+   重新 hexo generate 即完全还原。themes/butterfly/ 与 css/index.css 从未被修改。
+*/
+@media screen and (min-width: 769px) {
+  #recent-posts > .recent-post-item:not(:first-child) {
+    margin-top: 32px;
+  }
+
+  #recent-posts > .recent-post-item > .recent-post-info {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}

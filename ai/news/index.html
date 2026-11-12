@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 资讯 · JayDreamy AI Portal</title>
+<meta name="description" content="追踪 AI 行业动态：新模型发布、产品更新、价格调整、API 更新、开源项目与重要技术进展。">
+<meta name="keywords" content="AI资讯,AI新闻,AI动态,大模型发布,AI行业">
+<link rel="canonical" href="https://www.jaydreamy.com/ai/news/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI 资讯 · JayDreamy AI Portal">
+<meta property="og:description" content="追踪 AI 行业动态与最新进展。">
+<meta property="og:url" content="https://www.jaydreamy.com/ai/news/">
+<link rel="icon" type="image/svg+xml" href="/ai/assets/images/favicon.svg">
+<link rel="stylesheet" href="/ai/assets/css/portal.css">
+</head>
+<body data-page="news">
+
+<nav class="ai-nav">
+  <div class="ai-nav-inner ai-container">
+    <a class="ai-nav-brand" href="/ai/"><span class="logo">AI</span><span>AI Portal <span class="sub">JayDreamy</span></span></a>
+    <button class="ai-nav-toggle" id="aiNavToggle" aria-label="菜单">☰</button>
+    <div class="ai-nav-links" id="aiNavLinks">
+      <a href="/ai/models/">模型</a>
+      <a href="/ai/tools/">工具</a>
+      <a href="/ai/agents/">Agent</a>
+      <a href="/ai/coding/">编程</a>
+      <a href="/ai/knowledge/">知识库</a>
+      <a href="/ai/pricing/">价格</a>
+      <a href="/ai/prompts/">提示词</a>
+      <a href="/ai/news/">资讯</a>
+      <a href="/" class="ai-nav-home">返回主站</a>
+    </div>
+  </div>
+</nav>
+
+<header class="ai-page-head ai-container">
+  <div class="crumb"><a href="/ai/">AI Portal</a> / 资讯</div>
+  <h1>AI 资讯</h1>
+  <p class="sub">追踪 AI 行业动态，每条资讯标注发生日期、来源与核实日期。</p>
+</header>
+
+<main class="ai-container ai-section">
+  <div class="ai-card" id="newsList" style="padding:0">
+    <div class="ai-loading"><div class="spinner"></div></div>
+  </div>
+</main>
+
+<footer class="ai-footer">
+  <div class="ai-footer-bottom ai-container">
+    <span>© 2026 JayDreamy · CentLabs</span>
+    <span>资讯来源以官方为准</span>
+  </div>
+</footer>
+
+<script src="/ai/assets/js/portal.js"></script>
+<script>
+window.AI_PAGE = window.AI_PAGE || {};
+window.AI_PAGE.news = {
+  init: function () {
+    var AI = window.AI;
+    AI.fetchJSON('/ai/data/news.json').then(function (data) {
+      var list = (data.news || []).sort(function (a, b) { return String(b.date).localeCompare(String(a.date)); });
+      AI.renderGrid('newsList', list, function (n) {
+        var d = String(n.date || '');
+        var parts = d.split('-');
+        return '<div class="ai-news-item">' +
+          '<div class="ai-news-date"><div class="d">' + (parts[2] || '') + '</div><div class="m">' + ((parts[0] || '') + '-' + (parts[1] || '')) + '</div></div>' +
+          '<div class="ai-news-body">' +
+          '<h3>' + AI.esc(n.title) + '</h3>' +
+          '<div class="desc" style="font-size:13.5px;color:var(--txt-dim);margin:6px 0">' + AI.esc(n.summary || '') + '</div>' +
+          '<div class="meta">来源：<span class="src">' + AI.esc(n.source || '') + '</span> · 分类：' + AI.esc(n.category || '') + ' · 核实：' + AI.esc(n.verified_date || '') + '</div>' +
+          (n.url ? '<a class="ai-tag hot" style="margin-top:8px;display:inline-block" href="' + AI.esc(n.url) + '" target="_blank" rel="noopener">来源链接 ↗</a>' : '') +
+          '</div></div>';
+      });
+    });
+  }
+};
+</script>
+</body>
+</html>

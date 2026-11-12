@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DroidX 平台深度研究 · JayDreamy AI 知识库</title>
+<meta name="description" content="DroidX 平台（卓壹AI / DROIDX LIMITED）公开资料深度研究：平台定位、模型接入、功能特性、使用方式、价格与产品分析。">
+<meta name="keywords" content="DroidX,卓壹AI,DROIDX,AI聚合平台,Agent,大模型聚合">
+<link rel="canonical" href="https://www.jaydreamy.com/ai/knowledge/droidx/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DroidX 平台深度研究 · JayDreamy AI 知识库">
+<meta property="og:description" content="DroidX 平台公开资料深度研究专题。">
+<meta property="og:url" content="https://www.jaydreamy.com/ai/knowledge/droidx/">
+<link rel="icon" type="image/svg+xml" href="/ai/assets/images/favicon.svg">
+<link rel="stylesheet" href="/ai/assets/css/portal.css">
+<style>
+  .doc-content { max-width: 820px; }
+  .doc-content h2 { font-size: 22px; margin: 34px 0 14px; padding-left: 14px; border-left: 3px solid var(--electric); }
+  .doc-content h3 { font-size: 18px; margin: 26px 0 10px; color: #fff; }
+  .doc-content p { color: var(--txt-dim); margin-bottom: 14px; font-size: 15px; }
+  .doc-content ul { margin: 0 0 14px 22px; color: var(--txt-dim); }
+  .doc-content li { margin-bottom: 6px; font-size: 15px; }
+  .doc-content a { color: var(--electric-bright); }
+  .doc-content table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+  .doc-content th, .doc-content td { border: 1px solid var(--line); padding: 10px 12px; font-size: 14px; text-align: left; }
+  .doc-content th { background: rgba(22,34,58,.5); color: var(--txt-dim); }
+  .doc-content blockquote { border-left: 3px solid var(--violet); padding: 10px 16px; margin: 14px 0; background: rgba(123,92,255,.08); border-radius: 0 10px 10px 0; color: var(--txt-dim); font-size: 14px; }
+  .doc-meta-box { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+  .doc-meta-box .meta-item { padding: 8px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--grad-soft); font-size: 13px; color: var(--txt-dim); }
+</style>
+</head>
+<body data-page="doc">
+
+<nav class="ai-nav">
+  <div class="ai-nav-inner ai-container">
+    <a class="ai-nav-brand" href="/ai/"><span class="logo">AI</span><span>AI Portal <span class="sub">JayDreamy</span></span></a>
+    <button class="ai-nav-toggle" id="aiNavToggle" aria-label="菜单">☰</button>
+    <div class="ai-nav-links" id="aiNavLinks">
+      <a href="/ai/models/">模型</a>
+      <a href="/ai/tools/">工具</a>
+      <a href="/ai/agents/">Agent</a>
+      <a href="/ai/coding/">编程</a>
+      <a href="/ai/knowledge/">知识库</a>
+      <a href="/ai/pricing/">价格</a>
+      <a href="/ai/prompts/">提示词</a>
+      <a href="/ai/news/">资讯</a>
+      <a href="/" class="ai-nav-home">返回主站</a>
+    </div>
+  </div>
+</nav>
+
+<header class="ai-page-head ai-container">
+  <div class="crumb"><a href="/ai/">AI Portal</a> / <a href="/ai/knowledge/">知识库</a> / DroidX</div>
+  <h1>DroidX 平台深度研究</h1>
+  <p class="sub">基于公开资料对 DroidX 平台（droidx.cn 与 droidx.ai）的研究总结，仅采集公开可访问信息，不绕过登录、验证码或付费墙。</p>
+  <div class="doc-meta-box">
+    <span class="meta-item">分类：Agent 专题</span>
+    <span class="meta-item">状态：已核实</span>
+    <span class="meta-item">最后核实：2026-11-12</span>
+  </div>
+</header>
+
+<main class="ai-container ai-section doc-content">
+  <blockquote>重要说明：名为「DroidX」的实体存在两个公开站点，功能定位相近但运营主体不同，本专题分别记录并区分，避免混淆。</blockquote>
+
+  <h2>一、平台概览</h2>
+  <p>DroidX 是一类「AI 聚合平台」（AI All In One），核心理念是把全球多个顶尖大模型整合到一个账号下，让用户按任务自由切换模型，而无需分别订阅多个服务。市场上存在两个主要公开站点：</p>
+  <table>
+    <thead><tr><th>项目</th><th>droidx.cn（卓壹AI）</th><th>droidx.ai（DROIDX LIMITED）</th></tr></thead>
+    <tbody>
+      <tr><td>品牌名</td><td>DroidX 卓壹</td><td>DroidX AI</td></tr>
+      <tr><td>运营主体</td><td>卓壹AI（中文平台）</td><td>DROIDX LIMITED（香港，2025年1月注册）</td></tr>
+      <tr><td>定位</td><td>一站式使用全球顶尖 AI 大模型</td><td>AI 工作台，100+ 模型、10 家厂商</td></tr>
+      <tr><td>主要模型</td><td>DeepSeek、Gemini、Claude、Grok、豆包等</td><td>ChatGPT、Claude、Gemini、Grok、DeepSeek、Kimi、Qwen 等</td></tr>
+      <tr><td>支持终端</td><td>网页端为主</td><td>网页 + Windows/macOS 桌面应用</td></tr>
+      <tr><td>界面语言</td><td>中文</td><td>英文、简体中文、繁体中文</td></tr>
+    </tbody>
+  </table>
+
+  <h2>二、核心功能（droidx.cn 卓壹AI）</h2>
+  <p>中文平台 droidx.cn 的功能模块包括：</p>
+  <ul>
+    <li><strong>AI 对话</strong>：聚合多个大模型，用户可自由切换底层模型进行对话。</li>
+    <li><strong>AI 搜索</strong>：智能搜索，结合实时信息。</li>
+    <li><strong>AI 绘画</strong>：图像生成能力。</li>
+    <li><strong>AI 写作</strong>：辅助写作工具。</li>
+    <li><strong>AI 阅读</strong>：文档阅读与解析。</li>
+    <li><strong>文档编辑器</strong>：集成文档编辑能力。</li>
+    <li><strong>我的智能体 / 全部智能体</strong>：支持创建和使用 AI 智能体（Agent）。</li>
+  </ul>
+  <p>据公开宣传，平台近期上线了 Gemini 2.5 Flash 模型，支持最长 45 分钟视频分析并展示推理过程，会员可无限制使用。</p>
+
+  <h2>三、核心功能（droidx.ai）</h2>
+  <p>英文平台 droidx.ai 定位为「AI 工作台」，其公开介绍强调的参数控制与多场景能力：</p>
+  <ul>
+    <li><strong>多模型选择</strong>：100+ 模型、10 家厂商，一个账号，可在对话中途切换模型且保留上下文。</li>
+    <li><strong>参数控制</strong>：可自定义系统提示词（System prompt）、思考层级（Thinking level）、最大输出 token、记忆策略等——这些是多数产品隐藏的「旋钮」。</li>
+    <li><strong>带来源的联网搜索</strong>：搜索结果附来源链接，便于核实。</li>
+    <li><strong>文档阅读</strong>：上传 PDF、论文、合同，在同一线程内提问、改写、翻译。</li>
+    <li><strong>长文写作</strong>：在聊天旁的独立编辑器中写作，可逐段调整长度、降低阅读年龄、翻译等。</li>
+    <li><strong>图像生成</strong>：海报、产品图、Logo 等视觉资产。</li>
+  </ul>
+
+  <h2>四、技术架构线索</h2>
+  <p>根据公开资料，可归纳出以下架构特征（均为官方公开说明的推断，非逆向工程）：</p>
+  <ul>
+    <li><strong>模型接入方式</strong>：通过各厂商官方 API 统一接入，平台自身与各模型厂商无隶属关系。</li>
+    <li><strong>统一接口层</strong>：以单一账号和统一接口消除模型切换的割裂感，支持按任务智能匹配模型。</li>
+    <li><strong>Agent 能力</strong>：中文平台提供「无代码智能体构建」，用户可配置提示词、知识库、工具插件来创建专属 Agent。</li>
+    <li><strong>记忆策略</strong>：droidx.ai 提及「FullSmart 记忆策略」，属于对话记忆管理能力。</li>
+    <li><strong>多端同步</strong>：网页与桌面应用共享同一账号与对话历史。</li>
+  </ul>
+
+  <h2>五、价格与限制</h2>
+  <p>两个平台均提供免费试用（droidx.ai 明确「无需信用卡即可试用」），付费计划面向重度使用。具体价格需查看各平台官方定价页。中文平台会员制，宣传「会员可无限制使用」；英文平台表示「价格页有详细说明」。</p>
+  <blockquote>提示：具体订阅价格、免费额度与限制会随时间变化，请以官方定价页为准。本站定价页会持续跟踪更新。</blockquote>
+
+  <h2>六、产品界面与体验分析</h2>
+  <ul>
+    <li><strong>优势</strong>：多模型聚合降低「一次订阅锁定单一生态」的成本；按任务选择模型是核心差异化；参数控制满足专业用户需求。</li>
+    <li><strong>需关注</strong>：聚合平台依赖上游厂商 API 的稳定性与授权合规；「无限制使用」的实际额度需以官方说明为准；两个同名平台需注意区分以免混淆。</li>
+  </ul>
+
+  <h2>七、参考来源</h2>
+  <ul>
+    <li>DroidX 卓壹中文官网：<a href="https://droidx.cn" target="_blank" rel="noopener">https://droidx.cn</a></li>
+    <li>DroidX AI 英文官网：<a href="https://droidx.ai" target="_blank" rel="noopener">https://droidx.ai</a></li>
+    <li>DroidX AI 关于页：<a href="https://droidx.ai/about" target="_blank" rel="noopener">https://droidx.ai/about</a></li>
+    <li>第三方平台收录（PROMPT 站）：<a href="https://prompt.cn/sites/10045.html" target="_blank" rel="noopener">DroidX 比特矩阵</a></li>
+  </ul>
+
+  <div class="doc-meta-box" style="margin-top:30px">
+    <span class="meta-item">关键词：DroidX、卓壹AI、DROIDX LIMITED、AI聚合、Agent</span>
+    <span class="meta-item">最后核实：2026-11-12</span>
+  </div>
+</main>
+
+<footer class="ai-footer">
+  <div class="ai-footer-bottom ai-container">
+    <span>© 2026 JayDreamy · CentLabs</span>
+    <span>本文仅基于公开信息，仅供参考</span>
+  </div>
+</footer>
+
+<script src="/ai/assets/js/portal.js"></script>
+</body>
+</html>

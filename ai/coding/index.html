@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 编程中心 · JayDreamy AI Portal</title>
+<meta name="description" content="收录 GitHub Copilot、Codex、Claude Code、Cursor、Windsurf、WorkBuddy、Cline、Continue 等 AI 编程助手与 Agent。">
+<meta name="keywords" content="AI编程,代码助手,Copilot,Codex,Claude Code,Cursor,Windsurf,Cline,Continue">
+<link rel="canonical" href="https://www.jaydreamy.com/ai/coding/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI 编程中心 · JayDreamy AI Portal">
+<meta property="og:description" content="AI 编程助手与 Agent 收录，功能、模型、集成与价格对比。">
+<meta property="og:url" content="https://www.jaydreamy.com/ai/coding/">
+<link rel="icon" type="image/svg+xml" href="/ai/assets/images/favicon.svg">
+<link rel="stylesheet" href="/ai/assets/css/portal.css">
+</head>
+<body data-page="coding">
+
+<nav class="ai-nav">
+  <div class="ai-nav-inner ai-container">
+    <a class="ai-nav-brand" href="/ai/"><span class="logo">AI</span><span>AI Portal <span class="sub">JayDreamy</span></span></a>
+    <button class="ai-nav-toggle" id="aiNavToggle" aria-label="菜单">☰</button>
+    <div class="ai-nav-links" id="aiNavLinks">
+      <a href="/ai/models/">模型</a>
+      <a href="/ai/tools/">工具</a>
+      <a href="/ai/agents/">Agent</a>
+      <a href="/ai/coding/">编程</a>
+      <a href="/ai/knowledge/">知识库</a>
+      <a href="/ai/pricing/">价格</a>
+      <a href="/ai/prompts/">提示词</a>
+      <a href="/ai/news/">资讯</a>
+      <a href="/" class="ai-nav-home">返回主站</a>
+    </div>
+  </div>
+</nav>
+
+<header class="ai-page-head ai-container">
+  <div class="crumb"><a href="/ai/">AI Portal</a> / 编程</div>
+  <h1>AI 编程中心</h1>
+  <p class="sub">收录主流 AI 编程助手与 Agent，涵盖 IDE 插件、独立编辑器与终端工具。</p>
+</header>
+
+<main class="ai-container ai-section">
+  <div class="ai-table-wrap">
+    <table class="ai-table">
+      <thead>
+        <tr>
+          <th>工具</th><th>厂商</th><th>支持模型</th><th>集成方式</th><th>Agent 能力</th><th>价格</th>
+        </tr>
+      </thead>
+      <tbody id="codingTable">
+        <tr><td colspan="6"><div class="ai-loading"><div class="spinner"></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section class="ai-section">
+    <h2 class="ai-section-title" style="margin-bottom:16px"><span class="ico">💡</span>工具详情</h2>
+    <div class="ai-grid cols-3" id="codingCards"></div>
+  </section>
+</main>
+
+<footer class="ai-footer">
+  <div class="ai-footer-bottom ai-container">
+    <span>© 2026 JayDreamy · CentLabs</span>
+    <span>价格与功能以官方为准</span>
+  </div>
+</footer>
+
+<script src="/ai/assets/js/portal.js"></script>
+<script>
+window.AI_PAGE = window.AI_PAGE || {};
+window.AI_PAGE.coding = {
+  init: function () {
+    var AI = window.AI;
+    var urlQ = new URLSearchParams(location.search).get('q');
+    AI.fetchJSON('/ai/data/coding.json').then(function (data) {
+      var list = data.coding || [];
+      if (urlQ) {
+        var kw = urlQ.toLowerCase();
+        list = list.filter(function (t) { return (t.name + t.desc).toLowerCase().indexOf(kw) >= 0; });
+      }
+      // 表格
+      var tb = document.getElementById('codingTable');
+      tb.innerHTML = list.map(function (t) {
+        return '<tr>' +
+          '<td class="name-cell">' + (t.icon || '💻') + ' ' + AI.esc(t.name) + '</td>' +
+          '<td class="vendor">' + AI.esc(t.vendor) + '</td>' +
+          '<td>' + AI.esc(t.models || '') + '</td>' +
+          '<td>' + AI.esc(t.ide || '') + '</td>' +
+          '<td>' + AI.esc(t.features ? t.features.join('、') : '') + '</td>' +
+          '<td class="price">' + AI.esc(t.pricing || '') + '</td>' +
+          '</tr>';
+      }).join('');
+
+      // 详情卡
+      AI.renderGrid('codingCards', list, function (t) {
+        return '<div class="ai-card">' +
+          '<div class="glow"></div>' +
+          '<div class="ai-card-ico">' + (t.icon || '💻') + '</div>' +
+          '<h3>' + AI.esc(t.name) + '</h3>' +
+          '<div class="desc" style="margin-bottom:12px">' + AI.esc(t.desc || '') + '</div>' +
+          '<div class="ai-tags">' +
+          (t.features || []).slice(0, 3).map(function (f) { return '<span class="ai-tag">' + AI.esc(f) + '</span>'; }).join('') +
+          '</div>' +
+          '<div class="ai-tags" style="margin-top:8px">' +
+          '<span class="ai-tag new">' + AI.esc(t.pricing || '') + '</span>' +
+          '<a class="ai-tag hot" href="' + AI.esc(t.url) + '" target="_blank" rel="noopener">访问 ↗</a>' +
+          '</div>' +
+          '</div>';
+      });
+    });
+  }
+};
+</script>
+</body>
+</html>

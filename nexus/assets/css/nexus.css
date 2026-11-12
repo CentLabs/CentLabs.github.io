@@ -1,0 +1,882 @@
+/* ==========================================================================
+   NEXUS — JayDreamy digital resource portal
+   Modern overlay for the recovered WebStack / Xenon markup.
+   The original HTML structure, categories, links and scripts are untouched;
+   this stylesheet only re-skins them and adds the new NEXUS brand layer.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Theme tokens
+   -------------------------------------------------------------------------- */
+:root {
+  --nx-bg: #f4f6fb;
+  --nx-bg-soft: #e9eef9;
+  --nx-surface: #ffffff;
+  --nx-surface-2: #f7f9fd;
+  --nx-text: #17203a;
+  --nx-text-soft: #52618a;
+  --nx-muted: #7b88a6;
+  --nx-border: rgba(28, 48, 92, .10);
+  --nx-border-strong: rgba(28, 48, 92, .18);
+  --nx-accent: #3b6cf6;
+  --nx-accent-2: #7c5cff;
+  --nx-accent-soft: rgba(59, 108, 246, .10);
+  --nx-sidebar: #111a2e;
+  --nx-sidebar-2: #0d1526;
+  --nx-sidebar-text: #c9d4ec;
+  --nx-sidebar-line: rgba(255, 255, 255, .08);
+  --nx-shadow: 0 10px 30px rgba(20, 40, 90, .07);
+  --nx-shadow-hover: 0 18px 44px rgba(30, 60, 130, .15);
+  --nx-input: #ffffff;
+  --nx-logo-bg: #ffffff;
+  --nx-hero: linear-gradient(118deg, #101a35 0%, #1b2b58 46%, #3a2f76 100%);
+  --nx-hero-text: #ffffff;
+  --nx-hero-sub: rgba(255, 255, 255, .72);
+}
+
+html[data-nexus-theme="dark"] {
+  --nx-bg: #080d1a;
+  --nx-bg-soft: #0d1428;
+  --nx-surface: #121b30;
+  --nx-surface-2: #17223a;
+  --nx-text: #e9effc;
+  --nx-text-soft: #aab8d8;
+  --nx-muted: #8493b5;
+  --nx-border: rgba(255, 255, 255, .09);
+  --nx-border-strong: rgba(255, 255, 255, .17);
+  --nx-accent: #7aa2ff;
+  --nx-accent-2: #b18bff;
+  --nx-accent-soft: rgba(122, 162, 255, .14);
+  --nx-sidebar: #070b16;
+  --nx-sidebar-2: #050912;
+  --nx-sidebar-text: #c3cfe8;
+  --nx-sidebar-line: rgba(255, 255, 255, .07);
+  --nx-shadow: 0 10px 30px rgba(0, 0, 0, .26);
+  --nx-shadow-hover: 0 18px 44px rgba(0, 0, 0, .42);
+  --nx-input: #0e172c;
+  --nx-logo-bg: #ffffff;
+  --nx-hero: linear-gradient(118deg, #070d1e 0%, #142145 48%, #2a1f55 100%);
+  --nx-hero-text: #ffffff;
+  --nx-hero-sub: rgba(255, 255, 255, .70);
+  color-scheme: dark;
+}
+
+/* No-JS fallback: follow the OS preference. */
+@media (prefers-color-scheme: dark) {
+  html:not([data-nexus-theme]) {
+    --nx-bg: #080d1a;
+    --nx-surface: #121b30;
+    --nx-surface-2: #17223a;
+    --nx-text: #e9effc;
+    --nx-text-soft: #aab8d8;
+    --nx-muted: #8493b5;
+    --nx-border: rgba(255, 255, 255, .09);
+    --nx-accent: #7aa2ff;
+    --nx-accent-2: #b18bff;
+    --nx-accent-soft: rgba(122, 162, 255, .14);
+    --nx-sidebar: #070b16;
+    --nx-input: #0e172c;
+    --nx-hero: linear-gradient(118deg, #070d1e 0%, #142145 48%, #2a1f55 100%);
+    color-scheme: dark;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Base surfaces
+   -------------------------------------------------------------------------- */
+html body.nexus-page {
+  background: var(--nx-bg);
+  color: var(--nx-text);
+  font-family: "Arimo", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body.nexus-page .page-container,
+body.nexus-page .page-container .main-content {
+  background: var(--nx-bg);
+}
+body.nexus-page .page-container .main-content {
+  padding: 30px 34px 0;
+}
+body.nexus-page a,
+body.nexus-page h1, body.nexus-page h2, body.nexus-page h3,
+body.nexus-page h4, body.nexus-page h5 {
+  color: inherit;
+}
+body.nexus-page h4.text-gray,
+body.nexus-page .text-gray {
+  color: var(--nx-text) !important;
+}
+body.nexus-page ::selection {
+  background: var(--nx-accent-soft);
+  color: var(--nx-text);
+}
+
+/* --------------------------------------------------------------------------
+   3. Sidebar (original dark rail, refined)
+   -------------------------------------------------------------------------- */
+body.nexus-page .sidebar-menu {
+  background: var(--nx-sidebar);
+}
+body.nexus-page .sidebar-menu .sidebar-menu-inner {
+  background: var(--nx-sidebar);
+}
+body.nexus-page .sidebar-menu .logo-env {
+  border-bottom: 1px solid var(--nx-sidebar-line);
+  padding: 22px 26px;
+}
+body.nexus-page .sidebar-menu .main-menu {
+  padding-left: 22px;
+  padding-right: 22px;
+}
+body.nexus-page .sidebar-menu .main-menu a {
+  color: var(--nx-sidebar-text);
+  border-bottom-color: var(--nx-sidebar-line);
+  border-radius: 8px;
+  transition: color .2s ease, background .2s ease, padding .2s ease;
+}
+body.nexus-page .sidebar-menu .main-menu a:hover,
+body.nexus-page .sidebar-menu .main-menu li.active > a {
+  color: #fff;
+  background: rgba(122, 162, 255, .12);
+  padding-left: 12px;
+}
+body.nexus-page .sidebar-menu .main-menu ul a {
+  border-bottom: 0;
+}
+body.nexus-page .sidebar-menu .main-menu a > i {
+  color: var(--nx-accent);
+}
+body.nexus-page .sidebar-menu .mobile-menu-toggle a {
+  color: var(--nx-sidebar-text) !important;
+}
+body.nexus-page .sidebar-menu .label-pink {
+  background: linear-gradient(120deg, var(--nx-accent), var(--nx-accent-2));
+  border-radius: 999px;
+}
+
+/* Brand block inside the original sidebar logo slot */
+.nx-side-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+.nx-side-logo__mark {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--nx-accent), var(--nx-accent-2));
+  color: #fff;
+  font-size: 19px;
+  line-height: 1;
+  box-shadow: 0 6px 18px rgba(59, 108, 246, .28);
+}
+.nx-side-logo__text { display: flex; flex-direction: column; line-height: 1.25; }
+.nx-side-logo__text strong {
+  color: #fff;
+  font-size: 20px;
+  letter-spacing: .22em;
+  font-weight: 700;
+}
+.nx-side-logo__text small {
+  color: rgba(255, 255, 255, .55);
+  font-size: 11px;
+  letter-spacing: .04em;
+  margin-top: 3px;
+}
+body.nexus-page .sidebar-menu .logo-env .logo .logo-collapsed img {
+  border-radius: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Hero / brand
+   -------------------------------------------------------------------------- */
+.nx-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--nx-hero);
+  color: var(--nx-hero-text);
+  padding: 38px 40px 34px;
+  box-shadow: var(--nx-shadow);
+  isolation: isolate;
+}
+.nx-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(520px 260px at 88% -10%, rgba(124, 92, 255, .34), transparent 70%),
+    radial-gradient(460px 240px at 8% 110%, rgba(59, 108, 246, .26), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+.nx-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .045) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, .5), transparent 75%);
+  pointer-events: none;
+  z-index: -1;
+}
+.nx-hero__inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.nx-brand { display: flex; align-items: center; gap: 22px; }
+.nx-brand__glyph {
+  flex: 0 0 76px;
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .16);
+}
+.nx-brand__glyph svg { width: 48px; height: 48px; }
+.nx-brand__eyebrow {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .55);
+  margin-bottom: 6px;
+}
+.nx-brand__title {
+  margin: 0;
+  font-size: clamp(38px, 6vw, 62px);
+  line-height: 1.02;
+  letter-spacing: .16em;
+  font-weight: 700;
+  background: linear-gradient(96deg, #ffffff 12%, #a9c4ff 60%, #cbb4ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.nx-brand__sub {
+  margin: 7px 0 0;
+  font-size: 16px;
+  letter-spacing: .10em;
+  color: rgba(255, 255, 255, .88);
+}
+.nx-brand__tag {
+  margin: 12px 0 0;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--nx-hero-sub);
+}
+.nx-brand__tag span { color: #9db8ff; padding: 0 4px; }
+.nx-hero__side { text-align: right; min-width: 220px; }
+.nx-hero__stats {
+  font-size: 12px;
+  letter-spacing: .06em;
+  color: var(--nx-hero-sub);
+  margin-bottom: 14px;
+}
+.nx-hero__stats b { color: #fff; font-size: 15px; }
+.nx-hero__actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.nx-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 15px;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, .20);
+  background: rgba(255, 255, 255, .09);
+  color: #fff !important;
+  font-size: 12.5px;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+  font-family: inherit;
+}
+.nx-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, .18);
+  border-color: rgba(255, 255, 255, .38);
+}
+.nx-btn--icon { width: 38px; justify-content: center; padding: 9px 0; font-size: 16px; }
+.nx-btn--primary {
+  background: linear-gradient(120deg, var(--nx-accent), var(--nx-accent-2));
+  border-color: transparent;
+}
+#nx-menu-toggle { display: none; }
+.nx-top-tagline {
+  display: inline-flex;
+  align-items: center;
+  color: var(--nx-text-soft) !important;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  padding: 0 18px !important;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   5. Future-facing portal matrix (additive; all original categories preserved)
+   -------------------------------------------------------------------------- */
+.nx-portals { margin: 26px 0 0; }
+.nx-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.nx-section-head h2 {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: .02em;
+  font-weight: 700;
+}
+.nx-section-head h2::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 17px;
+  border-radius: 3px;
+  background: linear-gradient(var(--nx-accent), var(--nx-accent-2));
+  margin-right: 10px;
+  vertical-align: -2px;
+}
+.nx-section-head p { margin: 0; font-size: 12px; color: var(--nx-muted); }
+.nx-portals__grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+.nx-portal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 168px;
+  padding: 17px 16px 15px;
+  border: 1px solid var(--nx-border);
+  border-radius: 18px;
+  background: var(--nx-surface);
+  box-shadow: var(--nx-shadow);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  overflow: hidden;
+}
+.nx-portal::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nx-accent), var(--nx-accent-2));
+  opacity: .85;
+}
+.nx-portal:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--nx-shadow-hover);
+  border-color: var(--nx-border-strong);
+}
+.nx-portal__top { display: flex; align-items: center; justify-content: space-between; }
+.nx-portal__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: var(--nx-accent-soft);
+  color: var(--nx-accent);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .03em;
+}
+.nx-portal__no { font-size: 11px; letter-spacing: .18em; color: var(--nx-muted); }
+.nx-portal h3 {
+  margin: 14px 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+.nx-portal > p { margin: 0 0 12px; font-size: 11.5px; color: var(--nx-muted); line-height: 1.5; }
+.nx-portal__links { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; }
+.nx-portal__links a {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 7px;
+  background: var(--nx-surface-2);
+  border: 1px solid var(--nx-border);
+  color: var(--nx-text-soft) !important;
+  font-size: 11px;
+  text-decoration: none !important;
+  transition: background .2s ease, color .2s ease;
+}
+.nx-portal__links a:hover { background: var(--nx-accent-soft); color: var(--nx-accent) !important; }
+
+/* --------------------------------------------------------------------------
+   6. In-site filter + original category quick links
+   -------------------------------------------------------------------------- */
+.nx-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 22px 0 10px;
+  padding: 12px 16px;
+  border: 1px solid var(--nx-border);
+  border-radius: 16px;
+  background: var(--nx-surface);
+  box-shadow: var(--nx-shadow);
+}
+.nx-filter {
+  display: flex;
+  align-items: center;
+  flex: 1 1 320px;
+  min-width: 220px;
+  gap: 9px;
+  padding: 0 12px;
+  border-radius: 11px;
+  border: 1px solid var(--nx-border);
+  background: var(--nx-input);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.nx-filter:focus-within {
+  border-color: var(--nx-accent);
+  box-shadow: 0 0 0 3px var(--nx-accent-soft);
+}
+.nx-filter svg { width: 16px; height: 16px; flex: 0 0 16px; color: var(--nx-muted); }
+.nx-filter input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--nx-text);
+  font-size: 13px;
+  height: 40px;
+  font-family: inherit;
+  min-width: 0;
+}
+.nx-filter input::placeholder { color: var(--nx-muted); }
+.nx-filter button {
+  border: 0;
+  background: transparent;
+  color: var(--nx-muted);
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px;
+  display: none;
+}
+.nx-filter button.nx-visible { display: block; }
+.nx-toolbar__meta { font-size: 12px; color: var(--nx-muted); white-space: nowrap; }
+.nx-chips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--nx-border-strong) transparent;
+}
+.nx-chips::-webkit-scrollbar { height: 5px; }
+.nx-chips::-webkit-scrollbar-thumb { background: var(--nx-border-strong); border-radius: 9px; }
+.nx-chips__label {
+  flex: 0 0 auto;
+  font-size: 11px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: var(--nx-muted);
+  padding-right: 6px;
+}
+.nx-chips a {
+  flex: 0 0 auto;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--nx-border);
+  background: var(--nx-surface);
+  color: var(--nx-text-soft);
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.nx-chips a:hover,
+.nx-chips a.nx-active {
+  background: var(--nx-accent-soft);
+  border-color: var(--nx-accent);
+  color: var(--nx-accent);
+}
+
+/* --------------------------------------------------------------------------
+   7. Original top navbar (moved to the very top, sticky)
+   -------------------------------------------------------------------------- */
+body.nexus-page .main-content .navbar.user-info-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: 16px;
+  box-shadow: var(--nx-shadow);
+  min-height: 52px;
+  margin: 0 0 18px;
+}
+body.nexus-page .user-info-navbar .user-info-menu {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+body.nexus-page .user-info-navbar .user-info-menu > li {
+  float: none;
+}
+body.nexus-page .user-info-navbar .user-info-menu > li > a {
+  color: var(--nx-text-soft) !important;
+  padding: 16px 18px !important;
+  transition: color .2s ease;
+}
+body.nexus-page .user-info-navbar .user-info-menu > li > a:hover { color: var(--nx-accent) !important; }
+body.nexus-page .user-info-navbar .user-info-menu > li > a > i { color: var(--nx-accent); margin-right: 6px; }
+body.nexus-page .user-info-navbar .user-info-menu > li.nx-top-tagline {
+  /* Match the <a> items' vertical rhythm so the tagline sits on the same baseline. */
+  display: inline-flex;
+  align-items: center;
+  height: 52px;
+  margin-left: auto;
+  padding: 0 20px;
+  color: var(--nx-text-soft);
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   8. Original search bar (injected by the recovered search.js)
+   -------------------------------------------------------------------------- */
+body.nexus-page #search {
+  max-width: none;
+  margin: 0 0 22px;
+  padding: 16px 18px 18px;
+  border: 1px solid var(--nx-border);
+  border-radius: 18px;
+  background: var(--nx-surface);
+  box-shadow: var(--nx-shadow);
+}
+body.nexus-page #search-text {
+  background: var(--nx-input);
+  color: var(--nx-text);
+  border: 1px solid var(--nx-border);
+  border-radius: 12px;
+  padding: 0 86px 0 14px;
+  height: 48px;
+  font-family: inherit;
+}
+body.nexus-page #search-text::placeholder { color: var(--nx-muted); }
+body.nexus-page #search button {
+  background: linear-gradient(120deg, var(--nx-accent), var(--nx-accent-2));
+  border-radius: 10px;
+  height: 36px;
+  width: 66px;
+  margin: 6px;
+  color: #fff;
+}
+body.nexus-page .type-text { color: var(--nx-text-soft); }
+body.nexus-page .s-type-list {
+  background: var(--nx-surface);
+  color: var(--nx-text);
+  border: 1px solid var(--nx-border);
+  box-shadow: var(--nx-shadow-hover);
+}
+body.nexus-page .search-type input:checked + label {
+  background: var(--nx-accent-soft);
+  color: var(--nx-accent);
+}
+body.nexus-page .search-type li label { color: var(--nx-text-soft); }
+body.nexus-page .search-type li label:hover { color: var(--nx-accent); }
+
+/* --------------------------------------------------------------------------
+   9. Resource tagline + category headings
+   -------------------------------------------------------------------------- */
+/* Refined portal tagline between the search bar and the category list. */
+.nx-tagline {
+  text-align: center;
+  margin: 34px 0 8px;
+  padding: 6px 0 2px;
+}
+.nx-tagline__main {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  line-height: 1.6;
+  color: var(--nx-text-soft);
+}
+.nx-tagline__sub {
+  margin: 6px 0 0;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--nx-muted);
+}
+body.nexus-page .main-content > h4.text-gray {
+  scroll-margin-top: 24px;
+  margin: 34px 0 16px;
+  padding: 0 0 12px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  border-bottom: 1px solid var(--nx-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+body.nexus-page .main-content > h4.text-gray > i {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: var(--nx-accent-soft);
+  color: var(--nx-accent);
+  font-size: 15px;
+  margin: 0 !important;
+  scroll-margin-top: 24px;
+}
+body.nexus-page .main-content > h4.text-gray::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--nx-border), transparent);
+  order: 2;
+}
+
+/* --------------------------------------------------------------------------
+   10. Original resource cards
+   -------------------------------------------------------------------------- */
+body.nexus-page .xe-widget.xe-conversations {
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: 16px;
+  padding: 15px;
+  margin-bottom: 14px;
+  box-shadow: var(--nx-shadow);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  cursor: pointer;
+}
+body.nexus-page .xe-widget.xe-conversations:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--nx-shadow-hover);
+  border-color: var(--nx-accent);
+}
+body.nexus-page .xe-widget .xe-user-img img {
+  background: var(--nx-logo-bg);
+  border-radius: 12px;
+  padding: 3px;
+  border: 1px solid var(--nx-border);
+  object-fit: contain;
+}
+body.nexus-page .xe-widget .xe-user-name strong,
+body.nexus-page .xe-widget .xe-user-name {
+  color: var(--nx-text) !important;
+}
+body.nexus-page .xe-widget .xe-comment p,
+body.nexus-page .xe-widget .overflowClip_2 {
+  color: var(--nx-text-soft) !important;
+}
+body.nexus-page .xe-widget .label-info,
+body.nexus-page .xe-widget .label {
+  background: linear-gradient(120deg, var(--nx-accent), var(--nx-accent-2));
+  color: #fff;
+  border-radius: 999px;
+}
+body.nexus-page .row { margin-left: -7px; margin-right: -7px; }
+body.nexus-page .row > [class^="col-"] { padding-left: 7px; padding-right: 7px; }
+body.nexus-page .nx-hidden { display: none !important; }
+body.nexus-page .nx-empty {
+  padding: 26px;
+  text-align: center;
+  color: var(--nx-muted);
+  border: 1px dashed var(--nx-border-strong);
+  border-radius: 16px;
+  margin: 16px 0;
+}
+
+/* --------------------------------------------------------------------------
+   11. Footer + go-to-top
+   -------------------------------------------------------------------------- */
+body.nexus-page footer.main-footer {
+  background: transparent;
+  border-top: 1px solid var(--nx-border);
+  margin-top: 34px;
+}
+body.nexus-page footer.main-footer .footer-inner {
+  background: transparent;
+  color: var(--nx-muted);
+  padding: 20px 0 26px;
+  border: 0;
+}
+body.nexus-page footer.main-footer .footer-text,
+body.nexus-page footer.main-footer .footer-text a { color: var(--nx-muted); }
+body.nexus-page footer.main-footer .footer-text a:hover { color: var(--nx-accent); }
+body.nexus-page footer.main-footer .go-up a {
+  background: linear-gradient(120deg, var(--nx-accent), var(--nx-accent-2));
+  color: #fff;
+  right: 10px !important;
+  box-shadow: var(--nx-shadow-hover);
+}
+.nx-credit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 0 22px;
+  font-size: 11.5px;
+  color: var(--nx-muted);
+  border-top: 1px solid var(--nx-border);
+  padding-top: 16px;
+  margin-top: 8px;
+}
+.nx-credit a { color: var(--nx-accent); text-decoration: none; }
+
+/* --------------------------------------------------------------------------
+   12. About page
+   -------------------------------------------------------------------------- */
+body.nexus-page.nx-about .page-container .main-content { padding-top: 26px; }
+.nx-about-hero {
+  border-radius: 22px;
+  background: var(--nx-hero);
+  color: #fff;
+  padding: 30px 34px;
+  margin-bottom: 24px;
+  box-shadow: var(--nx-shadow);
+}
+.nx-about-hero h1 { margin: 0; font-size: 34px; letter-spacing: .14em; }
+.nx-about-hero p { margin: 8px 0 0; color: rgba(255, 255, 255, .78); font-size: 14px; letter-spacing: .08em; }
+.nx-about-hero .nx-hero__actions { justify-content: flex-start; margin-top: 18px; }
+body.nexus-page .navbar.horizontal-menu .navbar-inner {
+  background: var(--nx-sidebar);
+  border: 0;
+}
+body.nexus-page .navbar-brand .logo img { max-height: 42px; }
+body.nexus-page .panel.panel-default {
+  background: var(--nx-surface);
+  border: 1px solid var(--nx-border);
+  border-radius: 18px;
+  box-shadow: var(--nx-shadow);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+body.nexus-page .panel.panel-default h4 { margin-top: 4px; font-size: 18px; font-weight: 700; }
+body.nexus-page .panel-body { color: var(--nx-text); }
+body.nexus-page blockquote {
+  border-left: 3px solid var(--nx-accent);
+  padding: 8px 0 8px 16px;
+  margin: 0 0 14px;
+  color: var(--nx-text-soft);
+  background: var(--nx-surface-2);
+  border-radius: 0 10px 10px 0;
+}
+body.nexus-page blockquote p { color: var(--nx-text-soft); margin: 4px 0; line-height: 1.8; }
+body.nexus-page blockquote a { color: var(--nx-accent); }
+body.nexus-page .xe-widget.xe-conversations.box2 { cursor: pointer; }
+.nx-about-note {
+  background: var(--nx-accent-soft);
+  border: 1px solid var(--nx-border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--nx-text-soft);
+}
+.nx-about-note strong { color: var(--nx-text); }
+.nx-about-note a { color: var(--nx-accent); }
+
+/* --------------------------------------------------------------------------
+   13. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 1400px) {
+  .nx-portals__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 769px) and (max-width: 1180px) {
+  body.nexus-page .main-content > .row > .col-sm-3 { width: 50%; }
+}
+@media (max-width: 1100px) {
+  body.nexus-page .page-container .main-content { padding: 24px 24px 0; }
+  .nx-hero { padding: 30px 28px; }
+  /* Hide the right-hand tagline when there isn't room for it to sit fully. */
+  body.nexus-page .user-info-navbar .user-info-menu > li.nx-top-tagline { display: none; }
+}
+@media (max-width: 900px) {
+  .nx-portals__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nx-hero__inner { align-items: flex-start; }
+  .nx-hero__side { text-align: left; }
+  .nx-hero__actions { justify-content: flex-start; }
+  body.nexus-page .sidebar-menu { width: 230px; }
+}
+@media (max-width: 768px) {
+  body.nexus-page .page-container .main-content { padding: 18px 16px 0; }
+  /* The 900px rule narrows the rail; on phones the vendor layout turns it into
+     a full-width header bar, so restore full width here. */
+  body.nexus-page .sidebar-menu { width: 100% !important; }
+  #nx-menu-toggle { display: inline-flex; }
+  .nx-hero { border-radius: 18px; padding: 24px 20px; }
+  .nx-brand { gap: 14px; }
+  .nx-brand__glyph { flex-basis: 56px; width: 56px; height: 56px; border-radius: 16px; }
+  .nx-brand__glyph svg { width: 36px; height: 36px; }
+  .nx-brand__title { font-size: 38px; letter-spacing: .12em; }
+  .nx-brand__sub { font-size: 13px; }
+  .nx-hero__stats { display: none; }
+  .nx-portals__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .nx-portal { min-height: 0; padding: 14px 12px; }
+  .nx-toolbar { padding: 10px 12px; }
+  body.nexus-page .main-content > h4.text-gray { font-size: 17px; margin-top: 26px; }
+  /* Top nav: keep it, but make it a compact horizontal scroll strip on phones. */
+  body.nexus-page .main-content .navbar.user-info-navbar { display: block; border-radius: 12px; overflow-x: auto; }
+  body.nexus-page .main-content .navbar.user-info-navbar .user-info-menu {
+    display: flex; flex-wrap: nowrap; white-space: nowrap; margin: 0;
+  }
+  body.nexus-page .user-info-navbar .user-info-menu > li > a { padding: 12px 14px !important; font-size: 13px; }
+  body.nexus-page .nx-top-tagline { display: none; }
+  body.nexus-page .user-info-navbar .user-info-menu > li.hidden-xs { display: none; }
+  body.nexus-page .page-container .sidebar-menu .sidebar-menu-inner .main-menu.mobile-is-visible {
+    background: var(--nx-sidebar);
+  }
+  body.nexus-page #search { padding: 12px 10px 14px; }
+}
+@media (max-width: 560px) {
+  .nx-portals__grid { grid-template-columns: 1fr; }
+  .nx-portal { min-height: 0; }
+  .nx-hero__actions .nx-btn { font-size: 11.5px; padding: 8px 11px; }
+  /* Keep the primary actions on one row; About stays reachable from the page footer. */
+  .nx-hero__actions .nx-btn[href="/nexus/about/"] { display: none; }
+  .nx-brand__tag { font-size: 11px; letter-spacing: .08em; }
+  .nx-section-head p { display: none; }
+  body.nexus-page .page-container .main-content { padding: 14px 12px 0; }
+  .nx-about-hero { padding: 24px 20px; }
+  .nx-about-hero h1 { font-size: 27px; }
+  body.nexus-page #search-text { padding-right: 76px; }
+}
+
+/* --------------------------------------------------------------------------
+   14. Motion / accessibility
+   -------------------------------------------------------------------------- */
+.nx-fade-in { animation: nx-fade .55s ease both; }
+@keyframes nx-fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+:focus-visible { outline: 2px solid var(--nx-accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .nx-fade-in { animation: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}

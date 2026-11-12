@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 模型中心 · JayDreamy AI Portal</title>
+<meta name="description" content="收录 OpenAI、Anthropic、Google、DeepSeek、智谱、阿里、百度、Meta、Mistral 等国内外主流 AI 大模型，含能力、上下文长度与价格对比。">
+<meta name="keywords" content="AI模型,大模型,GPT,Claude,Gemini,DeepSeek,GLM,通义千问,文心一言,Llama,Mistral">
+<link rel="canonical" href="https://www.jaydreamy.com/ai/models/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI 模型中心 · JayDreamy AI Portal">
+<meta property="og:description" content="国内外主流 AI 大模型收录，能力、上下文与价格一应俱全。">
+<meta property="og:url" content="https://www.jaydreamy.com/ai/models/">
+<link rel="icon" type="image/svg+xml" href="/ai/assets/images/favicon.svg">
+<link rel="stylesheet" href="/ai/assets/css/portal.css">
+</head>
+<body data-page="models">
+
+<nav class="ai-nav">
+  <div class="ai-nav-inner ai-container">
+    <a class="ai-nav-brand" href="/ai/"><span class="logo">AI</span><span>AI Portal <span class="sub">JayDreamy</span></span></a>
+    <button class="ai-nav-toggle" id="aiNavToggle" aria-label="菜单">☰</button>
+    <div class="ai-nav-links" id="aiNavLinks">
+      <a href="/ai/models/">模型</a>
+      <a href="/ai/tools/">工具</a>
+      <a href="/ai/agents/">Agent</a>
+      <a href="/ai/coding/">编程</a>
+      <a href="/ai/knowledge/">知识库</a>
+      <a href="/ai/pricing/">价格</a>
+      <a href="/ai/prompts/">提示词</a>
+      <a href="/ai/news/">资讯</a>
+      <a href="/" class="ai-nav-home">返回主站</a>
+    </div>
+  </div>
+</nav>
+
+<header class="ai-page-head ai-container">
+  <div class="crumb"><a href="/ai/">AI Portal</a> / 模型</div>
+  <h1>AI 模型中心</h1>
+  <p class="sub">收录国内外主流大模型与厂商，涵盖能力、上下文长度与输入输出价格。数据以官方来源为依据，持续核实更新。</p>
+</header>
+
+<main class="ai-container ai-section">
+  <div class="ai-filters" id="aiFilters">
+    <button class="ai-filter active" data-filter="all">全部</button>
+    <button class="ai-filter" data-filter="大语言模型">大语言模型</button>
+    <button class="ai-filter" data-filter="多模态大模型">多模态</button>
+    <button class="ai-filter" data-filter="开源大模型">开源</button>
+  </div>
+
+  <div class="ai-table-wrap">
+    <table class="ai-table">
+      <thead>
+        <tr>
+          <th>模型</th><th>厂商</th><th>类别</th><th>核心能力</th><th>上下文</th><th>输入价格</th><th>输出价格</th><th>免费</th>
+        </tr>
+      </thead>
+      <tbody id="modelsTable">
+        <tr><td colspan="8"><div class="ai-loading"><div class="spinner"></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section class="ai-section">
+    <h2 class="ai-section-title" style="margin-bottom:16px"><span class="ico">📖</span>模型详情</h2>
+    <div class="ai-grid cols-3" id="modelsCards"></div>
+  </section>
+</main>
+
+<footer class="ai-footer">
+  <div class="ai-footer-bottom ai-container">
+    <span>© 2026 JayDreamy · CentLabs</span>
+    <span>价格与能力以官方最新公告为准</span>
+  </div>
+</footer>
+
+<script src="/ai/assets/js/portal.js"></script>
+<script>
+window.AI_PAGE = window.AI_PAGE || {};
+window.AI_PAGE.models = {
+  init: function () {
+    var AI = window.AI;
+    var all = [];
+    var urlQ = new URLSearchParams(location.search).get('q');
+
+    AI.fetchJSON('/ai/data/models.json').then(function (data) {
+      all = data.models || [];
+      render(all);
+      // 支持 URL 搜索参数
+      if (urlQ) {
+        var kw = urlQ.toLowerCase();
+        var hit = all.filter(function (m) {
+          return (m.name + m.vendor).toLowerCase().indexOf(kw) >= 0;
+        });
+        if (hit.length) render(hit);
+      }
+    });
+
+    function render(list) {
+      // 表格
+      var tb = document.getElementById('modelsTable');
+      tb.innerHTML = list.map(function (m) {
+        return '<tr>' +
+          '<td class="name-cell">' + (m.icon || '🤖') + ' ' + AI.esc(m.name) + '</td>' +
+          '<td class="vendor">' + AI.esc(m.vendor) + '</td>' +
+          '<td>' + AI.esc(m.category) + '</td>' +
+          '<td>' + AI.esc(m.capabilities || '') + '</td>' +
+          '<td>' + AI.esc(m.context_length || '—') + '</td>' +
+          '<td class="price">' + AI.esc(m.pricing_input || '—') + '</td>' +
+          '<td class="price">' + AI.esc(m.pricing_output || '—') + '</td>' +
+          '<td>' + (m.free_tier ? '<span class="free">✓</span>' : '—') + '</td>' +
+          '</tr>';
+      }).join('');
+
+      // 详情卡
+      AI.renderGrid('modelsCards', list, function (m) {
+        return '<div class="ai-card">' +
+          '<div class="glow"></div>' +
+          '<div class="ai-card-ico">' + (m.icon || '🤖') + '</div>' +
+          '<h3>' + AI.esc(m.name) + '</h3>' +
+          '<div class="desc" style="margin-bottom:12px">' + AI.esc(m.capabilities || '') + '</div>' +
+          '<div class="ai-tags">' +
+          (m.categories || []).map(function (c) { return '<span class="ai-tag">' + AI.esc(c) + '</span>'; }).join('') +
+          (m.free_tier ? '<span class="ai-tag hot">免费</span>' : '') +
+          '</div>' +
+          '<div class="ai-tags" style="margin-top:8px">' +
+          '<a class="ai-tag new" href="' + AI.esc(m.official_url) + '" target="_blank" rel="noopener">官网 ↗</a>' +
+          '<a class="ai-tag new" href="' + AI.esc(m.docs_url) + '" target="_blank" rel="noopener">文档 ↗</a>' +
+          '</div>' +
+          '<div class="desc" style="margin-top:10px;font-size:12px;color:var(--txt-faint)">核实：' + AI.esc(m.last_verified || '') + '</div>' +
+          '</div>';
+      });
+    }
+
+    AI.initFilters(function (f) {
+      var filtered = f === 'all' ? all : all.filter(function (m) { return m.category === f; });
+      render(filtered);
+    });
+  }
+};
+</script>
+</body>
+</html>
