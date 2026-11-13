@@ -7,10 +7,15 @@
 <style>
 .kb-wb-tabs{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 4px}
 .kb-wb-tab{padding:9px 18px;border-radius:10px;cursor:pointer;font-size:14px;color:var(--text-2);
-  border:1px solid transparent;font-weight:500}
+  border:1px solid transparent;font-weight:500;white-space:nowrap;flex:none}
 .kb-wb-tab:hover{background:var(--surface);border-color:var(--line)}
-.kb-wb-tab.on{background:var(--accent);color:#fff;font-weight:600}
+.kb-wb-tab.on{background:var(--accent);color:#fff;font-weight:600;box-shadow:0 2px 8px var(--accent-soft)}
 .kb-wb-view{display:none}.kb-wb-view.on{display:block}
+@media(max-width:860px){
+  .kb-wb-tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    padding-bottom:6px;scrollbar-width:thin;margin-bottom:8px}
+  .kb-wb-tab{padding:8px 14px;font-size:13px}
+}
 .wb-side{position:sticky;top:calc(var(--nav-h) + 14px);max-height:calc(100vh - var(--nav-h) - 30px);
   overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px}
 .wb-side .grp{padding:8px 10px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
@@ -263,7 +268,8 @@ function openKpModal(id){
     '<h2>'+esc(k.name)+'</h2>'+
     '<div class="kb-tags"><span class="kb-tag cat" style="--cat:'+CAT_COLOR[k.category_id]+'">'+esc(k.category)+'</span><span class="kb-tag">'+esc(k.source||'')+'</span>'+
     '<span class="kb-tag" id="kpFavBtn" style="cursor:pointer">☆ 收藏</span>'+
-    '<span class="kb-tag" id="kpLinkBtn" style="cursor:pointer">🔗 复制链接</span></div>'+
+    '<span class="kb-tag" id="kpLinkBtn" style="cursor:pointer">🔗 复制链接</span>'+
+    '<a class="kb-tag" id="kpOpenBtn" href="card.html?id='+esc(k.id)+'" style="cursor:pointer;text-decoration:none">↗ 独立页面</a></div>'+
     '<div class="kb-ai-hint" id="kpAiHint" style="display:none">'+
     '<button class="kb-btn" id="kpAiExplain">🤖 AI 解释</button>'+
     '<button class="kb-btn" id="kpAiQuiz">📝 AI 出题</button>'+
@@ -280,11 +286,11 @@ function openKpModal(id){
     refresh();
     favEl.onclick=function(){st.toggleFav(k.id,'point',k.name);refresh();};
   }
-  /* 复制链接：生成直达该卡片的独立 URL */
+  /* 复制链接：生成直达该卡片的独立 URL（card.html 独立详情页） */
   var linkBtn=$('#kpLinkBtn');
   if(linkBtn){
     linkBtn.onclick=function(){
-      var url=location.origin+location.pathname+'#/point/'+k.id;
+      var url=location.origin+location.pathname.replace(/study\.html.*$/,'card.html?id='+k.id);
       function done(){linkBtn.textContent='✓ 已复制';setTimeout(function(){linkBtn.textContent='🔗 复制链接';},1500);}
       if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(function(){fallbackCopy(url);done();});}
       else{fallbackCopy(url);done();}
@@ -490,7 +496,7 @@ function renderMyStudy(){
   }).join(''):'<div class="kb-empty">暂无阅读记录</div>';
   // 收藏
   $('#favList').innerHTML=fav.length?fav.slice(0,50).map(function(f){
-    var href=(f.type==='corpus'?corpusHref(f.id):('study.html#/point/'+f.id))||'#';
+    var href=(f.type==='corpus'?corpusHref(f.id):('card.html?id='+f.id))||'#';
     return '<a class="kb-list-row" href="'+href+'"><span class="r-icon" style="background:var(--warn)">★</span>'+
     '<span class="r-main"><span class="r-title">'+esc(f.title||f.id)+'</span>'+
     '<span class="r-sub">'+esc(f.type==='corpus'?'语料':'知识点')+'</span></span></a>';
