@@ -185,19 +185,33 @@ a:hover{text-decoration:underline}
 .kb-btn:hover{border-color:var(--accent);color:var(--accent)}
 .kb-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
 .kb-btn-row{display:flex;gap:8px;flex-wrap:wrap}
+/* 遮罩层：始终 fixed，脱离 grid 布局流（否则会占 grid 格子，把正文挤到右侧） */
+.kb-side-mask{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:199;display:none}
+.kb-side-mask.show{display:block}
 @media(max-width:1180px){.kb-read-layout{grid-template-columns:220px minmax(0,1fr)}.kb-read-aside{display:none}}
 @media(max-width:860px){
   .kb-read-layout{grid-template-columns:1fr}
   .kb-read-side{position:fixed;left:0;top:0;bottom:0;width:290px;max-height:none;z-index:200;
     border-radius:0 14px 14px 0;transform:translateX(-105%);transition:transform .25s ease;box-shadow:var(--shadow-lg)}
   .kb-read-side.open{transform:translateX(0)}
-  .kb-side-mask{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:199;display:none}
-  .kb-side-mask.show{display:block}
   .kb-mob-toc-btn{display:inline-flex !important}
   .kb-hero{padding:30px 22px}
   .kb-hero h1{font-size:28px}
 }
 .kb-mob-toc-btn{display:none}
+
+/* 文件搜索条（学科目录树 / 资料索引共用） */
+.wb-file-search{display:flex;gap:8px;margin:10px 0 14px;flex-wrap:wrap;align-items:center}
+.wb-file-search input{flex:1;min-width:200px;border:1px solid var(--line-strong);background:var(--surface);
+  color:var(--text);padding:9px 13px;border-radius:9px;font-size:13px;outline:none}
+.wb-file-search input:focus{border-color:var(--accent)}
+.wb-file-search select{border:1px solid var(--line-strong);background:var(--surface);color:var(--text);
+  padding:9px 10px;border-radius:9px;font-size:13px;outline:none;cursor:pointer}
+.wb-file-search select:focus{border-color:var(--accent)}
+.tree-dir{user-select:none}
+
+/* 首页快捷入口 */
+.kb-quick{display:flex;gap:10px;flex-wrap:wrap;margin:-8px 0 22px}
 
 /* ---------- 正文排版（长文阅读） ---------- */
 .kb-prose{background:var(--surface);border:1px solid var(--line);border-radius:16px;
@@ -251,6 +265,12 @@ html[data-theme="dark"] mark{background:#6b5a1e;color:#fff}
   font-size:13px;color:var(--text-2);background:var(--surface);user-select:none}
 .kb-chip:hover{border-color:var(--accent);color:var(--accent)}
 .kb-chip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+
+/* AI 预留接口提示条 */
+.kb-ai-hint{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0 14px;
+  padding:10px 12px;border:1px dashed var(--line-strong);border-radius:10px;background:var(--surface-2,var(--surface))}
+.kb-ai-hint .kb-btn{font-size:12px;padding:5px 12px}
+
 
 /* ---------- 知识点模态 ---------- */
 .kb-modal-mask{position:fixed;inset:0;background:rgba(10,14,22,.55);z-index:300;

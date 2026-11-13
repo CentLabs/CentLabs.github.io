@@ -54,6 +54,7 @@
 <div class="kb-wb-tab" data-v="files">🗃 资料索引</div>
 <div class="kb-wb-tab" data-v="corpus">📄 全文语料</div>
 <div class="kb-wb-tab" data-v="fullsearch">🔍 全文检索</div>
+<div class="kb-wb-tab" data-v="zhenti">📝 真题练习</div>
 <div class="kb-wb-tab" data-v="mystudy">⭐ 我的学习</div>
 </div>
 <div class="kb-metrics" id="wb-stats"></div>
@@ -96,10 +97,22 @@
 <div id="kb-search-app"></div>
 </section>
 
+<!-- 真题练习 -->
+<section class="kb-wb-view" id="v-zhenti">
+<div class="kb-note">真题练习中心：题目与答案解析 100% 来自原始语料，不做自动生成。选择题号可定位到原文对应位置，收藏题目、标记错题。数学真题因原始 PDF 为扫描版（公式无法识别），仅提供原文阅读入口。</div>
+<div class="kb-chip-row" id="ztChips"></div>
+<div class="kb-chip-row" id="ztTypeChips"></div>
+<div class="kb-note" id="ztNote"></div>
+<div id="ztList"></div>
+</section>
+
 <!-- 我的学习 -->
 <section class="kb-wb-view" id="v-mystudy">
 <div class="kb-note">学习数据仅保存在本地浏览器（localStorage），不上传、无需注册。可随时清除。</div>
 <div style="margin-bottom:8px"><button class="kb-btn" id="clearStudy">🗑 清除全部学习数据</button></div>
+<div class="kb-metrics" id="studyMetrics"></div>
+<div class="kb-section"><h2>📅 今日待复习</h2><div id="reviewList"></div></div>
+<div class="kb-section"><h2>❌ 错题本</h2><div id="wrongList"></div></div>
 <div class="kb-section"><h2>最近阅读</h2><div id="recentList"></div></div>
 <div class="kb-section"><h2>我的收藏</h2><div id="favList"></div></div>
 </section>
@@ -125,16 +138,17 @@ var $=function(s){return document.querySelector(s)}, $$=function(s){return[].sli
 var esc=KB.esc, CATS=['politics','english','mathematics','computer-408'];
 var CAT_NAME={politics:'政治',english:'英语',mathematics:'数学','computer-408':'计算机408'};
 var CAT_COLOR={politics:'var(--pol)',english:'var(--eng)',mathematics:'var(--math)','computer-408':'var(--cs)'};
-var KS,CH=[],CO=[],KP=[],CATDATA={};
+var KS,CH=[],CO=[],KP=[],CATDATA={},ZT=[];
 var CACHE={}, kpShown=120, kpQuery='', kpCat='all', coCat='all', fileCat='politics', fileTreeMode=false;
+var ztCat='all', ztType='all';
 
 function jget(u){return fetch(u).then(function(r){if(!r.ok)throw new Error(u+' '+r.status);return r.json();});}
 function tget(u){return fetch(u).then(function(r){if(!r.ok)throw new Error(u+' '+r.status);return r.text();});}
 
 /* ---------- 初始化 ---------- */
-Promise.all([jget('data/knowledge-stats.json'),jget('data/chapters.json'),jget('data/corpus.json'),jget('data/knowledge-points.json')])
+Promise.all([jget('data/knowledge-stats.json'),jget('data/chapters.json'),jget('data/corpus.json'),jget('data/knowledge-points.json'),jget('data/zhenti-index.json')])
 .then(function(rs){
-  KS=rs[0];CH=rs[1];CO=rs[2];KP=rs[3];
+  KS=rs[0];CH=rs[1];CO=rs[2];KP=rs[3];ZT=rs[4].blocks||[];
   $('#wb-stats').innerHTML=
     '<div class="kb-metric"><div class="num">'+KS.chapterDocuments+'</div><div class="label">逐章精读</div></div>'+
     '<div class="kb-metric"><div class="num">'+(KS.chapterCharacters/10000).toFixed(0)+' 万</div><div class="label">精读字符</div></div>'+
@@ -142,17 +156,21 @@ Promise.all([jget('data/knowledge-stats.json'),jget('data/chapters.json'),jget('
     '<div class="kb-metric"><div class="num">'+KS.corpusBlocks+'</div><div class="label">语料板块</div></div>'+
     '<div class="kb-metric"><div class="num">'+(KS.totalCorpusCharacters/10000).toFixed(0)+' 万</div><div class="label">语料字符</div></div>'+
     '<div class="kb-metric"><div class="num">'+KS.totalRawFiles+'</div><div class="label">原始资料</div></div>';
-  renderChapSide();renderKpChips();renderPoints();renderCoChips();renderCorpus();loadFiles();
+  renderChapSide();renderKpChips();renderPoints();renderCoChips();renderCorpus();loadFiles();renderZtChips();renderZhenti();
+  dataReady=true;
+  /* 数据就绪后重跑一次路由（修复：带 hash 直达时数据未加载导致空白） */
+  if(pendingRoute){var pr=pendingRoute;pendingRoute=null;handleRoute(pr);}
 })
 .catch(function(e){$('#wb-stats').innerHTML='<div class="kb-note">数据加载失败：'+esc(e.message)+'</div>';});
 
 /* ---------- 标签页切换 ---------- */
 $$('.kb-wb-tab').forEach(function(t){t.addEventListener('click',function(){
-  $$('.kb-wb-tab').forEach(function(x){x.classList.remove('on');});t.classList.add('on');
-  $$('.kb-wb-view').forEach(function(v){v.classList.remove('on');});$('#v-'+t.getAttribute('data-v')).classList.add('on');
+  switchTab(t.getAttribute('data-v'));
 });});
 function switchTab(v){$$('.kb-wb-tab').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-v')===v);});
-$$('.kb-wb-view').forEach(function(x){x.classList.remove('on');});$('#v-'+v).classList.add('on');}
+$$('.kb-wb-view').forEach(function(x){x.classList.remove('on');});$('#v-'+v).classList.add('on');
+if(v==='mystudy')renderMyStudy();
+if(v==='zhenti')renderZhenti();}
 
 /* ---------- 逐章精读 ---------- */
 function renderChapSide(filter){
@@ -244,7 +262,13 @@ function openKpModal(id){
   $('#kpModalBody').innerHTML='<button class="close">✕</button>'+
     '<h2>'+esc(k.name)+'</h2>'+
     '<div class="kb-tags"><span class="kb-tag cat" style="--cat:'+CAT_COLOR[k.category_id]+'">'+esc(k.category)+'</span><span class="kb-tag">'+esc(k.source||'')+'</span>'+
-    '<span class="kb-tag" id="kpFavBtn" style="cursor:pointer">☆ 收藏</span></div>'+
+    '<span class="kb-tag" id="kpFavBtn" style="cursor:pointer">☆ 收藏</span>'+
+    '<span class="kb-tag" id="kpLinkBtn" style="cursor:pointer">🔗 复制链接</span></div>'+
+    '<div class="kb-ai-hint" id="kpAiHint" style="display:none">'+
+    '<button class="kb-btn" id="kpAiExplain">🤖 AI 解释</button>'+
+    '<button class="kb-btn" id="kpAiQuiz">📝 AI 出题</button>'+
+    '<button class="kb-btn" id="kpAiCompare">🔀 AI 对比</button>'+
+    '<span class="kb-tag warn" style="margin-left:6px">即将接入 · 结果与原始资料严格区分</span></div>'+
     field('','定义',k.definition)+field('','核心要点',k.points)+field('traps','易错点',k.traps)+
     field('formula','公式 / 代码',k.formula)+field('','相关知识点',k.related)+field('','来源参考',k.source_ref);
   $('#kpModal').classList.add('show');
@@ -255,6 +279,26 @@ function openKpModal(id){
     var refresh=function(){favEl.textContent=st.isFav(k.id)?'★ 已收藏':'☆ 收藏';};
     refresh();
     favEl.onclick=function(){st.toggleFav(k.id,'point',k.name);refresh();};
+  }
+  /* 复制链接：生成直达该卡片的独立 URL */
+  var linkBtn=$('#kpLinkBtn');
+  if(linkBtn){
+    linkBtn.onclick=function(){
+      var url=location.origin+location.pathname+'#/point/'+k.id;
+      function done(){linkBtn.textContent='✓ 已复制';setTimeout(function(){linkBtn.textContent='🔗 复制链接';},1500);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(function(){fallbackCopy(url);done();});}
+      else{fallbackCopy(url);done();}
+    };
+  }
+  function fallbackCopy(t){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
+  /* AI 预留接口：本轮不接 API，仅展示入口与提示，数据结构已预留 */
+  var aiHint=$('#kpAiHint');
+  if(aiHint){
+    aiHint.style.display='flex';
+    var aiMsg=function(what){aiHint.querySelector('.kb-tag').textContent='「'+what+'」功能即将接入，当前请以原始资料为准';};
+    $('#kpAiExplain').onclick=function(){aiMsg('AI 解释');};
+    $('#kpAiQuiz').onclick=function(){aiMsg('AI 出题');};
+    $('#kpAiCompare').onclick=function(){aiMsg('AI 对比');};
   }
 }
 $('#kpModal').addEventListener('click',function(e){if(e.target===$('#kpModal')||e.target.classList.contains('close'))$('#kpModal').classList.remove('show');});
@@ -356,22 +400,122 @@ function renderCorpus(){
 var wbSearch=KBSearch({mount:'#kb-search-app',root:'./',
   onOpenChapter:function(id,line){switchTab('chapters');openChapter(id,line);}});
 
+/* ---------- 真题练习 ---------- */
+function renderZtChips(){
+  var cats=['all'].concat(CATS.filter(function(c){return ZT.some(function(b){return b.categoryId===c;});}));
+  $('#ztChips').innerHTML=cats.map(function(c){
+    return '<span class="kb-chip'+(ztCat===c?' on':'')+'" data-ztcat="'+c+'">'+(c==='all'?'全部学科':CAT_NAME[c])+'</span>';
+  }).join('');
+  $$('#ztChips .kb-chip').forEach(function(ch){ch.addEventListener('click',function(){
+    ztCat=ch.getAttribute('data-ztcat');ztType='all';renderZtChips();renderZhenti();
+  });});
+}
+function renderZhenti(){
+  var blocks=ZT.filter(function(b){return ztCat==='all'||b.categoryId===ztCat;});
+  // 题型 chips（当前学科下的 type）
+  var types=['all'].concat(Array.from(new Set(blocks.map(function(b){return b.type;}))));
+  $('#ztTypeChips').innerHTML=types.map(function(t){
+    return '<span class="kb-chip'+(ztType===t?' on':'')+'" data-zttype="'+t+'">'+(t==='all'?'全部题型':t)+'</span>';
+  }).join('');
+  $$('#ztTypeChips .kb-chip').forEach(function(ch){ch.addEventListener('click',function(){
+    ztType=ch.getAttribute('data-zttype');renderZhenti();
+  });});
+  var list=blocks.filter(function(b){return ztType==='all'||b.type===ztType;});
+  $('#ztNote').textContent='共 '+list.length+' 个真题板块，'+list.reduce(function(s,b){return s+b.questionCount;},0)+' 道可定位题目。点击题号跳转到原文对应位置查看题目与解析。';
+  $('#ztList').innerHTML=list.map(function(b){
+    var anchorsHtml=b.anchors.length?
+      b.anchors.map(function(a){
+        var qid='zt:'+b.id+':'+a.q;
+        var wrong=window.StudyTools&&window.StudyTools.isWrong(qid);
+        return '<div class="kb-list-row" style="padding:6px 10px">'+
+          '<a class="r-icon" href="read/'+b.categoryId+'/'+b.id+'/#L'+a.line+'" style="text-decoration:none;flex:0 0 auto" title="查看原文第 '+a.q+' 题">'+a.q+'</a>'+
+          '<span class="r-main" style="min-width:0"><span class="r-title" style="font-size:12.5px">'+esc(a.stem.slice(0,60))+(a.stem.length>60?'…':'')+'</span>'+
+          (a.knowledge?'<span class="r-sub">'+esc(a.knowledge)+'</span>':'')+'</span>'+
+          '<button class="kb-btn zt-wrong" data-qid="'+qid+'" data-title="'+esc(b.displayTitle+' 第'+a.q+'题')+'" data-cat="'+esc(b.category)+'" style="flex:0 0 auto;font-size:11px">'+(wrong?'✓已标记错题':'标记错题')+'</button></div>';
+      }).join(''):
+      '<div class="kb-empty" style="padding:8px">此板块为扫描版原文（公式无法结构化识别），点击下方入口在线阅读全文并手动标记。</div>';
+    return '<div class="kb-card" style="margin-bottom:14px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px">'+
+      '<div><span class="kb-tag cat" style="--cat:'+CAT_COLOR[b.categoryId]+'">'+esc(b.category)+'</span> <span class="kb-tag">'+esc(b.type)+'</span> <span class="kb-tag">'+esc(b.year)+'</span>'+
+      '<h3 style="margin:6px 0 2px">'+esc(b.displayTitle)+'</h3>'+
+      '<p style="color:var(--text-3);font-size:12.5px">'+b.questionCount+' 道可定位 · '+(b.chars/10000).toFixed(1)+' 万字符</p></div>'+
+      '<a class="kb-btn" href="read/'+b.categoryId+'/'+b.id+'/">📖 在线阅读全文</a></div>'+
+      '<div style="max-height:340px;overflow:auto;border-top:1px solid var(--line)">'+(anchorsHtml||'')+'</div></div>';
+  }).join('')||'<div class="kb-empty">该学科暂无真题板块</div>';
+  // 绑定错题按钮
+  $$('.zt-wrong').forEach(function(btn){btn.addEventListener('click',function(){
+    var ST=window.StudyTools;if(!ST)return;
+    var qid=btn.getAttribute('data-qid');
+    var on=ST.toggleWrong(qid, btn.getAttribute('data-title'), btn.getAttribute('data-cat'));
+    btn.textContent=on?'✓已标记错题':'标记错题';
+  });});
+}
+
 /* ---------- 我的学习 ---------- */
 function renderMyStudy(){
   var ST=window.StudyTools;if(!ST)return;
-  var recent=ST.getRecent(), fav=ST.getFav();
+  var recent=ST.getRecent(), fav=ST.getFav(), wrong=ST.getWrong(), due=ST.getDue();
+  // 学习统计
+  var srs=ST.getSRS();
+  var mastered=0, reviewing=0;
+  Object.keys(srs).forEach(function(k){if(srs[k].state==='mastered')mastered++;else reviewing++;});
+  $('#studyMetrics').innerHTML=
+    '<div class="kb-metric"><div class="num">'+mastered+'</div><div class="label">已掌握</div></div>'+
+    '<div class="kb-metric"><div class="num">'+reviewing+'</div><div class="label">待复习</div></div>'+
+    '<div class="kb-metric"><div class="num">'+wrong.length+'</div><div class="label">错题</div></div>'+
+    '<div class="kb-metric"><div class="num">'+due.length+'</div><div class="label">今日待复习</div></div>';
+  // 今日待复习
+  $('#reviewList').innerHTML=due.length?due.map(function(x){
+    return '<div class="kb-list-row"><span class="r-icon" style="background:var(--accent)">复</span>'+
+    '<span class="r-main"><span class="r-title">'+esc(x.title||x.id)+'</span>'+
+    '<span class="r-sub">'+esc(x.cat||'')+' · 需复习</span></span>'+
+    '<span class="kb-btn-row" style="gap:4px">'+
+    '<button class="kb-btn srs-btn" data-id="'+esc(x.id)+'" data-state="mastered">✓ 掌握</button>'+
+    '<button class="kb-btn srs-btn" data-id="'+esc(x.id)+'" data-state="easy-wrong">仍易错</button></span></div>';
+  }).join(''):'<div class="kb-empty">今日暂无待复习内容 🎉</div>';
+  // 错题本
+  $('#wrongList').innerHTML=wrong.length?wrong.map(function(w){
+    var href=w.id&&w.id.indexOf('zt:')===0?ztHref(w.id):(corpusHref(w.id)||'#');
+    return '<div class="kb-list-row"><span class="r-icon" style="background:var(--danger,#e74c3c)">✗</span>'+
+    '<a class="r-main" href="'+href+'" style="text-decoration:none"><span class="r-title">'+esc(w.title||w.id)+'</span>'+
+    '<span class="r-sub">'+esc(w.cat||'')+' · '+new Date(w.ts).toLocaleString()+'</span></a>'+
+    '<button class="kb-btn wrong-del" data-id="'+esc(w.id)+'">移除</button></div>';
+  }).join(''):'<div class="kb-empty">错题本为空，答题时点「标记错题」即可加入</div>';
+  // 最近阅读
   $('#recentList').innerHTML=recent.length?recent.slice(0,20).map(function(r){
     var href=corpusHref(r.id)||'#';
     return '<a class="kb-list-row" href="'+href+'"><span class="r-icon">阅</span>'+
     '<span class="r-main"><span class="r-title">'+esc(r.title||r.id)+'</span>'+
     '<span class="r-sub">'+esc(r.cat||'')+' · '+new Date(r.ts).toLocaleString()+'</span></span></a>';
   }).join(''):'<div class="kb-empty">暂无阅读记录</div>';
+  // 收藏
   $('#favList').innerHTML=fav.length?fav.slice(0,50).map(function(f){
     var href=(f.type==='corpus'?corpusHref(f.id):('study.html#/point/'+f.id))||'#';
     return '<a class="kb-list-row" href="'+href+'"><span class="r-icon" style="background:var(--warn)">★</span>'+
     '<span class="r-main"><span class="r-title">'+esc(f.title||f.id)+'</span>'+
     '<span class="r-sub">'+esc(f.type==='corpus'?'语料':'知识点')+'</span></span></a>';
   }).join(''):'<div class="kb-empty">暂无收藏</div>';
+  // 绑定错题移除 + 复习状态按钮
+  $$('.wrong-del').forEach(function(b){b.addEventListener('click',function(){
+    ST.toggleWrong(b.getAttribute('data-id'),'','');renderMyStudy();
+  });});
+  $$('.srs-btn').forEach(function(b){b.addEventListener('click',function(){
+    var id=b.getAttribute('data-id'), s=ST.getMastery(id);
+    ST.setMastery(id, s&&s.title||id, s&&s.cat||'', b.getAttribute('data-state'));
+    renderMyStudy();
+  });});
+}
+function ztHref(qid){
+  // qid 格式：zt:{blockId}:{q} → 阅读页 + 行号锚点
+  // 需要 zhenti 数据里的 block 映射；若未加载则返回真题视图
+  var parts=qid.split(':');
+  if(parts.length<3)return 'study.html#/zhenti';
+  var blockId=parts[1], q=parts[2];
+  var b=(ZT||[]).find(function(x){return x.id===blockId;});
+  if(!b)return 'study.html#/zhenti';
+  var a=b.anchors.find(function(x){return String(x.q)===q;});
+  var line=a?a.line:null;
+  return 'read/'+b.categoryId+'/'+b.id+'/'+(line?('#L'+line):'');
 }
 function corpusHref(docId){
   // docId 格式：corpus:{cid}:{file}
@@ -384,13 +528,10 @@ function corpusHref(docId){
 $('#clearStudy').addEventListener('click',function(){
   if(window.StudyTools){window.StudyTools.clearAll();renderMyStudy();}
 });
-/* 切换到"我的学习"视图时刷新 */
-var origSwitch=switchTab;
-switchTab=function(v){origSwitch(v);if(v==='mystudy')renderMyStudy();};
 
 /* ---------- hash 路由：#/chapter/{id}(/L{n}) · #/point/{id} · #/points/{cid} ---------- */
-function route(){
-  var h=location.hash.replace(/^#\/?/,''),p=h.split('/').filter(Boolean);
+var dataReady=false, pendingRoute=null;
+function handleRoute(p){
   if(!p.length)return;
   if(p[0]==='chapter'&&p[1]){switchTab('chapters');
     var line=p[2]&&/^L\d+$/.test(p[2])?+p[2].slice(1):null;
@@ -400,7 +541,14 @@ function route(){
   else if(p[0]==='corpus'){switchTab('corpus');}
   else if(p[0]==='files'){switchTab('files');}
   else if(p[0]==='search'){switchTab('fullsearch');}
+  else if(p[0]==='zhenti'){switchTab('zhenti');}
   else if(p[0]==='mystudy'){switchTab('mystudy');renderMyStudy();}
+}
+function route(){
+  var h=location.hash.replace(/^#\/?/,''),p=h.split('/').filter(Boolean);
+  if(!p.length)return;
+  if(!dataReady){pendingRoute=p;return;}  /* 数据未就绪，先挂起 */
+  handleRoute(p);
 }
 window.addEventListener('hashchange',route);
 route();

@@ -1,0 +1,1016 @@
+{
+ "blocks": [
+  {
+   "id": "politics-07",
+   "categoryId": "politics",
+   "category": "政治",
+   "displayTitle": "政治真题与技巧题库（上）",
+   "file": "corpus/politics-07.txt",
+   "read": "read/politics/politics-07/",
+   "kind": "politics",
+   "year": "历年",
+   "type": "真题与技巧题库",
+   "chars": 568943,
+   "questionCount": 14,
+   "anchors": []
+  },
+  {
+   "id": "politics-08",
+   "categoryId": "politics",
+   "category": "政治",
+   "displayTitle": "政治真题与技巧题库（中）",
+   "file": "corpus/politics-08.txt",
+   "read": "read/politics/politics-08/",
+   "kind": "politics",
+   "year": "历年",
+   "type": "真题与技巧题库",
+   "chars": 264629,
+   "questionCount": 5,
+   "anchors": []
+  },
+  {
+   "id": "politics-09",
+   "categoryId": "politics",
+   "category": "政治",
+   "displayTitle": "政治真题与技巧题库（下）",
+   "file": "corpus/politics-09.txt",
+   "read": "read/politics/politics-09/",
+   "kind": "politics",
+   "year": "历年",
+   "type": "真题与技巧题库",
+   "chars": 579716,
+   "questionCount": 33,
+   "anchors": []
+  },
+  {
+   "id": "english-12",
+   "categoryId": "english",
+   "category": "英语",
+   "displayTitle": "考研英语一历年真题全集",
+   "file": "corpus/english-12.txt",
+   "read": "read/english/english-12/",
+   "kind": "english",
+   "year": "1986-2016",
+   "type": "英语一",
+   "chars": 3941231,
+   "questionCount": 48,
+   "anchors": [
+    {
+     "q": 1,
+     "line": 202,
+     "stem": "1. But there is an increasing demand for people who are able to take in great area at a glance, people who perhaps do no",
+     "knowledge": ""
+    },
+    {
+     "q": 2,
+     "line": 31,
+     "stem": "2. ［A］taking",
+     "knowledge": ""
+    },
+    {
+     "q": 3,
+     "line": 46,
+     "stem": "3. ［A］buy",
+     "knowledge": ""
+    },
+    {
+     "q": 4,
+     "line": 346,
+     "stem": "4. Arctic 北极地区",
+     "knowledge": ""
+    },
+    {
+     "q": 5,
+     "line": 630,
+     "stem": "5. ［A］amount 金额；数量，数额",
+     "knowledge": ""
+    },
+    {
+     "q": 6,
+     "line": 645,
+     "stem": "6. ［A］in order 妥当，适宜",
+     "knowledge": ""
+    },
+    {
+     "q": 7,
+     "line": 116,
+     "stem": "7. ［A］at",
+     "knowledge": ""
+    },
+    {
+     "q": 8,
+     "line": 130,
+     "stem": "8. ［A］Why",
+     "knowledge": ""
+    },
+    {
+     "q": 9,
+     "line": 693,
+     "stem": "9. ［A］treatment 对待，待遇",
+     "knowledge": ""
+    },
+    {
+     "q": 10,
+     "line": 171,
+     "stem": "10. ［A］place 地点，位置，区域；表面的某处，身体某处；座位；地位，资格，名额",
+     "knowledge": ""
+    },
+    {
+     "q": 11,
+     "line": 3772,
+     "stem": "11. ［A］exceptional 例外的［B］strange 奇怪的",
+     "knowledge": ""
+    },
+    {
+     "q": 12,
+     "line": 1477,
+     "stem": "12. Before you start reading, it is important",
+     "knowledge": ""
+    },
+    {
+     "q": 13,
+     "line": 3208,
+     "stem": "13. ［A］Like 像［B］Unlike 不像，和...不同［C］As 作为［D］For 为了",
+     "knowledge": ""
+    },
+    {
+     "q": 14,
+     "line": 295,
+     "stem": "14. During your training period, it is",
+     "knowledge": ""
+    },
+    {
+     "q": 15,
+     "line": 311,
+     "stem": "15. A man’s first job ________.",
+     "knowledge": ""
+    },
+    {
+     "q": 16,
+     "line": 2859,
+     "stem": "16. About",
+     "knowledge": ""
+    },
+    {
+     "q": 17,
+     "line": 391,
+     "stem": "17. At the time this article was written, our",
+     "knowledge": ""
+    },
+    {
+     "q": 18,
+     "line": 406,
+     "stem": "18. Antarctica is bordered by the ________.",
+     "knowledge": ""
+    },
+    {
+     "q": 19,
+     "line": 1733,
+     "stem": "19. A house-proud woman ________.",
+     "knowledge": ""
+    },
+    {
+     "q": 20,
+     "line": 437,
+     "stem": "20. According to this article ________.",
+     "knowledge": ""
+    },
+    {
+     "q": 21,
+     "line": 7193,
+     "stem": "21.C",
+     "knowledge": ""
+    },
+    {
+     "q": 22,
+     "line": 7194,
+     "stem": "22.D",
+     "knowledge": ""
+    },
+    {
+     "q": 23,
+     "line": 1097,
+     "stem": "23. Bertrand Russell’s notion about electricity",
+     "knowledge": ""
+    },
+    {
+     "q": 24,
+     "line": 7197,
+     "stem": "24.A",
+     "knowledge": ""
+    },
+    {
+     "q": 25,
+     "line": 3442,
+     "stem": "25. According to the passage, it is true that___.",
+     "knowledge": ""
+    },
+    {
+     "q": 26,
+     "line": 3490,
+     "stem": "26. A growing plant needs water for all of the",
+     "knowledge": ""
+    },
+    {
+     "q": 27,
+     "line": 7201,
+     "stem": "27.D",
+     "knowledge": ""
+    },
+    {
+     "q": 28,
+     "line": 7202,
+     "stem": "28.B",
+     "knowledge": ""
+    },
+    {
+     "q": 29,
+     "line": 3543,
+     "stem": "29. According to the passage, which of the",
+     "knowledge": ""
+    },
+    {
+     "q": 30,
+     "line": 7204,
+     "stem": "30.A",
+     "knowledge": ""
+    },
+    {
+     "q": 31,
+     "line": 17318,
+     "stem": "31. According to those who support mergers, railway monopoly is unlikely because",
+     "knowledge": ""
+    },
+    {
+     "q": 32,
+     "line": 13969,
+     "stem": "32. Despite its efforts, the newspaper industry still cannot satisfy the readers owing to its",
+     "knowledge": ""
+    },
+    {
+     "q": 33,
+     "line": 21048,
+     "stem": "33. D",
+     "knowledge": ""
+    },
+    {
+     "q": 34,
+     "line": 14863,
+     "stem": "34. According to the author, one of the driving forces",
+     "knowledge": ""
+    },
+    {
+     "q": 35,
+     "line": 17339,
+     "stem": "35. According to the text, the cost increase in the rail industry is mainly caused b",
+     "knowledge": ""
+    },
+    {
+     "q": 36,
+     "line": 12190,
+     "stem": "36. Directions:",
+     "knowledge": ""
+    },
+    {
+     "q": 37,
+     "line": 21052,
+     "stem": "37. D",
+     "knowledge": ""
+    },
+    {
+     "q": 38,
+     "line": 15718,
+     "stem": "38. According to the NAS's report, one of the problems in end-of-life care i",
+     "knowledge": ""
+    },
+    {
+     "q": 39,
+     "line": 21054,
+     "stem": "39. B",
+     "knowledge": ""
+    },
+    {
+     "q": 40,
+     "line": 14076,
+     "stem": "40. According to the passage, downshifting emerged in the U.S. as a result o",
+     "knowledge": ""
+    },
+    {
+     "q": 41,
+     "line": 22617,
+     "stem": "41. C",
+     "knowledge": ""
+    },
+    {
+     "q": 42,
+     "line": 21058,
+     "stem": "42.C",
+     "knowledge": ""
+    },
+    {
+     "q": 43,
+     "line": 22619,
+     "stem": "43.B",
+     "knowledge": ""
+    },
+    {
+     "q": 44,
+     "line": 24073,
+     "stem": "44. C",
+     "knowledge": ""
+    },
+    {
+     "q": 45,
+     "line": 21061,
+     "stem": "45.B",
+     "knowledge": ""
+    },
+    {
+     "q": 46,
+     "line": 14118,
+     "stem": "46. Directions:",
+     "knowledge": ""
+    },
+    {
+     "q": 51,
+     "line": 20996,
+     "stem": "51. Directions:",
+     "knowledge": ""
+    },
+    {
+     "q": 52,
+     "line": 21004,
+     "stem": "52. Directions:",
+     "knowledge": ""
+    }
+   ]
+  },
+  {
+   "id": "english-14",
+   "categoryId": "english",
+   "category": "英语",
+   "displayTitle": "考研英语二历年真题全集",
+   "file": "corpus/english-14.txt",
+   "read": "read/english/english-14/",
+   "kind": "english",
+   "year": "1986-2016",
+   "type": "英语二",
+   "chars": 2728146,
+   "questionCount": 59,
+   "anchors": [
+    {
+     "q": 1,
+     "line": 3213,
+     "stem": "1. ［A］In",
+     "knowledge": ""
+    },
+    {
+     "q": 2,
+     "line": 3217,
+     "stem": "2. ［A］capable",
+     "knowledge": ""
+    },
+    {
+     "q": 3,
+     "line": 3221,
+     "stem": "3. ［A］Served",
+     "knowledge": ""
+    },
+    {
+     "q": 4,
+     "line": 3225,
+     "stem": "4. ［A］far",
+     "knowledge": ""
+    },
+    {
+     "q": 5,
+     "line": 3229,
+     "stem": "5. ［A］Then",
+     "knowledge": ""
+    },
+    {
+     "q": 6,
+     "line": 3233,
+     "stem": "6. ［A］supply",
+     "knowledge": ""
+    },
+    {
+     "q": 7,
+     "line": 3237,
+     "stem": "7. ［A］unimagined",
+     "knowledge": ""
+    },
+    {
+     "q": 8,
+     "line": 3241,
+     "stem": "8. ［A］attributed",
+     "knowledge": ""
+    },
+    {
+     "q": 9,
+     "line": 3245,
+     "stem": "9. ［A］general",
+     "knowledge": ""
+    },
+    {
+     "q": 10,
+     "line": 31,
+     "stem": "10. Don’t be satisfied ________ what you have achieved.",
+     "knowledge": ""
+    },
+    {
+     "q": 11,
+     "line": 2453,
+     "stem": "11. By the first sentence of the passage the author means that__.",
+     "knowledge": ""
+    },
+    {
+     "q": 12,
+     "line": 37,
+     "stem": "12. A great number of small power stations ________ (set up) in their county since liberation.",
+     "knowledge": ""
+    },
+    {
+     "q": 13,
+     "line": 2022,
+     "stem": "13. David, something important has happened. I wish to ________.",
+     "knowledge": ""
+    },
+    {
+     "q": 14,
+     "line": 3265,
+     "stem": "14. ［A］new",
+     "knowledge": ""
+    },
+    {
+     "q": 15,
+     "line": 2784,
+     "stem": "15. According to the passage, the credit card enables its owner to__.",
+     "knowledge": ""
+    },
+    {
+     "q": 16,
+     "line": 3298,
+     "stem": "16. According to this passage, troubles on the",
+     "knowledge": ""
+    },
+    {
+     "q": 17,
+     "line": 3650,
+     "stem": "17. According to the author, if a person is found",
+     "knowledge": ""
+    },
+    {
+     "q": 18,
+     "line": 453,
+     "stem": "18. A series of debates",
+     "knowledge": ""
+    },
+    {
+     "q": 19,
+     "line": 1539,
+     "stem": "19. Badly beaten, the intruders ________ in disorder.",
+     "knowledge": ""
+    },
+    {
+     "q": 20,
+     "line": 4553,
+     "stem": "20. According",
+     "knowledge": ""
+    },
+    {
+     "q": 21,
+     "line": 1152,
+     "stem": "21. Because of",
+     "knowledge": ""
+    },
+    {
+     "q": 22,
+     "line": 6216,
+     "stem": "22. According to the author, basic computer skills should be.",
+     "knowledge": ""
+    },
+    {
+     "q": 23,
+     "line": 2576,
+     "stem": "23. According to the passage, A-type individuals are usually__.",
+     "knowledge": ""
+    },
+    {
+     "q": 24,
+     "line": 55,
+     "stem": "24. A beam of light will not bend round corners unless ________ (make) to do so with the help of a reflecting",
+     "knowledge": ""
+    },
+    {
+     "q": 25,
+     "line": 3739,
+     "stem": "25. According to the passage, it is true that___.",
+     "knowledge": ""
+    },
+    {
+     "q": 26,
+     "line": 3445,
+     "stem": "26. According to the author, recent Olympic",
+     "knowledge": ""
+    },
+    {
+     "q": 27,
+     "line": 6375,
+     "stem": "27.A",
+     "knowledge": ""
+    },
+    {
+     "q": 28,
+     "line": 2119,
+     "stem": "28. All along he has been striving not to fall short of his parents' expectations.",
+     "knowledge": ""
+    },
+    {
+     "q": 29,
+     "line": 269,
+     "stem": "29. Caught (Having been caught, Being",
+     "knowledge": ""
+    },
+    {
+     "q": 30,
+     "line": 637,
+     "stem": "30. Arriving, had been working",
+     "knowledge": ""
+    },
+    {
+     "q": 31,
+     "line": 8140,
+     "stem": "31. According to Dr. Curtis, habits like hand washing with soap ______.",
+     "knowledge": ""
+    },
+    {
+     "q": 32,
+     "line": 8145,
+     "stem": "32. Bottled water, chewing gum and skin moisturizers are mentioned in Paragraph 5",
+     "knowledge": ""
+    },
+    {
+     "q": 33,
+     "line": 8365,
+     "stem": "33.D",
+     "knowledge": ""
+    },
+    {
+     "q": 34,
+     "line": 8366,
+     "stem": "34. C",
+     "knowledge": ""
+    },
+    {
+     "q": 35,
+     "line": 8367,
+     "stem": "35. B",
+     "knowledge": ""
+    },
+    {
+     "q": 36,
+     "line": 5400,
+     "stem": "36. Directions:",
+     "knowledge": ""
+    },
+    {
+     "q": 37,
+     "line": 8370,
+     "stem": "37. A",
+     "knowledge": ""
+    },
+    {
+     "q": 38,
+     "line": 8371,
+     "stem": "38. C",
+     "knowledge": ""
+    },
+    {
+     "q": 39,
+     "line": 2182,
+     "stem": "39. After a long walk on a hot day, one often feels ________.",
+     "knowledge": ""
+    },
+    {
+     "q": 40,
+     "line": 8373,
+     "stem": "40. D",
+     "knowledge": ""
+    },
+    {
+     "q": 41,
+     "line": 128,
+     "stem": "41. Comrade Li ________ be in Beijing because I saw him in town only a few minutes ago.",
+     "knowledge": ""
+    },
+    {
+     "q": 42,
+     "line": 11986,
+     "stem": "42. D",
+     "knowledge": ""
+    },
+    {
+     "q": 43,
+     "line": 11987,
+     "stem": "43. C",
+     "knowledge": ""
+    },
+    {
+     "q": 44,
+     "line": 1679,
+     "stem": "44. At first everything went well with the project but recently problems kept cropping up.",
+     "knowledge": ""
+    },
+    {
+     "q": 45,
+     "line": 11889,
+     "stem": "45. A Department",
+     "knowledge": ""
+    },
+    {
+     "q": 46,
+     "line": 8289,
+     "stem": "46. Directions:",
+     "knowledge": ""
+    },
+    {
+     "q": 47,
+     "line": 171,
+     "stem": "47. After",
+     "knowledge": ""
+    },
+    {
+     "q": 48,
+     "line": 1710,
+     "stem": "48. Although the false banknotes fooled many people, they did not ________ close examination.",
+     "knowledge": ""
+    },
+    {
+     "q": 49,
+     "line": 2240,
+     "stem": "49. Astronauts can be affected",
+     "knowledge": ""
+    },
+    {
+     "q": 50,
+     "line": 1720,
+     "stem": "50. Charles has not the least ________ of giving up his research.",
+     "knowledge": ""
+    },
+    {
+     "q": 54,
+     "line": 299,
+     "stem": "54. During the past three years a lot (of work) has been done in the recovery (restoration) of our national",
+     "knowledge": ""
+    },
+    {
+     "q": 56,
+     "line": 1050,
+     "stem": "56. As time goes on, he will understand what I said.",
+     "knowledge": ""
+    },
+    {
+     "q": 58,
+     "line": 1771,
+     "stem": "58. Bob has sat at the table for a couple of",
+     "knowledge": ""
+    },
+    {
+     "q": 60,
+     "line": 1054,
+     "stem": "60. Despite the great differences between our political and economic systems, our two countries share",
+     "knowledge": ""
+    },
+    {
+     "q": 61,
+     "line": 2344,
+     "stem": "61. Compared with the original one, this plan is far more complete.",
+     "knowledge": ""
+    },
+    {
+     "q": 63,
+     "line": 2346,
+     "stem": "63. Are you clear about what you should do next?",
+     "knowledge": ""
+    },
+    {
+     "q": 64,
+     "line": 1802,
+     "stem": "64. Because",
+     "knowledge": ""
+    },
+    {
+     "q": 66,
+     "line": 1813,
+     "stem": "66. A: Is your new bus going O.K.?",
+     "knowledge": ""
+    },
+    {
+     "q": 73,
+     "line": 1823,
+     "stem": "73. Don't come today, I would rather you ________ (come) tomorrow.",
+     "knowledge": ""
+    }
+   ]
+  },
+  {
+   "id": "mathematics-19",
+   "categoryId": "mathematics",
+   "category": "数学",
+   "displayTitle": "数学真题与解析（1987—2000）",
+   "file": "corpus/mathematics-19.txt",
+   "read": "read/mathematics/mathematics-19/",
+   "kind": "math",
+   "year": "1987-2000",
+   "type": "数学二",
+   "chars": 190468,
+   "questionCount": 0,
+   "anchors": []
+  },
+  {
+   "id": "mathematics-20",
+   "categoryId": "mathematics",
+   "category": "数学",
+   "displayTitle": "数学真题与解析（2001—2013）",
+   "file": "corpus/mathematics-20.txt",
+   "read": "read/mathematics/mathematics-20/",
+   "kind": "math",
+   "year": "2001-2013",
+   "type": "数学二",
+   "chars": 249897,
+   "questionCount": 0,
+   "anchors": []
+  },
+  {
+   "id": "mathematics-21",
+   "categoryId": "mathematics",
+   "category": "数学",
+   "displayTitle": "数学真题与解析（2014—2025）",
+   "file": "corpus/mathematics-21.txt",
+   "read": "read/mathematics/mathematics-21/",
+   "kind": "math",
+   "year": "2014-2025",
+   "type": "数学二",
+   "chars": 140184,
+   "questionCount": 0,
+   "anchors": []
+  },
+  {
+   "id": "computer-408-26",
+   "categoryId": "computer-408",
+   "category": "计算机408",
+   "displayTitle": "计算机408 · 真题与套卷解析",
+   "file": "corpus/computer-408-26.txt",
+   "read": "read/computer-408/computer-408-26/",
+   "kind": "cs",
+   "year": "2027",
+   "type": "王道8套卷",
+   "chars": 350367,
+   "questionCount": 40,
+   "anchors": [
+    {
+     "q": 1,
+     "line": 6807,
+     "stem": "1. C",
+     "knowledge": ""
+    },
+    {
+     "q": 2,
+     "line": 6816,
+     "stem": "2. D",
+     "knowledge": ""
+    },
+    {
+     "q": 3,
+     "line": 6819,
+     "stem": "3.  A",
+     "knowledge": ""
+    },
+    {
+     "q": 4,
+     "line": 6823,
+     "stem": "4. C",
+     "knowledge": ""
+    },
+    {
+     "q": 5,
+     "line": 6833,
+     "stem": "5. B",
+     "knowledge": ""
+    },
+    {
+     "q": 6,
+     "line": 6835,
+     "stem": "6. B",
+     "knowledge": ""
+    },
+    {
+     "q": 7,
+     "line": 6844,
+     "stem": "7. A",
+     "knowledge": ""
+    },
+    {
+     "q": 8,
+     "line": 6847,
+     "stem": "8. B",
+     "knowledge": ""
+    },
+    {
+     "q": 9,
+     "line": 15547,
+     "stem": "9.D",
+     "knowledge": ""
+    },
+    {
+     "q": 10,
+     "line": 6852,
+     "stem": "10. B",
+     "knowledge": ""
+    },
+    {
+     "q": 11,
+     "line": 6853,
+     "stem": "11. A",
+     "knowledge": ""
+    },
+    {
+     "q": 12,
+     "line": 6856,
+     "stem": "12. B",
+     "knowledge": ""
+    },
+    {
+     "q": 13,
+     "line": 6858,
+     "stem": "13. A",
+     "knowledge": ""
+    },
+    {
+     "q": 14,
+     "line": 6864,
+     "stem": "14. D",
+     "knowledge": ""
+    },
+    {
+     "q": 15,
+     "line": 6874,
+     "stem": "15. D",
+     "knowledge": ""
+    },
+    {
+     "q": 16,
+     "line": 6877,
+     "stem": "16. A",
+     "knowledge": ""
+    },
+    {
+     "q": 17,
+     "line": 610,
+     "stem": "17. Cache 缺失会导致系统需要额外的时间开销去获取数据，通常以时钟周期为单位来衡量Cache 缺失",
+     "knowledge": ""
+    },
+    {
+     "q": 18,
+     "line": 6884,
+     "stem": "18. A",
+     "knowledge": ""
+    },
+    {
+     "q": 19,
+     "line": 6886,
+     "stem": "19. C",
+     "knowledge": ""
+    },
+    {
+     "q": 20,
+     "line": 15558,
+     "stem": "20.A",
+     "knowledge": ""
+    },
+    {
+     "q": 21,
+     "line": 6891,
+     "stem": "21. B",
+     "knowledge": ""
+    },
+    {
+     "q": 22,
+     "line": 2770,
+     "stem": "22. DMA 方式的接口电路中有程序中断部件，其作用包括（",
+     "knowledge": ""
+    },
+    {
+     "q": 23,
+     "line": 6897,
+     "stem": "23. B",
+     "knowledge": ""
+    },
+    {
+     "q": 24,
+     "line": 6902,
+     "stem": "24. A",
+     "knowledge": ""
+    },
+    {
+     "q": 25,
+     "line": 6905,
+     "stem": "25. D",
+     "knowledge": ""
+    },
+    {
+     "q": 26,
+     "line": 6908,
+     "stem": "26. D",
+     "knowledge": ""
+    },
+    {
+     "q": 27,
+     "line": 6910,
+     "stem": "27. B",
+     "knowledge": ""
+    },
+    {
+     "q": 28,
+     "line": 6916,
+     "stem": "28. D",
+     "knowledge": ""
+    },
+    {
+     "q": 29,
+     "line": 6919,
+     "stem": "29. B",
+     "knowledge": ""
+    },
+    {
+     "q": 30,
+     "line": 6922,
+     "stem": "30. D",
+     "knowledge": ""
+    },
+    {
+     "q": 31,
+     "line": 6925,
+     "stem": "31. B",
+     "knowledge": ""
+    },
+    {
+     "q": 32,
+     "line": 6928,
+     "stem": "32. C",
+     "knowledge": ""
+    },
+    {
+     "q": 33,
+     "line": 6932,
+     "stem": "33. C",
+     "knowledge": ""
+    },
+    {
+     "q": 34,
+     "line": 6938,
+     "stem": "34. B",
+     "knowledge": ""
+    },
+    {
+     "q": 35,
+     "line": 2182,
+     "stem": "35. CSMA 协议可利用多种监听算法来减小发生冲突的概率。在下面关于各种监听算法的描述中，错误",
+     "knowledge": ""
+    },
+    {
+     "q": 36,
+     "line": 2187,
+     "stem": "36. ARP 的作用是由IP 地址求MAC 地址，某结点响应其他结点的ARP 请求是通过（",
+     "knowledge": ""
+    },
+    {
+     "q": 37,
+     "line": 6949,
+     "stem": "37. A",
+     "knowledge": ""
+    },
+    {
+     "q": 38,
+     "line": 6959,
+     "stem": "38. C",
+     "knowledge": ""
+    },
+    {
+     "q": 39,
+     "line": 6965,
+     "stem": "39. C",
+     "knowledge": ""
+    },
+    {
+     "q": 40,
+     "line": 6969,
+     "stem": "40. D",
+     "knowledge": ""
+    }
+   ]
+  }
+ ],
+ "totalQuestions": 199
+}
