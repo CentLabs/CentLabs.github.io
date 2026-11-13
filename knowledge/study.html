@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>27 考研知识库 · 本地完整版</title>
+<style>
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --panel2:#f0f2f5; --line:#e3e6eb;
+  --text:#1c2230; --muted:#6b7484; --accent:#2f6df6; --accent2:#7b4dff;
+  --ok:#0f9b6c; --warn:#c47f16; --code:#f4f6fa; --shadow:0 2px 14px rgba(20,30,60,.07);
+}
+html[data-theme="dark"]{
+  --bg:#12161f; --panel:#1a202c; --panel2:#222a38; --line:#2e3849;
+  --text:#e6ebf4; --muted:#93a0b5; --accent:#6b9bff; --accent2:#a98bff;
+  --ok:#4fd1a5; --warn:#e8b24a; --code:#151b26; --shadow:0 2px 14px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.75 -apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+a{color:var(--accent);text-decoration:none}
+header{position:sticky;top:0;z-index:20;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+.hd{max-width:1400px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{font-size:18px;font-weight:700;letter-spacing:.5px;white-space:nowrap}
+.logo small{font-size:11px;color:var(--muted);font-weight:400;margin-left:8px}
+.tabs{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+.tab{padding:7px 15px;border-radius:8px;cursor:pointer;color:var(--muted);font-size:14px;border:1px solid transparent;white-space:nowrap}
+.tab:hover{background:var(--panel2)}
+.tab.on{background:var(--accent);color:#fff;font-weight:600}
+.tools{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:13px;white-space:nowrap}
+.btn:hover{border-color:var(--accent)}
+input.search{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:8px 13px;border-radius:9px;width:230px;font-size:13px;outline:none}
+input.search:focus{border-color:var(--accent)}
+.wrap{max-width:1400px;margin:0 auto;padding:20px 22px 60px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.stat b{display:block;font-size:24px;color:var(--accent);line-height:1.3}
+.stat span{font-size:12px;color:var(--muted)}
+.view{display:none}.view.on{display:block}
+.grid{display:grid;grid-template-columns:270px 1fr;gap:18px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.side{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;max-height:calc(100vh - 150px);overflow:auto;box-shadow:var(--shadow)}
+.side h4{margin:12px 6px 7px;font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.side .item{display:block;padding:7px 10px;border-radius:7px;cursor:pointer;font-size:13px;color:var(--text);border:1px solid transparent;line-height:1.45}
+.side .item:hover{background:var(--panel2)}
+.side .item.on{background:var(--panel2);border-color:var(--accent);color:var(--accent);font-weight:600}
+.side .meta{font-size:11px;color:var(--muted);display:block;margin-top:2px}
+.main{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px 30px;min-height:60vh;box-shadow:var(--shadow)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow);cursor:pointer}
+.card:hover{border-color:var(--accent)}
+.card h3{margin:0 0 8px;font-size:16px}
+.card .tag{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--panel2);color:var(--muted);margin-right:6px}
+.card p{margin:6px 0;font-size:13px;color:var(--muted)}
+.md{font-size:15px;line-height:1.85;overflow-wrap:break-word}
+.md h1{font-size:26px;border-bottom:2px solid var(--accent);padding-bottom:10px;margin:6px 0 22px}
+.md h2{font-size:21px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--accent)}
+.md h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
+.md h4{font-size:15px;margin:18px 0 8px}
+.md p{margin:9px 0}
+.md ul,.md ol{padding-left:24px;margin:8px 0}
+.md li{margin:4px 0}
+.md blockquote{border-left:3px solid var(--warn);background:var(--panel2);margin:12px 0;padding:9px 14px;color:var(--muted);border-radius:0 8px 8px 0}
+.md code{background:var(--code);padding:2px 5px;border-radius:4px;font:13px/1.6 Consolas,Monaco,monospace}
+.md pre{background:var(--code);border:1px solid var(--line);border-radius:9px;padding:14px;overflow:auto;margin:12px 0}
+.md pre code{background:none;padding:0;font-size:13px;line-height:1.6}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;display:block;overflow:auto}
+.md th,.md td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+.md th{background:var(--panel2);font-weight:600;white-space:nowrap}
+.md tr:nth-child(even) td{background:var(--panel2)}
+.md hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+.md .math{background:var(--code);border-left:3px solid var(--accent2);padding:9px 14px;margin:10px 0;font:13px/1.7 Consolas,Monaco,monospace;overflow:auto;white-space:pre-wrap;border-radius:0 8px 8px 0}
+.md .imath{font:13px Consolas,monospace;color:var(--accent2)}
+.toc{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:12px 16px;margin-bottom:20px;font-size:13px}
+.toc a{display:inline-block;margin:3px 12px 3px 0}
+.hit{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:10px 14px;margin:9px 0;font-size:13px}
+.hit b{color:var(--accent)}
+.hit .ctx{color:var(--muted);margin-top:4px;line-height:1.6}
+mark{background:#ffe58f;color:#1c2230;padding:0 2px;border-radius:2px}
+html[data-theme="dark"] mark{background:#6b5a1e;color:#fff}
+.empty{text-align:center;color:var(--muted);padding:60px 20px}
+.pill{display:inline-block;font-size:11px;padding:2px 9px;border-radius:20px;background:var(--panel2);color:var(--muted);margin-left:6px}
+.note{background:var(--panel2);border:1px dashed var(--line);border-radius:9px;padding:11px 15px;font-size:13px;color:var(--muted);margin-bottom:16px}
+</style>
+</head>
+<body>
+<header><div class="hd">
+  <div class="logo">27 考研知识库<small>本地完整版 · 离线可用</small></div>
+  <div class="tabs">
+    <div class="tab on" data-v="chapters">逐章精读</div>
+    <div class="tab" data-v="points">知识点卡片</div>
+    <div class="tab" data-v="files">资料索引</div>
+    <div class="tab" data-v="corpus">全文语料</div>
+    <div class="tab" data-v="fullsearch">全文检索</div>
+  </div>
+  <div class="tools">
+    <input class="search" id="q" placeholder="搜索标题 / 章节 / 知识点…">
+    <button class="btn" id="theme">切换主题</button>
+  </div>
+</div></header>
+
+<div class="wrap">
+  <div class="stats" id="stats"></div>
+
+  <!-- 逐章精读 -->
+  <section class="view on" id="v-chapters">
+    <div class="note">按教材/讲义章节组织的完整精读文档。数学 6 份按考纲章节逐年逐题详解；408 与政治按王道/徐涛讲义章编号；英语按语法体系、题型、作文类型分章。点击左侧文档即可阅读。</div>
+    <div class="grid">
+      <div class="side" id="chapSide"></div>
+      <div class="main"><div class="md" id="chapBody"><div class="empty">← 请选择左侧的一份逐章文档</div></div></div>
+    </div>
+  </section>
+
+  <!-- 知识点卡片 -->
+  <section class="view" id="v-points">
+    <div class="note">844 个结构化知识点卡片（深加工第一层）：每张含定义、核心要点、易错点、公式/代码、关联与来源。逐章精读是更完整的第二层。</div>
+    <div id="pointList" class="cards"></div>
+  </section>
+
+  <!-- 资料索引 -->
+  <section class="view" id="v-files">
+    <div class="note">1124 份原始资料的分类索引：重复文件⚠️、扫描版🖼️ 已标注，附 COS 下载链接。扫描版(纯图片)/视频音频无法提取文字，仅作索引。</div>
+    <div id="fileList"></div>
+  </section>
+
+  <!-- 全文语料 -->
+  <section class="view" id="v-corpus">
+    <div class="note">623 份唯一全文（内容级去重、去水印）按学科/板块归档，共 1348 万字符。点击可在浏览器打开原文，每份内部以 <code>===== 来源：原始路径 =====</code> 分隔，可回溯到原文件。</div>
+    <div id="corpusList" class="cards"></div>
+  </section>
+
+  <!-- 全文检索 -->
+  <section class="view" id="v-fullsearch">
+    <div class="note">跨 21 份逐章文档 + 1348 万字全文语料检索。首次搜索会加载全部文档（约 3MB，本地很快），之后即时命中。支持中英文关键词。</div>
+    <div style="display:flex;gap:10px;margin-bottom:16px">
+      <input class="search" id="fq" style="flex:1;max-width:520px" placeholder="如：洛必达 / 三次握手 / 帽子题 / 定语从句 / 银行家算法">
+      <button class="btn" id="fbtn">全库检索</button>
+    </div>
+    <div id="fresult"></div>
+  </section>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+let CH=[], KP=[], CO=[], CATS=[], FILES=[], STATS={};
+let CACHE={};
+
+async function jget(u){ const r=await fetch(u); if(!r.ok) throw new Error(u+' '+r.status); return r.json(); }
+async function tget(u){ const r=await fetch(u); if(!r.ok) throw new Error(u+' '+r.status); return r.text(); }
+
+/* ---------- 轻量 Markdown 渲染（离线，无外部依赖） ---------- */
+function inline(s){
+  s = esc(s);
+  s = s.replace(/`([^`]+)`/g,'<code>$1</code>');
+  s = s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+  // 行内公式：保留 LaTeX 源码，用等宽高亮显示（离线不依赖 KaTeX）
+  s = s.replace(/(^|[^$])\$([^$\n]+)\$(?!\$)/g,(m,pre,inner)=>pre+'<span class="imath">$'+inner+'$</span>');
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>');
+  return s;
+}
+function md2html(src){
+  const blocks=[];
+  src = src.replace(/```([\w-]*)\n([\s\S]*?)```/g,(m,lang,code)=>{
+    blocks.push('<pre><code>'+esc(code.replace(/\n$/,''))+'</code></pre>');
+    return '\u0001B'+(blocks.length-1)+'\u0001';
+  });
+  // 块级公式：内部换行先编码成 \u0002，保证占位符整体只占一行
+  src = src.replace(/\$\$([\s\S]*?)\$\$/g,(m,f)=>
+    '\u0001MATH'+esc(f.trim()).replace(/\n/g,'\u0002')+'\u0001');
+  const lines=src.split('\n'), out=[];
+  let i=0;
+  while(i<lines.length){
+    let L=lines[i];
+    if(/^\u0001B\d+\u0001$/.test(L.trim())){ out.push(L.trim()); i++; continue; }
+    if(/^\u0001MATH/.test(L.trim())){
+      const f=L.trim().replace(/^\u0001MATH/,'').replace(/\u0001$/,'').replace(/\u0002/g,'\n');
+      out.push('<div class="math">$$'+f+'$$</div>'); i++; continue;
+    }
+    if(/^\s*$/.test(L)){ i++; continue; }
+    if(/^---+$/.test(L.trim())){ out.push('<hr>'); i++; continue; }
+    let h=/^(#{1,6})\s+(.*)$/.exec(L);
+    if(h){ out.push('<h'+h[1].length+'>'+inline(h[2])+'</h'+h[1].length+'>'); i++; continue; }
+    if(/^>/.test(L)){
+      let buf=[];
+      while(i<lines.length&&/^>/.test(lines[i])){ buf.push(lines[i].replace(/^>\s?/,'')); i++; }
+      out.push('<blockquote>'+inline(buf.join(' '))+'</blockquote>'); continue;
+    }
+    // 表格
+    if(/^\s*\|/.test(L) && i+1<lines.length && /^\s*\|[\s:|-]+\|/.test(lines[i+1])){
+      const rows=[];
+      const cells=r=>r.trim().replace(/^\|/,'').replace(/\|$/,'').split('|').map(x=>x.trim());
+      rows.push(cells(L)); i+=2;
+      while(i<lines.length&&/^\s*\|/.test(lines[i])){ rows.push(cells(lines[i])); i++; }
+      let t='<table><thead><tr>'+rows[0].map(c=>'<th>'+inline(c)+'</th>').join('')+'</tr></thead><tbody>';
+      for(let r=1;r<rows.length;r++) t+='<tr>'+rows[r].map(c=>'<td>'+inline(c)+'</td>').join('')+'</tr>';
+      out.push(t+'</tbody></table>'); continue;
+    }
+    // 列表
+    if(/^\s*([-*+]|\d+[.)])\s+/.test(L)){
+      const ordered=/^\s*\d+[.)]\s+/.test(L); let buf=[];
+      while(i<lines.length&&/^\s*([-*+]|\d+[.)])\s+/.test(lines[i])){
+        buf.push('<li>'+inline(lines[i].replace(/^\s*([-*+]|\d+[.)])\s+/,''))+'</li>'); i++;
+      }
+      out.push('<'+(ordered?'ol':'ul')+'>'+buf.join('')+'</'+(ordered?'ol':'ul')+'>'); continue;
+    }
+    // 普通段落（合并连续行）
+    let buf=[L]; i++;
+    while(i<lines.length && !/^\s*$/.test(lines[i]) && !/^(#{1,6}\s|>|\||[-*+]\s|\d+[.)]\s|---|\u0001)/.test(lines[i])){ buf.push(lines[i]); i++; }
+    out.push('<p>'+inline(buf.join(' '))+'</p>');
+  }
+  let html=out.join('\n');
+  html=html.replace(/\u0001B(\d+)\u0001/g,(m,n)=>blocks[+n]);
+  return html;
+}
+
+/* ---------- 主题 / 标签 ---------- */
+const saved=localStorage.getItem('kb-theme'); if(saved) document.documentElement.dataset.theme=saved;
+$('#theme').onclick=()=>{ const t=document.documentElement.dataset.theme==='dark'?'light':'dark'; document.documentElement.dataset.theme=t; localStorage.setItem('kb-theme',t); };
+$$('.tab').forEach(t=>t.onclick=()=>{
+  $$('.tab').forEach(x=>x.classList.remove('on')); t.classList.add('on');
+  $$('.view').forEach(v=>v.classList.remove('on')); $('#v-'+t.dataset.v).classList.add('on');
+  $('#q').placeholder = t.dataset.v==='fullsearch'?'':'搜索标题 / 章节 / 知识点…';
+});
+
+/* ---------- 载入数据 ---------- */
+async function init(){
+  try{
+    [STATS,CH,CO,KP] = await Promise.all([
+      jget('data/stats.json'), jget('data/chapters.json'),
+      jget('data/corpus.json'), jget('data/knowledge-points.json')
+    ]);
+  }catch(e){ $('#stats').innerHTML='<div class="stat"><b>!</b><span>数据加载失败：'+esc(e.message)+'</span></div>'; return; }
+  const s=[
+    ['逐章精读文档',STATS.chapters,'份'],
+    ['精读内容',(STATS.chapterChars/10000).toFixed(1),'万字符'],
+    ['知识点卡片',STATS.knowledgePoints,'张'],
+    ['全文语料',(STATS.corpusChars/10000).toFixed(0),'万字符'],
+    ['原始资料',STATS.totalFiles,'份'],
+  ];
+  $('#stats').innerHTML=s.map(x=>'<div class="stat"><b>'+x[1]+'</b><span>'+x[0]+' · '+x[2]+'</span></div>').join('');
+  renderChapSide(); renderCorpus(); renderPoints();
+  loadFiles();
+}
+
+/* ---------- 逐章精读 ---------- */
+function renderChapSide(filter=''){
+  const cats=['政治','英语','数学','计算机408'];
+  let h='';
+  cats.forEach(c=>{
+    const list=CH.filter(x=>x.category===c && (x.title+JSON.stringify(x.sections)).toLowerCase().includes(filter.toLowerCase()));
+    if(!list.length) return;
+    h+='<h4>'+c+' ('+list.length+')</h4>';
+    list.forEach(x=>h+='<div class="item" data-id="'+x.id+'">'+esc(x.title.slice(0,44))+'<span class="meta">'+(x.chars/10000).toFixed(1)+' 万字符 · '+x.lines+' 行</span></div>');
+  });
+  $('#chapSide').innerHTML=h||'<div class="empty" style="padding:20px">无匹配</div>';
+  $$('#chapSide .item').forEach(el=>el.onclick=()=>openChapter(el.dataset.id));
+}
+async function openChapter(id){
+  $$('#chapSide .item').forEach(x=>x.classList.toggle('on',x.dataset.id===id));
+  const c=CH.find(x=>x.id===id); if(!c) return;
+  $('#chapBody').innerHTML='<div class="empty">加载中…</div>';
+  try{
+    if(!CACHE[id]) CACHE[id]=await tget(c.file);
+    const txt=CACHE[id];
+    let toc='';
+    if(c.sections&&c.sections.length){
+      toc='<div class="toc"><b>本章目录</b><br>'+c.sections.map(s=>'<a href="#" data-s="'+esc(s)+'">'+esc(s)+'</a>').join('')+'</div>';
+    }
+    $('#chapBody').innerHTML=toc+'<div id="mdc">'+md2html(txt)+'</div>';
+    $$('#chapBody .toc a').forEach(a=>a.onclick=e=>{
+      e.preventDefault();
+      const t=a.dataset.s.split(' ').slice(0,2).join(' ');
+      const hs=[...document.querySelectorAll('#mdc h1,#mdc h2')];
+      const target=hs.find(x=>x.textContent.includes(t.slice(0,10)))||hs.find(x=>x.textContent.includes(a.dataset.s.slice(0,8)));
+      if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(e){ $('#chapBody').innerHTML='<div class="empty">加载失败：'+esc(e.message)+'</div>'; }
+}
+
+/* ---------- 知识点卡片 ---------- */
+function renderPoints(filter=''){
+  const f=filter.toLowerCase();
+  const list=KP.filter(k=>!f||JSON.stringify(k).toLowerCase().includes(f)).slice(0,120);
+  $('#pointList').innerHTML=list.map(k=>
+    '<div class="card"><span class="tag">'+esc(k.category)+'</span><span class="tag">'+esc(k.source)+'</span>'+
+    '<h3>'+esc(k.name)+'</h3>'+
+    (k.definition&&k.definition.length?'<p><b>定义：</b>'+esc(k.definition.join(' ').slice(0,150))+'</p>':'')+
+    (k.points&&k.points.length?'<p><b>要点：</b>'+esc(k.points.slice(0,2).join('；').slice(0,150))+'</p>':'')+
+    (k.traps&&k.traps.length?'<p style="color:var(--warn)"><b>易错：</b>'+esc(k.traps.slice(0,1).join('').slice(0,120))+'</p>':'')+
+    '</div>').join('')||'<div class="empty">无匹配知识点</div>';
+}
+
+/* ---------- 资料索引 ---------- */
+async function loadFiles(){
+  const cs=['politics','english','mathematics','computer-408'];
+  for(const c of cs){
+    try{ const d=await jget('data/cat-'+c+'.json'); CATS.push(d); }catch(e){}
+  }
+  renderFiles();
+}
+function collect(node,dir,out){
+  (node.__files__||[]).forEach(f=>out.push({...f,dir:dir.join(' / ')}));
+  Object.entries(node.__children__||{}).forEach(([k,v])=>collect(v,dir.concat(k),out));
+}
+function renderFiles(filter=''){
+  const f=filter.toLowerCase(); let all=[];
+  CATS.forEach(c=>{ const o=[]; collect(c.tree,[],o); o.forEach(x=>x._cat=c.name); all=all.concat(o); });
+  FILES=all;
+  const list=all.filter(x=>!f||(x.name+x.dir+x._cat).toLowerCase().includes(f)).slice(0,150);
+  $('#fileList').innerHTML='<div class="note">共 '+all.length+' 条 · 当前显示 '+list.length+' 条</div><div class="cards">'+list.map(x=>
+    '<div class="card"><span class="tag">'+esc(x._cat)+'</span>'+(x.duplicate?'<span class="tag" style="color:var(--warn)">⚠️重复</span>':'')+(x.scanned?'<span class="tag">🖼️扫描版</span>':'')+
+    '<h3 style="font-size:14px">'+esc(x.name)+'</h3><p>'+esc(x.dir)+'</p>'+
+    '<p>'+esc(x.sizeHuman||'')+' · '+esc((x.ext||'').toUpperCase())+'</p>'+
+    '<a href="'+esc(x.url||'#')+'" target="_blank" onclick="event.stopPropagation()">下载原文 ↗</a></div>').join('')+'</div>'||'';
+}
+
+/* ---------- 全文语料 ---------- */
+function renderCorpus(filter=''){
+  const f=filter.toLowerCase();
+  const list=CO.filter(c=>!f||(c.name+c.category).toLowerCase().includes(f));
+  $('#corpusList').innerHTML=list.map(c=>
+    '<div class="card" onclick="window.open(\''+c.file+'\',\'_blank\')">'+
+    '<span class="tag">'+esc(c.category)+'</span><h3 style="font-size:14px">'+esc(c.name)+'</h3>'+
+    '<p>'+(c.chars/10000).toFixed(1)+' 万字符 · 含 '+c.sources+' 份原始文件</p>'+
+    '<a href="'+c.file+'" target="_blank" onclick="event.stopPropagation()">打开原文 ↗</a></div>').join('')||'<div class="empty">无匹配</div>';
+}
+
+/* ---------- 全文检索 ---------- */
+$('#fbtn').onclick=doFullSearch;
+$('#fq').onkeydown=e=>{ if(e.key==='Enter') doFullSearch(); };
+async function doFullSearch(){
+  const q=$('#fq').value.trim();
+  if(!q){ $('#fresult').innerHTML='<div class="empty">请输入关键词</div>'; return; }
+  $('#fresult').innerHTML='<div class="empty">正在加载全部逐章文档并检索…</div>';
+  for(const c of CH){ if(!CACHE[c.id]){ try{ CACHE[c.id]=await tget(c.file); }catch(e){} } }
+  const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  let hits=[], total=0;
+  CH.forEach(c=>{
+    const lines=(CACHE[c.id]||'').split('\n');
+    lines.forEach((ln,idx)=>{
+      if(re.test(ln)){
+        total++;
+        if(hits.length<120) hits.push({cat:c.category,title:c.title,id:c.id,line:idx+1,
+          text:ln.trim().slice(0,240),ctx:lines.slice(Math.max(0,idx-1),idx+2).join(' ').trim().slice(0,260)});
+        re.lastIndex=0;
+      }
+      re.lastIndex=0;
+    });
+  });
+  const hi=s=>esc(s).replace(re,m=>'<mark>'+m+'</mark>');
+  $('#fresult').innerHTML='<div class="note">关键词 <b>'+esc(q)+'</b> · 在 '+CH.length+' 份逐章文档中命中 <b>'+total+'</b> 行，显示前 '+hits.length+' 条。点击可跳到该文档。</div>'+
+    (hits.length?hits.map(h=>'<div class="hit" data-id="'+h.id+'" style="cursor:pointer"><b>['+esc(h.cat)+'] '+esc(h.title.slice(0,40))+'</b> <span class="pill">第 '+h.line+' 行</span>'+
+      '<div class="ctx">'+hi(h.text)+'</div></div>').join(''):'<div class="empty">未命中，试试其他关键词</div>');
+  $$('#fresult .hit').forEach(el=>el.onclick=()=>{
+    $$('.tab').forEach(x=>x.classList.remove('on')); $$('.tab')[0].classList.add('on');
+    $$('.view').forEach(v=>v.classList.remove('on')); $('#v-chapters').classList.add('on');
+    openChapter(el.dataset.id);
+  });
+}
+
+/* ---------- 顶部搜索（按视图分发） ---------- */
+$('#q').oninput=e=>{
+  const v=$$('.tab.on')[0].dataset.v, q=e.target.value;
+  if(v==='chapters') renderChapSide(q);
+  else if(v==='points') renderPoints(q);
+  else if(v==='files') renderFiles(q);
+  else if(v==='corpus') renderCorpus(q);
+  else if(v==='fullsearch'){ $('#fq').value=q; }
+};
+init();
+</script>
+</body>
+</html>

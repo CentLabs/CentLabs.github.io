@@ -1,0 +1,26 @@
+{
+ "chapters": 21,
+ "chapterChars": 1551329,
+ "corpusPacks": 27,
+ "corpusChars": 13452588,
+ "knowledgePoints": 844,
+ "totalFiles": 1124,
+ "byCategory": {
+  "politics": {
+   "chapters": 6,
+   "chars": 508053
+  },
+  "english": {
+   "chapters": 4,
+   "chars": 471431
+  },
+  "mathematics": {
+   "chapters": 6,
+   "chars": 254130
+  },
+  "computer-408": {
+   "chapters": 5,
+   "chars": 317715
+  }
+ }
+}

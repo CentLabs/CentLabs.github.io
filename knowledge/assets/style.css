@@ -82,12 +82,6 @@ a:hover { text-decoration: underline; }
 }
 .sl-nav-links a:hover { background: var(--surface-2); color: var(--text); text-decoration: none; }
 .sl-nav-links a.active { background: var(--primary-soft); color: var(--primary); font-weight: 500; }
-.sl-nav-links a.sl-nav-home {
-  margin-right: 6px;
-  border: 1px solid var(--border);
-  color: var(--primary);
-}
-.sl-nav-links a.sl-nav-home:hover { border-color: var(--primary); background: var(--primary-soft); }
 
 /* Hero */
 .sl-hero { padding: 48px 0 32px; }
