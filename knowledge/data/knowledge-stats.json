@@ -1,0 +1,72 @@
+{
+ "generatedAt": "2026-11-13T22:49:22",
+ "totalRawFiles": 1124,
+ "uniqueExtractedFiles": 623,
+ "duplicateExtractedFiles": 190,
+ "searchableFiles": 795,
+ "scannedFiles": 192,
+ "parsedFailedFiles": 73,
+ "corpusBlocks": 27,
+ "totalCorpusCharacters": 13452588,
+ "chapterDocuments": 21,
+ "chapterCharacters": 1551329,
+ "knowledgeCards": 843,
+ "subjectStatistics": {
+  "politics": {
+   "name": "政治",
+   "rawFiles": 581,
+   "sizeHuman": "8.4 GB",
+   "searchableFiles": 476,
+   "scannedFiles": 83,
+   "duplicateFiles": 15,
+   "parsedFailedFiles": 7,
+   "corpusBlocks": 10,
+   "corpusChars": 2401050,
+   "chapterDocuments": 6,
+   "chapterChars": 508053,
+   "knowledgeCards": 353
+  },
+  "english": {
+   "name": "英语",
+   "rawFiles": 365,
+   "sizeHuman": "15.9 GB",
+   "searchableFiles": 198,
+   "scannedFiles": 53,
+   "duplicateFiles": 48,
+   "parsedFailedFiles": 66,
+   "corpusBlocks": 8,
+   "corpusChars": 9025847,
+   "chapterDocuments": 4,
+   "chapterChars": 471431,
+   "knowledgeCards": 155
+  },
+  "mathematics": {
+   "name": "数学",
+   "rawFiles": 118,
+   "sizeHuman": "3.3 GB",
+   "searchableFiles": 71,
+   "scannedFiles": 46,
+   "duplicateFiles": 1,
+   "parsedFailedFiles": 0,
+   "corpusBlocks": 3,
+   "corpusChars": 580549,
+   "chapterDocuments": 6,
+   "chapterChars": 254130,
+   "knowledgeCards": 70
+  },
+  "computer-408": {
+   "name": "计算机408",
+   "rawFiles": 60,
+   "sizeHuman": "1.5 GB",
+   "searchableFiles": 50,
+   "scannedFiles": 10,
+   "duplicateFiles": 0,
+   "parsedFailedFiles": 0,
+   "corpusBlocks": 6,
+   "corpusChars": 1445142,
+   "chapterDocuments": 5,
+   "chapterChars": 317715,
+   "knowledgeCards": 265
+  }
+ }
+}

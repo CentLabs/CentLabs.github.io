@@ -65,7 +65,7 @@
       ]).then(function (rs) {
         corpus = rs[0]; chapters = rs[1];
         corpus.forEach(function (c) {
-          manifest.push({ type: 'corpus', cat: c.categoryId, id: c.file.replace(/^corpus\//, '').replace(/\.txt$/, ''), name: c.name, file: cfg.root + c.file, chars: c.chars });
+          manifest.push({ type: 'corpus', cat: c.categoryId, id: c.id || c.file.replace(/^corpus\//, '').replace(/\.txt$/, ''), name: c.displayTitle || c.name, file: cfg.root + c.file, chars: c.chars });
         });
         chapters.forEach(function (c) {
           manifest.push({ type: 'chapter', cat: c.categoryId, id: c.id, name: c.title, file: cfg.root + c.file, chars: c.chars });

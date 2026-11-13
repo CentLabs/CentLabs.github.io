@@ -144,7 +144,7 @@
     var s = line.trim();
     if (!s || s.length > 60) return 0;
     if (/^=====/.test(s)) return 0;
-    if (/^第\s*([0-9零一二三四五六七八九十百千]+)\s*(章|讲|篇)\b?/.test(s) && s.length < 50) return 2;
+    if (/^第\s*([0-9零一二三四五六七八九十百千]+)\s*(章|讲|篇)/.test(s) && s.length < 50) return 2;
     if (/^第\s*([0-9零一二三四五六七八九十百千]+)\s*(节|部分|课|天|单元)\s/.test(s) && s.length < 50) return 3;
     if (/^(Chapter|CHAPTER|Section|SECTION|Lecture|Unit|Part)\s+[0-9IVX]+/i.test(s) && s.length < 60) return 3;
     if (/^[一二三四五六七八九十]{1,3}[、.．]\s*\S/.test(s) && s.length <= 40 && !/[。；，,]|\.\.\./.test(s)) return 3;

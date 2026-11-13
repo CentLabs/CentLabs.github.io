@@ -54,6 +54,7 @@
 <div class="kb-wb-tab" data-v="files">🗃 资料索引</div>
 <div class="kb-wb-tab" data-v="corpus">📄 全文语料</div>
 <div class="kb-wb-tab" data-v="fullsearch">🔍 全文检索</div>
+<div class="kb-wb-tab" data-v="mystudy">⭐ 我的学习</div>
 </div>
 <div class="kb-metrics" id="wb-stats"></div>
 
@@ -91,8 +92,16 @@
 
 <!-- 全文检索 -->
 <section class="kb-wb-view" id="v-fullsearch">
-<div class="kb-note">跨学科检索 21 份逐章精读 + 27 个语料板块（1348 万字符）。多关键词用空格分隔（AND）。命中行点击直达对应阅读页并高亮。</div>
+<div class="kb-note">跨学科检索 27 个语料板块（1345 万字符）+ 21 份逐章精读。多关键词用空格分隔（AND）。命中行点击直达对应阅读页并高亮。</div>
 <div id="kb-search-app"></div>
+</section>
+
+<!-- 我的学习 -->
+<section class="kb-wb-view" id="v-mystudy">
+<div class="kb-note">学习数据仅保存在本地浏览器（localStorage），不上传、无需注册。可随时清除。</div>
+<div style="margin-bottom:8px"><button class="kb-btn" id="clearStudy">🗑 清除全部学习数据</button></div>
+<div class="kb-section"><h2>最近阅读</h2><div id="recentList"></div></div>
+<div class="kb-section"><h2>我的收藏</h2><div id="favList"></div></div>
 </section>
 </div>
 
@@ -107,6 +116,7 @@
 </div>
 
 <script src="assets/kb.js"></script>
+<script src="assets/study-tools.js"></script>
 <script src="assets/search.js"></script>
 <script>
 (function(){
@@ -115,23 +125,23 @@ var $=function(s){return document.querySelector(s)}, $$=function(s){return[].sli
 var esc=KB.esc, CATS=['politics','english','mathematics','computer-408'];
 var CAT_NAME={politics:'政治',english:'英语',mathematics:'数学','computer-408':'计算机408'};
 var CAT_COLOR={politics:'var(--pol)',english:'var(--eng)',mathematics:'var(--math)','computer-408':'var(--cs)'};
-var STATS,CH=[],CO=[],KP=[],CATDATA={};
+var KS,CH=[],CO=[],KP=[],CATDATA={};
 var CACHE={}, kpShown=120, kpQuery='', kpCat='all', coCat='all', fileCat='politics', fileTreeMode=false;
 
 function jget(u){return fetch(u).then(function(r){if(!r.ok)throw new Error(u+' '+r.status);return r.json();});}
 function tget(u){return fetch(u).then(function(r){if(!r.ok)throw new Error(u+' '+r.status);return r.text();});}
 
 /* ---------- 初始化 ---------- */
-Promise.all([jget('data/stats.json'),jget('data/chapters.json'),jget('data/corpus.json'),jget('data/knowledge-points.json')])
+Promise.all([jget('data/knowledge-stats.json'),jget('data/chapters.json'),jget('data/corpus.json'),jget('data/knowledge-points.json')])
 .then(function(rs){
-  STATS=rs[0];CH=rs[1];CO=rs[2];KP=rs[3];
+  KS=rs[0];CH=rs[1];CO=rs[2];KP=rs[3];
   $('#wb-stats').innerHTML=
-    '<div class="kb-metric"><div class="num">'+STATS.chapters+'</div><div class="label">逐章精读</div></div>'+
-    '<div class="kb-metric"><div class="num">'+(STATS.chapterChars/10000).toFixed(0)+' 万</div><div class="label">精读字符</div></div>'+
-    '<div class="kb-metric"><div class="num">'+STATS.knowledgePoints+'</div><div class="label">知识点卡片</div></div>'+
-    '<div class="kb-metric"><div class="num">'+STATS.corpusPacks+'</div><div class="label">语料板块</div></div>'+
-    '<div class="kb-metric"><div class="num">'+(STATS.corpusChars/10000).toFixed(0)+' 万</div><div class="label">语料字符</div></div>'+
-    '<div class="kb-metric"><div class="num">'+STATS.totalFiles+'</div><div class="label">原始资料</div></div>';
+    '<div class="kb-metric"><div class="num">'+KS.chapterDocuments+'</div><div class="label">逐章精读</div></div>'+
+    '<div class="kb-metric"><div class="num">'+(KS.chapterCharacters/10000).toFixed(0)+' 万</div><div class="label">精读字符</div></div>'+
+    '<div class="kb-metric"><div class="num">'+KS.knowledgeCards+'</div><div class="label">知识点卡片</div></div>'+
+    '<div class="kb-metric"><div class="num">'+KS.corpusBlocks+'</div><div class="label">语料板块</div></div>'+
+    '<div class="kb-metric"><div class="num">'+(KS.totalCorpusCharacters/10000).toFixed(0)+' 万</div><div class="label">语料字符</div></div>'+
+    '<div class="kb-metric"><div class="num">'+KS.totalRawFiles+'</div><div class="label">原始资料</div></div>';
   renderChapSide();renderKpChips();renderPoints();renderCoChips();renderCorpus();loadFiles();
 })
 .catch(function(e){$('#wb-stats').innerHTML='<div class="kb-note">数据加载失败：'+esc(e.message)+'</div>';});
@@ -203,7 +213,7 @@ function renderKpChips(){
   });});
 }
 function kpFilter(){
-  return KP.map(function(k,i){k._gi=i;return k;}).filter(function(k){
+  return KP.filter(function(k){
     return (kpCat==='all'||k.category_id===kpCat)&&(!kpQuery||JSON.stringify(k).toLowerCase().indexOf(kpQuery.toLowerCase())>=0);
   });
 }
@@ -212,7 +222,7 @@ function renderPoints(){
   $('#kpNote').textContent='共 '+list.length+' 张卡片，当前显示前 '+Math.min(kpShown,list.length)+' 张 · 点击卡片查看完整详情';
   $('#kpMore').style.display=kpShown<list.length?'block':'none';
   $('#pointList').innerHTML=list.slice(0,kpShown).map(function(k){
-    return '<div class="kb-card kp-modal-link" data-gi="'+k._gi+'">'+
+    return '<div class="kb-card kp-modal-link" data-id="'+k.id+'">'+
     '<span class="kb-tag cat" style="--cat:'+CAT_COLOR[k.category_id]+'">'+esc(k.category)+'</span> <span class="kb-tag">'+esc(k.source||'')+'</span>'+
     '<h3>'+esc(k.name)+'</h3>'+
     (k.definition&&k.definition.length?'<p><b>定义：</b>'+esc(k.definition.join(' ').slice(0,120))+'…</p>':'')+
@@ -220,24 +230,32 @@ function renderPoints(){
     '<span class="kb-arrow">→</span></div>';
   }).join('')||'<div class="kb-empty">无匹配知识点</div>';
   $$('#pointList .kp-modal-link').forEach(function(el){
-    el.addEventListener('click',function(){openKpModal(+el.getAttribute('data-gi'));});
+    el.addEventListener('click',function(){openKpModal(el.getAttribute('data-id'));});
   });
 }
 $('#kpMore').addEventListener('click',function(){kpShown+=120;renderPoints();});
 $('#kpq').addEventListener('input',function(){kpQuery=$('#kpq').value.trim();kpShown=120;renderPoints();});
-function openKpModal(gi){
-  var k=KP[gi];if(!k)return;
+function openKpModal(id){
+  var k=KP.find(function(x){return x.id===id;});if(!k)return;
   function field(cls,label,arr){
     if(!arr||!arr.length)return '';
     return '<div class="kp-field '+cls+'"><b>'+label+'</b><ul>'+arr.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></div>';
   }
   $('#kpModalBody').innerHTML='<button class="close">✕</button>'+
     '<h2>'+esc(k.name)+'</h2>'+
-    '<div class="kb-tags"><span class="kb-tag cat" style="--cat:'+CAT_COLOR[k.category_id]+'">'+esc(k.category)+'</span><span class="kb-tag">'+esc(k.source||'')+'</span></div>'+
+    '<div class="kb-tags"><span class="kb-tag cat" style="--cat:'+CAT_COLOR[k.category_id]+'">'+esc(k.category)+'</span><span class="kb-tag">'+esc(k.source||'')+'</span>'+
+    '<span class="kb-tag" id="kpFavBtn" style="cursor:pointer">☆ 收藏</span></div>'+
     field('','定义',k.definition)+field('','核心要点',k.points)+field('traps','易错点',k.traps)+
     field('formula','公式 / 代码',k.formula)+field('','相关知识点',k.related)+field('','来源参考',k.source_ref);
   $('#kpModal').classList.add('show');
   KB.renderMath($('#kpModalBody'));
+  /* 收藏按钮 */
+  if(window.StudyTools){
+    var favEl=$('#kpFavBtn'), st=window.StudyTools;
+    var refresh=function(){favEl.textContent=st.isFav(k.id)?'★ 已收藏':'☆ 收藏';};
+    refresh();
+    favEl.onclick=function(){st.toggleFav(k.id,'point',k.name);refresh();};
+  }
 }
 $('#kpModal').addEventListener('click',function(e){if(e.target===$('#kpModal')||e.target.classList.contains('close'))$('#kpModal').classList.remove('show');});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')$('#kpModal').classList.remove('show');});
@@ -325,11 +343,10 @@ function renderCoChips(){
 function renderCorpus(){
   var list=CO.filter(function(c){return coCat==='all'||c.categoryId===coCat;});
   $('#corpusList').innerHTML=list.map(function(c){
-    var pid=c.file.replace('corpus/','').replace('.txt','');
-    return '<a class="kb-card" href="'+(c.read||('read/'+c.categoryId+'/'+pid+'/'))+'">'+
+    return '<a class="kb-card" href="'+(c.read||('read/'+c.categoryId+'/'+c.id+'/'))+'">'+
     '<span class="kb-tag cat" style="--cat:'+CAT_COLOR[c.categoryId]+'">'+esc(c.category)+'</span>'+
-    '<h3>'+esc(c.name.replace(/\.txt$/,''))+'</h3>'+
-    '<p>'+(c.chars/10000).toFixed(1)+' 万字符 · '+c.sources+' 份原始文件全文</p>'+
+    '<h3>'+esc(c.displayTitle||c.name.replace(/\.txt$/,''))+'</h3>'+
+    '<p>'+(c.chars/10000).toFixed(1)+' 万字符 · '+c.sources+' 份原始文件合并</p>'+
     '<p style="color:var(--accent)">📖 在线阅读（HTML）→</p>'+
     '<span style="display:block;margin-top:4px"><a href="'+c.file+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:12px">原始 TXT ↗</a></span></a>';
   }).join('')||'<div class="kb-empty">无匹配</div>';
@@ -339,18 +356,51 @@ function renderCorpus(){
 var wbSearch=KBSearch({mount:'#kb-search-app',root:'./',
   onOpenChapter:function(id,line){switchTab('chapters');openChapter(id,line);}});
 
-/* ---------- hash 路由：#/chapter/{id}(/L{n}) · #/point/{gi} · #/points/{cid} ---------- */
+/* ---------- 我的学习 ---------- */
+function renderMyStudy(){
+  var ST=window.StudyTools;if(!ST)return;
+  var recent=ST.getRecent(), fav=ST.getFav();
+  $('#recentList').innerHTML=recent.length?recent.slice(0,20).map(function(r){
+    var href=corpusHref(r.id)||'#';
+    return '<a class="kb-list-row" href="'+href+'"><span class="r-icon">阅</span>'+
+    '<span class="r-main"><span class="r-title">'+esc(r.title||r.id)+'</span>'+
+    '<span class="r-sub">'+esc(r.cat||'')+' · '+new Date(r.ts).toLocaleString()+'</span></span></a>';
+  }).join(''):'<div class="kb-empty">暂无阅读记录</div>';
+  $('#favList').innerHTML=fav.length?fav.slice(0,50).map(function(f){
+    var href=(f.type==='corpus'?corpusHref(f.id):('study.html#/point/'+f.id))||'#';
+    return '<a class="kb-list-row" href="'+href+'"><span class="r-icon" style="background:var(--warn)">★</span>'+
+    '<span class="r-main"><span class="r-title">'+esc(f.title||f.id)+'</span>'+
+    '<span class="r-sub">'+esc(f.type==='corpus'?'语料':'知识点')+'</span></span></a>';
+  }).join(''):'<div class="kb-empty">暂无收藏</div>';
+}
+function corpusHref(docId){
+  // docId 格式：corpus:{cid}:{file}
+  var parts=docId.split(':');
+  if(parts.length<3)return null;
+  var cid=parts[1], file=parts.slice(2).join(':');
+  var pid=file.replace('corpus/','').replace('.txt','');
+  return 'read/'+cid+'/'+pid+'/';
+}
+$('#clearStudy').addEventListener('click',function(){
+  if(window.StudyTools){window.StudyTools.clearAll();renderMyStudy();}
+});
+/* 切换到"我的学习"视图时刷新 */
+var origSwitch=switchTab;
+switchTab=function(v){origSwitch(v);if(v==='mystudy')renderMyStudy();};
+
+/* ---------- hash 路由：#/chapter/{id}(/L{n}) · #/point/{id} · #/points/{cid} ---------- */
 function route(){
   var h=location.hash.replace(/^#\/?/,''),p=h.split('/').filter(Boolean);
   if(!p.length)return;
   if(p[0]==='chapter'&&p[1]){switchTab('chapters');
     var line=p[2]&&/^L\d+$/.test(p[2])?+p[2].slice(1):null;
     openChapter(p[1],line);}
-  else if(p[0]==='point'&&p[1]){switchTab('points');openKpModal(+p[1]);}
+  else if(p[0]==='point'&&p[1]){switchTab('points');openKpModal(p[1]);}
   else if(p[0]==='points'){switchTab('points');if(p[1]&&CAT_NAME[p[1]]){kpCat=p[1];kpShown=120;renderKpChips();renderPoints();}}
   else if(p[0]==='corpus'){switchTab('corpus');}
   else if(p[0]==='files'){switchTab('files');}
   else if(p[0]==='search'){switchTab('fullsearch');}
+  else if(p[0]==='mystudy'){switchTab('mystudy');renderMyStudy();}
 }
 window.addEventListener('hashchange',route);
 route();

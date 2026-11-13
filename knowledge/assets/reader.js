@@ -5,37 +5,95 @@
   var CORPUS_FILE = META.file;            // corpus/xxx.txt（相对 knowledge 根）
   var $ = function (s) { return document.querySelector(s); };
 
-  var lines = [], rendered = 0, BATCH = 400, state = null, targetLine = -1, done = false;
+  var lines = [], rendered = 0, BATCH = 400, state = null, targetLine = -1, done = false, bytesRead = 0;
 
   /* ---------- 路径修正：页面位于 read/{cid}/{pid}/index.html，需上跳三级 ---------- */
   function rel(p) { return p.replace(/^\.\//, ''); }
   function up(n) { var u = ''; for (var i = 0; i < n; i++) u += '../'; return u; }
   var ROOT = up(3);
 
-  /* ---------- 初始化 ---------- */
+  /* ---------- 初始化：流式读取 + 增量渲染（避免一次性 split 超大文件） ---------- */
   function init() {
     var m = location.hash.match(/[#&]L(\d+)/);
     if (m) targetLine = parseInt(m[1], 10);
+    else if (window.StudyTools) {
+      var prog = window.StudyTools.getProgress('corpus:' + META.categoryId + ':' + META.file);
+      if (prog && prog.line > 0) targetLine = prog.line;
+    }
 
     renderToc();
     bindAside();
 
+    /* 标题由 META 重建（构建期注入，清空 body 后恢复） */
+    var staticHead = '<h1>' + esc(META.displayTitle || META.name) + '</h1>' +
+      '<p style="color:var(--text-3);font-size:13px">原始文件：' + esc(META.name) + ' · ' + esc(META.categoryName) +
+      ' · ' + (META.chars / 10000).toFixed(1) + ' 万字符 · 含 ' + (META.sources ? META.sources.length : 0) + ' 份原始文件全文</p>';
     $('#kb-body').innerHTML = '<div class="kb-loading"><div class="kb-spinner"></div>正在加载全文（' +
-      (META.chars / 10000).toFixed(1) + ' 万字符，首次约需数秒）…</div>';
+      (META.chars / 10000).toFixed(1) + ' 万字符，大文件按需分块加载）…</div>';
 
     fetch(ROOT + rel(CORPUS_FILE)).then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.text();
-    }).then(function (txt) {
-      lines = txt.split('\n');
-      $('#kb-body').innerHTML = '';
-      state = { para: [], list: null, listOrdered: false, code: [] };
-      renderBatch();
-      if (targetLine >= 0) seekTo(targetLine);
+      if (r.body && r.body.getReader && typeof TextDecoder !== 'undefined') {
+        // 流式分块读取：避免一次性载入数 MB 文本
+        var reader = r.body.getReader();
+        var decoder = new TextDecoder('utf-8');
+        var buf = '';
+        var started = false;
+        function pump() {
+          return reader.read().then(function (res) {
+            if (res.done) {
+              if (buf) { pushLines(buf); buf = ''; }
+              flushAll();
+              finish();
+              if (targetLine >= 0) seekTo(targetLine);
+              return;
+            }
+            buf += decoder.decode(res.value, { stream: true });
+            bytesRead += res.value.length;
+            var nl = buf.lastIndexOf('\n');
+            if (nl >= 0 && buf.length > 200000) {
+              var chunk = buf.slice(0, nl + 1); buf = buf.slice(nl + 1);
+              pushLines(chunk);
+            }
+            return pump();
+          });
+        }
+        function pushLines(chunk) {
+          var ls = chunk.split('\n');
+          if (!started) {
+            $('#kb-body').innerHTML = staticHead;
+            state = { para: [], list: null, listOrdered: false, code: [] };
+            started = true;
+          }
+          for (var i = 0; i < ls.length; i++) {
+            var t = ls[i];
+            if (t.charCodeAt(t.length - 1) === 13) t = t.slice(0, -1); // 去 \r
+            processLine(t);
+          }
+          scheduleRender();
+        }
+        return pump();
+      }
+      // 回退：整读
+      return r.text().then(function (txt) {
+        lines = txt.split('\n');
+        $('#kb-body').innerHTML = staticHead;
+        state = { para: [], list: null, listOrdered: false, code: [] };
+        renderBatch();
+        if (targetLine >= 0) seekTo(targetLine);
+      });
     }).catch(function (e) {
       $('#kb-body').innerHTML = '<div class="kb-empty">全文加载失败：' + (e.message || e) +
         '<br><a href="' + ROOT + rel(CORPUS_FILE) + '" target="_blank">直接打开原始 TXT ↗</a></div>';
     });
+  }
+
+  /* 节流：避免频繁重绘 */
+  var renderScheduled = false;
+  function scheduleRender() {
+    if (renderScheduled) return;
+    renderScheduled = true;
+    requestAnimationFrame(function () { renderScheduled = false; updateProgress(); });
   }
 
   /* ---------- 批量渲染 ---------- */
@@ -70,8 +128,9 @@
   function emit(html, s, e) { flushAll(); pushBlock(html, s, e); }
   function flushAll() { flushPara(); flushList(); flushCode(); }
 
-  function processLine(idx) {
-    var raw = lines[idx], t = raw.trim();
+  function processLine(raw) {
+    var idx = rendered;
+    var t = raw.trim();
     rendered = idx + 1;
     var sm = /^=+\s*来源[:：]\s*(.+?)\s*=+$/.exec(t);
     if (sm) {
@@ -106,10 +165,10 @@
     state.para.push(t);
   }
 
+  /* 回退整读模式的批量渲染（仅当无 ReadableStream 时） */
   function renderBatch() {
     var end = Math.min(rendered + BATCH, lines.length);
-    var frag = document.createDocumentFragment ? null : null;
-    for (var i = rendered; i < end; i++) processLine(i);
+    for (var i = rendered; i < end; i++) processLine(lines[i]);
     if (rendered >= lines.length) { flushAll(); finish(); return; }
     updateProgress();
     requestAnimationFrame(function () {
@@ -118,12 +177,12 @@
     });
   }
   function updateProgress() {
-    var p = Math.round(rendered / lines.length * 100);
-    var bar = $('#kb-prog-bar'), txt = $('#kb-prog-txt');
-    if (bar) { bar.style.width = p + '%'; }
-    if (txt) { txt.textContent = '已加载 ' + p + '%（' + rendered + ' / ' + lines.length + ' 行）'; }
+    var bar = $('#kb-prog-bar');
+    // 流式模式下无法精确预知总行数，用"已读字节/总字符"近似进度
+    var pct = META.chars ? Math.min(100, Math.round(bytesRead / META.chars * 100)) : 0;
+    if (bar) { bar.style.width = pct + '%'; }
     var box = $('#kb-prog');
-    if (box && p >= 100) box.style.display = 'none';
+    if (box && (pct >= 100 || done)) box.style.display = 'none';
   }
   function finish() {
     if (done) return; done = true;
@@ -223,6 +282,42 @@
       $('#kb-side').classList.add('open'); if (mask) mask.classList.add('show');
     });
     if (mask) mask.addEventListener('click', closeSide);
+
+    /* 学习辅助：收藏 / 书签 / 进度（依赖 study-tools.js） */
+    var ST = window.StudyTools;
+    var favBtn = document.querySelector('.js-fav');
+    if (favBtn && ST) {
+      var docId = 'corpus:' + META.categoryId + ':' + META.file;
+      var refreshFav = function () { favBtn.textContent = ST.isFav(docId) ? '★ 已收藏' : '☆ 收藏'; };
+      refreshFav();
+      favBtn.addEventListener('click', function () { ST.toggleFav(docId, 'corpus', META.displayTitle); refreshFav(); });
+    }
+    var bmBtn = document.querySelector('.js-bookmark');
+    if (bmBtn && ST) {
+      bmBtn.addEventListener('click', function () {
+        var curLine = currentLine();
+        ST.addBookmark('corpus:' + META.categoryId + ':' + META.file, curLine);
+        bmBtn.textContent = '🔖 已标记';
+        setTimeout(function () { bmBtn.textContent = '🔖 加书签'; }, 1500);
+      });
+    }
+    /* 记录最近阅读 + 滚动保存进度 */
+    if (ST) {
+      ST.recent('corpus:' + META.categoryId + ':' + META.file, META.displayTitle, META.categoryName);
+      window.addEventListener('scroll', throttle(function () {
+        var ln = currentLine();
+        var pct = document.documentElement.scrollHeight ? Math.round(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) : 0;
+        ST.setProgress('corpus:' + META.categoryId + ':' + META.file, ln, pct);
+      }, 1500), { passive: true });
+    }
+  }
+  function currentLine() {
+    var els = document.querySelectorAll('#kb-body [data-s]'), best = 0;
+    var top = window.scrollY + 100;
+    els.forEach(function (el) {
+      if (el.offsetTop <= top) best = +el.getAttribute('data-s');
+    });
+    return best;
   }
   function closeSide() {
     $('#kb-side').classList.remove('open');

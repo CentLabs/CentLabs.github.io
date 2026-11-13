@@ -6,7 +6,9 @@
   "file": "corpus/politics-01.txt",
   "chars": 147929,
   "sources": 24,
-  "read": "read/politics/politics-01/"
+  "read": "read/politics/politics-01/",
+  "id": "politics-01",
+  "displayTitle": "政治 · 综合补充资料"
  },
  {
   "category": "政治",
@@ -15,7 +17,9 @@
   "file": "corpus/politics-02.txt",
   "chars": 369209,
   "sources": 72,
-  "read": "read/politics/politics-02/"
+  "read": "read/politics/politics-02/",
+  "id": "politics-02",
+  "displayTitle": "马克思主义基本原理"
  },
  {
   "category": "政治",
@@ -24,7 +28,9 @@
   "file": "corpus/politics-03.txt",
   "chars": 68511,
   "sources": 17,
-  "read": "read/politics/politics-03/"
+  "read": "read/politics/politics-03/",
+  "id": "politics-03",
+  "displayTitle": "毛泽东思想和中国特色社会主义理论体系"
  },
  {
   "category": "政治",
@@ -33,7 +39,9 @@
   "file": "corpus/politics-04.txt",
   "chars": 129696,
   "sources": 27,
-  "read": "read/politics/politics-04/"
+  "read": "read/politics/politics-04/",
+  "id": "politics-04",
+  "displayTitle": "习近平新时代中国特色社会主义思想"
  },
  {
   "category": "政治",
@@ -42,7 +50,9 @@
   "file": "corpus/politics-05.txt",
   "chars": 127314,
   "sources": 29,
-  "read": "read/politics/politics-05/"
+  "read": "read/politics/politics-05/",
+  "id": "politics-05",
+  "displayTitle": "中国近现代史纲要"
  },
  {
   "category": "政治",
@@ -51,7 +61,9 @@
   "file": "corpus/politics-06.txt",
   "chars": 100422,
   "sources": 24,
-  "read": "read/politics/politics-06/"
+  "read": "read/politics/politics-06/",
+  "id": "politics-06",
+  "displayTitle": "思想道德与法治"
  },
  {
   "category": "政治",
@@ -60,7 +72,9 @@
   "file": "corpus/politics-07.txt",
   "chars": 568943,
   "sources": 37,
-  "read": "read/politics/politics-07/"
+  "read": "read/politics/politics-07/",
+  "id": "politics-07",
+  "displayTitle": "政治真题与技巧题库（上）"
  },
  {
   "category": "政治",
@@ -69,7 +83,9 @@
   "file": "corpus/politics-08.txt",
   "chars": 264629,
   "sources": 37,
-  "read": "read/politics/politics-08/"
+  "read": "read/politics/politics-08/",
+  "id": "politics-08",
+  "displayTitle": "政治真题与技巧题库（中）"
  },
  {
   "category": "政治",
@@ -78,7 +94,9 @@
   "file": "corpus/politics-09.txt",
   "chars": 579716,
   "sources": 37,
-  "read": "read/politics/politics-09/"
+  "read": "read/politics/politics-09/",
+  "id": "politics-09",
+  "displayTitle": "政治真题与技巧题库（下）"
  },
  {
   "category": "政治",
@@ -87,7 +105,9 @@
   "file": "corpus/politics-10.txt",
   "chars": 44681,
   "sources": 8,
-  "read": "read/politics/politics-10/"
+  "read": "read/politics/politics-10/",
+  "id": "politics-10",
+  "displayTitle": "政治 · 基础与复习规划补充"
  },
  {
   "category": "英语",
@@ -96,7 +116,9 @@
   "file": "corpus/english-11.txt",
   "chars": 379359,
   "sources": 130,
-  "read": "read/english/english-11/"
+  "read": "read/english/english-11/",
+  "id": "english-11",
+  "displayTitle": "考研英语真题考点全集"
  },
  {
   "category": "英语",
@@ -105,7 +127,9 @@
   "file": "corpus/english-12.txt",
   "chars": 3941231,
   "sources": 81,
-  "read": "read/english/english-12/"
+  "read": "read/english/english-12/",
+  "id": "english-12",
+  "displayTitle": "考研英语一历年真题全集"
  },
  {
   "category": "英语",
@@ -114,7 +138,9 @@
   "file": "corpus/english-13.txt",
   "chars": 290712,
   "sources": 81,
-  "read": "read/english/english-13/"
+  "read": "read/english/english-13/",
+  "id": "english-13",
+  "displayTitle": "英语一真题考点精炼"
  },
  {
   "category": "英语",
@@ -123,7 +149,9 @@
   "file": "corpus/english-14.txt",
   "chars": 2728146,
   "sources": 49,
-  "read": "read/english/english-14/"
+  "read": "read/english/english-14/",
+  "id": "english-14",
+  "displayTitle": "考研英语二历年真题全集"
  },
  {
   "category": "英语",
@@ -132,7 +160,9 @@
   "file": "corpus/english-15.txt",
   "chars": 88647,
   "sources": 49,
-  "read": "read/english/english-15/"
+  "read": "read/english/english-15/",
+  "id": "english-15",
+  "displayTitle": "英语二真题考点精炼"
  },
  {
   "category": "英语",
@@ -141,7 +171,9 @@
   "file": "corpus/english-16.txt",
   "chars": 1282705,
   "sources": 58,
-  "read": "read/english/english-16/"
+  "read": "read/english/english-16/",
+  "id": "english-16",
+  "displayTitle": "考研英语写作模板大全"
  },
  {
   "category": "英语",
@@ -150,7 +182,9 @@
   "file": "corpus/english-17.txt",
   "chars": 314257,
   "sources": 1,
-  "read": "read/english/english-17/"
+  "read": "read/english/english-17/",
+  "id": "english-17",
+  "displayTitle": "考研英语核心词汇"
  },
  {
   "category": "英语",
@@ -159,7 +193,9 @@
   "file": "corpus/english-18.txt",
   "chars": 790,
   "sources": 8,
-  "read": "read/english/english-18/"
+  "read": "read/english/english-18/",
+  "id": "english-18",
+  "displayTitle": "英语 · 黄皮书补充资料"
  },
  {
   "category": "数学",
@@ -168,7 +204,9 @@
   "file": "corpus/mathematics-19.txt",
   "chars": 190468,
   "sources": 28,
-  "read": "read/mathematics/mathematics-19/"
+  "read": "read/mathematics/mathematics-19/",
+  "id": "mathematics-19",
+  "displayTitle": "数学真题与解析（1987—2000）"
  },
  {
   "category": "数学",
@@ -177,7 +215,9 @@
   "file": "corpus/mathematics-20.txt",
   "chars": 249897,
   "sources": 25,
-  "read": "read/mathematics/mathematics-20/"
+  "read": "read/mathematics/mathematics-20/",
+  "id": "mathematics-20",
+  "displayTitle": "数学真题与解析（2001—2013）"
  },
  {
   "category": "数学",
@@ -186,7 +226,9 @@
   "file": "corpus/mathematics-21.txt",
   "chars": 140184,
   "sources": 17,
-  "read": "read/mathematics/mathematics-21/"
+  "read": "read/mathematics/mathematics-21/",
+  "id": "mathematics-21",
+  "displayTitle": "数学真题与解析（2014—2025）"
  },
  {
   "category": "计算机408",
@@ -195,7 +237,9 @@
   "file": "corpus/computer-408-22.txt",
   "chars": 127314,
   "sources": 10,
-  "read": "read/computer-408/computer-408-22/"
+  "read": "read/computer-408/computer-408-22/",
+  "id": "computer-408-22",
+  "displayTitle": "计算机408 · 数据结构与算法"
  },
  {
   "category": "计算机408",
@@ -204,7 +248,9 @@
   "file": "corpus/computer-408-23.txt",
   "chars": 122871,
   "sources": 2,
-  "read": "read/computer-408/computer-408-23/"
+  "read": "read/computer-408/computer-408-23/",
+  "id": "computer-408-23",
+  "displayTitle": "计算机408 · 操作系统"
  },
  {
   "category": "计算机408",
@@ -213,7 +259,9 @@
   "file": "corpus/computer-408-24.txt",
   "chars": 77163,
   "sources": 2,
-  "read": "read/computer-408/computer-408-24/"
+  "read": "read/computer-408/computer-408-24/",
+  "id": "computer-408-24",
+  "displayTitle": "计算机408 · 计算机组成原理"
  },
  {
   "category": "计算机408",
@@ -222,7 +270,9 @@
   "file": "corpus/computer-408-25.txt",
   "chars": 8623,
   "sources": 1,
-  "read": "read/computer-408/computer-408-25/"
+  "read": "read/computer-408/computer-408-25/",
+  "id": "computer-408-25",
+  "displayTitle": "计算机408 · 计算机网络"
  },
  {
   "category": "计算机408",
@@ -231,7 +281,9 @@
   "file": "corpus/computer-408-26.txt",
   "chars": 350367,
   "sources": 28,
-  "read": "read/computer-408/computer-408-26/"
+  "read": "read/computer-408/computer-408-26/",
+  "id": "computer-408-26",
+  "displayTitle": "计算机408 · 真题与套卷解析"
  },
  {
   "category": "计算机408",
@@ -240,6 +292,8 @@
   "file": "corpus/computer-408-27.txt",
   "chars": 758804,
   "sources": 1,
-  "read": "read/computer-408/computer-408-27/"
+  "read": "read/computer-408/computer-408-27/",
+  "id": "computer-408-27",
+  "displayTitle": "计算机408 · 基础与复习规划补充"
  }
 ]
