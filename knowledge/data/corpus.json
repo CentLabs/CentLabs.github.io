@@ -5,7 +5,8 @@
   "name": "pol-00-综合其他.txt",
   "file": "corpus/politics-01.txt",
   "chars": 147929,
-  "sources": 24
+  "sources": 24,
+  "read": "read/politics/politics-01/"
  },
  {
   "category": "政治",
@@ -13,7 +14,8 @@
   "name": "pol-01-马原.txt",
   "file": "corpus/politics-02.txt",
   "chars": 369209,
-  "sources": 72
+  "sources": 72,
+  "read": "read/politics/politics-02/"
  },
  {
   "category": "政治",
@@ -21,7 +23,8 @@
   "name": "pol-02-毛中特.txt",
   "file": "corpus/politics-03.txt",
   "chars": 68511,
-  "sources": 17
+  "sources": 17,
+  "read": "read/politics/politics-03/"
  },
  {
   "category": "政治",
@@ -29,7 +32,8 @@
   "name": "pol-03-新思想.txt",
   "file": "corpus/politics-04.txt",
   "chars": 129696,
-  "sources": 27
+  "sources": 27,
+  "read": "read/politics/politics-04/"
  },
  {
   "category": "政治",
@@ -37,7 +41,8 @@
   "name": "pol-04-史纲.txt",
   "file": "corpus/politics-05.txt",
   "chars": 127314,
-  "sources": 29
+  "sources": 29,
+  "read": "read/politics/politics-05/"
  },
  {
   "category": "政治",
@@ -45,7 +50,8 @@
   "name": "pol-05-思修法治.txt",
   "file": "corpus/politics-06.txt",
   "chars": 100422,
-  "sources": 24
+  "sources": 24,
+  "read": "read/politics/politics-06/"
  },
  {
   "category": "政治",
@@ -53,7 +59,8 @@
   "name": "pol-06-真题与技巧题库-第1片.txt",
   "file": "corpus/politics-07.txt",
   "chars": 568943,
-  "sources": 37
+  "sources": 37,
+  "read": "read/politics/politics-07/"
  },
  {
   "category": "政治",
@@ -61,7 +68,8 @@
   "name": "pol-06-真题与技巧题库-第2片.txt",
   "file": "corpus/politics-08.txt",
   "chars": 264629,
-  "sources": 37
+  "sources": 37,
+  "read": "read/politics/politics-08/"
  },
  {
   "category": "政治",
@@ -69,7 +77,8 @@
   "name": "pol-06-真题与技巧题库-第3片.txt",
   "file": "corpus/politics-09.txt",
   "chars": 579716,
-  "sources": 37
+  "sources": 37,
+  "read": "read/politics/politics-09/"
  },
  {
   "category": "政治",
@@ -77,7 +86,8 @@
   "name": "pol-基础与规划补充.txt",
   "file": "corpus/politics-10.txt",
   "chars": 44681,
-  "sources": 8
+  "sources": 8,
+  "read": "read/politics/politics-10/"
  },
  {
   "category": "英语",
@@ -85,7 +95,8 @@
   "name": "en-00-真题考点全集.txt",
   "file": "corpus/english-11.txt",
   "chars": 379359,
-  "sources": 130
+  "sources": 130,
+  "read": "read/english/english-11/"
  },
  {
   "category": "英语",
@@ -93,7 +104,8 @@
   "name": "en-01-英语一真题.txt",
   "file": "corpus/english-12.txt",
   "chars": 3941231,
-  "sources": 81
+  "sources": 81,
+  "read": "read/english/english-12/"
  },
  {
   "category": "英语",
@@ -101,7 +113,8 @@
   "name": "en-01-英语一考点包.txt",
   "file": "corpus/english-13.txt",
   "chars": 290712,
-  "sources": 81
+  "sources": 81,
+  "read": "read/english/english-13/"
  },
  {
   "category": "英语",
@@ -109,7 +122,8 @@
   "name": "en-02-英语二真题.txt",
   "file": "corpus/english-14.txt",
   "chars": 2728146,
-  "sources": 49
+  "sources": 49,
+  "read": "read/english/english-14/"
  },
  {
   "category": "英语",
@@ -117,7 +131,8 @@
   "name": "en-02-英语二考点包.txt",
   "file": "corpus/english-15.txt",
   "chars": 88647,
-  "sources": 49
+  "sources": 49,
+  "read": "read/english/english-15/"
  },
  {
   "category": "英语",
@@ -125,7 +140,8 @@
   "name": "en-03-写作模板.txt",
   "file": "corpus/english-16.txt",
   "chars": 1282705,
-  "sources": 58
+  "sources": 58,
+  "read": "read/english/english-16/"
  },
  {
   "category": "英语",
@@ -133,7 +149,8 @@
   "name": "en-04-词汇.txt",
   "file": "corpus/english-17.txt",
   "chars": 314257,
-  "sources": 1
+  "sources": 1,
+  "read": "read/english/english-17/"
  },
  {
   "category": "英语",
@@ -141,7 +158,8 @@
   "name": "en-05-黄皮书.txt",
   "file": "corpus/english-18.txt",
   "chars": 790,
-  "sources": 8
+  "sources": 8,
+  "read": "read/english/english-18/"
  },
  {
   "category": "数学",
@@ -149,7 +167,8 @@
   "name": "math-真题与解析-1987-2000.txt",
   "file": "corpus/mathematics-19.txt",
   "chars": 190468,
-  "sources": 28
+  "sources": 28,
+  "read": "read/mathematics/mathematics-19/"
  },
  {
   "category": "数学",
@@ -157,7 +176,8 @@
   "name": "math-真题与解析-2001-2013.txt",
   "file": "corpus/mathematics-20.txt",
   "chars": 249897,
-  "sources": 25
+  "sources": 25,
+  "read": "read/mathematics/mathematics-20/"
  },
  {
   "category": "数学",
@@ -165,7 +185,8 @@
   "name": "math-真题与解析-2014-2025.txt",
   "file": "corpus/mathematics-21.txt",
   "chars": 140184,
-  "sources": 17
+  "sources": 17,
+  "read": "read/mathematics/mathematics-21/"
  },
  {
   "category": "计算机408",
@@ -173,7 +194,8 @@
   "name": "cs-01-数据结构与算法.txt",
   "file": "corpus/computer-408-22.txt",
   "chars": 127314,
-  "sources": 10
+  "sources": 10,
+  "read": "read/computer-408/computer-408-22/"
  },
  {
   "category": "计算机408",
@@ -181,7 +203,8 @@
   "name": "cs-02-操作系统.txt",
   "file": "corpus/computer-408-23.txt",
   "chars": 122871,
-  "sources": 2
+  "sources": 2,
+  "read": "read/computer-408/computer-408-23/"
  },
  {
   "category": "计算机408",
@@ -189,7 +212,8 @@
   "name": "cs-03-组成原理.txt",
   "file": "corpus/computer-408-24.txt",
   "chars": 77163,
-  "sources": 2
+  "sources": 2,
+  "read": "read/computer-408/computer-408-24/"
  },
  {
   "category": "计算机408",
@@ -197,7 +221,8 @@
   "name": "cs-04-计算机网络.txt",
   "file": "corpus/computer-408-25.txt",
   "chars": 8623,
-  "sources": 1
+  "sources": 1,
+  "read": "read/computer-408/computer-408-25/"
  },
  {
   "category": "计算机408",
@@ -205,7 +230,8 @@
   "name": "cs-05-真题与套卷.txt",
   "file": "corpus/computer-408-26.txt",
   "chars": 350367,
-  "sources": 28
+  "sources": 28,
+  "read": "read/computer-408/computer-408-26/"
  },
  {
   "category": "计算机408",
@@ -213,6 +239,7 @@
   "name": "cs-基础与规划补充.txt",
   "file": "corpus/computer-408-27.txt",
   "chars": 758804,
-  "sources": 1
+  "sources": 1,
+  "read": "read/computer-408/computer-408-27/"
  }
 ]

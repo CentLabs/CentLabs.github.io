@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全文检索 · 27 考研知识库</title>
+<meta name="description" content="27 考研知识库全库检索：21 份逐章精读 + 1348 万字全文语料，多关键词 AND，学科筛选，命中直达在线阅读页">
+<link rel="stylesheet" href="assets/kb.css">
+</head><body>
+<nav class="kb-nav"><div class="kb-nav-inner">
+<a class="kb-brand" href="index.html"><span class="logo">SL</span>
+<span>Study Library<span class="sub">27 考研知识库</span></span></a>
+<div class="kb-nav-links">
+<a href="politics/">政治</a><a href="english/">英语</a><a href="mathematics/">数学</a><a href="computer-408/">计算机408</a>
+<a href="study.html" data-nav="workbench">📖 完整工作台</a>
+<a href="search.html" data-nav="search">全文检索</a>
+</div>
+<button class="kb-icon-btn js-theme" title="切换深浅主题" style="margin-left:8px">🌓</button>
+<button class="kb-icon-btn kb-nav-burger" title="菜单" style="margin-left:6px">☰</button>
+</div></nav>
+<div class="kb-main">
+<div class="kb-crumb"><a href="index.html">首页</a><span class="sep">/</span><span>全文检索</span></div>
+<div class="kb-hero" style="padding:28px 30px 24px">
+<p class="zh">FULL-TEXT SEARCH</p>
+<h1 style="font-size:28px">全库全文检索</h1>
+<p class="tagline">覆盖 21 份逐章精读文档与 1348 万字全文语料（27 个板块）。多关键词用空格分隔（AND 同时满足）。检索按需加载文件、不预载全文；命中行可直接跳转到对应在线阅读页并高亮该行。</p>
+</div>
+<div id="kb-search-app"></div>
+</div>
+<div class="kb-footer">
+<span>Study Library · 27 考研知识库 · 检索范围：逐章精读 + 全文语料 · 仅限个人学习用途</span>
+<span><a href="index.html">返回首页</a> · <a href="study.html">工作台</a></span>
+</div>
+<script src="assets/kb.js"></script>
+<script src="assets/search.js"></script>
+<script>
+(function () {
+  var qs = new URLSearchParams(location.search);
+  var q = qs.get('q') || '', cat = qs.get('cat') || '';
+  var engine = KBSearch({ mount: '#kb-search-app', root: './', fixedCat: cat || null });
+  if (q) setTimeout(function () { engine.search(q); }, 200);
+})();
+</script>
+</body></html>

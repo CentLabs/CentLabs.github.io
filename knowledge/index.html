@@ -1,34 +1,217 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
+<html lang="zh-CN"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Study Library · 考研知识库</title>
-<meta name="description" content="考研知识库 - 政治、英语、数学、计算机408 结构化学习资料中心">
-<link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
-<nav class="sl-nav">
-  <div class="sl-nav-inner">
-    <a class="sl-brand" href="#/">
-      <span class="logo">SL</span>
-      <span>Study Library <span class="sub">考研知识库</span></span>
-    </a>
-    <div class="sl-nav-links">
-      <a href="#/" data-nav="home">首页</a>
-      <a href="#/category/politics" data-nav="politics">政治</a>
-      <a href="#/category/english" data-nav="english">英语</a>
-      <a href="#/category/mathematics" data-nav="mathematics">数学</a>
-      <a href="#/category/computer-408" data-nav="computer-408">计算机408</a>
-      <a href="study.html" style="font-weight:700;color:#4f7cff">📖 完整知识库</a>
-    </div>
-  </div>
-</nav>
-
-<div class="sl-wrap" id="app">
-  <div class="sl-loading"><div class="spinner"></div>加载中…</div>
+<title>27 考研知识库 · Study Library</title>
+<meta name="description" content="27 考研 Study Library —— 政治 · 英语 · 数学 · 计算机408 结构化在线知识库：逐章精读、知识点卡片、全文语料在线阅读、全库检索">
+<link rel="stylesheet" href="assets/kb.css">
+</head><body>
+<nav class="kb-nav"><div class="kb-nav-inner">
+<a class="kb-brand" href="./index.html"><span class="logo">SL</span>
+<span>Study Library<span class="sub">27 考研知识库</span></span></a>
+<div class="kb-nav-links">
+<a href="politics/" data-nav="politics">政治</a><a href="english/" data-nav="english">英语</a><a href="mathematics/" data-nav="mathematics">数学</a><a href="computer-408/" data-nav="computer-408">计算机408</a>
+<a href="study.html" data-nav="workbench">📖 完整工作台</a>
+<a href="search.html" data-nav="search">全文检索</a>
 </div>
-
-<script src="assets/app.js"></script>
-</body>
-</html>
+<button class="kb-icon-btn js-theme" title="切换深浅主题" style="margin-left:8px">🌓</button>
+<button class="kb-icon-btn kb-nav-burger" title="菜单" style="margin-left:6px">☰</button>
+</div></nav>
+<div class="kb-main">
+<div class="kb-hero">
+<p class="zh">27 考研知识库</p>
+<h1>STUDY <span class="en-thin">LIBRARY</span></h1>
+<p class="tagline">Your Personal Learning &amp; Knowledge Center —— 四大学科 · 逐章精读 · 知识点卡片 · 全文语料在线阅读 · 全库检索</p>
+</div>
+<div class="kb-searchbar"><div class="box"><span>🔍</span>
+<input id="homeq" placeholder="全库检索：知识点 / 精读文档 / 1348 万字语料（支持多关键词）"></div>
+<button class="go">检 索</button></div>
+<div class="kb-metrics">
+<div class="kb-metric"><div class="num">1124</div><div class="label">原始资料</div></div>
+<div class="kb-metric"><div class="num">844</div><div class="label">知识点卡片</div></div>
+<div class="kb-metric"><div class="num">21</div><div class="label">逐章精读</div></div>
+<div class="kb-metric"><div class="num">1345 万</div><div class="label">全文语料字符</div></div>
+<div class="kb-metric"><div class="num">2026-11-12</div><div class="label">最近更新</div></div>
+</div>
+<div class="kb-section"><h2>四大学科</h2><p class="sub">每个学科拥有独立知识库首页：板块阅读 · 精读文档 · 知识点 · 原始资料目录</p>
+<div class="kb-cat-grid"><a class="kb-cat-card" href="politics/" style="--cat:var(--pol)">
+<div class="icon" style="background:var(--pol)">政</div>
+<h3>政治</h3><div class="en">Politics</div>
+<p class="desc">马克思主义基本原理 · 毛中特 · 新思想 · 近现代史纲要 · 思想道德与法治 · 形势与政策 · 历年真题与技巧</p>
+<div class="stats-line"><span><b>581</b> 份资料</span><span><b>8.4 GB</b></span><span><b>6</b> 精读</span><span><b>354</b> 知识点</span></div>
+</a><a class="kb-cat-card" href="english/" style="--cat:var(--eng)">
+<div class="icon" style="background:var(--eng)">英</div>
+<h3>英语</h3><div class="en">English</div>
+<p class="desc">核心词汇 · 词根词缀 · 语法长难句 · 阅读理解 · 完形填空 · 翻译 · 写作模板 · 历年真题考点</p>
+<div class="stats-line"><span><b>365</b> 份资料</span><span><b>15.9 GB</b></span><span><b>4</b> 精读</span><span><b>155</b> 知识点</span></div>
+</a><a class="kb-cat-card" href="mathematics/" style="--cat:var(--math)">
+<div class="icon" style="background:var(--math)">数</div>
+<h3>数学</h3><div class="en">Mathematics</div>
+<p class="desc">高等数学 · 线性代数 · 概率论与数理统计 · 公式定理 · 1987-2025 真题逐年详解</p>
+<div class="stats-line"><span><b>118</b> 份资料</span><span><b>3.3 GB</b></span><span><b>6</b> 精读</span><span><b>70</b> 知识点</span></div>
+</a><a class="kb-cat-card" href="computer-408/" style="--cat:var(--cs)">
+<div class="icon" style="background:var(--cs)">计</div>
+<h3>计算机408</h3><div class="en">Computer 408</div>
+<p class="desc">数据结构 · 计算机组成原理 · 操作系统 · 计算机网络 · 算法 · 真题分类题解</p>
+<div class="stats-line"><span><b>60</b> 份资料</span><span><b>1.5 GB</b></span><span><b>5</b> 精读</span><span><b>265</b> 知识点</span></div>
+</a></div></div>
+<div class="kb-section"><h2>🧠 精选知识点</h2><p class="sub">从 844 张结构化卡片中精选，点击查看定义 · 要点 · 易错点</p>
+<div class="kb-cards"><a class="kb-card" href="study.html#/point/135">
+<span class="kb-tag cat" style="--cat:var(--pol)">政治</span>
+<h3>七、2026年全国两会与政府工作报告（3月5日）</h3>
+<p>十四届全国人大四次会议、全国政协十四届四次会议召开，李强作政府工作报告。…</p>
+<p style="color:var(--accent)">查看完整卡片 →</p></a><a class="kb-card" href="study.html#/point/218">
+<span class="kb-tag cat" style="--cat:var(--pol)">政治</span>
+<h3>习近平新时代中国特色社会主义思想的时代课题与科学体系</h3>
+<p>习近平新时代中国特色社会主义思想是当代中国马克思主义、21 世纪马克思主义，实现了马克思主义中国化时代化新的飞跃。…</p>
+<p style="color:var(--accent)">查看完整卡片 →</p></a><a class="kb-card" href="study.html#/point/450">
+<span class="kb-tag cat" style="--cat:var(--eng)">英语</span>
+<h3>后缀 · 动词/形容词/副词后缀</h3>
+<p>形容词/名词加后缀转类，副词后缀规律最单一易记。…</p>
+<p style="color:var(--accent)">查看完整卡片 →</p></a><a class="kb-card" href="study.html#/point/446">
+<span class="kb-tag cat" style="--cat:var(--eng)">英语</span>
+<h3>前缀 · 方向/位置/程度类</h3>
+<p>表"前/后、上/下、内/外、超过、横跨、之间"的方位与程度前缀。…</p>
+<p style="color:var(--accent)">查看完整卡片 →</p></a><a class="kb-card" href="study.html#/point/510">
+<span class="kb-tag cat" style="--cat:var(--math)">数学</span>
+<h3>1.2 无穷小、无穷大与等价无穷小替换</h3>
+<p>若 $\lim\beta/\alpha=0$，称 $\beta$ 是 $\alpha$ 的高阶无穷小 $\beta=o(\alpha)$；$\lim\beta/…</p>
+<p style="color:var(--accent)">查看完整卡片 →</p></a><a class="kb-card" href="study.html#/point/509">
+<span class="kb-tag cat" style="--cat:var(--math)">数学</span>
+<h3>1.1 函数极限的定义与性质</h3>
+<p>$\displaystyle \lim_{x\to x_0}f(x)=A$：当 $x$ 无限趋近 $x_0$ 时，$f(x)$ 无限趋近常数 $A$（含 $x\…</p>
+<p style="color:var(--accent)">查看完整卡片 →</p></a><a class="kb-card" href="study.html#/point/729">
+<span class="kb-tag cat" style="--cat:var(--cs)">计算机408</span>
+<h3>寻址方式</h3>
+<p>指令中寻找操作数（或指令）地址的方式。…</p>
+<p style="color:var(--accent)">查看完整卡片 →</p></a><a class="kb-card" href="study.html#/point/747">
+<span class="kb-tag cat" style="--cat:var(--cs)">计算机408</span>
+<h3>IO 控制方式（程序查询/中断/DMA/通道）</h3>
+<p>CPU 与 IO 设备交换数据的四种控制方式。…</p>
+<p style="color:var(--accent)">查看完整卡片 →</p></a></div></div>
+<div class="kb-section"><h2>📖 全文语料在线阅读</h2>
+<p class="sub">27 个语料板块 · HTML 阅读页 · 目录导航 · 来源可溯 · 可打印</p>
+<a class="kb-list-row" href="read/politics/politics-01/">
+<span class="r-icon" style="background:var(--pol)">政</span>
+<span class="r-main"><span class="r-title">pol-00-综合其他</span>
+<span class="r-sub">14.8 万字符 · 24 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/politics/politics-02/">
+<span class="r-icon" style="background:var(--pol)">政</span>
+<span class="r-main"><span class="r-title">pol-01-马原</span>
+<span class="r-sub">36.9 万字符 · 72 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/politics/politics-03/">
+<span class="r-icon" style="background:var(--pol)">政</span>
+<span class="r-main"><span class="r-title">pol-02-毛中特</span>
+<span class="r-sub">6.9 万字符 · 17 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/politics/politics-04/">
+<span class="r-icon" style="background:var(--pol)">政</span>
+<span class="r-main"><span class="r-title">pol-03-新思想</span>
+<span class="r-sub">13.0 万字符 · 27 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/politics/politics-05/">
+<span class="r-icon" style="background:var(--pol)">政</span>
+<span class="r-main"><span class="r-title">pol-04-史纲</span>
+<span class="r-sub">12.7 万字符 · 29 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/politics/politics-06/">
+<span class="r-icon" style="background:var(--pol)">政</span>
+<span class="r-main"><span class="r-title">pol-05-思修法治</span>
+<span class="r-sub">10.0 万字符 · 24 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/politics/politics-07/">
+<span class="r-icon" style="background:var(--pol)">政</span>
+<span class="r-main"><span class="r-title">pol-06-真题与技巧题库-第1片</span>
+<span class="r-sub">56.9 万字符 · 37 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/politics/politics-08/">
+<span class="r-icon" style="background:var(--pol)">政</span>
+<span class="r-main"><span class="r-title">pol-06-真题与技巧题库-第2片</span>
+<span class="r-sub">26.5 万字符 · 37 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/politics/politics-09/">
+<span class="r-icon" style="background:var(--pol)">政</span>
+<span class="r-main"><span class="r-title">pol-06-真题与技巧题库-第3片</span>
+<span class="r-sub">58.0 万字符 · 37 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/politics/politics-10/">
+<span class="r-icon" style="background:var(--pol)">政</span>
+<span class="r-main"><span class="r-title">pol-基础与规划补充</span>
+<span class="r-sub">4.5 万字符 · 8 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/english/english-11/">
+<span class="r-icon" style="background:var(--eng)">英</span>
+<span class="r-main"><span class="r-title">en-00-真题考点全集</span>
+<span class="r-sub">37.9 万字符 · 130 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/english/english-12/">
+<span class="r-icon" style="background:var(--eng)">英</span>
+<span class="r-main"><span class="r-title">en-01-英语一真题</span>
+<span class="r-sub">394.1 万字符 · 81 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/english/english-13/">
+<span class="r-icon" style="background:var(--eng)">英</span>
+<span class="r-main"><span class="r-title">en-01-英语一考点包</span>
+<span class="r-sub">29.1 万字符 · 81 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/english/english-14/">
+<span class="r-icon" style="background:var(--eng)">英</span>
+<span class="r-main"><span class="r-title">en-02-英语二真题</span>
+<span class="r-sub">272.8 万字符 · 49 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/english/english-15/">
+<span class="r-icon" style="background:var(--eng)">英</span>
+<span class="r-main"><span class="r-title">en-02-英语二考点包</span>
+<span class="r-sub">8.9 万字符 · 49 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/english/english-16/">
+<span class="r-icon" style="background:var(--eng)">英</span>
+<span class="r-main"><span class="r-title">en-03-写作模板</span>
+<span class="r-sub">128.3 万字符 · 58 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/english/english-17/">
+<span class="r-icon" style="background:var(--eng)">英</span>
+<span class="r-main"><span class="r-title">en-04-词汇</span>
+<span class="r-sub">31.4 万字符 · 1 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/english/english-18/">
+<span class="r-icon" style="background:var(--eng)">英</span>
+<span class="r-main"><span class="r-title">en-05-黄皮书</span>
+<span class="r-sub">0.1 万字符 · 8 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/mathematics/mathematics-19/">
+<span class="r-icon" style="background:var(--math)">数</span>
+<span class="r-main"><span class="r-title">math-真题与解析-1987-2000</span>
+<span class="r-sub">19.0 万字符 · 28 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/mathematics/mathematics-20/">
+<span class="r-icon" style="background:var(--math)">数</span>
+<span class="r-main"><span class="r-title">math-真题与解析-2001-2013</span>
+<span class="r-sub">25.0 万字符 · 25 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/mathematics/mathematics-21/">
+<span class="r-icon" style="background:var(--math)">数</span>
+<span class="r-main"><span class="r-title">math-真题与解析-2014-2025</span>
+<span class="r-sub">14.0 万字符 · 17 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/computer-408/computer-408-22/">
+<span class="r-icon" style="background:var(--cs)">计</span>
+<span class="r-main"><span class="r-title">cs-01-数据结构与算法</span>
+<span class="r-sub">12.7 万字符 · 10 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/computer-408/computer-408-23/">
+<span class="r-icon" style="background:var(--cs)">计</span>
+<span class="r-main"><span class="r-title">cs-02-操作系统</span>
+<span class="r-sub">12.3 万字符 · 2 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/computer-408/computer-408-24/">
+<span class="r-icon" style="background:var(--cs)">计</span>
+<span class="r-main"><span class="r-title">cs-03-组成原理</span>
+<span class="r-sub">7.7 万字符 · 2 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/computer-408/computer-408-25/">
+<span class="r-icon" style="background:var(--cs)">计</span>
+<span class="r-main"><span class="r-title">cs-04-计算机网络</span>
+<span class="r-sub">0.9 万字符 · 1 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/computer-408/computer-408-26/">
+<span class="r-icon" style="background:var(--cs)">计</span>
+<span class="r-main"><span class="r-title">cs-05-真题与套卷</span>
+<span class="r-sub">35.0 万字符 · 28 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a><a class="kb-list-row" href="read/computer-408/computer-408-27/">
+<span class="r-icon" style="background:var(--cs)">计</span>
+<span class="r-main"><span class="r-title">cs-基础与规划补充</span>
+<span class="r-sub">75.9 万字符 · 1 份原始文件</span></span>
+<span style="color:var(--text-3);font-size:12px">阅读 →</span></a></div>
+<div class="kb-section"><h2>工具</h2><p class="sub">完整工作台与独立检索页</p>
+<div class="kb-cards">
+<a class="kb-card" href="study.html"><span class="kb-tag">工作台</span><h3>📖 完整知识库工作台</h3><p>逐章精读 · 知识点卡片 · 资料索引 · 全文语料 · 全文检索 五合一</p></a>
+<a class="kb-card" href="search.html"><span class="kb-tag">检索</span><h3>🔍 全库全文检索</h3><p>跨学科检索 1348 万字语料 + 21 份精读，支持多关键词与学科筛选</p></a>
+</div></div>
+</div>
+<div class="kb-footer">
+<span>Study Library · 27 考研知识库 · 共 1124 份原始资料 / 844 张知识点 / 155 万字精读 / 1345 万字语料</span>
+<span><a href="./study.html">工作台</a> · <a href="./search.html">全文检索</a> · 原始资料通过 COS 提供 · 仅限个人学习用途</span>
+</div>
+<script src="assets/kb.js"></script>
+<script>
+document.querySelector('.kb-searchbar .go').onclick=function(){var q=document.getElementById('homeq').value.trim();if(q)location.href='search.html?q='+encodeURIComponent(q);};
+document.getElementById('homeq').addEventListener('keydown',function(e){if(e.key==='Enter'){var q=this.value.trim();if(q)location.href='search.html?q='+encodeURIComponent(q);}});
+</script>
+</body></html>
