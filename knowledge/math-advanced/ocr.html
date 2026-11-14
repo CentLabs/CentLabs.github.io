@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCR 全文检索 · 数学一 / 三专题 · 27 考研知识库</title>
+<meta name="description" content="8 份数一/数三概率论与数理统计教材扫描版 OCR 全文，按页检索与阅读">
+<link rel="canonical" href="https://www.jaydreamy.com/knowledge/math-advanced/ocr.html">
+<link rel="stylesheet" href="../assets/kb.css">
+<style>
+.ocr-nav{display:flex;gap:18px;align-items:center;padding:12px 22px;border-bottom:1px solid var(--line);
+  background:var(--surface);font-size:13px;flex-wrap:wrap}
+.ocr-nav a{color:var(--text-2);text-decoration:none}
+.ocr-nav a:hover,.ocr-nav a.on{color:var(--accent)}
+.ocr-nav .brand{font-weight:800;color:var(--text);margin-right:6px}
+.ocr-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 18px}
+.ocr-bar select,.ocr-bar input{border:1px solid var(--line-strong);background:var(--surface);
+  color:var(--text);border-radius:9px;padding:10px 12px;font-size:14px;outline:none}
+.ocr-bar select{max-width:100%;min-width:230px}
+.ocr-bar input[type=text]{flex:1;min-width:180px}
+.ocr-bar input[type=number]{width:88px}
+.ocr-bar button{border:0;border-radius:9px;background:var(--accent);color:#fff;
+  padding:10px 18px;font-size:14px;font-weight:700;cursor:pointer}
+.ocr-bar button.ghost{background:var(--surface-2);color:var(--text-2);border:1px solid var(--line)}
+.ocr-warn{background:var(--surface-2);border:1px dashed var(--line-strong);border-radius:10px;
+  padding:12px 16px;font-size:12.5px;color:var(--text-2);line-height:1.8;margin:0 0 20px}
+.ocr-status{font-size:13px;color:var(--text-3);margin:0 0 14px}
+.ocr-page{border:1px solid var(--line);border-radius:11px;background:var(--surface);
+  margin-bottom:14px;overflow:hidden}
+.ocr-page-h{padding:9px 14px;background:var(--surface-2);border-bottom:1px solid var(--line);
+  font-size:12.5px;font-weight:700;color:var(--text-2);display:flex;justify-content:space-between;gap:10px}
+.ocr-page-h a{color:var(--accent);text-decoration:none}
+.ocr-body{padding:13px 16px;font-size:13px;line-height:1.9;color:var(--text-2);
+  white-space:pre-wrap;word-break:break-word;max-height:560px;overflow:auto}
+.ocr-body mark{background:#ffe58f;color:#1a1a1a;border-radius:3px;padding:0 2px}
+.ocr-empty{padding:26px;text-align:center;color:var(--text-3);font-size:14px}
+.ocr-foot{border-top:1px solid var(--line);padding:18px 22px;font-size:12px;color:var(--text-3);margin-top:30px}
+@media(max-width:520px){.ocr-bar select{min-width:100%}.ocr-bar input[type=text]{min-width:100%}}
+</style>
+</head><body style="--cat:var(--math)">
+<script>window.KB_AUTO_NAV = false;</script>
+<header class="ocr-nav">
+<a class="brand" href="../index.html">Study Library</a>
+<a href="../index.html">首页</a>
+<a href="../mathematics/">数学</a>
+<a href="./">数一 / 数三专题</a>
+<a class="on" href="ocr.html">OCR 全文</a>
+<a href="../study.html">工作台</a>
+</header>
+<div class="kb-main">
+<div class="kb-crumb"><a href="../index.html">首页</a><span class="sep">/</span><a href="./">数一 · 数三专题</a><span class="sep">/</span><span>OCR 全文</span></div>
+<div class="kb-hero">
+<p class="zh">FULL-TEXT OCR READER</p>
+<h1>扫描版教材 <span class="en-thin">全文检索</span></h1>
+<p class="tagline">8 份教材 · 647 页 · 按页切分 · 关键词定位</p>
+</div>
+<div class="ocr-warn"><b>文本质量说明</b>：原始 PDF 为纯扫描图片、无文字层，本页内容由 OCR 识别产生。<b>中文题干与讲义文字可读，但数学公式（分数、上下标、积分号、希腊字母）普遍失真</b>。本页仅用于检索定位与内容浏览，公式与答案请以原 PDF 为准。</div>
+<div class="ocr-bar">
+<select id="book"></select>
+<input type="text" id="q" placeholder="输入关键词检索全文，如：最大似然、贝叶斯、抽样分布">
+<button id="go">检 索</button>
+<input type="number" id="pg" min="1" value="1" title="页码">
+<button class="ghost" id="jump">跳页</button>
+</div>
+<div class="ocr-status" id="status">载入中…</div>
+<div id="result"></div>
+</div>
+<footer class="ocr-foot">JayDreamy Study Library · OCR 全文为独立内容层，不计入主库 1345 万字符语料口径 · 原始 PDF 版权归原作者与出版社所有</footer>
+<script>
+var BOOKS = [
+ ["zy-jichu-prob", "张宇《基础30讲》· 概率论与数理统计分册"],
+ ["zy-prob9", "张宇《概率9讲》强化"],
+ ["ly-660-s1", "李永乐《660》概率篇 · 数一"],
+ ["ly-660-s3", "李永乐《660》概率篇 · 数三"],
+ ["ly-6-s1-q", "李永乐《六套卷》数一 · 试题"],
+ ["ly-6-s1-a", "李永乐《六套卷》数一 · 解析"],
+ ["ly-6-s3-q", "李永乐《六套卷》数三 · 试题"],
+ ["ly-6-s3-a", "李永乐《六套卷》数三 · 解析"]
+];
+var NAME = {}; BOOKS.forEach(function(b){ NAME[b[0]] = b[1]; });
+var qs = new URLSearchParams(location.search);
+var fid = qs.get('f') || BOOKS[0][0];
+if (!NAME[fid]) fid = BOOKS[0][0];
+var wantPage = parseInt(qs.get('p') || '0', 10) || 0;
+var wantQ = qs.get('q') || '';
+var cache = {}, pages = [];
+
+function esc(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function hl(s, kw){
+  var out = esc(s);
+  if (!kw) return out;
+  try {
+    var re = new RegExp(kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+    out = out.replace(re, function(m){ return '<mark>' + m + '</mark>'; });
+  } catch(e) {}
+  return out;
+}
+function split(txt){
+  var re = /=====\s*第(\d+)页\s*=====/g, m, last = {i:0, n:0}, out = [];
+  while ((m = re.exec(txt))) {
+    if (last.i) out.push({n:last.n, t:txt.slice(last.i, m.index).trim()});
+    last = {i: re.lastIndex, n: parseInt(m[1], 10)};
+  }
+  if (last.i) out.push({n:last.n, t:txt.slice(last.i).trim()});
+  return out;
+}
+function status(s){ document.getElementById('status').textContent = s; }
+function render(list, kw, title){
+  var box = document.getElementById('result');
+  if (!list.length) { box.innerHTML = '<div class="ocr-empty">没有找到匹配内容（OCR 文本可能未覆盖该页）</div>'; return; }
+  var h = '';
+  list.forEach(function(p){
+    h += '<div class="ocr-page"><div class="ocr-page-h"><span>第 ' + p.n + ' 页</span>' +
+         '<a href="?f=' + encodeURIComponent(fid) + '&p=' + p.n + '">单独查看此页 →</a></div>' +
+         '<div class="ocr-body">' + hl(p.t, kw) + '</div></div>';
+  });
+  box.innerHTML = h;
+  status(title + ' · 显示 ' + list.length + ' 页 / 共 ' + pages.length + ' 页 · ' + NAME[fid]);
+  try { window.scrollTo({top:0, behavior:'smooth'}); } catch(e) { window.scrollTo(0,0); }
+}
+async function load(f){
+  if (cache[f]) return cache[f];
+  status('正在载入 ' + NAME[f] + ' …');
+  var r = await fetch('../data/ocr/' + f + '.txt');
+  if (!r.ok) { cache[f] = []; return cache[f]; }
+  var t = await r.text();
+  cache[f] = split(t);
+  return cache[f];
+}
+function setUrl(){
+  var u = '?f=' + encodeURIComponent(fid);
+  if (wantPage) u += '&p=' + wantPage;
+  if (wantQ) u += '&q=' + encodeURIComponent(wantQ);
+  try { history.replaceState(null, '', u); } catch(e) {}
+}
+async function show(){
+  pages = await load(fid);
+  document.getElementById('book').value = fid;
+  document.getElementById('q').value = wantQ;
+  document.getElementById('pg').max = Math.max(1, pages.length);
+  if (!pages.length) { status('该资料暂无 OCR 文本（可能仍在提取中）'); document.getElementById('result').innerHTML='<div class="ocr-empty">暂无内容</div>'; return; }
+  if (wantQ) {
+    var hits = pages.filter(function(p){ return p.t.indexOf(wantQ) >= 0; });
+    render(hits.slice(0, 40), wantQ, '检索「' + wantQ + '」命中 ' + hits.length + ' 页' + (hits.length > 40 ? '（仅显示前 40 页）' : ''));
+  } else {
+    var n = wantPage || 1;
+    var near = pages.filter(function(p){ return p.n >= n - 1 && p.n <= n + 1; });
+    render(near, '', '按页浏览');
+    document.getElementById('pg').value = n;
+  }
+  setUrl();
+}
+window.addEventListener('DOMContentLoaded', function(){
+  var sel = document.getElementById('book');
+  BOOKS.forEach(function(b){ var o = document.createElement('option'); o.value = b[0]; o.textContent = b[1]; sel.appendChild(o); });
+  sel.addEventListener('change', function(){ fid = sel.value; wantPage = 0; wantQ = ''; show(); });
+  document.getElementById('go').addEventListener('click', function(){ wantQ = document.getElementById('q').value.trim(); wantPage = 0; show(); });
+  document.getElementById('q').addEventListener('keydown', function(e){ if (e.key === 'Enter') { wantQ = this.value.trim(); wantPage = 0; show(); } });
+  document.getElementById('jump').addEventListener('click', function(){ wantPage = parseInt(document.getElementById('pg').value, 10) || 1; wantQ = ''; show(); });
+  show();
+});
+</script>
+<script src="../assets/kb.js"></script>
+</body></html>
