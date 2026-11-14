@@ -18,11 +18,15 @@
 }
 .wb-side{position:sticky;top:calc(var(--nav-h) + 14px);max-height:calc(100vh - var(--nav-h) - 30px);
   overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px}
-.wb-side .grp{padding:8px 10px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.wb-side .grp{padding:8px 10px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
 .wb-side .grp:hover{background:var(--surface-2)}
+.wb-side .grp:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wb-side .grp.open{background:var(--surface-2)}
+.wb-side .grp .caret{display:inline-block;width:14px;color:var(--text-3);font-size:11px;font-weight:400}
 .wb-side .grp .cnt{font-size:11px;color:var(--text-3);font-weight:400}
 .wb-side .grp-items{display:none;padding-left:6px}
-.wb-side .grp.open .grp-items{display:block}
+/* .grp-items 是 .grp 的相邻兄弟节点，不是子节点，必须用 + 选择器 */
+.wb-side .grp.open + .grp-items{display:block}
 .wb-side .item{display:block;padding:7px 10px;border-radius:7px;cursor:pointer;font-size:13px;line-height:1.5;border:1px solid transparent}
 .wb-side .item:hover{background:var(--surface-2)}
 .wb-side .item.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
@@ -37,6 +41,12 @@
   color:var(--text);padding:9px 13px;border-radius:9px;font-size:13px;outline:none}
 .wb-file-search input:focus{border-color:var(--accent)}
 .wb-flat-list{max-height:560px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:8px}
+/* 全文语料卡片：外层用 div（禁止 a 套 a），内部两个独立链接 */
+.wb-corpus-card h3 a{color:var(--text);text-decoration:none}
+.wb-corpus-card h3 a:hover{color:var(--accent)}
+.wb-corpus-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:10px}
+.wb-corpus-actions a{position:relative;z-index:1}
+.wb-corpus-actions .wb-read-link{color:var(--accent);font-size:13px}
 </style>
 </head><body>
 <nav class="kb-nav"><div class="kb-nav-inner">
@@ -178,26 +188,43 @@ if(v==='mystudy')renderMyStudy();
 if(v==='zhenti')renderZhenti();}
 
 /* ---------- 逐章精读 ---------- */
+/* .grp 与 .grp-items 是相邻兄弟节点，展开靠 .grp.open + .grp-items 生效 */
+function setGrpOpen(g,open){
+  if(!g)return;
+  g.classList.toggle('open',!!open);
+  g.setAttribute('aria-expanded',open?'true':'false');
+  var c=g.querySelector('.caret');if(c)c.textContent=open?'▾':'▸';
+}
 function renderChapSide(filter){
   var h='';
   CATS.forEach(function(cid){
     var list=CH.filter(function(x){return x.categoryId===cid&&(!filter||(x.title+JSON.stringify(x.sections||[])).toLowerCase().indexOf(filter.toLowerCase())>=0);});
     if(!list.length)return;
-    h+='<div class="grp" data-g="'+cid+'">'+CAT_NAME[cid]+' <span class="cnt">'+list.length+' 份</span></div><div class="grp-items">';
+    h+='<div class="grp" data-g="'+cid+'" role="button" tabindex="0" aria-expanded="false"><span><span class="caret">▸</span>'+CAT_NAME[cid]+'</span><span class="cnt">'+list.length+' 份</span></div><div class="grp-items">';
     list.forEach(function(x){
       h+='<div class="item" data-id="'+x.id+'">'+esc(x.title.slice(0,46))+'<span class="meta">'+(x.chars/10000).toFixed(1)+' 万字符 · '+(x.sections||[]).length+' 章节</span></div>';
     });
     h+='</div>';
   });
   $('#chapSide').innerHTML=h||'<div class="kb-empty" style="padding:20px">无匹配</div>';
-  $$('#chapSide .grp').forEach(function(g){g.addEventListener('click',function(){g.classList.toggle('open');});});
+  $$('#chapSide .grp').forEach(function(g){
+    var toggle=function(){setGrpOpen(g,!g.classList.contains('open'));};
+    g.addEventListener('click',toggle);
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+  });
   $$('#chapSide .item').forEach(function(el){el.addEventListener('click',function(){openChapter(el.getAttribute('data-id'));});});
-  /* 搜索无结果时自动展开全部 */
-  if(filter){$$('#chapSide .grp').forEach(function(g){g.classList.add('open');});}
+  if(filter){$$('#chapSide .grp').forEach(function(g){setGrpOpen(g,true);});}
+  else{setGrpOpen($('#chapSide .grp'),true);}  /* 默认展开首个学科，避免"看起来点不动" */
 }
 var chapCache={};
 function openChapter(id,targetLine){
-  $$('#chapSide .item').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-id')===id);});
+  $$('#chapSide .item').forEach(function(x){
+    var on=x.getAttribute('data-id')===id;
+    x.classList.toggle('on',on);
+    /* 从搜索结果 / 学科页 hash 直达时，自动展开该文档所属学科分组 */
+    if(on){var box=x.parentNode,g=box&&box.previousElementSibling;
+      if(g&&g.classList.contains('grp'))setGrpOpen(g,true);}
+  });
   var c=CH.find(function(x){return x.id===id;});if(!c)return;
   $('#chapBody').innerHTML='<div class="kb-loading"><div class="kb-spinner"></div>加载中…</div>';
   var load=chapCache[id]?Promise.resolve(chapCache[id]):tget(c.file).then(function(t){chapCache[id]=t;return t;});
@@ -392,15 +419,25 @@ function renderCoChips(){
 }
 function renderCorpus(){
   var list=CO.filter(function(c){return coCat==='all'||c.categoryId===coCat;});
+  /* 外层必须是 div：a 套 a 会被浏览器强制拆断，卡片 DOM 破碎导致 grid 错乱、链接外溢 */
   $('#corpusList').innerHTML=list.map(function(c){
-    return '<a class="kb-card" href="'+(c.read||('read/'+c.categoryId+'/'+c.id+'/'))+'">'+
+    var href=c.read||('read/'+c.categoryId+'/'+c.id+'/');
+    return '<div class="kb-card wb-corpus-card" data-href="'+esc(href)+'">'+
     '<span class="kb-tag cat" style="--cat:'+CAT_COLOR[c.categoryId]+'">'+esc(c.category)+'</span>'+
-    '<h3>'+esc(c.displayTitle||c.name.replace(/\.txt$/,''))+'</h3>'+
+    '<h3><a href="'+esc(href)+'">'+esc(c.displayTitle||c.name.replace(/\.txt$/,''))+'</a></h3>'+
     '<p>'+(c.chars/10000).toFixed(1)+' 万字符 · '+c.sources+' 份原始文件合并</p>'+
-    '<p style="color:var(--accent)">📖 在线阅读（HTML）→</p>'+
-    '<span style="display:block;margin-top:4px"><a href="'+c.file+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:12px">原始 TXT ↗</a></span></a>';
+    '<div class="wb-corpus-actions">'+
+      '<a class="wb-read-link" href="'+esc(href)+'">📖 在线阅读（HTML）→</a>'+
+      '<a href="'+esc(c.file)+'" target="_blank" rel="noopener" style="font-size:12px">原始 TXT ↗</a>'+
+    '</div></div>';
   }).join('')||'<div class="kb-empty">无匹配</div>';
 }
+/* 整卡可点：点击非链接区域跳转阅读页，内部链接各自生效 */
+$('#corpusList').addEventListener('click',function(e){
+  if(e.target.closest('a'))return;
+  var card=e.target.closest('.wb-corpus-card');
+  if(card&&card.getAttribute('data-href'))location.href=card.getAttribute('data-href');
+});
 
 /* ---------- 内嵌全文检索 ---------- */
 var wbSearch=KBSearch({mount:'#kb-search-app',root:'./',
