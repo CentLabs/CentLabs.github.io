@@ -32,9 +32,27 @@
     if (burger && links) burger.addEventListener('click', function () { links.classList.toggle('open'); });
   };
 
-  /* ---------- KaTeX 懒加载（渲染 $$..$$ 与 $..$；失败则保持等宽文本） ---------- */
-  var katexState = 'none';
+  /* ---------- KaTeX 本地渲染（$$..$$ / $..$ / \(..\) / \[..\]） ----------
+     历史坑：两个动态插入的 <script> 默认 async，auto-render 可能先于 katex 核心执行，
+     它捕获到 undefined 的 katex，渲染时抛 "Cannot read properties of undefined
+     (reading 'ParseError')"；异常又被 try/catch 吞掉 → 库看似加载成功，公式却全是源码。
+     修复：改用站点自带 vendor（不依赖 CDN），且必须在 katex 核心 onload 之后
+     才插入 auto-render；同时补上 $...$ 行内分隔符。 */
+  var katexState = 'none', katexBase = null;
+  function mathWarn(e) { if (window.console && console.warn) console.warn('[KB] math:', e); }
+  /* kb.js 自身被不同层级的页面引用（assets/、../assets/、../../../assets/），
+     运行时从 script 标签的绝对 src 推导 vendor 根路径。 */
+  function katexAssetBase() {
+    if (katexBase) return katexBase;
+    var s = document.querySelector('script[src*="kb.js"]');
+    katexBase = (s ? s.src.replace(/kb\.js.*$/, '') : 'assets/') + 'vendor/katex/';
+    return katexBase;
+  }
+  function katexFlush() {
+    (KB._katexQueue || []).splice(0).forEach(function (f) { try { f(); } catch (e) { mathWarn(e); } });
+  }
   KB.renderMath = function (root) {
+    if (!root) return;
     if (katexState === 'fail') return;
     if (katexState !== 'ready') { loadKatex(function () { doRender(root); }); return; }
     doRender(root);
@@ -42,36 +60,42 @@
   function loadKatex(cb) {
     if (katexState === 'loading') { KB._katexQueue.push(cb); return; }
     katexState = 'loading'; KB._katexQueue = [cb];
-    var css = document.createElement('link'); css.rel = 'stylesheet';
-    css.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css';
-    var s1 = document.createElement('script');
-    s1.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
-    var s2 = document.createElement('script');
-    s2.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
-    s2.onload = function () {
-      katexState = 'ready';
-      KB._katexQueue.splice(0).forEach(function (f) { try { f(); } catch (e) {} });
+    var base = katexAssetBase();
+    var fail = function (msg) { katexState = 'fail'; mathWarn(msg); katexFlush(); };
+    var css = document.createElement('link');
+    css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+    document.head.appendChild(css);
+    var core = document.createElement('script');
+    core.src = base + 'katex.min.js';
+    core.onload = function () {
+      if (!window.katex) { fail('katex core unavailable after load'); return; }
+      var ar = document.createElement('script');
+      ar.src = base + 'auto-render.min.js';
+      ar.onload = function () {
+        if (!window.renderMathInElement) { fail('auto-render unavailable after load'); return; }
+        katexState = 'ready'; katexFlush();
+      };
+      ar.onerror = function () { fail('auto-render load failed: ' + ar.src); };
+      document.head.appendChild(ar);
     };
-    var fail = function () {
-      katexState = 'fail';
-      KB._katexQueue.splice(0).forEach(function (f) { try { f(); } catch (e) {} });
-    };
-    s1.onerror = fail; s2.onerror = fail;
-    document.head.appendChild(css); document.head.appendChild(s1); document.head.appendChild(s2);
+    core.onerror = function () { fail('katex core load failed: ' + core.src); };
+    document.head.appendChild(core);
   }
   function doRender(root) {
-    if (!(window.renderMathInElement)) return;
+    if (!root || !window.katex || !window.renderMathInElement) return;
     try {
       renderMathInElement(root, {
         delimiters: [
           { left: '$$', right: '$$', display: true },
+          { left: '\\[', right: '\\]', display: true },
           { left: '\\(', right: '\\)', display: false },
-          { left: '\\[', right: '\\]', display: true }
+          { left: '$', right: '$', display: false }
         ],
         throwOnError: false,
-        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option'],
+        ignoredClasses: ['katex', 'kb-math-raw']
       });
-    } catch (e) {}
+    } catch (e) { mathWarn(e); }
   }
 
   /* ---------- 轻量 Markdown → HTML（离线可用，标题带锚点 id） ---------- */
@@ -162,5 +186,9 @@
   document.addEventListener('DOMContentLoaded', function () {
     KB.initTheme();
     if (window.KB_AUTO_NAV !== false || window.KB_NAV_ACTIVE) KB.initNav(window.KB_NAV_ACTIVE || '');
+    /* 静态卡片里的行内公式（首页精选/易错、学科页知识点分组）自动渲染；
+       阅读页不带 data-kb-math，不会被扫描版 PDF 的乱码 $ 触发。 */
+    var maths = document.querySelectorAll('[data-kb-math]');
+    for (var i = 0; i < maths.length; i++) KB.renderMath(maths[i]);
   });
 })();

@@ -23,8 +23,11 @@
 .wb-side .grp:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .wb-side .grp.open{background:var(--surface-2)}
 .wb-side .grp .caret{display:inline-block;width:14px;color:var(--text-3);font-size:11px;font-weight:400}
-.wb-side .grp .cnt{font-size:11px;color:var(--text-3);font-weight:400}
-.wb-side .grp-items{display:none;padding-left:6px}
+.wb-side .grp>span:first-child{min-width:0;overflow-wrap:anywhere}
+.wb-side .grp .cnt{font-size:11px;color:var(--text-3);font-weight:400;flex:none;margin-left:8px}
+.wb-side{min-width:0;max-width:100%}
+.wb-side .grp-items{display:none;padding-left:6px;min-width:0}
+.wb-side .item,.wb-side .meta{overflow-wrap:anywhere;word-break:break-word;min-width:0}
 /* .grp-items 是 .grp 的相邻兄弟节点，不是子节点，必须用 + 选择器 */
 .wb-side .grp.open + .grp-items{display:block}
 .wb-side .item{display:block;padding:7px 10px;border-radius:7px;cursor:pointer;font-size:13px;line-height:1.5;border:1px solid transparent}
@@ -34,7 +37,8 @@
 .wb-main-panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 30px;min-height:55vh;box-shadow:var(--shadow)}
 @media(max-width:900px){.wb-main-panel{padding:16px}}
 .wb-grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:16px}
-@media(max-width:900px){.wb-grid{grid-template-columns:1fr}}
+/* 移动端必须用 minmax(0,1fr)：1fr 的最小尺寸是 auto，展开后的长中文标题会把整列撑出屏幕 */
+@media(max-width:900px){.wb-grid{grid-template-columns:minmax(0,1fr)}}
 .kp-modal-link{cursor:pointer}
 .wb-file-search{display:flex;gap:8px;margin:10px 0 14px;flex-wrap:wrap}
 .wb-file-search input{flex:1;min-width:220px;border:1px solid var(--line-strong);background:var(--surface);

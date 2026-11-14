@@ -187,7 +187,10 @@
   function finish() {
     if (done) return; done = true;
     updateProgress();
-    if (window.KB) KB.renderMath($('#kb-body'));
+    /* 阅读页正文是扫描版 PDF 的提取文本，其中的 $ / $$ 多为乱码字节而非公式；
+       在这里跑 KaTeX 会把乱码误渲染成"公式"。公式渲染只在精读工作台、
+       知识点卡片详情等结构化内容上做（见 kb.js / study.html / card.html）。 */
+    /* if (window.KB) KB.renderMath($('#kb-body')); */
     if (targetLine >= 0) seekTo(targetLine);
   }
 
