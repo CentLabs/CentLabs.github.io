@@ -231,8 +231,13 @@ a:hover{text-decoration:underline}
 .kb-side-mask{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:199;display:none}
 .kb-side-mask.show{display:block}
 
-/* 正文列顶部工具条：折叠目录按钮 + 移动端目录按钮，普通流式布局（不悬浮） */
-.kb-col-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+/* 正文列顶部工具条：折叠目录按钮 + 移动端目录按钮。
+   sticky 吸附在正文列顶部，滚动到底部时「收起/展开目录」按钮始终可见，
+   无需滚回顶部。加背景+阴影遮挡下方滚过的正文，避免文字透出。 */
+.kb-col-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:12px;
+  position:sticky;top:calc(var(--nav-h) + 8px);z-index:50;
+  background:var(--bg,var(--surface));border-radius:12px;
+  padding:8px 4px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
 .kb-side-toggle .kb-btn{font-size:12px;padding:5px 11px;background:var(--surface);box-shadow:var(--shadow-sm)}
 /* 收起态：左栏隐藏、正文变宽（子项位置仍由 grid-column 固定，不错位） */
 .kb-read-layout.side-collapsed{grid-template-columns:0 minmax(0,1fr) 240px}
