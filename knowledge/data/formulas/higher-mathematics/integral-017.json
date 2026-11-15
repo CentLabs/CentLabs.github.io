@@ -1,0 +1,20 @@
+{
+  "id": "integral-017",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "无穷区间上的反常积分",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "反常积分",
+    "无穷区间",
+    "收敛"
+  ],
+  "latex": "\\int_a^{+\\infty}f(x)\\,\\mathrm{d}x=\\lim_{t\\to+\\infty}\\int_a^t f(x)\\,\\mathrm{d}x",
+  "summary": "无穷区间上的反常积分定义为变上限积分的极限；极限存在称收敛，否则发散。原书给出 ∫₁⁺∞ dx/xᵖ 当 p>1 时收敛的结论。",
+  "conditions": "f 在任意有限区间 [a,t] 上可积。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 44
+  }
+}

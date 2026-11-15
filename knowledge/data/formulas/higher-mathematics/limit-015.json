@@ -1,0 +1,20 @@
+{
+  "id": "limit-015",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "无穷小量的比较与阶",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "无穷小",
+    "阶",
+    "比较"
+  ],
+  "latex": "\\lim\\frac{\\beta}{\\alpha}=0\\Rightarrow\\beta=o(\\alpha);\\quad\\lim\\frac{\\beta}{\\alpha}=c\\neq0\\Rightarrow\\beta=O(\\alpha);\\quad\\lim\\frac{\\beta}{\\alpha}=1\\Rightarrow\\beta\\sim\\alpha",
+  "summary": "通过比值极限把无穷小分为高阶、同阶、等价等等级。原书列出高阶、低阶、同阶、等价与 k 阶无穷小的定义。",
+  "conditions": "分母 α 在极限过程中不取零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 17
+  }
+}

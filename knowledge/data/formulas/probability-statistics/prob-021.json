@@ -1,0 +1,20 @@
+{
+  "id": "prob-021",
+  "subject": "probability-statistics",
+  "chapter": "二维随机变量及其分布",
+  "name": "条件分布",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "条件分布",
+    "条件密度",
+    "二维"
+  ],
+  "latex": "P\\{X=x_i\\,|\\,Y=y_j\\}=\\frac{p_{ij}}{p_{\\cdot j}},\\qquad f_{X|Y}(x\\,|\\,y)=\\frac{f(x,y)}{f_Y(y)}\\ (f_Y(y)>0)",
+  "summary": "在给定另一个变量取值条件下的分布律或概率密度。",
+  "conditions": "条件化变量的相应概率（密度）必须大于零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 159
+  }
+}

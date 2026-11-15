@@ -1,0 +1,19 @@
+{
+  "id": "limit-017",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "无穷大量与无穷小量的关系",
+  "category": "定理",
+  "importance": 3,
+  "tags": [
+    "无穷大",
+    "无穷小"
+  ],
+  "latex": "\\lim f(x)=\\infty\\Rightarrow\\lim\\frac{1}{f(x)}=0;\\qquad\\lim f(x)=0,\\ f(x)\\neq0\\Rightarrow\\lim\\frac{1}{f(x)}=\\infty",
+  "summary": "在同一变化过程中，无穷大量的倒数是无穷小量，非零无穷小量的倒数是无穷大量。",
+  "conditions": "f(x) 在相应邻域内不为零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 18
+  }
+}

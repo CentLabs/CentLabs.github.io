@@ -1,0 +1,21 @@
+{
+  "id": "prob-010",
+  "subject": "probability-statistics",
+  "chapter": "随机事件与概率",
+  "name": "条件概率与乘法公式",
+  "category": "公式",
+  "importance": 5,
+  "tags": [
+    "条件概率",
+    "乘法公式",
+    "独立性"
+  ],
+  "latex": "P(B\\,|\\,A)=\\frac{P(AB)}{P(A)}\\ (P(A)>0),\\qquad P(AB)=P(A)P(B\\,|\\,A)",
+  "summary": "在 A 已发生的条件下 B 发生的概率为条件概率；由此可得乘法公式，并推广到多个事件。",
+  "conditions": "P(A)>0。",
+  "notes": "P(AB)=P(A)P(B) 当且仅当 A、B 相互独立。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 150
+  }
+}

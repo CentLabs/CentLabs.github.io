@@ -1,0 +1,21 @@
+{
+  "id": "la-vector-005",
+  "subject": "linear-algebra",
+  "chapter": "向量与向量空间",
+  "name": "向量的内积、长度与夹角",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "向量",
+    "内积",
+    "长度",
+    "夹角"
+  ],
+  "latex": "(\\boldsymbol{\\alpha},\\boldsymbol{\\beta})=\\sum_{i=1}^{n}a_ib_i=\\boldsymbol{\\alpha}^T\\boldsymbol{\\beta},\\quad\\|\\boldsymbol{\\alpha}\\|=\\sqrt{(\\boldsymbol{\\alpha},\\boldsymbol{\\alpha})},\\quad\\cos\\theta=\\frac{(\\boldsymbol{\\alpha},\\boldsymbol{\\beta})}{\\|\\boldsymbol{\\alpha}\\|\\|\\boldsymbol{\\beta}\\|}",
+  "summary": "n 维向量的内积、长度（范数）与夹角定义；内积为零称两向量正交。",
+  "conditions": "α、β 为非零向量时夹角才有定义。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 125
+  }
+}

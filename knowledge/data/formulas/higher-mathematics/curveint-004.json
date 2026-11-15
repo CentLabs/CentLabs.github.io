@@ -1,0 +1,20 @@
+{
+  "id": "curveint-004",
+  "subject": "higher-mathematics",
+  "chapter": "曲线积分与曲面积分",
+  "name": "全微分求积",
+  "category": "计算",
+  "importance": 3,
+  "tags": [
+    "全微分",
+    "原函数",
+    "曲线积分"
+  ],
+  "latex": "u(x,y)=\\int_{x_0}^{x}P(x,y_0)\\,\\mathrm{d}x+\\int_{y_0}^{y}Q(x,y)\\,\\mathrm{d}y",
+  "summary": "当 P dx+Q dy 为全微分时，选取折线路径积分即可求出原函数 u(x,y)。",
+  "conditions": "满足路径无关条件；(x₀,y₀) 为区域内任一点。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 66
+  }
+}

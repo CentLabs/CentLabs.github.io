@@ -1,0 +1,20 @@
+{
+  "id": "linear-006",
+  "subject": "linear-algebra",
+  "chapter": "行列式",
+  "name": "余子式与代数余子式",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "行列式",
+    "余子式",
+    "代数余子式"
+  ],
+  "latex": "A_{ij}=(-1)^{i+j}M_{ij}",
+  "summary": "划去第 i 行第 j 列所得 n−1 阶行列式为余子式 Mᵢⱼ，乘以符号 (−1)^(i+j) 得代数余子式。",
+  "conditions": "Mᵢⱼ 为 n−1 阶行列式。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 94
+  }
+}

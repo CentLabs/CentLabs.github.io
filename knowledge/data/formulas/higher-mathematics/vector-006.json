@@ -1,0 +1,20 @@
+{
+  "id": "vector-006",
+  "subject": "higher-mathematics",
+  "chapter": "向量代数与空间解析几何",
+  "name": "平面的方程",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "空间解析几何",
+    "平面",
+    "方程"
+  ],
+  "latex": "A(x-x_0)+B(y-y_0)+C(z-z_0)=0;\\qquad Ax+By+Cz+D=0;\\qquad\\frac{x}{a}+\\frac{y}{b}+\\frac{z}{c}=1",
+  "summary": "平面的点法式、一般式与截距式方程，法向量为 (A,B,C)。",
+  "conditions": "截距式要求平面不过原点且不平行于坐标轴。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 49
+  }
+}

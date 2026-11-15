@@ -1,0 +1,20 @@
+{
+  "id": "prob-034",
+  "subject": "probability-statistics",
+  "chapter": "常用分布",
+  "name": "指数分布",
+  "category": "分布",
+  "importance": 4,
+  "tags": [
+    "指数分布",
+    "无记忆性",
+    "数字特征"
+  ],
+  "latex": "X\\sim E(\\lambda):\\quad f(x)=\\begin{cases}\\lambda e^{-\\lambda x},&x>0\\\\0,&x\\le0\\end{cases};\\qquad EX=\\frac{1}{\\lambda},\\ DX=\\frac{1}{\\lambda^2}",
+  "summary": "常用于描述寿命、等待时间的分布，具有无记忆性。",
+  "conditions": "λ>0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 167
+  }
+}

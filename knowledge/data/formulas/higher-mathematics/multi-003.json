@@ -1,0 +1,20 @@
+{
+  "id": "multi-003",
+  "subject": "higher-mathematics",
+  "chapter": "多元函数微分学",
+  "name": "复合函数微分法",
+  "category": "法则",
+  "importance": 5,
+  "tags": [
+    "偏导数",
+    "链式法则",
+    "复合函数"
+  ],
+  "latex": "z=f(u,v),\\ u=u(x,y),\\ v=v(x,y)\\Rightarrow\\frac{\\partial z}{\\partial x}=\\frac{\\partial f}{\\partial u}\\frac{\\partial u}{\\partial x}+\\frac{\\partial f}{\\partial v}\\frac{\\partial v}{\\partial x}",
+  "summary": "多元复合函数求偏导的链式法则：沿所有中间变量路径求和。",
+  "conditions": "各函数相应可微。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 54
+  }
+}

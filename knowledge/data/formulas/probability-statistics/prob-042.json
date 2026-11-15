@@ -1,0 +1,20 @@
+{
+  "id": "prob-042",
+  "subject": "probability-statistics",
+  "chapter": "数理统计基本概念",
+  "name": "样本均值与样本方差",
+  "category": "定义",
+  "importance": 5,
+  "tags": [
+    "统计量",
+    "样本均值",
+    "样本方差"
+  ],
+  "latex": "\\bar X=\\frac{1}{n}\\sum_{i=1}^{n}X_i,\\qquad S^2=\\frac{1}{n-1}\\sum_{i=1}^{n}\\big(X_i-\\bar X\\big)^2,\\qquad E(\\bar X)=\\mu,\\ E(S^2)=\\sigma^2",
+  "summary": "样本均值与（无偏）样本方差是最常用的统计量；样本方差分母取 n−1 保证无偏性。",
+  "conditions": "样本 X₁,…,Xₙ 独立同分布于总体。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 171
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "integral-013",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "平面图形的面积",
+  "category": "应用",
+  "importance": 4,
+  "tags": [
+    "定积分",
+    "面积",
+    "极坐标"
+  ],
+  "latex": "S=\\int_a^b\\big|f(x)-g(x)\\big|\\,\\mathrm{d}x,\\qquad S=\\frac{1}{2}\\int_{\\alpha}^{\\beta}r^2(\\theta)\\,\\mathrm{d}\\theta",
+  "summary": "直角坐标下用上下曲线之差的积分求面积；极坐标下用扇形微元求面积。",
+  "conditions": "积分区间内需确定曲线的上下（内外）关系。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 39
+  }
+}

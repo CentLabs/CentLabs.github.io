@@ -1,0 +1,20 @@
+{
+  "id": "eigen-002",
+  "subject": "linear-algebra",
+  "chapter": "矩阵的特征值和特征向量",
+  "name": "特征值的性质",
+  "category": "性质",
+  "importance": 5,
+  "tags": [
+    "特征值",
+    "迹",
+    "行列式"
+  ],
+  "latex": "\\sum_{i=1}^{n}\\lambda_i=\\operatorname{tr}(A),\\qquad\\prod_{i=1}^{n}\\lambda_i=|A|",
+  "summary": "全部特征值之和等于矩阵的迹，之积等于矩阵的行列式；A 可逆当且仅当全部特征值非零。",
+  "conditions": "特征值按重数计入。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 137
+  }
+}

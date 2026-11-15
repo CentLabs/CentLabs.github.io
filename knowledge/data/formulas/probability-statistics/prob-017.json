@@ -1,0 +1,20 @@
+{
+  "id": "prob-017",
+  "subject": "probability-statistics",
+  "chapter": "一维随机变量及其分布",
+  "name": "随机变量函数的分布",
+  "category": "计算",
+  "importance": 4,
+  "tags": [
+    "随机变量函数",
+    "分布",
+    "变量代换"
+  ],
+  "latex": "Y=g(X):\\quad P\\{Y=y_j\\}=\\sum_{g(x_i)=y_j}P\\{X=x_i\\};\\qquad f_Y(y)=f_X\\big(h(y)\\big)\\,|h'(y)|",
+  "summary": "离散型直接按取值合并概率；连续型在 g 单调可导时用变量代换公式求密度。",
+  "conditions": "连续型要求 g 严格单调、可导且反函数 h=g⁻¹ 存在。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 155
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "derivative-012",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "参数方程确定的函数的导数",
+  "category": "计算",
+  "importance": 4,
+  "tags": [
+    "导数",
+    "参数方程",
+    "二阶导"
+  ],
+  "latex": "x=\\varphi(t),\\ y=\\psi(t)\\Rightarrow\\frac{\\mathrm{d}y}{\\mathrm{d}x}=\\frac{\\psi'(t)}{\\varphi'(t)},\\quad\\frac{\\mathrm{d}^2y}{\\mathrm{d}x^2}=\\frac{\\psi''\\varphi'-\\psi'\\varphi''}{(\\varphi')^3}",
+  "summary": "参数方程的一阶与二阶导数公式。",
+  "conditions": "φ′(t)≠0，φ、ψ 二阶可导。",
+  "notes": "二阶导数是对一阶导数再关于 x 求导，不能只对 t 求导。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 25
+  }
+}

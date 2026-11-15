@@ -1,0 +1,20 @@
+{
+  "id": "series-008",
+  "subject": "higher-mathematics",
+  "chapter": "无穷级数",
+  "name": "绝对收敛与条件收敛",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "任意项级数",
+    "绝对收敛",
+    "条件收敛"
+  ],
+  "latex": "\\sum|u_n|\\ \\mathrm{convergent}\\Rightarrow\\sum u_n\\ \\mathrm{convergent};\\qquad\\sum|u_n|\\ \\mathrm{divergent},\\ \\sum u_n\\ \\mathrm{convergent}\\Rightarrow\\mathrm{conditional}",
+  "summary": "绝对收敛必收敛；自身收敛但取绝对值后发散称为条件收敛。",
+  "conditions": "用于任意项级数。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 73
+  }
+}

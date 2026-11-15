@@ -1,0 +1,20 @@
+{
+  "id": "matrix-007",
+  "subject": "linear-algebra",
+  "chapter": "矩阵",
+  "name": "分块矩阵的运算",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "矩阵",
+    "分块矩阵",
+    "运算"
+  ],
+  "latex": "\\begin{pmatrix}A&B\\\\C&D\\end{pmatrix}^T=\\begin{pmatrix}A^T&C^T\\\\B^T&D^T\\end{pmatrix},\\qquad\\begin{pmatrix}A_1&O\\\\O&A_2\\end{pmatrix}^{-1}=\\begin{pmatrix}A_1^{-1}&O\\\\O&A_2^{-1}\\end{pmatrix}",
+  "summary": "分块矩阵转置需同时转置各子块并交换位置；分块对角矩阵的行列式与逆可逐块计算。",
+  "conditions": "子块维数相容；求逆时各对角子块可逆。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 109
+  }
+}

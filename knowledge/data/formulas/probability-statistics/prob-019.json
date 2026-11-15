@@ -1,0 +1,20 @@
+{
+  "id": "prob-019",
+  "subject": "probability-statistics",
+  "chapter": "二维随机变量及其分布",
+  "name": "联合分布律与边缘分布律",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "二维离散型",
+    "联合分布律",
+    "边缘分布"
+  ],
+  "latex": "P\\{X=x_i,Y=y_j\\}=p_{ij},\\quad \\sum_{i,j}p_{ij}=1;\\qquad p_{i\\,\\cdot}=\\sum_j p_{ij},\\quad p_{\\cdot\\,j}=\\sum_i p_{ij}",
+  "summary": "二维离散型随机变量的联合分布律及对其余变量求和所得的两个边缘分布律。",
+  "conditions": "pᵢⱼ≥0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 158
+  }
+}

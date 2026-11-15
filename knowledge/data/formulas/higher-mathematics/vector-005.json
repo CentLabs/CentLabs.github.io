@@ -1,0 +1,19 @@
+{
+  "id": "vector-005",
+  "subject": "higher-mathematics",
+  "chapter": "向量代数与空间解析几何",
+  "name": "方向余弦",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "向量",
+    "方向余弦"
+  ],
+  "latex": "\\cos\\alpha=\\frac{a_x}{|\\boldsymbol{a}|},\\ \\cos\\beta=\\frac{a_y}{|\\boldsymbol{a}|},\\ \\cos\\gamma=\\frac{a_z}{|\\boldsymbol{a}|},\\qquad\\cos^2\\alpha+\\cos^2\\beta+\\cos^2\\gamma=1",
+  "summary": "向量与三个坐标轴夹角的余弦称为方向余弦，三者平方和恒为 1。",
+  "conditions": "a 为非零向量。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 48
+  }
+}

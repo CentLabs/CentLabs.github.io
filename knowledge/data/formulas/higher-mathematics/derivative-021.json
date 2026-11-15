@@ -1,0 +1,20 @@
+{
+  "id": "derivative-021",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "弧微分与曲率",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "曲率",
+    "弧微分",
+    "曲率半径"
+  ],
+  "latex": "\\mathrm{d}s=\\sqrt{1+y'^2}\\,\\mathrm{d}x,\\qquad K=\\frac{|y''|}{\\left(1+y'^2\\right)^{3/2}},\\qquad\\rho=\\frac{1}{K}",
+  "summary": "原书在微分学应用部分给出弧微分、曲率与曲率半径的计算公式。",
+  "conditions": "曲线二阶可导。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 31
+  }
+}

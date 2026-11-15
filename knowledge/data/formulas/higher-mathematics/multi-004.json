@@ -1,0 +1,19 @@
+{
+  "id": "multi-004",
+  "subject": "higher-mathematics",
+  "chapter": "多元函数微分学",
+  "name": "隐函数求导法",
+  "category": "计算",
+  "importance": 4,
+  "tags": [
+    "偏导数",
+    "隐函数"
+  ],
+  "latex": "F(x,y,z)=0\\Rightarrow\\frac{\\partial z}{\\partial x}=-\\frac{F_x}{F_z},\\qquad\\frac{\\partial z}{\\partial y}=-\\frac{F_y}{F_z}\\quad(F_z\\neq0)",
+  "summary": "由方程 F=0 确定的隐函数，其偏导数可用 F 的三个偏商表示。",
+  "conditions": "F 具有连续偏导数且 F_z≠0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 54
+  }
+}

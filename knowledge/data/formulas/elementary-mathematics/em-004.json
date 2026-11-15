@@ -1,0 +1,20 @@
+{
+  "id": "em-004",
+  "subject": "elementary-mathematics",
+  "chapter": "初等代数",
+  "name": "指数与对数运算",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "指数",
+    "对数",
+    "运算性质"
+  ],
+  "latex": "a^ma^n=a^{m+n},\\quad (a^m)^n=a^{mn},\\quad \\log_a(MN)=\\log_aM+\\log_aN,\\quad \\log_aM^n=n\\log_aM,\\quad \\log_a b=\\frac{\\ln b}{\\ln a}",
+  "summary": "原书附录列出的指数运算律与对数运算律，含换底公式。",
+  "conditions": "a>0 且 a≠1，M、N>0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 180
+  }
+}

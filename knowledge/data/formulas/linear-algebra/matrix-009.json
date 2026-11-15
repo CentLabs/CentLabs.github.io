@@ -1,0 +1,20 @@
+{
+  "id": "matrix-009",
+  "subject": "linear-algebra",
+  "chapter": "矩阵",
+  "name": "矩阵可逆的充要条件",
+  "category": "定理",
+  "importance": 5,
+  "tags": [
+    "矩阵",
+    "可逆",
+    "充要条件"
+  ],
+  "latex": "A\\ \\text{可逆}\\iff |A|\\neq0\\iff r(A)=n\\iff A\\ \\text{可表示为有限个初等矩阵的乘积}",
+  "summary": "n 阶方阵可逆的等价刻画：行列式非零、满秩、行（列）向量组线性无关、可分解为初等矩阵之积。",
+  "conditions": "A 为 n 阶方阵。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 118
+  }
+}

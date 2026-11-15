@@ -1,0 +1,21 @@
+{
+  "id": "multi-007",
+  "subject": "higher-mathematics",
+  "chapter": "多元函数微分学",
+  "name": "多元函数极值的必要与充分条件",
+  "category": "判别",
+  "importance": 4,
+  "tags": [
+    "极值",
+    "多元函数",
+    "二阶偏导"
+  ],
+  "latex": "f_x=f_y=0;\\quad A=f_{xx},\\ B=f_{xy},\\ C=f_{yy}:\\quad AC-B^2>0,\\ A<0\\Rightarrow\\max;\\quad AC-B^2>0,\\ A>0\\Rightarrow\\min",
+  "summary": "驻点处由二阶偏导数构成的判别式 AC−B² 判定极大、极小；小于零时不是极值（鞍点）。",
+  "conditions": "f 具有二阶连续偏导数。",
+  "notes": "AC−B²=0 时需另作讨论。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 57
+  }
+}

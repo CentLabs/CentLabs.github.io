@@ -1,0 +1,15 @@
+{
+  "id": "prob-003",
+  "subject": "probability-statistics",
+  "chapter": "随机变量的数字特征",
+  "name": "数学期望的定义",
+  "category": "数字特征",
+  "importance": 5,
+  "tags": ["数学期望", "数字特征"],
+  "latex": "EX=\\begin{cases}\\displaystyle\\sum_i x_i\\,p_i, & \\text{离散型}\\\\[6pt]\\displaystyle\\int_{-\\infty}^{+\\infty}x\\,f(x)\\,dx, & \\text{连续型}\\end{cases}",
+  "summary": "数学期望是随机变量取值的加权平均，离散型求和、连续型积分。",
+  "explanation": "离散型随机变量 X 的期望为各取值与其概率乘积之和（级数绝对收敛时）；连续型为 x 乘密度函数在实轴上的积分（绝对收敛时）。",
+  "conditions": "对应级数或积分绝对收敛。",
+  "notes": "期望具有线性性：E(aX+bY+c) = aEX + bEY + c；若 X、Y 相互独立，则 E(XY) = EX·EY。",
+  "source": { "book": "张宇数学公式手册", "page": 155 }
+}

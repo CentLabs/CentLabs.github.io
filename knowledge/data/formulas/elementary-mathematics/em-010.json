@@ -1,0 +1,20 @@
+{
+  "id": "em-010",
+  "subject": "elementary-mathematics",
+  "chapter": "三角函数",
+  "name": "和差角公式",
+  "category": "恒等式",
+  "importance": 4,
+  "tags": [
+    "三角函数",
+    "和差角",
+    "恒等变换"
+  ],
+  "latex": "\\sin(\\alpha\\pm\\beta)=\\sin\\alpha\\cos\\beta\\pm\\cos\\alpha\\sin\\beta,\\quad\\cos(\\alpha\\pm\\beta)=\\cos\\alpha\\cos\\beta\\mp\\sin\\alpha\\sin\\beta,\\quad\\tan(\\alpha\\pm\\beta)=\\frac{\\tan\\alpha\\pm\\tan\\beta}{1\\mp\\tan\\alpha\\tan\\beta}",
+  "summary": "原书三角函数部分列出的和差角公式，是推导倍角、半角与积化和差公式的基础。",
+  "conditions": "正切公式要求分母不为零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 184
+  }
+}

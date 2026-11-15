@@ -1,0 +1,20 @@
+{
+  "id": "la-eq-004",
+  "subject": "linear-algebra",
+  "chapter": "线性方程组",
+  "name": "齐次方程组有非零解的判别条件",
+  "category": "判别",
+  "importance": 5,
+  "tags": [
+    "线性方程组",
+    "齐次",
+    "非零解"
+  ],
+  "latex": "A_{m\\times n}\\boldsymbol{x}=\\boldsymbol{0}\\ \\text{有非零解}\\iff r(A)<n;\\qquad |A|=0\\ (m=n)",
+  "summary": "齐次方程组必有零解；当系数矩阵秩小于未知量个数时存在非零解。方阵情形等价于系数行列式为零。",
+  "conditions": "未知量个数为 n。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 134
+  }
+}

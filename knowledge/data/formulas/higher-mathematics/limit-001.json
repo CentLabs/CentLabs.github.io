@@ -1,0 +1,16 @@
+{
+  "id": "limit-001",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "第一个重要极限",
+  "category": "重要极限",
+  "importance": 5,
+  "tags": ["极限", "重要极限", "三角函数"],
+  "latex": "\\lim_{x\\to 0}\\frac{\\sin x}{x}=1",
+  "summary": "当 x 趋于 0 时，sin x 与 x 是等价无穷小，其比值极限为 1。",
+  "explanation": "两个重要极限是求极限的核心工具。第一个重要极限揭示了正弦函数在原点附近与自变量的等价关系，是处理含三角函数的 0/0 型未定式的基础。",
+  "conditions": "极限过程为 x→0；分式为 0/0 型。",
+  "notes": "注意推广形式：当 □→0 时，lim sin□/□ = 1，其中 □ 可以是任意趋于 0 的表达式。",
+  "example": "求 lim(x→0) (sin 3x)/x。解：原式 = lim 3·(sin 3x)/(3x) = 3·1 = 3。",
+  "source": { "book": "张宇数学公式手册", "page": 14 }
+}

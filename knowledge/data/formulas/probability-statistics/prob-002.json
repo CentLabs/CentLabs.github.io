@@ -1,0 +1,15 @@
+{
+  "id": "prob-002",
+  "subject": "probability-statistics",
+  "chapter": "随机事件与概率",
+  "name": "贝叶斯公式",
+  "category": "概率公式",
+  "importance": 5,
+  "tags": ["贝叶斯公式", "条件概率", "后验概率"],
+  "latex": "P(A_i\\mid B)=\\frac{P(A_i)\\,P(B\\mid A_i)}{\\sum_{j}P(A_j)\\,P(B\\mid A_j)}",
+  "summary": "已知结果求原因的概率，由先验概率反推后验概率。",
+  "explanation": "贝叶斯公式是全概率公式的逆用，用于在已知事件 B 发生的前提下，反推各「原因」 Ai 发生的概率（后验概率）。",
+  "conditions": "A₁, A₂, … 构成完备事件组，P(B) > 0。",
+  "notes": "贝叶斯公式在考研中常用于「已知结果、反查原因」类问题，注意与全概率公式（已知原因求结果）区分。",
+  "source": { "book": "张宇数学公式手册", "page": 151 }
+}

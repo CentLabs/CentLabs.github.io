@@ -1,0 +1,20 @@
+{
+  "id": "em-008",
+  "subject": "elementary-mathematics",
+  "chapter": "初等几何",
+  "name": "圆与扇形的周长与面积",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "几何",
+    "圆",
+    "扇形"
+  ],
+  "latex": "C=2\\pi r,\\quad S_{\\text{圆}}=\\pi r^2,\\qquad l=r\\theta,\\quad S_{\\text{扇形}}=\\frac{1}{2}r^2\\theta=\\frac{1}{2}lr",
+  "summary": "原书在初等几何部分列出的圆与扇形公式，θ 为圆心角弧度数。",
+  "conditions": "θ 用弧度制。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 183
+  }
+}

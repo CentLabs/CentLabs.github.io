@@ -1,0 +1,20 @@
+{
+  "id": "prob-016",
+  "subject": "probability-statistics",
+  "chapter": "一维随机变量及其分布",
+  "name": "概率密度与分布函数的关系",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "概率密度",
+    "分布函数",
+    "积分"
+  ],
+  "latex": "P\\{a<X\\le b\\}=\\int_a^b f(x)\\,\\mathrm{d}x=F(b)-F(a),\\qquad F'(x)=f(x)\\ (\\text{在 }f\\ \\text{的连续点})",
+  "summary": "由概率密度积分可求任意区间的概率；在密度连续点处，分布函数的导数即为密度。",
+  "conditions": "X 为连续型随机变量。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 154
+  }
+}

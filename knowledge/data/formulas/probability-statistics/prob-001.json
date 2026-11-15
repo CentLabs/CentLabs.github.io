@@ -1,0 +1,15 @@
+{
+  "id": "prob-001",
+  "subject": "probability-statistics",
+  "chapter": "随机事件与概率",
+  "name": "全概率公式",
+  "category": "概率公式",
+  "importance": 5,
+  "tags": ["全概率公式", "条件概率", "完备事件组"],
+  "latex": "P(B)=\\sum_{i}P(A_i)\\,P(B\\mid A_i)",
+  "summary": "把复杂事件的概率分解为若干完备子事件下的条件概率加权和。",
+  "explanation": "设 A₁, A₂, … 为样本空间的一个完备事件组（两两互斥且并集为全集），则事件 B 的概率可由各 Ai 下的条件概率加权求和得到。",
+  "conditions": "A₁, A₂, … 构成完备事件组，且 P(Ai) > 0。",
+  "notes": "全概率公式的关键是找到合适的完备事件组（「分割」），通常按「原因」或「路径」划分。",
+  "source": { "book": "张宇数学公式手册", "page": 151 }
+}

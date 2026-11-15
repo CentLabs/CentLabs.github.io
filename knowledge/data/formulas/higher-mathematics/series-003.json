@@ -1,0 +1,21 @@
+{
+  "id": "series-003",
+  "subject": "higher-mathematics",
+  "chapter": "无穷级数",
+  "name": "级数收敛的必要条件",
+  "category": "性质",
+  "importance": 4,
+  "tags": [
+    "级数",
+    "收敛",
+    "必要条件"
+  ],
+  "latex": "\\sum_{n=1}^{\\infty}u_n\\ \\mathrm{converges}\\Rightarrow\\lim_{n\\to\\infty}u_n=0",
+  "summary": "收敛级数的通项必趋于零。注意这只是必要条件，通项趋于零不能保证级数收敛。",
+  "conditions": "反之不成立，例如调和级数。",
+  "notes": "常用于快速判定发散：若通项不趋于零，级数必发散。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 69
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "ode-006",
+  "subject": "higher-mathematics",
+  "chapter": "常微分方程",
+  "name": "线性微分方程解的结构",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "微分方程",
+    "解的结构",
+    "线性"
+  ],
+  "latex": "y''+p(x)y'+q(x)y=f(x):\\quad y=C_1y_1+C_2y_2+y^*",
+  "summary": "非齐次方程的通解等于对应齐次方程的通解（两个线性无关解的线性组合）加一个非齐次特解。",
+  "conditions": "y₁、y₂ 线性无关；y* 为任一特解。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 85
+  }
+}

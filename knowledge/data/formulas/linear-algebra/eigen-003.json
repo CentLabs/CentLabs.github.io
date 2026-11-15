@@ -1,0 +1,21 @@
+{
+  "id": "eigen-003",
+  "subject": "linear-algebra",
+  "chapter": "矩阵的特征值和特征向量",
+  "name": "相似矩阵的性质",
+  "category": "性质",
+  "importance": 4,
+  "tags": [
+    "特征值",
+    "相似矩阵",
+    "不变量"
+  ],
+  "latex": "B=P^{-1}AP\\Rightarrow |\\lambda E-B|=|\\lambda E-A|,\\quad \\operatorname{tr}(B)=\\operatorname{tr}(A),\\quad |B|=|A|",
+  "summary": "相似矩阵具有相同的特征多项式，因而特征值、迹与行列式都相同。",
+  "conditions": "P 可逆。",
+  "notes": "特征多项式相同不能反推相似。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 138
+  }
+}

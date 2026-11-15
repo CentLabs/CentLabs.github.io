@@ -1,0 +1,16 @@
+{
+  "id": "derivative-004",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "拉格朗日中值定理",
+  "category": "微分中值定理",
+  "importance": 5,
+  "tags": ["中值定理", "拉格朗日", "微分"],
+  "latex": "f(b)-f(a)=f'(\\xi)(b-a),\\quad \\xi\\in(a,b)",
+  "summary": "闭区间连续、开区间可导的函数，端点函数值之差等于某中间点导数与区间长度之积。",
+  "explanation": "拉格朗日中值定理是微分中值定理的核心，建立了函数增量与导数之间的关系，罗尔定理是其特例（f(a)=f(b)）。",
+  "conditions": "f(x) 在闭区间 [a,b] 上连续，在开区间 (a,b) 内可导。",
+  "notes": "几何意义：区间内存在一点，其切线平行于端点连线。常用于证明不等式与等式。",
+  "example": "证明：当 x>0 时，x/(1+x) < ln(1+x) < x。证：对 ln(1+x) 在 [0,x] 上用拉格朗日定理。",
+  "source": { "book": "张宇数学公式手册", "page": 17 }
+}

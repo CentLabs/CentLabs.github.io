@@ -1,0 +1,20 @@
+{
+  "id": "la-eq-003",
+  "subject": "linear-algebra",
+  "chapter": "线性方程组",
+  "name": "非齐次方程组有解的判别条件",
+  "category": "判别",
+  "importance": 5,
+  "tags": [
+    "线性方程组",
+    "有解判别",
+    "增广矩阵"
+  ],
+  "latex": "A\\boldsymbol{x}=\\boldsymbol{b}\\ \\text{有解}\\iff r(A)=r(A\\,|\\,\\boldsymbol{b});\\quad r(A)=r(\\bar A)=n\\Rightarrow\\text{唯一解};\\quad r(A)=r(\\bar A)<n\\Rightarrow\\text{无穷多解}",
+  "summary": "用系数矩阵与增广矩阵的秩判定非齐次线性方程组解的存在性与唯一性。",
+  "conditions": "秩相等时还需与未知量个数 n 比较。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 134
+  }
+}

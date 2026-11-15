@@ -1,0 +1,20 @@
+{
+  "id": "multi-006",
+  "subject": "higher-mathematics",
+  "chapter": "多元函数微分学",
+  "name": "曲面的切平面与法线",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "偏导数",
+    "切平面",
+    "法线"
+  ],
+  "latex": "F_x(M_0)(x-x_0)+F_y(M_0)(y-y_0)+F_z(M_0)(z-z_0)=0,\\qquad\\frac{x-x_0}{F_x}=\\frac{y-y_0}{F_y}=\\frac{z-z_0}{F_z}",
+  "summary": "隐式曲面 F(x,y,z)=0 在点 M₀ 处的切平面方程与法线方程，法向量为梯度 ∇F(M₀)。",
+  "conditions": "∇F(M₀)≠0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 56
+  }
+}

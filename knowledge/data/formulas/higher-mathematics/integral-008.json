@@ -1,0 +1,20 @@
+{
+  "id": "integral-008",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "定积分的性质",
+  "category": "性质",
+  "importance": 4,
+  "tags": [
+    "定积分",
+    "性质",
+    "可加性"
+  ],
+  "latex": "\\int_a^b f\\,\\mathrm{d}x=-\\int_b^a f\\,\\mathrm{d}x,\\quad\\int_a^b(f\\pm g)\\mathrm{d}x=\\int_a^b f\\,\\mathrm{d}x\\pm\\int_a^b g\\,\\mathrm{d}x,\\quad\\int_a^b f\\,\\mathrm{d}x=\\int_a^c f\\,\\mathrm{d}x+\\int_c^b f\\,\\mathrm{d}x",
+  "summary": "定积分的线性性、反号性与对积分区间的可加性，以及比较定理与估值定理。",
+  "conditions": "各函数在相应区间可积。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 35
+  }
+}

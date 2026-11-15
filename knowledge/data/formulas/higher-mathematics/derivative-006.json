@@ -1,0 +1,16 @@
+{
+  "id": "derivative-006",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "泰勒公式",
+  "category": "微分中值定理",
+  "importance": 5,
+  "tags": ["泰勒公式", "麦克劳林", "展开"],
+  "latex": "f(x)=f(x_0)+f'(x_0)(x-x_0)+\\frac{f''(x_0)}{2!}(x-x_0)^2+\\cdots+\\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o((x-x_0)^n)",
+  "summary": "用多项式逼近光滑函数，是求极限、近似计算的通用工具。",
+  "explanation": "泰勒公式（带皮亚诺余项）把函数展开为多项式与高阶无穷小之和，是微分学的巅峰结论，广泛应用于极限计算、近似估计、不等式证明。",
+  "conditions": "f(x) 在 x0 处 n 阶可导（皮亚诺余项）；带拉格朗日余项要求 n+1 阶可导。",
+  "notes": "x0=0 时称为麦克劳林公式。常用展开：e^x=1+x+x²/2!+...；sin x=x-x³/3!+...；ln(1+x)=x-x²/2+...。",
+  "example": "求 lim(x→0) (sin x - x)/x³。解：sin x = x - x³/6 + o(x³)，故原式 = -1/6。",
+  "source": { "book": "张宇数学公式手册", "page": 18 }
+}

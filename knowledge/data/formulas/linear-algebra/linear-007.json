@@ -1,0 +1,20 @@
+{
+  "id": "linear-007",
+  "subject": "linear-algebra",
+  "chapter": "行列式",
+  "name": "行列式按一行（列）展开定理",
+  "category": "定理",
+  "importance": 5,
+  "tags": [
+    "行列式",
+    "展开定理",
+    "代数余子式"
+  ],
+  "latex": "|A|=\\sum_{j=1}^{n}a_{ij}A_{ij}\\ (i=1,2,\\ldots,n);\\qquad\\sum_{k=1}^{n}a_{ik}A_{jk}=0\\quad(i\\neq j)",
+  "summary": "行列式等于任一行元素与其代数余子式乘积之和；某一行元素与另一行代数余子式乘积之和为零。",
+  "conditions": "Aᵢⱼ 为对应元素的代数余子式。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 95
+  }
+}

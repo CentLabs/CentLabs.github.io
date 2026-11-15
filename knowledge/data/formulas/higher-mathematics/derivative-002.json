@@ -1,0 +1,15 @@
+{
+  "id": "derivative-002",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "基本初等函数的导数公式",
+  "category": "导数",
+  "importance": 5,
+  "tags": ["导数", "基本初等函数", "导数公式"],
+  "latex": "\\begin{aligned}&(C)'=0,\\quad (x^a)'=ax^{a-1},\\quad (a^x)'=a^x\\ln a,\\quad (e^x)'=e^x\\\\&(\\ln x)'=\\frac{1}{x},\\quad (\\sin x)'=\\cos x,\\quad (\\cos x)'=-\\sin x\\\\&(\\tan x)'=\\sec^2 x,\\quad (\\cot x)'=-\\csc^2 x\\\\&(\\arcsin x)'=\\frac{1}{\\sqrt{1-x^2}},\\quad (\\arctan x)'=\\frac{1}{1+x^2}\\end{aligned}",
+  "summary": "六类基本初等函数的导数公式，是求导运算的基础。",
+  "explanation": "所有复合函数、隐函数、参数方程求导最终都归结为这些基本导数公式，须熟练掌握。",
+  "conditions": "各公式在其定义区间内成立；对数要求 a>0 且 a≠1。",
+  "notes": "注意 (arccos x)' = -1/√(1-x²)，(arccot x)' = -1/(1+x²)，(sec x)' = sec x·tan x，(csc x)' = -csc x·cot x。",
+  "source": { "book": "张宇数学公式手册", "page": 22 }
+}

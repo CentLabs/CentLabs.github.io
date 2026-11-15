@@ -1,0 +1,20 @@
+{
+  "id": "vector-009",
+  "subject": "higher-mathematics",
+  "chapter": "向量代数与空间解析几何",
+  "name": "点到直线的距离",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "空间解析几何",
+    "距离",
+    "直线"
+  ],
+  "latex": "d=\\frac{\\big|\\overrightarrow{M_0M_1}\\times\\boldsymbol{s}\\big|}{|\\boldsymbol{s}|}",
+  "summary": "由直线上一点 M₀ 到点 M₁ 的向量与方向向量 s 的叉积模除以 |s| 得到点到直线的距离。",
+  "conditions": "s 为直线的非零方向向量。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 50
+  }
+}

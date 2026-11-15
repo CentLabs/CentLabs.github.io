@@ -1,0 +1,15 @@
+{
+  "id": "series-001",
+  "subject": "higher-mathematics",
+  "chapter": "无穷级数",
+  "name": "傅里叶级数展开",
+  "category": "傅里叶级数",
+  "importance": 3,
+  "tags": ["傅里叶级数", "级数", "周期函数"],
+  "latex": "f(x)\\sim \\frac{a_0}{2}+\\sum_{n=1}^{\\infty}\\left(a_n\\cos\\frac{n\\pi x}{l}+b_n\\sin\\frac{n\\pi x}{l}\\right)",
+  "summary": "以 2l 为周期的函数可展开为三角级数，系数由积分确定。",
+  "explanation": "傅里叶级数把周期函数表示为三角函数的无穷和，是处理周期信号的重要工具。对于以 2l 为周期的可积偶函数，只有余弦项；奇函数只有正弦项。",
+  "conditions": "f(x) 以 2l 为周期，在 [-l,l] 上可积（狄利克雷条件下逐点收敛）。",
+  "notes": "系数公式：an = (1/l)∫[-l,l] f(x)cos(nπx/l) dx，bn = (1/l)∫[-l,l] f(x)sin(nπx/l) dx。偶函数 bn=0，奇函数 an=0。",
+  "source": { "book": "张宇数学公式手册", "page": 80 }
+}

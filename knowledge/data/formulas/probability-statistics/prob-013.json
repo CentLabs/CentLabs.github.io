@@ -1,0 +1,21 @@
+{
+  "id": "prob-013",
+  "subject": "probability-statistics",
+  "chapter": "一维随机变量及其分布",
+  "name": "分布函数的定义与性质",
+  "category": "定义",
+  "importance": 5,
+  "tags": [
+    "分布函数",
+    "定义",
+    "性质"
+  ],
+  "latex": "F(x)=P\\{X\\le x\\},\\quad 0\\le F(x)\\le1,\\quad F(-\\infty)=0,\\ F(+\\infty)=1,\\quad F\\ \\text{单调不减且右连续}",
+  "summary": "分布函数完整刻画随机变量的概率分布；原书列出单调性、有界性、右连续性与极限值等性质。",
+  "conditions": "F(x) 为右连续函数。",
+  "notes": "P{a<X≤b}=F(b)−F(a)。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 152
+  }
+}

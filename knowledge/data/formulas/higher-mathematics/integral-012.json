@@ -1,0 +1,20 @@
+{
+  "id": "integral-012",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "华里士公式",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "定积分",
+    "华里士",
+    "三角积分"
+  ],
+  "latex": "I_n=\\int_0^{\\pi/2}\\sin^n x\\,\\mathrm{d}x=\\int_0^{\\pi/2}\\cos^n x\\,\\mathrm{d}x=\\begin{cases}\\frac{(n-1)!!}{n!!}\\cdot\\frac{\\pi}{2},&n\\ \\mathrm{even}\\\\\\frac{(n-1)!!}{n!!},&n\\ \\mathrm{odd}\\end{cases}",
+  "summary": "原书在定积分重要结论部分给出的华里士（点火）公式，用于快速计算正弦、余弦幂在 [0,π/2] 上的积分。",
+  "conditions": "n 为正整数。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 39
+  }
+}

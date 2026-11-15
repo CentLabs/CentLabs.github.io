@@ -1,0 +1,20 @@
+{
+  "id": "prob-046",
+  "subject": "probability-statistics",
+  "chapter": "数理统计基本概念",
+  "name": "正态总体常见统计量的分布",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "正态总体",
+    "抽样分布定理",
+    "统计量"
+  ],
+  "latex": "\\bar X\\sim N\\Big(\\mu,\\frac{\\sigma^2}{n}\\Big),\\qquad \\frac{\\bar X-\\mu}{\\sigma/\\sqrt n}\\sim N(0,1),\\qquad \\frac{(n-1)S^2}{\\sigma^2}\\sim\\chi^2(n-1)",
+  "summary": "原书在抽样分布定理部分给出单个正态总体样本均值与样本方差的分布，且 X̄ 与 S² 相互独立。",
+  "conditions": "总体服从 N(μ,σ²)，样本独立同分布。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 173
+  }
+}

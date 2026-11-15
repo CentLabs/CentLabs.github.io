@@ -1,0 +1,20 @@
+{
+  "id": "eigen-001",
+  "subject": "linear-algebra",
+  "chapter": "矩阵的特征值和特征向量",
+  "name": "特征方程与特征多项式",
+  "category": "定义",
+  "importance": 5,
+  "tags": [
+    "特征值",
+    "特征方程",
+    "特征多项式"
+  ],
+  "latex": "|\\lambda E-A|=0\\iff A\\boldsymbol{\\xi}=\\lambda\\boldsymbol{\\xi}\\quad(\\boldsymbol{\\xi}\\neq\\boldsymbol{0})",
+  "summary": "λ 为 A 的特征值当且仅当 |λE−A|=0；对应的非零解向量 ξ 为属于 λ 的特征向量。",
+  "conditions": "A 为 n 阶方阵，ξ≠0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 136
+  }
+}

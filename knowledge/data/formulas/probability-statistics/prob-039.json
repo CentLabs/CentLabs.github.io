@@ -1,0 +1,20 @@
+{
+  "id": "prob-039",
+  "subject": "probability-statistics",
+  "chapter": "大数定律与中心极限定理",
+  "name": "伯努利大数定律",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "大数定律",
+    "频率",
+    "伯努利"
+  ],
+  "latex": "\\lim_{n\\to\\infty}P\\left\\{\\left|\\frac{n_A}{n}-p\\right|<\\varepsilon\\right\\}=1",
+  "summary": "n 次独立重复试验中事件 A 发生的频率依概率收敛于其概率 p，是频率稳定性的理论依据。",
+  "conditions": "各次试验独立且 P(A)=p 不变。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 170
+  }
+}

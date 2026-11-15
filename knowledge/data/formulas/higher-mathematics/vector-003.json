@@ -1,0 +1,20 @@
+{
+  "id": "vector-003",
+  "subject": "higher-mathematics",
+  "chapter": "向量代数与空间解析几何",
+  "name": "向量的混合积",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "向量",
+    "混合积",
+    "体积"
+  ],
+  "latex": "[\\boldsymbol{a}\\ \\boldsymbol{b}\\ \\boldsymbol{c}]=(\\boldsymbol{a}\\times\\boldsymbol{b})\\cdot\\boldsymbol{c}=\\begin{vmatrix}a_x&a_y&a_z\\\\b_x&b_y&b_z\\\\c_x&c_y&c_z\\end{vmatrix}",
+  "summary": "三个向量的混合积，其绝对值等于以三向量为棱的平行六面体体积。",
+  "conditions": "三向量共面时混合积为零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 47
+  }
+}

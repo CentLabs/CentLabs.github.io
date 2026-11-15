@@ -1,0 +1,15 @@
+{
+  "id": "integral-001",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "基本积分公式",
+  "category": "不定积分",
+  "importance": 5,
+  "tags": ["不定积分", "基本积分", "原函数"],
+  "latex": "\\begin{aligned}&\\int x^a\\,dx=\\frac{x^{a+1}}{a+1}+C\\ (a\\neq -1),\\quad \\int\\frac{1}{x}\\,dx=\\ln|x|+C\\\\&\\int e^x\\,dx=e^x+C,\\quad \\int\\sin x\\,dx=-\\cos x+C,\\quad \\int\\cos x\\,dx=\\sin x+C\\\\&\\int\\frac{1}{1+x^2}\\,dx=\\arctan x+C,\\quad \\int\\frac{1}{\\sqrt{1-x^2}}\\,dx=\\arcsin x+C\\end{aligned}",
+  "summary": "由基本导数公式逆推得到的常用不定积分公式。",
+  "explanation": "不定积分是求导的逆运算，基本积分公式是计算各类积分的根基，换元法与分部积分法最终都归结到这些公式。",
+  "conditions": "各公式在相应定义区间内成立。",
+  "notes": "注意 ∫(1/x)dx = ln|x|+C 要带绝对值；∫sec²x dx = tan x + C，∫csc²x dx = -cot x + C。",
+  "source": { "book": "张宇数学公式手册", "page": 24 }
+}

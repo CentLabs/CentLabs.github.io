@@ -1,0 +1,20 @@
+{
+  "id": "integral-009",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "变上限函数的求导定理",
+  "category": "定理",
+  "importance": 5,
+  "tags": [
+    "定积分",
+    "变上限",
+    "求导"
+  ],
+  "latex": "\\Phi(x)=\\int_a^x f(t)\\,\\mathrm{d}t\\Rightarrow\\Phi'(x)=f(x);\\qquad\\frac{\\mathrm{d}}{\\mathrm{d}x}\\int_{\\alpha(x)}^{\\beta(x)}f(t)\\,\\mathrm{d}t=f(\\beta)\\beta'-f(\\alpha)\\alpha'",
+  "summary": "变上限积分对上限求导等于被积函数在上限处的值，是联系微分与积分的核心结论。",
+  "conditions": "f 连续，α、β 可导。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 36
+  }
+}

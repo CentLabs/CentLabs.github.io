@@ -1,0 +1,16 @@
+{
+  "id": "limit-004",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "等价无穷小替换定理",
+  "category": "无穷小",
+  "importance": 5,
+  "tags": ["极限", "等价无穷小", "无穷小替换"],
+  "latex": "\\alpha(x)\\sim\\alpha_1(x),\\ \\beta(x)\\sim\\beta_1(x)\\ \\Rightarrow\\ \\lim\\frac{\\alpha(x)}{\\beta(x)}=\\lim\\frac{\\alpha_1(x)}{\\beta_1(x)}",
+  "summary": "求极限时，分子分母中的无穷小因子可用其等价无穷小替换。",
+  "explanation": "等价无穷小替换是简化极限计算的利器。设 α(x), β(x), α1(x), β1(x) 都是同一自变量变化过程中的无穷小量，且 α(x)~α1(x)、β(x)~β1(x)，则可替换求极限。",
+  "conditions": "只能对乘除因子进行替换，不能对加减项中的部分随意替换。",
+  "notes": "常用等价无穷小（x→0）：sin x ~ x，tan x ~ x，arcsin x ~ x，1-cos x ~ x²/2，ln(1+x) ~ x，e^x-1 ~ x，(1+x)^a-1 ~ ax。",
+  "example": "求 lim(x→0) (sin x)/(ln(1+x))。解：sin x~x，ln(1+x)~x，故原式 = x/x = 1。",
+  "source": { "book": "张宇数学公式手册", "page": 17 }
+}

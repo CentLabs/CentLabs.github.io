@@ -1,0 +1,19 @@
+{
+  "id": "prob-018",
+  "subject": "probability-statistics",
+  "chapter": "二维随机变量及其分布",
+  "name": "二维联合分布函数",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "二维随机变量",
+    "联合分布函数"
+  ],
+  "latex": "F(x,y)=P\\{X\\le x,\\ Y\\le y\\},\\qquad F(x,-\\infty)=F(-\\infty,y)=0,\\quad F(+\\infty,+\\infty)=1",
+  "summary": "二维随机变量 (X,Y) 的联合分布函数及其基本性质，关于 x、y 分别单调不减且右连续。",
+  "conditions": "联合分布函数可唯一确定边缘分布函数。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 157
+  }
+}

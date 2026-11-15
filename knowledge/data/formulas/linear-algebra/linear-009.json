@@ -1,0 +1,20 @@
+{
+  "id": "linear-009",
+  "subject": "linear-algebra",
+  "chapter": "行列式",
+  "name": "次对角线行列式",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "行列式",
+    "次对角线",
+    "特殊行列式"
+  ],
+  "latex": "\\begin{vmatrix}0&\\cdots&0&a_{1n}\\\\0&\\cdots&a_{2,n-1}&0\\\\\\vdots&\\ddots&\\vdots&\\vdots\\\\a_{n1}&\\cdots&0&0\\end{vmatrix}=(-1)^{\\frac{n(n-1)}{2}}a_{1n}a_{2,n-1}\\cdots a_{n1}",
+  "summary": "仅次对角线上元素非零的行列式，其值等于次对角元素之积乘以符号 (−1)^(n(n−1)/2)。",
+  "conditions": "除次对角线外元素全为零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 96
+  }
+}

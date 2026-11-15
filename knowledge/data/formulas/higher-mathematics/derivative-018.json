@@ -1,0 +1,20 @@
+{
+  "id": "derivative-018",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "凹凸性的判定定理",
+  "category": "判别",
+  "importance": 3,
+  "tags": [
+    "导数",
+    "凹凸性",
+    "二阶导"
+  ],
+  "latex": "f''(x)>0\\Rightarrow\\mathrm{concave\\ up};\\qquad f''(x)<0\\Rightarrow\\mathrm{concave\\ down}",
+  "summary": "用二阶导数符号判定曲线的凹向（原书称凹凸性），是作图与不等式证明的常用工具。",
+  "conditions": "f 在区间内二阶可导。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 30
+  }
+}

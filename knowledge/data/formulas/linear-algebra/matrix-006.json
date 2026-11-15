@@ -1,0 +1,20 @@
+{
+  "id": "matrix-006",
+  "subject": "linear-algebra",
+  "chapter": "矩阵",
+  "name": "矩阵的秩及其性质",
+  "category": "性质",
+  "importance": 5,
+  "tags": [
+    "矩阵",
+    "秩",
+    "子式"
+  ],
+  "latex": "r(A_{m\\times n})\\le\\min\\{m,n\\};\\quad r(AB)\\le\\min\\{r(A),r(B)\\};\\quad r(A^T)=r(A);\\quad r(kA)=r(A)\\ (k\\neq0)",
+  "summary": "矩阵的秩等于其非零子式的最高阶数，也是行（列）向量组的秩。原书列出经过运算后秩的变化规律。",
+  "conditions": "A≠O 时 r(A)≥1；r(O)=0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 106
+  }
+}

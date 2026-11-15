@@ -1,0 +1,15 @@
+{
+  "id": "prob-004",
+  "subject": "probability-statistics",
+  "chapter": "随机变量的数字特征",
+  "name": "方差与协方差",
+  "category": "数字特征",
+  "importance": 5,
+  "tags": ["方差", "协方差", "数字特征"],
+  "latex": "DX=E(X-EX)^2=E(X^2)-(EX)^2,\\quad \\mathrm{Cov}(X,Y)=E[(X-EX)(Y-EY)]",
+  "summary": "方差度量随机变量偏离期望的程度；协方差度量两变量的线性相关程度。",
+  "explanation": "方差是 X 与其期望之差的平方的期望，可用 DX = E(X²) - (EX)² 简化计算；协方差刻画两随机变量的线性关联，其标准化形式是相关系数。",
+  "conditions": "相应期望存在。",
+  "notes": "DX ≥ 0；D(C)=0（C 为常数）；D(aX+b)=a²·DX；X、Y 独立时 Cov(X,Y)=0（反之不成立）。",
+  "source": { "book": "张宇数学公式手册", "page": 155 }
+}

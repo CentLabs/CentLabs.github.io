@@ -1,0 +1,16 @@
+{
+  "id": "limit-002",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "第二个重要极限",
+  "category": "重要极限",
+  "importance": 5,
+  "tags": ["极限", "重要极限", "e"],
+  "latex": "\\lim_{x\\to\\infty}\\left(1+\\frac{1}{x}\\right)^{x}=e",
+  "summary": "底数趋于 1、指数趋于无穷的 1^∞ 型极限，结果是自然常数 e。",
+  "explanation": "第二个重要极限刻画了自然常数 e 的定义，是处理 1^∞ 型未定式的标准模板。",
+  "conditions": "1^∞ 型未定式；括号内为 1 加一个无穷小量，指数为该无穷小量的倒数。",
+  "notes": "等价形式：lim(x→0) (1+x)^{1/x} = e。推广：当 □→0 时，lim(1+□)^{1/□} = e。",
+  "example": "求 lim(x→∞) (1+2/x)^x。解：原式 = lim[(1+2/x)^{x/2}]^2 = e^2。",
+  "source": { "book": "张宇数学公式手册", "page": 14 }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "linear-001",
+  "subject": "linear-algebra",
+  "chapter": "行列式",
+  "name": "行列式的性质",
+  "category": "行列式",
+  "importance": 5,
+  "tags": ["行列式", "线性代数"],
+  "latex": "|A^{T}|=|A|,\\quad |AB|=|A|\\cdot|B|",
+  "summary": "行列式的转置不变、乘积可拆，是行列式计算与化简的基础性质。",
+  "explanation": "行列式的性质包括：转置行列式值不变；某行（列）乘常数 k 则行列式值乘 k；两行（列）互换改变符号；某行（列）的 k 倍加到另一行（列）上值不变。",
+  "conditions": "A、B 均为 n 阶方阵。",
+  "notes": "|kA| = k^n·|A|（注意是 k 的 n 次方）；|A*| = |A|^(n-1)；|A⁻¹| = 1/|A|（A 可逆时）。",
+  "source": { "book": "张宇数学公式手册", "page": 98 }
+}

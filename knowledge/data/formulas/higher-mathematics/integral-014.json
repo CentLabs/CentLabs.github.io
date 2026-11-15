@@ -1,0 +1,20 @@
+{
+  "id": "integral-014",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "旋转体的体积",
+  "category": "应用",
+  "importance": 4,
+  "tags": [
+    "定积分",
+    "旋转体",
+    "体积"
+  ],
+  "latex": "V_x=\\pi\\int_a^b f^2(x)\\,\\mathrm{d}x,\\qquad V_y=2\\pi\\int_a^b x f(x)\\,\\mathrm{d}x",
+  "summary": "平面图形绕 x 轴旋转用圆盘法，绕 y 轴旋转可用柱壳法。",
+  "conditions": "f 非负、连续。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 41
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "integral-015",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "旋转曲面的表面积",
+  "category": "应用",
+  "importance": 3,
+  "tags": [
+    "定积分",
+    "旋转曲面",
+    "表面积"
+  ],
+  "latex": "S=2\\pi\\int_a^b f(x)\\sqrt{1+f'^2(x)}\\,\\mathrm{d}x",
+  "summary": "曲线 y=f(x) 绕 x 轴旋转所得旋转曲面的侧面积。",
+  "conditions": "f≥0 且连续可导。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 43
+  }
+}

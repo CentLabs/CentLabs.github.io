@@ -1,0 +1,20 @@
+{
+  "id": "limit-012",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "极限的四则运算法则",
+  "category": "法则",
+  "importance": 5,
+  "tags": [
+    "极限",
+    "四则运算"
+  ],
+  "latex": "\\lim[f(x)\\pm g(x)]=A\\pm B,\\quad\\lim[f(x)g(x)]=AB,\\quad\\lim\\frac{f(x)}{g(x)}=\\frac{A}{B}\\ (B\\neq0)",
+  "summary": "设 lim f(x)=A、lim g(x)=B，则和差积商的极限等于极限的和差积商。",
+  "conditions": "两个极限都必须存在；作商时要求分母极限 B≠0。",
+  "notes": "若有一个极限不存在，不能直接拆开运算。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 14
+  }
+}

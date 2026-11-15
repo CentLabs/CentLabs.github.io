@@ -1,0 +1,21 @@
+{
+  "id": "derivative-016",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "函数单调性的判定定理",
+  "category": "判别",
+  "importance": 4,
+  "tags": [
+    "导数",
+    "单调性",
+    "判别"
+  ],
+  "latex": "f'(x)>0\\ \\Rightarrow\\ f\\ \\nearrow;\\qquad f'(x)<0\\ \\Rightarrow\\ f\\ \\searrow",
+  "summary": "在区间内用一阶导数的符号判定函数的单调增加与单调减少。",
+  "conditions": "f 在区间内可导。",
+  "notes": "驻点或不可导点可作为单调区间的分界点。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 28
+  }
+}

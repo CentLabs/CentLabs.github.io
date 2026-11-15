@@ -1,0 +1,20 @@
+{
+  "id": "em-005",
+  "subject": "elementary-mathematics",
+  "chapter": "初等代数",
+  "name": "等差数列与等比数列",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "数列",
+    "等差数列",
+    "等比数列"
+  ],
+  "latex": "a_n=a_1+(n-1)d,\\ S_n=\\frac{n(a_1+a_n)}{2};\\qquad a_n=a_1q^{n-1},\\ S_n=\\frac{a_1(1-q^n)}{1-q}\\ (q\\neq1)",
+  "summary": "等差、等比数列的通项与前 n 项和公式，以及原书列出的常用自然数幂求和结论。",
+  "conditions": "等比数列求和要求 q≠1；q=1 时 Sₙ=na₁。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 180
+  }
+}

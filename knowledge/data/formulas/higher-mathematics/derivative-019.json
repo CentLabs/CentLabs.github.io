@@ -1,0 +1,19 @@
+{
+  "id": "derivative-019",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "拐点的判定",
+  "category": "判别",
+  "importance": 3,
+  "tags": [
+    "导数",
+    "拐点"
+  ],
+  "latex": "f''(x_0)=0\\ \\text{or}\\ f''(x_0)\\ \\text{DNE},\\qquad f''(x_0^-)\\cdot f''(x_0^+)<0\\Rightarrow(x_0,f(x_0))\\ \\mathrm{is\\ inflection\\ point}",
+  "summary": "二阶导数为零或不存在的点，若两侧二阶导数变号，则该点为曲线的拐点。",
+  "conditions": "二阶导数在点两侧异号是判定的关键。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 30
+  }
+}

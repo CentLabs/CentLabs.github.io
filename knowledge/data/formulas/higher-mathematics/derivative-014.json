@@ -1,0 +1,19 @@
+{
+  "id": "derivative-014",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "柯西中值定理",
+  "category": "定理",
+  "importance": 3,
+  "tags": [
+    "中值定理",
+    "柯西"
+  ],
+  "latex": "\\frac{f(b)-f(a)}{g(b)-g(a)}=\\frac{f'(\\xi)}{g'(\\xi)},\\qquad \\xi\\in(a,b)",
+  "summary": "两个函数在区间上的增量之比等于某点导数之比，是洛必达法则的理论基础。",
+  "conditions": "g′(x)≠0，g(a)≠g(b)。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 26
+  }
+}

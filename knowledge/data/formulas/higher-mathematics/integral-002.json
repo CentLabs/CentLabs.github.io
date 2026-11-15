@@ -1,0 +1,16 @@
+{
+  "id": "integral-002",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "牛顿-莱布尼茨公式",
+  "category": "定积分",
+  "importance": 5,
+  "tags": ["定积分", "牛顿莱布尼茨", "微积分基本定理"],
+  "latex": "\\int_a^b f(x)\\,dx=F(b)-F(a),\\quad F'(x)=f(x)",
+  "summary": "微积分基本定理：定积分等于原函数在上下限处的值之差。",
+  "explanation": "牛顿-莱布尼茨公式把定积分计算转化为求原函数，是联系微分与积分的桥梁，也是微积分的核心定理。",
+  "conditions": "f(x) 在 [a,b] 上连续，F(x) 是 f(x) 的一个原函数。",
+  "notes": "记作 F(x)|[a,b] = F(b)-F(a)。若 f 不连续（如含瑕点），需先分段处理。",
+  "example": "计算 ∫(0→1) x² dx。解：原式 = x³/3 |[0,1] = 1/3。",
+  "source": { "book": "张宇数学公式手册", "page": 25 }
+}

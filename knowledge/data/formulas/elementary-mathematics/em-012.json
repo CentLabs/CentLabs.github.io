@@ -1,0 +1,20 @@
+{
+  "id": "em-012",
+  "subject": "elementary-mathematics",
+  "chapter": "三角函数",
+  "name": "正弦定理与余弦定理",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "三角函数",
+    "正弦定理",
+    "余弦定理"
+  ],
+  "latex": "\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}=2R,\\qquad c^2=a^2+b^2-2ab\\cos C",
+  "summary": "解三角形的两个基本定理，R 为三角形外接圆半径。",
+  "conditions": "A、B、C 为三角形内角。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 185
+  }
+}

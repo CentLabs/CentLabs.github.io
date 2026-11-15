@@ -1,0 +1,20 @@
+{
+  "id": "prob-008",
+  "subject": "probability-statistics",
+  "chapter": "随机事件与概率",
+  "name": "概率的加法公式",
+  "category": "公式",
+  "importance": 5,
+  "tags": [
+    "概率",
+    "加法公式",
+    "容斥"
+  ],
+  "latex": "P(A\\cup B)=P(A)+P(B)-P(AB),\\qquad P\\Big(\\bigcup_{i=1}^{n}A_i\\Big)=\\sum_i P(A_i)-\\sum_{i<j}P(A_iA_j)+\\cdots",
+  "summary": "两个（或任意有限个）事件和的概率由容斥原理给出；两两互不相容时直接相加。",
+  "conditions": "互不相容时 P(A∪B)=P(A)+P(B)。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 149
+  }
+}

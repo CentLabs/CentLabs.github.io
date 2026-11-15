@@ -1,0 +1,20 @@
+{
+  "id": "ode-002",
+  "subject": "higher-mathematics",
+  "chapter": "常微分方程",
+  "name": "一阶齐次微分方程",
+  "category": "方程",
+  "importance": 4,
+  "tags": [
+    "微分方程",
+    "齐次方程",
+    "变量代换"
+  ],
+  "latex": "\\frac{\\mathrm{d}y}{\\mathrm{d}x}=\\varphi\\!\\left(\\frac{y}{x}\\right),\\quad u=\\frac{y}{x}\\Rightarrow x\\frac{\\mathrm{d}u}{\\mathrm{d}x}=\\varphi(u)-u",
+  "summary": "令 u=y/x 把齐次方程化为变量可分离方程，求解后再回代 u=y/x。",
+  "conditions": "x≠0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 82
+  }
+}

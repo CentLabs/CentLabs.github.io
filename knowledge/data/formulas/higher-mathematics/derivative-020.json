@@ -1,0 +1,20 @@
+{
+  "id": "derivative-020",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "渐近线的求法",
+  "category": "计算",
+  "importance": 4,
+  "tags": [
+    "渐近线",
+    "极限",
+    "作图"
+  ],
+  "latex": "\\lim_{x\\to x_0}f(x)=\\infty\\Rightarrow x=x_0;\\qquad a=\\lim_{x\\to\\infty}\\frac{f(x)}{x},\\ b=\\lim_{x\\to\\infty}[f(x)-ax]\\Rightarrow y=ax+b",
+  "summary": "通过极限求垂直渐近线、水平渐近线与斜渐近线。",
+  "conditions": "相应极限需存在（或为无穷大）。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 31
+  }
+}

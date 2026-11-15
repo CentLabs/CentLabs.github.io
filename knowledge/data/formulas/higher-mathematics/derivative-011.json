@@ -1,0 +1,19 @@
+{
+  "id": "derivative-011",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "隐函数的求导法",
+  "category": "计算",
+  "importance": 4,
+  "tags": [
+    "导数",
+    "隐函数"
+  ],
+  "latex": "F(x,y)=0\\Rightarrow\\frac{\\mathrm{d}y}{\\mathrm{d}x}=-\\frac{F_x}{F_y}\\quad(F_y\\neq0)",
+  "summary": "对方程 F(x,y)=0 两边关于 x 求导并解出 y′；也可用偏导数形式直接给出。",
+  "conditions": "F_y≠0，且隐函数存在。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 23
+  }
+}

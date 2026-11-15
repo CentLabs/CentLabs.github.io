@@ -1,0 +1,20 @@
+{
+  "id": "ode-005",
+  "subject": "higher-mathematics",
+  "chapter": "常微分方程",
+  "name": "可降阶的高阶微分方程",
+  "category": "方程",
+  "importance": 3,
+  "tags": [
+    "微分方程",
+    "可降阶",
+    "高阶"
+  ],
+  "latex": "y^{(n)}=f(x)\\Rightarrow y=\\underbrace{\\int\\cdots\\int}_{n}f(x)(\\mathrm{d}x)^n+\\cdots;\\qquad y''=f(x,y')\\xRightarrow{\\ y'=p\\ }p'=f(x,p)",
+  "summary": "原书列出三类可降阶方程：y⁽ⁿ⁾=f(x) 逐次积分；不显含 y 时令 y′=p；不显含 x 时令 y′=p 并以 y 为自变量。",
+  "conditions": "按方程缺项类型选择相应代换。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 84
+  }
+}

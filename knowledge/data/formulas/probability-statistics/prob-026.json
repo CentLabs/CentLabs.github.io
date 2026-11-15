@@ -1,0 +1,20 @@
+{
+  "id": "prob-026",
+  "subject": "probability-statistics",
+  "chapter": "随机变量的数字特征",
+  "name": "随机变量函数的期望公式",
+  "category": "公式",
+  "importance": 5,
+  "tags": [
+    "期望",
+    "函数期望",
+    "求和积分"
+  ],
+  "latex": "E[g(X)]=\\begin{cases}\\sum_i g(x_i)p_i,&\\text{离散型}\\\\\\int_{-\\infty}^{+\\infty}g(x)f(x)\\,\\mathrm{d}x,&\\text{连续型}\\end{cases}",
+  "summary": "求随机变量函数的期望无需先求 Y=g(X) 的分布，直接对原分布加权求和（积分）即可。",
+  "conditions": "期望需存在（绝对收敛）。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 164
+  }
+}

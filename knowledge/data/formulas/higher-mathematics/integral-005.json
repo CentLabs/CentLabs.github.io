@@ -1,0 +1,21 @@
+{
+  "id": "integral-005",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "不定积分的定义与性质",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "不定积分",
+    "原函数",
+    "性质"
+  ],
+  "latex": "\\int f(x)\\,\\mathrm{d}x=F(x)+C\\iff F'(x)=f(x);\\qquad\\int\\big[k_1f(x)+k_2g(x)\\big]\\mathrm{d}x=k_1\\int f\\,\\mathrm{d}x+k_2\\int g\\,\\mathrm{d}x",
+  "summary": "原函数的全体称为不定积分；积分运算对函数的线性组合保持线性。",
+  "conditions": "F 为 f 的一个原函数。",
+  "notes": "不要遗漏任意常数 C。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 32
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "matrix-004",
+  "subject": "linear-algebra",
+  "chapter": "矩阵",
+  "name": "伴随矩阵的性质",
+  "category": "公式",
+  "importance": 5,
+  "tags": [
+    "矩阵",
+    "伴随矩阵",
+    "逆矩阵"
+  ],
+  "latex": "AA^*=A^*A=|A|E,\\qquad A^{-1}=\\frac{1}{|A|}A^*,\\qquad (A^*)^{-1}=\\frac{1}{|A|}A",
+  "summary": "伴随矩阵由各元素的代数余子式按转置排列构成；当 |A|≠0 时可用 A* 求逆矩阵。",
+  "conditions": "|A|≠0 时求逆公式成立。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 105
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "limit-008",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "函数在有限点处的极限",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "极限",
+    "ε-δ",
+    "定义"
+  ],
+  "latex": "\\lim_{x\\to x_0}f(x)=A\\iff\\forall\\varepsilon>0,\\ \\exists\\delta>0,\\ 0<|x-x_0|<\\delta\\Rightarrow|f(x)-A|<\\varepsilon",
+  "summary": "函数极限的 ε-δ 定义。注意 0<|x−x₀| 表明极限与 f(x) 在 x₀ 处的取值无关。",
+  "conditions": "仅适用于 x₀ 的去心邻域。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 13
+  }
+}

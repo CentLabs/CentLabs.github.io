@@ -1,0 +1,20 @@
+{
+  "id": "la-eq-006",
+  "subject": "linear-algebra",
+  "chapter": "线性方程组",
+  "name": "非齐次方程组解的结构",
+  "category": "定理",
+  "importance": 5,
+  "tags": [
+    "线性方程组",
+    "通解",
+    "特解"
+  ],
+  "latex": "\\boldsymbol{x}=\\boldsymbol{\\eta}^*+c_1\\boldsymbol{\\xi}_1+\\cdots+c_{n-r}\\boldsymbol{\\xi}_{n-r}",
+  "summary": "非齐次方程组的通解等于其一个特解加上对应齐次方程组的通解。",
+  "conditions": "方程组有解（r(A)=r(Ā)）时才成立。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 135
+  }
+}

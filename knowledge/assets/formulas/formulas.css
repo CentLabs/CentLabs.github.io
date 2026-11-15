@@ -1,0 +1,149 @@
+/* ===== 数学公式库样式 ===== */
+/* 延续 Study Library 设计语言：CSS 变量来自 kb.css，浅色/深色自适应 */
+
+/* 列表页 Hero */
+.formula-hero{
+  display:flex;align-items:center;gap:20px;
+  background:linear-gradient(160deg,var(--surface),var(--surface-2));
+  border:1px solid var(--line);border-radius:18px;
+  padding:32px 32px;margin-bottom:20px;
+}
+.fh-icon{
+  flex:none;width:64px;height:64px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:34px;font-weight:700;color:#fff;
+  background:linear-gradient(135deg,var(--math),#2a9d7f);
+  box-shadow:var(--shadow);
+}
+.fh-body{flex:1;min-width:0}
+.fh-body .zh{font-size:12px;letter-spacing:.2em;color:var(--text-3);margin:0 0 4px;font-weight:600}
+.fh-body h1{margin:0 0 6px;font-size:28px;color:var(--text)}
+.fh-body .tagline{margin:0;color:var(--text-2);font-size:14px}
+.fh-count{flex:none;text-align:center;padding:0 8px}
+.fh-count .num{display:block;font-size:34px;font-weight:700;color:var(--math);line-height:1}
+.fh-count .lbl{font-size:12px;color:var(--text-3);margin-top:4px}
+
+/* 工具栏 */
+.formula-toolbar{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.ft-search{display:flex;align-items:center;gap:8px;background:var(--surface);
+  border:1px solid var(--line-strong);border-radius:12px;padding:0 14px;height:46px}
+.ft-search input{flex:1;border:none;background:transparent;color:var(--text);font-size:14px;outline:none}
+.ft-search:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+
+/* 筛选器 */
+.ft-filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.f-filter-label{font-size:12px;color:var(--text-3);font-weight:600}
+.f-chip{font-size:12px;padding:5px 12px;border-radius:20px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--text-2);
+  transition:all .15s;white-space:nowrap}
+.f-chip:hover{border-color:var(--accent);color:var(--accent)}
+.f-chip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+
+/* 公式卡片网格 */
+.formula-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.f-card{display:flex;flex-direction:column;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;padding:18px;
+  text-decoration:none;color:var(--text);transition:all .18s;position:relative;overflow:hidden}
+.f-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--accent);text-decoration:none;color:var(--text)}
+.f-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c,#888)}
+.f-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.f-card-id{font-size:11px;color:var(--text-3);font-family:ui-monospace,monospace;letter-spacing:.02em}
+.f-card-cat{font-size:11px;padding:2px 8px;border-radius:12px;background:var(--surface-2);color:var(--text-2);white-space:nowrap}
+.f-card-name{font-size:16px;font-weight:600;margin:0 0 6px;color:var(--text)}
+.f-card-latex{margin:8px 0;padding:10px 6px;background:var(--surface-2);border-radius:8px;
+  overflow-x:auto;overflow-y:hidden;font-size:14px;line-height:1.5;color:var(--text)}
+.f-card-summary{font-size:13px;color:var(--text-2);line-height:1.55;margin:0 0 10px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.f-card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
+.f-tag{font-size:11px;padding:2px 8px;border-radius:12px;background:var(--surface-3);color:var(--text-2);white-space:nowrap}
+
+/* ===== 详情页 ===== */
+.f-back{display:inline-flex;align-items:center;gap:6px;color:var(--accent);
+  font-size:13px;margin:0 0 14px;font-weight:600}
+.f-back:hover{text-decoration:underline}
+
+.f-card-main{background:var(--surface);border:1px solid var(--line);border-radius:18px;
+  padding:28px 30px;margin-bottom:18px}
+.f-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+  border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px}
+.f-id{display:inline-block;font-size:12px;font-family:ui-monospace,monospace;
+  color:var(--math);background:var(--surface-2);padding:3px 10px;border-radius:6px;margin-bottom:8px}
+.f-head h1{margin:0 0 10px;font-size:24px;color:var(--text)}
+.f-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.f-meta-item{font-size:12px;color:var(--text-2);padding:3px 10px;border-radius:6px;
+  background:var(--surface-2);border:1px solid var(--line)}
+.f-meta-item[style*="--c"]{color:var(--c);font-weight:600}
+.f-tags{display:flex;flex-wrap:wrap;gap:6px}
+.f-imp{font-size:16px;color:#f0a020;letter-spacing:1px;white-space:nowrap}
+
+/* 核心公式展示区 */
+.f-formula-box{border:1px solid var(--line-strong);border-radius:14px;
+  background:var(--surface-2);padding:20px;margin-bottom:22px}
+.f-formula-scroll{overflow-x:auto;overflow-y:hidden;padding:8px 4px;
+  display:flex;justify-content:center;align-items:center;min-height:60px}
+.f-formula-latex{font-size:20px;line-height:1.7;color:var(--text);white-space:nowrap;padding:4px 2px}
+.f-formula-latex .katex{font-size:1.25em}
+.f-formula-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+.f-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;
+  padding:8px 16px;border-radius:9px;cursor:pointer;transition:all .15s;
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--text-2)}
+.f-btn:hover{border-color:var(--accent);color:var(--accent)}
+.f-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.f-btn.copied{border-color:#2a9d7f;color:#2a9d7f;background:var(--surface)}
+
+/* 详情正文 */
+.f-body{display:flex;flex-direction:column;gap:16px}
+.f-detail-sec h3{font-size:15px;margin:0 0 10px;color:var(--text)}
+.f-detail-sec .f-detail-body{font-size:14px;line-height:1.75;color:var(--text-2)}
+.f-summary .f-detail-body{font-size:15px;color:var(--text)}
+.f-source{margin-top:20px;padding-top:14px;border-top:1px dashed var(--line-strong);
+  font-size:12px;color:var(--text-3)}
+
+/* 关联内容 */
+.f-related{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.f-related-box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.f-related-box h3{font-size:14px;margin:0 0 12px;color:var(--text)}
+.f-rel-list{display:flex;flex-direction:column;gap:8px}
+.f-rel-item{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:9px 12px;border:1px solid var(--line);border-radius:9px;text-decoration:none;
+  color:var(--text);transition:all .15s;font-size:13px}
+.f-rel-item:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.ri-name{font-weight:500}
+.ri-id{font-size:11px;color:var(--text-3);font-family:ui-monospace,monospace}
+.f-rel-empty{color:var(--text-3);font-size:13px;margin:0}
+
+/* 分页导航 */
+.f-pager{display:flex;gap:12px;margin-bottom:20px}
+.f-pager-item{flex:1;display:flex;flex-direction:column;gap:4px;padding:14px 16px;
+  border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--text);
+  background:var(--surface);transition:all .15s;min-width:0}
+.f-pager-item:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.f-pager-item.prev{text-align:left}
+.f-pager-item.next{text-align:right}
+.f-pager-item.center{flex:0 0 auto;justify-content:center;text-align:center;font-weight:600;color:var(--accent)}
+.f-pager-item.disabled{opacity:.45;pointer-events:none}
+.p-label{font-size:11px;color:var(--text-3)}
+.p-name{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* 放大遮罩 */
+.f-zoom-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;
+  display:none;align-items:center;justify-content:center;padding:30px}
+.f-zoom-overlay.on{display:flex}
+.f-zoom-box{background:var(--surface);border:1px solid var(--line-strong);border-radius:16px;
+  padding:30px;max-width:94vw;max-height:88vh;overflow:auto;position:relative}
+.f-zoom-close{position:sticky;top:0;float:right;cursor:pointer;font-size:24px;color:var(--text-2);
+  border:none;background:none;line-height:1}
+.f-zoom-latex{font-size:22px;color:var(--text);line-height:1.8;white-space:nowrap}
+
+/* 响应式 */
+@media (max-width:720px){
+  .formula-hero{flex-wrap:wrap;padding:24px 20px}
+  .fh-count{margin-left:auto}
+  .f-card-main{padding:20px 18px}
+  .f-head{flex-direction:column}
+  .f-related{grid-template-columns:1fr}
+  .f-pager{flex-direction:column}
+  .f-pager-item.center{order:-1}
+  .f-formula-latex{font-size:16px}
+  .f-zoom-latex{font-size:16px}
+}

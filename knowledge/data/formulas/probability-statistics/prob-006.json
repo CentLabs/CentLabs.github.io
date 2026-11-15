@@ -1,0 +1,20 @@
+{
+  "id": "prob-006",
+  "subject": "probability-statistics",
+  "chapter": "随机事件与概率",
+  "name": "事件运算的规律",
+  "category": "性质",
+  "importance": 4,
+  "tags": [
+    "事件",
+    "运算律",
+    "对偶律"
+  ],
+  "latex": "A\\cup B=B\\cup A,\\quad A\\cap(B\\cup C)=(A\\cap B)\\cup(A\\cap C),\\quad \\overline{A\\cup B}=\\bar A\\cap\\bar B,\\quad \\overline{A\\cap B}=\\bar A\\cup\\bar B",
+  "summary": "事件运算满足交换律、结合律、分配律与对偶律（德摩根律），是化简复杂事件的基础。",
+  "conditions": "A、B、C 为同一试验的事件。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 147
+  }
+}

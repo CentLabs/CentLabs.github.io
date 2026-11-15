@@ -1,0 +1,21 @@
+{
+  "id": "limit-011",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "单调有界准则",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "极限",
+    "存在准则",
+    "数列"
+  ],
+  "latex": "x_n\\le x_{n+1},\\ x_n\\le M\\ \\Rightarrow\\ \\lim_{n\\to\\infty}x_n=L",
+  "summary": "单调增加且有上界（或单调减少且有下界）的数列必有极限。这是原书列出的两个极限存在准则之一。",
+  "conditions": "数列需同时满足单调与有界两个条件。",
+  "notes": "常与夹逼准则配合求递归数列极限。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 14
+  }
+}

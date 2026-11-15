@@ -1,0 +1,20 @@
+{
+  "id": "prob-038",
+  "subject": "probability-statistics",
+  "chapter": "大数定律与中心极限定理",
+  "name": "切比雪夫大数定律与辛钦大数定律",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "大数定律",
+    "依概率收敛",
+    "独立同分布"
+  ],
+  "latex": "\\lim_{n\\to\\infty}P\\left\\{\\left|\\frac{1}{n}\\sum_{i=1}^{n}X_i-\\frac{1}{n}\\sum_{i=1}^{n}E(X_i)\\right|<\\varepsilon\\right\\}=1",
+  "summary": "相互独立（或独立同分布）且方差有界的随机变量序列，其算术平均依概率收敛于期望的算术平均。",
+  "conditions": "辛钦大数定律要求独立同分布且期望存在；切比雪夫大数定律要求方差一致有界。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 170
+  }
+}

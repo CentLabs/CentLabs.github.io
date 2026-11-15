@@ -270,8 +270,28 @@ function loadOne(s){
     renderLoadStatus();
   });
 }
+/* 性能专项：优先一次加载合并包（5 次请求 -> 1 次请求，gzip 约 196 KB）。
+   合并包缺失 / 超时 / 格式不符时自动回退 P0-2 的「逐文件独立加载 + 重试 + 分视图降级」，
+   原有降级能力不被削弱。 */
+function applyBundle(b){
+  DATA_SRC.forEach(function(s){
+    var d=b[s.k];
+    if(d==null)throw new Error('bundle 缺少 '+s.k);
+    try{s.apply(d);}catch(e){console.warn('[KB] render '+s.k+' failed:',e);}
+    loadState[s.k]='ok';if(s.sel)viewOk(s.sel);
+  });
+  renderLoadStatus();
+  document.documentElement.setAttribute('data-kb-bundle','on');
+}
 function initAll(){
-  return Promise.all(DATA_SRC.map(function(s){return loadOne(s);})).then(function(){
+  return jgetRetry('data/study-bundle.json',2,9000).then(function(b){
+    if(!b||b.v!==1)throw new Error('bundle 版本不符');
+    applyBundle(b);
+  }).catch(function(e){
+    console.warn('[KB] 合并包不可用，回退逐文件独立加载：',e&&e.message);
+    document.documentElement.setAttribute('data-kb-bundle','fallback');
+    return Promise.all(DATA_SRC.map(function(s){return loadOne(s);}));
+  }).then(function(){
     loadFilesSafely();
     dataReady=true;
     /* 数据就绪后重跑一次路由（修复：带 hash 直达时数据未加载导致空白） */

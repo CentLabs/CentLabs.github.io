@@ -1,0 +1,20 @@
+{
+  "id": "em-006",
+  "subject": "elementary-mathematics",
+  "chapter": "初等代数",
+  "name": "排列组合与二项式定理",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "排列",
+    "组合",
+    "二项式定理"
+  ],
+  "latex": "A_n^m=\\frac{n!}{(n-m)!},\\quad\\binom{n}{m}=\\frac{n!}{m!(n-m)!},\\qquad (a+b)^n=\\sum_{k=0}^{n}\\binom{n}{k}a^{n-k}b^k",
+  "summary": "排列数、组合数与二项式展开式，是古典概型计算的常用工具。",
+  "conditions": "n、m 为非负整数且 m≤n。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 181
+  }
+}

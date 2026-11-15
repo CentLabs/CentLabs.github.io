@@ -1,0 +1,20 @@
+{
+  "id": "multiint-005",
+  "subject": "higher-mathematics",
+  "chapter": "重积分",
+  "name": "重积分的几何应用",
+  "category": "应用",
+  "importance": 3,
+  "tags": [
+    "重积分",
+    "面积",
+    "体积"
+  ],
+  "latex": "S=\\iint\\limits_D \\mathrm{d}\\sigma,\\qquad V=\\iiint\\limits_{\\Omega}\\mathrm{d}v=\\iint\\limits_D\\big[z_2(x,y)-z_1(x,y)\\big]\\mathrm{d}\\sigma",
+  "summary": "用二重积分求平面区域面积与曲顶柱体体积，用三重积分求空间立体体积。",
+  "conditions": "被积函数取 1 时积分值即为区域的度量。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 61
+  }
+}

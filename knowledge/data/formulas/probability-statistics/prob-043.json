@@ -1,0 +1,20 @@
+{
+  "id": "prob-043",
+  "subject": "probability-statistics",
+  "chapter": "数理统计基本概念",
+  "name": "样本矩",
+  "category": "定义",
+  "importance": 3,
+  "tags": [
+    "样本矩",
+    "原点矩",
+    "中心矩"
+  ],
+  "latex": "A_k=\\frac{1}{n}\\sum_{i=1}^{n}X_i^k,\\qquad B_k=\\frac{1}{n}\\sum_{i=1}^{n}\\big(X_i-\\bar X\\big)^k\\quad(k=1,2,\\ldots)",
+  "summary": "k 阶样本原点矩与 k 阶样本中心矩，是矩估计法的基础。",
+  "conditions": "样本来自同一总体。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 171
+  }
+}

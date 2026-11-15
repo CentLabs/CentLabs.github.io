@@ -1,0 +1,15 @@
+{
+  "id": "linear-004",
+  "subject": "linear-algebra",
+  "chapter": "矩阵的特征值和特征向量",
+  "name": "特征值与特征向量的定义",
+  "category": "特征值",
+  "importance": 5,
+  "tags": ["特征值", "特征向量", "对角化"],
+  "latex": "A\\alpha=\\lambda\\alpha,\\quad \\alpha\\neq 0",
+  "summary": "满足 Aα=λα 的非零向量 α 是特征向量，λ 是对应的特征值。",
+  "explanation": "特征值 λ 由特征方程 |λE-A|=0 求得，特征向量是齐次方程组 (λE-A)x=0 的非零解。特征值是矩阵对角化、二次型等问题的核心。",
+  "conditions": "α 为非零 n 维向量，λ 为标量。",
+  "notes": "特征值之和等于矩阵的迹 tr(A)，特征值之积等于行列式 |A| = ∏λi。",
+  "source": { "book": "张宇数学公式手册", "page": 128 }
+}

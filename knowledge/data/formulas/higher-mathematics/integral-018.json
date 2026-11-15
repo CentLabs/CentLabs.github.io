@@ -1,0 +1,20 @@
+{
+  "id": "integral-018",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "无界函数的反常积分（瑕积分）",
+  "category": "定义",
+  "importance": 3,
+  "tags": [
+    "反常积分",
+    "瑕积分",
+    "收敛"
+  ],
+  "latex": "\\int_a^b f(x)\\,\\mathrm{d}x=\\lim_{\\varepsilon\\to0^+}\\int_{a+\\varepsilon}^{b}f(x)\\,\\mathrm{d}x",
+  "summary": "被积函数在区间端点附近无界时，用去心区间积分的极限定义瑕积分；原书同样给出 p 判别结论。",
+  "conditions": "瑕点位于端点 a（若在区间内部需分段）。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 45
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "em-016",
+  "subject": "elementary-mathematics",
+  "chapter": "平面解析几何",
+  "name": "极坐标与直角坐标的转换",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "极坐标",
+    "直角坐标",
+    "坐标变换"
+  ],
+  "latex": "x=r\\cos\\theta,\\quad y=r\\sin\\theta;\\qquad r=\\sqrt{x^2+y^2},\\quad \\tan\\theta=\\frac{y}{x}",
+  "summary": "极坐标与直角坐标的互化公式，是极坐标下计算面积与弧长的基础。",
+  "conditions": "由 tanθ 确定 θ 时需结合点所在象限。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 190
+  }
+}

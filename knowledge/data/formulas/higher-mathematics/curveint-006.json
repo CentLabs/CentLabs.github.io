@@ -1,0 +1,20 @@
+{
+  "id": "curveint-006",
+  "subject": "higher-mathematics",
+  "chapter": "曲线积分与曲面积分",
+  "name": "斯托克斯公式",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "斯托克斯公式",
+    "曲线积分",
+    "旋度"
+  ],
+  "latex": "\\oint_{\\Gamma}P\\,\\mathrm{d}x+Q\\,\\mathrm{d}y+R\\,\\mathrm{d}z=\\iint\\limits_{\\Sigma}\\begin{vmatrix}\\mathrm{d}y\\mathrm{d}z&\\mathrm{d}z\\mathrm{d}x&\\mathrm{d}x\\mathrm{d}y\\\\\\frac{\\partial}{\\partial x}&\\frac{\\partial}{\\partial y}&\\frac{\\partial}{\\partial z}\\\\P&Q&R\\end{vmatrix}",
+  "summary": "把空间闭曲线上的曲线积分化为以该曲线为边界的曲面上的曲面积分，是格林公式在空间中的推广。",
+  "conditions": "Γ 的正向与 Σ 的侧符合右手规则。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 65
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "quad-003",
+  "subject": "linear-algebra",
+  "chapter": "二次型",
+  "name": "惯性定理",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "二次型",
+    "惯性定理",
+    "正负惯性指数"
+  ],
+  "latex": "p+q=r(A),\\qquad p,\\ q\\ \\text{与所选可逆线性变换无关}",
+  "summary": "二次型的正、负惯性指数（正、负平方项个数）由原二次型唯一确定，与所用的可逆坐标变换无关。",
+  "conditions": "变换矩阵必须可逆。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 142
+  }
+}

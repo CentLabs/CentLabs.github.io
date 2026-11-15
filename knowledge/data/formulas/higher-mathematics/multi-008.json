@@ -1,0 +1,20 @@
+{
+  "id": "multi-008",
+  "subject": "higher-mathematics",
+  "chapter": "多元函数微分学",
+  "name": "条件极值与拉格朗日乘数法",
+  "category": "计算",
+  "importance": 5,
+  "tags": [
+    "条件极值",
+    "拉格朗日",
+    "最值"
+  ],
+  "latex": "L(x,y,\\lambda)=f(x,y)+\\lambda\\varphi(x,y),\\qquad \\begin{cases}L_x=0\\\\L_y=0\\\\\\varphi(x,y)=0\\end{cases}",
+  "summary": "求 f 在约束 φ=0 下的条件极值时，构造拉格朗日函数并解其驻点方程组。",
+  "conditions": "约束函数梯度不为零；求得的驻点需结合实际判别最值。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 57
+  }
+}

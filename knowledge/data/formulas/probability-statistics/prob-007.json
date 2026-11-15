@@ -1,0 +1,20 @@
+{
+  "id": "prob-007",
+  "subject": "probability-statistics",
+  "chapter": "随机事件与概率",
+  "name": "概率的基本性质",
+  "category": "性质",
+  "importance": 4,
+  "tags": [
+    "概率",
+    "公理",
+    "性质"
+  ],
+  "latex": "P(\\Omega)=1,\\quad 0\\le P(A)\\le1,\\quad P(\\varnothing)=0,\\quad P(\\bar A)=1-P(A),\\quad P(A-B)=P(A)-P(AB)",
+  "summary": "由概率的规范性、非负性与可列可加性推出的一组基本性质，含对立事件与差事件的概率。",
+  "conditions": "A⊂B 时还有 P(B−A)=P(B)−P(A) 与 P(A)≤P(B)。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 149
+  }
+}

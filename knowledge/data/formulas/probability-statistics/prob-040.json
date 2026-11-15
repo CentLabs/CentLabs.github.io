@@ -1,0 +1,20 @@
+{
+  "id": "prob-040",
+  "subject": "probability-statistics",
+  "chapter": "大数定律与中心极限定理",
+  "name": "列维-林德伯格中心极限定理",
+  "category": "定理",
+  "importance": 5,
+  "tags": [
+    "中心极限定理",
+    "独立同分布",
+    "正态近似"
+  ],
+  "latex": "\\lim_{n\\to\\infty}P\\left\\{\\frac{\\sum_{i=1}^{n}X_i-n\\mu}{\\sqrt{n}\\sigma}\\le x\\right\\}=\\Phi(x)=\\frac{1}{\\sqrt{2\\pi}}\\int_{-\\infty}^{x}e^{-t^2/2}\\,\\mathrm{d}t",
+  "summary": "独立同分布且期望方差存在的随机变量序列，其标准化和依分布收敛于标准正态分布。",
+  "conditions": "E(Xᵢ)=μ，D(Xᵢ)=σ²>0 且相互独立同分布。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 170
+  }
+}

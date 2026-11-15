@@ -1,0 +1,20 @@
+{
+  "id": "prob-049",
+  "subject": "probability-statistics",
+  "chapter": "参数估计",
+  "name": "估计量的评价标准",
+  "category": "性质",
+  "importance": 4,
+  "tags": [
+    "无偏性",
+    "有效性",
+    "一致性"
+  ],
+  "latex": "E(\\hat\\theta)=\\theta\\ (\\text{无偏});\\quad D(\\hat\\theta_1)\\le D(\\hat\\theta_2)\\ (\\text{更有效});\\quad \\hat\\theta_n\\xrightarrow{P}\\theta\\ (\\text{一致})",
+  "summary": "原书列出评价估计量的三条标准：无偏性、有效性与一致性（相合性）。",
+  "conditions": "有效性比较限于无偏估计量之间。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 175
+  }
+}

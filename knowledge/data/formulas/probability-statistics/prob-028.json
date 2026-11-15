@@ -1,0 +1,20 @@
+{
+  "id": "prob-028",
+  "subject": "probability-statistics",
+  "chapter": "随机变量的数字特征",
+  "name": "方差的计算公式与性质",
+  "category": "公式",
+  "importance": 5,
+  "tags": [
+    "方差",
+    "计算公式",
+    "性质"
+  ],
+  "latex": "D(X)=E\\big[(X-EX)^2\\big]=E(X^2)-[E(X)]^2,\\qquad D(aX+b)=a^2D(X),\\quad D(X\\pm Y)=D(X)+D(Y)\\ (X\\perp Y)",
+  "summary": "方差衡量随机变量取值的离散程度，常用 E(X²)−[E(X)]² 计算。",
+  "conditions": "方差存在；和的方差展开需加 2Cov(X,Y)，独立时协方差为零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 165
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "series-011",
+  "subject": "higher-mathematics",
+  "chapter": "无穷级数",
+  "name": "周期为 2π 的傅里叶系数",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "傅里叶级数",
+    "傅里叶系数",
+    "三角级数"
+  ],
+  "latex": "f(x)\\sim\\frac{a_0}{2}+\\sum_{n=1}^{\\infty}\\big(a_n\\cos nx+b_n\\sin nx\\big),\\quad a_n=\\frac{1}{\\pi}\\int_{-\\pi}^{\\pi}f(x)\\cos nx\\,\\mathrm{d}x,\\quad b_n=\\frac{1}{\\pi}\\int_{-\\pi}^{\\pi}f(x)\\sin nx\\,\\mathrm{d}x",
+  "summary": "周期为 2π 的函数展开为傅里叶级数时，系数由上述积分确定。",
+  "conditions": "f 在 [−π,π] 上可积。",
+  "notes": "奇偶函数可简化系数计算。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 78
+  }
+}

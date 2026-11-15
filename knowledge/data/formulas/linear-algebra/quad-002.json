@@ -1,0 +1,20 @@
+{
+  "id": "quad-002",
+  "subject": "linear-algebra",
+  "chapter": "二次型",
+  "name": "二次型的标准形与规范形",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "二次型",
+    "标准形",
+    "规范形"
+  ],
+  "latex": "f\\xlongequal{\\ \\boldsymbol{x}=C\\boldsymbol{y}\\ }d_1y_1^2+\\cdots+d_ny_n^2\\ \\xrightarrow{\\ \\text{规范}\\ }\\ z_1^2+\\cdots+z_p^2-z_{p+1}^2-\\cdots-z_{r}^2",
+  "summary": "经可逆线性变换把二次型化为只含平方项的标准形，再归一化系数得规范形。",
+  "conditions": "C 为可逆矩阵。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 141
+  }
+}

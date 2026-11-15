@@ -1,0 +1,16 @@
+{
+  "id": "derivative-005",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "洛必达法则",
+  "category": "求极限方法",
+  "importance": 5,
+  "tags": ["洛必达", "未定式", "极限"],
+  "latex": "\\lim\\frac{f(x)}{g(x)}=\\lim\\frac{f'(x)}{g'(x)}",
+  "summary": "0/0 型与 ∞/∞ 型未定式，可通过分子分母分别求导来求极限。",
+  "explanation": "洛必达法则是处理 0/0 型、∞/∞ 型未定式的强有力工具，将函数之比的极限转化为导数之比的极限。",
+  "conditions": "f(x)、g(x) 在 x0 去心邻域内可导且 g'(x)≠0；lim f(x)=lim g(x)=0（或 ∞）；lim f'(x)/g'(x) 存在或为 ∞。",
+  "notes": "可多次使用，但每次使用前须检验是否仍为未定式；若 lim f'/g' 不存在，不能推出原极限不存在。",
+  "example": "求 lim(x→0) (e^x-1)/x。解：0/0 型，= lim e^x/1 = 1。",
+  "source": { "book": "张宇数学公式手册", "page": 19 }
+}

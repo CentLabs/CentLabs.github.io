@@ -1,5 +1,9 @@
-/* Study Library 2.0 - 全文检索引擎（Web Worker 按需加载 · 多关键词 AND · 学科筛选）
-   同时服务于 search.html 独立页与 study.html 全文检索视图 */
+/* Study Library 2.7 - 全文检索引擎
+   文档级 bigram 倒排预筛 · 并发 8 路下载 · Worker 常驻文本缓存 · 多关键词 AND · 学科筛选
+   同时服务于 search.html 独立页与 study.html 全文检索视图
+
+   正确性保证：预筛是「文档级超集」（无假阴性），行级 AND 匹配、行号、提前终止条件
+   与旧版完全一致；索引缺失 / 签名不符 / 单字关键词 / bigram 未收录时自动回退全库检索。 */
 (function () {
   'use strict';
   var DEFAULTS = {
@@ -19,6 +23,8 @@
     var CAT_NAME = { politics: '政治', english: '英语', mathematics: '数学', 'computer-408': '计算机408', chapters: '精读文档' };
     var CAT_COLOR = { politics: 'var(--pol)', english: 'var(--eng)', mathematics: 'var(--math)', 'computer-408': 'var(--cs)', chapters: 'var(--accent)' };
     var corpus = [], chapters = [], worker = null, selected = {}, manifest = [], abort = false;
+    var workerSeq = 0, idxPromise = null, fastOnly = false, savedSel = null;
+    var lastQuery = '', lastTerms = [];
 
     mount.innerHTML =
       '<div class="kb-searchbar" style="margin:0 0 14px;max-width:none">' +
@@ -46,6 +52,33 @@
       }
     });
 
+    /* 「仅精读」快速检索：默认不改变任何勾选，用户主动开启才收窄范围 */
+    if (chipsBox && cfg.showChips) {
+      var fastChip = document.createElement('div');
+      fastChip.className = 'kb-chip'; fastChip.id = 'kb-fast-only';
+      fastChip.setAttribute('data-fast', '1');
+      fastChip.textContent = '⚡ 仅精读（快）';
+      fastChip.title = '只检索 21 份逐章精读文档（约 0.97 MB），关闭后恢复原有范围';
+      function syncChips() {
+        chipsBox.querySelectorAll('.kb-chip[data-cat]').forEach(function (c) {
+          c.classList.toggle('on', !!selected[c.getAttribute('data-cat')]);
+        });
+      }
+      fastChip.onclick = function () {
+        fastOnly = !fastOnly;
+        fastChip.classList.toggle('on', fastOnly);
+        if (fastOnly) {
+          savedSel = {}; Object.keys(selected).forEach(function (k) { savedSel[k] = selected[k]; });
+          Object.keys(selected).forEach(function (k) { selected[k] = (k === 'chapters'); });
+        } else if (savedSel) {
+          Object.keys(savedSel).forEach(function (k) { selected[k] = savedSel[k]; });
+        }
+        syncChips();
+        if (qInput.value.trim()) runSearch(qInput.value);
+      };
+      chipsBox.appendChild(fastChip);
+    }
+
     function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
     /* Blob Worker 的 base URL 是 blob:<origin>/<uuid>，相对路径在其中无法解析，
        必须在主线程把清单里的文件路径解析成绝对 URL 再 postMessage。 */
@@ -59,7 +92,7 @@
       return s;
     }
 
-    /* 载入清单 */
+    /* 载入清单：顺序必须与 build_search_index.py 一致（先 corpus，再 chapters） */
     function loadManifest() {
       if (manifest.length) return Promise.resolve(manifest);
       return Promise.all([
@@ -68,118 +101,255 @@
       ]).then(function (rs) {
         corpus = rs[0]; chapters = rs[1];
         corpus.forEach(function (c) {
-          manifest.push({ type: 'corpus', cat: c.categoryId, id: c.id || c.file.replace(/^corpus\//, '').replace(/\.txt$/, ''), name: c.displayTitle || c.name, file: cfg.root + c.file, chars: c.chars });
+          manifest.push({ type: 'corpus', cat: c.categoryId, id: c.id || c.file.replace(/^corpus\//, '').replace(/\.txt$/, ''), name: c.displayTitle || c.name, file: cfg.root + c.file, rawFile: c.file, chars: c.chars });
         });
         chapters.forEach(function (c) {
-          manifest.push({ type: 'chapter', cat: c.categoryId, id: c.id, name: c.title, file: cfg.root + c.file, chars: c.chars });
+          manifest.push({ type: 'chapter', cat: c.categoryId, id: c.id, name: c.title, file: cfg.root + c.file, rawFile: c.file, chars: c.chars });
         });
         return manifest;
       });
     }
+    function manifestSig(m) {
+      return m.map(function (f) { return f.rawFile + ':' + (f.chars == null ? 0 : f.chars); }).join('|');
+    }
 
-    /* Worker：逐文件 fetch + 逐行 AND 匹配
-       注意：Worker 由 Blob URL 创建，f.file 必须是绝对 URL（主线程已用 absUrl 转换）。
+    /* ---------- 构建期 bigram 倒排索引（SBIX-1） ---------- */
+    function loadIndex() {
+      if (idxPromise) return idxPromise;
+      idxPromise = fetch(cfg.root + 'data/search-index.meta.json').then(function (r) {
+        if (!r.ok) throw new Error('meta ' + r.status);
+        return r.json();
+      }).then(function (meta) {
+        if (!meta || meta.format !== 'sbix-1' || meta.version !== 1 || meta.headerSize !== 16) throw new Error('索引版本不符');
+        return fetch(cfg.root + meta.indexFile).then(function (r) {
+          if (!r.ok) throw new Error('bin ' + r.status);
+          return r.arrayBuffer();
+        }).then(function (buf) { return { meta: meta, dv: new DataView(buf) }; });
+      }).catch(function (e) {
+        console.warn('[KB] 检索索引不可用，自动回退全库检索：', e && e.message);
+        return null;
+      });
+      return idxPromise;
+    }
+    /* 二分查找 bigram -> docId 列表；返回 null 表示索引未收录，必须回退全库（防漏结果） */
+    function lookupIds(keyBuf, dv, entryCount) {
+      var lo = 0, hi = entryCount - 1, base = 16;
+      while (lo <= hi) {
+        var mid = (lo + hi) >> 1;
+        var off = dv.getUint32(base + mid * 4, true);
+        var kl = dv.getUint8(off), n = Math.min(kl, keyBuf.length), cmp = 0;
+        for (var j = 0; j < n; j++) {
+          var a = dv.getUint8(off + 1 + j), b = keyBuf[j];
+          if (a !== b) { cmp = a - b; break; }
+        }
+        if (cmp === 0) cmp = kl - keyBuf.length;
+        if (cmp === 0) {
+          var cnt = dv.getUint8(off + 1 + kl), ids = [], p = off + 2 + kl;
+          for (var k = 0; k < cnt; k++) ids.push(dv.getUint8(p + k));
+          return ids;
+        }
+        if (cmp < 0) lo = mid + 1; else hi = mid - 1;
+      }
+      return null;
+    }
+    /* 返回 {docId:1} 候选集；null = 不做预筛（全库） */
+    function prefilter(terms, idx, m) {
+      if (!idx || !idx.meta || !idx.dv) return null;
+      if (idx.meta.docCount !== m.length || idx.meta.sig !== manifestSig(m)) return null;
+      var enc = (typeof TextEncoder !== 'undefined') ? new TextEncoder() : null;
+      if (!enc) return null;
+      var cand = null;
+      for (var t = 0; t < terms.length; t++) {
+        var w = terms[t].toLowerCase();
+        if (w.length < 2) return null;              // 单字无法拆 bigram -> 全库
+        var ids = null;
+        for (var i = 0; i < w.length - 1; i++) {
+          var r = lookupIds(enc.encode(w.slice(i, i + 2)), idx.dv, idx.meta.entryCount);
+          if (r === null) return null;              // 任一 bigram 未收录 -> 全库
+          if (ids === null) ids = r;
+          else {
+            var s = {}; r.forEach(function (x) { s[x] = 1; });
+            ids = ids.filter(function (x) { return s[x]; });
+          }
+          if (!ids.length) break;
+        }
+        if (!ids) return null;
+        var set = {}; ids.forEach(function (x) { set[x] = 1; });
+        if (cand === null) cand = set;
+        else {
+          var nc = {}; Object.keys(cand).forEach(function (k) { if (set[k]) nc[k] = 1; });
+          cand = nc;
+        }
+      }
+      return cand;
+    }
+
+    /* ---------- Worker：并发下载 + 按文件顺序处理 + 常驻文本缓存 ----------
+       下载并发（conc=8）以压满带宽；文本处理严格按 files 顺序推进，
+       保证 results / totalHits / 提前终止条件与旧版串行实现逐项一致。
        失败不再静默忽略：累计 failed 并上报，单次网络抖动重试一次。 */
     var WORKER_SRC = [
-      'self.onmessage=function(e){',
-      ' var files=e.data.files, terms=e.data.terms.map(function(t){return t.toLowerCase();}), max=e.data.max;',
-      ' var results=[], idx=0, totalHits=0, failed=0;',
-      ' function load(f,tries){',
-      '  return fetch(f.file).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.text();})',
-      '   .catch(function(err){if(tries>0)return load(f,tries-1);throw err;});',
+      'var cache=new Map(), cacheChars=0, CACHE_MAX=24*1024*1024, job=0;',
+      'function addCache(k,t){',
+      ' if(cache.has(k))return;',
+      ' cache.set(k,t);cacheChars+=t.length;',
+      ' while(cacheChars>CACHE_MAX&&cache.size>1){',
+      '  var oldest=cache.keys().next().value;cacheChars-=cache.get(oldest).length;cache.delete(oldest);',
       ' }',
-      ' function next(){',
-      '  if(idx>=files.length||results.length>=max||totalHits>3000){self.postMessage({done:true,total:totalHits,results:results,failed:failed});return;}',
-      '  var f=files[idx];',
-      '  load(f,1).then(function(t){',
-      '   var lines=t.split("\\n"), hits=0, ln;',
-      '   for(var i=0;i<lines.length;i++){',
-      '    ln=lines[i];',
-      '    if(!ln||ln.length>500)continue;',
-      '    var low=ln.toLowerCase(), ok=true;',
-      '    for(var j=0;j<terms.length;j++){if(low.indexOf(terms[j])<0){ok=false;break;}}',
-      '    if(ok){hits++;totalHits++;',
-      '     if(hits<=40&&results.length<max){results.push({i:f.i,type:f.type,cat:f.cat,id:f.id,name:f.name,line:i+1,text:ln.trim().slice(0,300)});}',
-      '    }',
+      '}',
+      'function load(f,tries){',
+      ' return fetch(f.file).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.text();})',
+      '  .catch(function(err){if(tries>0)return load(f,tries-1);throw err;});',
+      '}',
+      'self.onmessage=function(e){',
+      ' var my=++job,seq=e.data.seq,files=e.data.files,',
+      '     terms=e.data.terms.map(function(t){return t.toLowerCase();}),',
+      '     max=e.data.max,conc=e.data.conc||8;',
+      ' var results=[],totalHits=0,failed=0,nextFetch=0,nextProc=0,inflight=0;',
+      ' var stopped=false,finished=false,texts={},bad={};',
+      ' function stale(){return my!==job;}',
+      ' function progress(){',
+      '  self.postMessage({seq:seq,progress:nextProc,of:files.length,results:results.length,',
+      '   total:totalHits,failed:failed,partial:true});',
+      ' }',
+      ' function finish(){',
+      '  if(finished||stale())return;finished=true;stopped=true;',
+      '  results.sort(function(a,b){return a.i-b.i||a.line-b.line;});',
+      '  self.postMessage({seq:seq,done:true,total:totalHits,results:results,failed:failed});',
+      ' }',
+      ' function processOne(f,t){',
+      '  var lines=t.split("\\n"),hits=0,ln;',
+      '  for(var i=0;i<lines.length;i++){',
+      '   ln=lines[i];',
+      '   if(!ln||ln.length>500)continue;',
+      '   var low=ln.toLowerCase(),ok=true;',
+      '   for(var j=0;j<terms.length;j++){if(low.indexOf(terms[j])<0){ok=false;break;}}',
+      '   if(ok){hits++;totalHits++;',
+      '    if(hits<=40&&results.length<max){results.push({i:f.i,type:f.type,cat:f.cat,',
+      '     id:f.id,name:f.name,line:i+1,text:ln.trim().slice(0,300)});}',
       '   }',
-      '   idx++;self.postMessage({progress:idx,of:files.length,results:results.length,total:totalHits,failed:failed,partial:true,inc:[{i:f.i,type:f.type,cat:f.cat,id:f.id,name:f.name,hits:Math.min(hits,40),lines:null}]});',
-      '   setTimeout(next,0);',
-      '  }).catch(function(){failed++;idx++;self.postMessage({progress:idx,of:files.length,results:results.length,total:totalHits,failed:failed,partial:true,failName:f.name});setTimeout(next,0);});',
-      ' };',
-      ' next();',
+      '  }',
+      ' }',
+      ' function drain(){',
+      '  if(stale()||stopped||finished)return;',
+      '  while(nextProc<files.length){',
+      '   var f=files[nextProc];',
+      '   if(!(f.i in texts)&&!bad[f.i])break;',
+      '   if(!bad[f.i])processOne(f,texts[f.i]);',
+      '   delete texts[f.i];',
+      '   nextProc++;progress();',
+      '   if(results.length>=max||totalHits>3000){stopped=true;break;}',
+      '  }',
+      '  if(nextProc>=files.length||stopped)finish();',
+      ' }',
+      ' function pump(){',
+      '  if(stale()||stopped||finished)return;',
+      '  while(nextFetch<files.length&&inflight<conc){',
+      '   var f=files[nextFetch++],key=f.file;inflight++;',
+      '   (function(f,key){',
+      '    if(cache.has(key)){texts[f.i]=cache.get(key);inflight--;drain();pump();return;}',
+      '    load(f,1).then(function(t){',
+      '     if(stale())return;',
+      '     addCache(key,t);texts[f.i]=t;inflight--;drain();pump();',
+      '    },function(){',
+      '     if(stale())return;',
+      '     bad[f.i]=1;failed++;inflight--;drain();pump();',
+      '    });',
+      '   })(f,key);',
+      '  }',
+      '  if(files.length===0)finish();',
+      ' }',
+      ' pump();',
       '};'
     ].join('\n');
+
+    function ensureWorker() {
+      if (worker) return true;
+      try { worker = new Worker(URL.createObjectURL(new Blob([WORKER_SRC], { type: 'text/javascript' }))); }
+      catch (e) {
+        prog.style.display = 'none';
+        hitsBox.innerHTML = '<div class="kb-empty">当前浏览器不支持 Worker，无法全文检索</div>';
+        return false;
+      }
+      worker.onerror = function (ev) {
+        prog.style.display = 'none';
+        statBox.textContent = '检索线程异常';
+        hitsBox.innerHTML = '<div class="kb-empty">检索线程异常：' + esc(ev.message || '未知错误') +
+          '<br><button class="kb-btn" style="margin-top:10px" id="kb-retry-search">重试</button></div>';
+        var rb = document.getElementById('kb-retry-search');
+        if (rb) rb.onclick = function () { worker = null; runSearch(qInput.value); };
+        try { worker.terminate(); } catch (e) {}
+        worker = null;
+      };
+      worker.onmessage = function (ev) {
+        var d = ev.data;
+        if (abort || !d || d.seq !== workerSeq) return;
+        if (d.progress != null && d.of) bar.style.width = Math.round(d.progress / d.of * 100) + '%';
+        if (d.partial) {
+          statBox.textContent = '已检索 ' + d.progress + ' / ' + d.of + ' 个文档 · 命中 ' + d.total + ' 行' +
+            (d.failed ? ' · ⚠️ ' + d.failed + ' 个文档加载失败' : '');
+          return;
+        }
+        if (d.done) {
+          prog.style.display = 'none';
+          statBox.textContent = '关键词「' + lastQuery + '」共命中 ' + d.total + ' 行 · 展示 ' + d.results.length + ' 条' +
+            (d.failed ? ' · ⚠️ ' + d.failed + ' 个文档加载失败' : '');
+          renderResults(d.results, lastTerms, d.total, d.failed || 0, lastQuery);
+        }
+      };
+      return true;
+    }
 
     function runSearch(q) {
       var terms = q.trim().split(/\s+/).filter(Boolean);
       if (!terms.length) { hitsBox.innerHTML = '<div class="kb-empty">请输入关键词</div>'; statBox.textContent = ''; return; }
-      if (worker) { worker.terminate(); }
+      if (!ensureWorker()) return;
       abort = false;
-      var seq = 0;
-      loadManifest().then(function (m) {
+      var seq = ++workerSeq;
+      lastQuery = q; lastTerms = terms;
+      prog.style.display = 'block'; bar.style.width = '3%';
+      statBox.textContent = '正在准备检索…';
+      hitsBox.innerHTML = '';
+      Promise.all([loadManifest(), loadIndex()]).then(function (rs) {
+        if (seq !== workerSeq || abort) return;
+        var m = rs[0], idx = rs[1];
+        var cand = prefilter(terms, idx, m);
         var files = m.map(function (f, i) {
-          var catKey = f.type === 'chapter' ? 'chapters' : f.cat;
-          return { i: i, type: f.type, cat: f.cat, id: f.id, name: f.name, file: absUrl(f.file), _catKey: catKey };
+          return {
+            i: i, type: f.type, cat: f.cat, id: f.id, name: f.name,
+            file: absUrl(f.file), _catKey: f.type === 'chapter' ? 'chapters' : f.cat
+          };
         }).filter(function (f) {
           var ok = selected[f._catKey];
           if (cfg.fixedCat) ok = ok && f.cat === cfg.fixedCat;
+          if (cand) ok = ok && !!cand[f.i];
           return ok;
         });
-        if (!files.length) { hitsBox.innerHTML = '<div class="kb-empty">请至少选择一个检索范围</div>'; return; }
-        prog.style.display = 'block'; bar.style.width = '3%';
-        statBox.textContent = '正在按需加载并检索 ' + files.length + ' 个文档…';
-        hitsBox.innerHTML = '';
-        try { worker = new Worker(URL.createObjectURL(new Blob([WORKER_SRC], { type: 'text/javascript' }))); }
-        catch (e) {
+        mount.setAttribute('data-kb-prefilter', cand ? 'on' : 'fallback');
+        mount.setAttribute('data-kb-candidates', String(files.length));
+        if (!cand && !files.length) {
           prog.style.display = 'none';
-          hitsBox.innerHTML = '<div class="kb-empty">当前浏览器不支持 Worker，无法全文检索</div>';
+          statBox.textContent = '';
+          hitsBox.innerHTML = '<div class="kb-empty">请至少选择一个检索范围</div>';
           return;
         }
-        var lastQ = q;
-        worker.onerror = function (ev) {
+        statBox.textContent = '正在检索 ' + files.length + ' 个文档' +
+          (cand ? '（已从 ' + m.length + ' 个中预筛，省去 ' + (m.length - files.length) + ' 个）' : '（全库）') + '…';
+        if (!files.length) {
           prog.style.display = 'none';
-          statBox.textContent = '检索线程异常';
-          hitsBox.innerHTML = '<div class="kb-empty">检索线程异常：' + esc(ev.message || '未知错误') +
-            '<br><button class="kb-btn" style="margin-top:10px" id="kb-retry-search">重试</button></div>';
-          var rb = document.getElementById('kb-retry-search');
-          if (rb) rb.onclick = function () { runSearch(lastQ); };
-          try { worker.terminate(); } catch (e) {}
-          worker = null;
-        };
-        var shown = 0;
-        worker.onmessage = function (ev) {
-          if (abort) return;
-          var d = ev.data;
-          if (d.progress != null) bar.style.width = Math.round(d.progress / d.of * 100) + '%';
-          if (d.partial) {
-            statBox.textContent = '已检索 ' + d.progress + ' / ' + d.of + ' 个文档 · 命中 ' + d.total + ' 行' +
-              (d.failed ? ' · ⚠️ ' + d.failed + ' 个文档加载失败' : '');
-            var inc = d.inc && d.inc[0];
-            if (inc && inc.hits > 0) {
-              shown++;
-              var box = document.createElement('div');
-              box.className = 'kb-note';
-              box.textContent = '📄 [' + CAT_NAME[inc.type === 'chapter' ? 'chapters' : inc.cat] + '] ' + inc.name + ' 命中 ' + inc.hits + ' 行，检索完成后展示…';
-              hitsBox.appendChild(box);
-            }
-            return;
-          }
-          if (d.done) {
-            prog.style.display = 'none';
-            worker.terminate(); worker = null;
-            statBox.textContent = '关键词「' + q + '」共命中 ' + d.total + ' 行 · 展示 ' + d.results.length + ' 条' +
-              (d.failed ? ' · ⚠️ ' + d.failed + ' 个文档加载失败' : '');
-            renderResults(d.results, terms, d.total, d.failed || 0, q);
-          }
-        };
-        worker.postMessage({ files: files, terms: terms, max: cfg.maxHits });
+          statBox.textContent = '关键词「' + q + '」共命中 0 行 · 展示 0 条';
+          renderResults([], terms, 0, 0, q);
+          return;
+        }
+        worker.postMessage({ seq: seq, files: files, terms: terms, max: cfg.maxHits, conc: 8 });
       }).catch(function (err) {
+        if (seq !== workerSeq) return;
         prog.style.display = 'none';
         statBox.textContent = '清单加载失败';
         hitsBox.innerHTML = '<div class="kb-empty">检索清单加载失败：' + esc(err && err.message || err) +
           '<br><button class="kb-btn" style="margin-top:10px" id="kb-retry-search">重试</button></div>';
         var rb = document.getElementById('kb-retry-search');
-        if (rb) rb.onclick = function () { runSearch(qInput.value); };
+        if (rb) rb.onclick = function () { runSearch(q); };
       });
     }
 
@@ -231,7 +401,7 @@
     /* 对外接口 */
     return {
       search: function (q) { qInput.value = q; runSearch(q); },
-      destroy: function () { abort = true; if (worker) worker.terminate(); }
+      destroy: function () { abort = true; if (worker) { worker.terminate(); worker = null; } }
     };
   };
 })();

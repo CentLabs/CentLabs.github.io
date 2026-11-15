@@ -1,0 +1,19 @@
+{
+  "id": "integral-011",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "定积分的分部积分法",
+  "category": "计算",
+  "importance": 4,
+  "tags": [
+    "定积分",
+    "分部积分"
+  ],
+  "latex": "\\int_a^b u\\,\\mathrm{d}v=\\big[uv\\big]_a^b-\\int_a^b v\\,\\mathrm{d}u",
+  "summary": "把难以直接积分的乘积转化为较易积分的形式，先算出边界项 uv 再减去剩余积分。",
+  "conditions": "u、v 在 [a,b] 上连续可导。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 37
+  }
+}

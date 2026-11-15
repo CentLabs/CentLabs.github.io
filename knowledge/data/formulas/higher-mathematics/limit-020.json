@@ -1,0 +1,20 @@
+{
+  "id": "limit-020",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "闭区间上连续函数的性质",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "连续",
+    "闭区间",
+    "最值"
+  ],
+  "latex": "f\\in C[a,b]\\Rightarrow\\exists\\ \\xi,\\eta\\in[a,b]:\\ f(\\xi)=\\min_{[a,b]}f,\\quad f(\\eta)=\\max_{[a,b]}f",
+  "summary": "闭区间上连续函数必有界、必取得最大值与最小值（最值定理与有界性定理）。",
+  "conditions": "区间必须闭且函数在其上连续。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 20
+  }
+}

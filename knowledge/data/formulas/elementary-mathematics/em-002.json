@@ -1,0 +1,20 @@
+{
+  "id": "em-002",
+  "subject": "elementary-mathematics",
+  "chapter": "初等代数",
+  "name": "一元二次方程与韦达定理",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "一元二次方程",
+    "韦达定理",
+    "求根"
+  ],
+  "latex": "ax^2+bx+c=0:\\quad x_{1,2}=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a},\\qquad x_1+x_2=-\\frac{b}{a},\\quad x_1x_2=\\frac{c}{a}",
+  "summary": "求根公式与根与系数的关系（韦达定理）。",
+  "conditions": "a≠0；实根要求判别式 b²−4ac≥0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 178
+  }
+}

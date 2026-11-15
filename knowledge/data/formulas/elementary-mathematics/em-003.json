@@ -1,0 +1,20 @@
+{
+  "id": "em-003",
+  "subject": "elementary-mathematics",
+  "chapter": "初等代数",
+  "name": "常用不等式（均值不等式）",
+  "category": "不等式",
+  "importance": 4,
+  "tags": [
+    "不等式",
+    "均值不等式",
+    "柯西"
+  ],
+  "latex": "\\frac{a+b}{2}\\ge\\sqrt{ab}\\ (a,b>0),\\qquad \\frac{a_1+\\cdots+a_n}{n}\\ge\\sqrt[n]{a_1a_2\\cdots a_n},\\qquad \\Big(\\sum a_ib_i\\Big)^2\\le\\Big(\\sum a_i^2\\Big)\\Big(\\sum b_i^2\\Big)",
+  "summary": "算术平均不小于几何平均，以及柯西不等式；等号当且仅当各项相等（或成比例）时成立。",
+  "conditions": "均值不等式各项为正；等号条件需单独验证。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 179
+  }
+}

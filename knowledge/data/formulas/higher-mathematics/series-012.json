@@ -1,0 +1,20 @@
+{
+  "id": "series-012",
+  "subject": "higher-mathematics",
+  "chapter": "无穷级数",
+  "name": "傅里叶级数的收敛定理",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "傅里叶级数",
+    "收敛定理",
+    "狄利克雷"
+  ],
+  "latex": "S(x)=\\begin{cases}f(x),&\\mathrm{continuous}\\\\\\frac{1}{2}\\big[f(x^-)+f(x^+)\\big],&\\mathrm{jump}\\end{cases}",
+  "summary": "满足狄利克雷条件（一个周期内连续或只有有限个第一类间断点与有限个极值点）时，傅里叶级数在连续点收敛于 f(x)，在间断点收敛于左右极限的平均值。",
+  "conditions": "f 以 2π 为周期且满足狄利克雷条件。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 78
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "prob-014",
+  "subject": "probability-statistics",
+  "chapter": "一维随机变量及其分布",
+  "name": "离散型随机变量的分布律",
+  "category": "定义",
+  "importance": 5,
+  "tags": [
+    "离散型",
+    "分布律",
+    "概率"
+  ],
+  "latex": "P\\{X=x_i\\}=p_i\\ (i=1,2,\\ldots),\\qquad p_i\\ge0,\\quad\\sum_{i}p_i=1",
+  "summary": "离散型随机变量由分布律（概率质量函数）刻画，所有取值概率非负且总和为 1。",
+  "conditions": "取值可列（有限或可数无穷）。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 153
+  }
+}

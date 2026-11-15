@@ -1,0 +1,20 @@
+{
+  "id": "prob-032",
+  "subject": "probability-statistics",
+  "chapter": "常用分布",
+  "name": "泊松分布",
+  "category": "分布",
+  "importance": 5,
+  "tags": [
+    "泊松分布",
+    "分布律",
+    "数字特征"
+  ],
+  "latex": "X\\sim P(\\lambda):\\quad P\\{X=k\\}=\\frac{\\lambda^k}{k!}e^{-\\lambda},\\ k=0,1,2,\\ldots;\\qquad EX=DX=\\lambda",
+  "summary": "描述单位时间（空间）内稀有事件发生次数的分布；当 n 大 p 小时可近似二项分布。",
+  "conditions": "λ>0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 167
+  }
+}

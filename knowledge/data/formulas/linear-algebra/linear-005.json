@@ -1,0 +1,20 @@
+{
+  "id": "linear-005",
+  "subject": "linear-algebra",
+  "chapter": "行列式",
+  "name": "行列式的定义",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "行列式",
+    "定义",
+    "逆序数"
+  ],
+  "latex": "|A|=\\sum_{j_1j_2\\cdots j_n}(-1)^{\\tau(j_1j_2\\cdots j_n)}a_{1j_1}a_{2j_2}\\cdots a_{nj_n}",
+  "summary": "n 阶行列式是取自不同行不同列的 n 个元素乘积的代数和，符号由列标排列的逆序数决定。",
+  "conditions": "求和遍历 n 个元素的所有全排列。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 92
+  }
+}

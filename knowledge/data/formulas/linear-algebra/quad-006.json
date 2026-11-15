@@ -1,0 +1,20 @@
+{
+  "id": "quad-006",
+  "subject": "linear-algebra",
+  "chapter": "二次型",
+  "name": "正定二次型的判定",
+  "category": "判别",
+  "importance": 5,
+  "tags": [
+    "二次型",
+    "正定",
+    "顺序主子式"
+  ],
+  "latex": "f>0\\ (\\forall\\boldsymbol{x}\\neq\\boldsymbol{0})\\iff p=n\\iff\\lambda_i>0\\ (\\forall i)\\iff\\Delta_1>0,\\Delta_2>0,\\ldots,\\Delta_n>0",
+  "summary": "二次型正定的等价条件：正惯性指数为 n、全部特征值为正、各阶顺序主子式全为正（霍尔维茨定理）。",
+  "conditions": "A 为实对称矩阵；Δₖ 为 k 阶顺序主子式。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 143
+  }
+}

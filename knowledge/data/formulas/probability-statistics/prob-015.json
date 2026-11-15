@@ -1,0 +1,21 @@
+{
+  "id": "prob-015",
+  "subject": "probability-statistics",
+  "chapter": "一维随机变量及其分布",
+  "name": "连续型随机变量与概率密度",
+  "category": "定义",
+  "importance": 5,
+  "tags": [
+    "连续型",
+    "概率密度",
+    "分布函数"
+  ],
+  "latex": "F(x)=\\int_{-\\infty}^{x}f(t)\\,\\mathrm{d}t,\\qquad f(x)\\ge0,\\quad\\int_{-\\infty}^{+\\infty}f(x)\\,\\mathrm{d}x=1",
+  "summary": "存在非负可积函数 f(x) 使分布函数可表示为积分时，称 X 为连续型随机变量，f 为概率密度。",
+  "conditions": "f 可积、非负且全区间积分为 1。",
+  "notes": "连续型随机变量在任意指定点的概率为零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 154
+  }
+}

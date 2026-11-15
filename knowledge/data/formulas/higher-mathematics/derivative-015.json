@@ -1,0 +1,20 @@
+{
+  "id": "derivative-015",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "常用函数的麦克劳林展开式",
+  "category": "展开式",
+  "importance": 5,
+  "tags": [
+    "泰勒",
+    "麦克劳林",
+    "展开"
+  ],
+  "latex": "e^x=\\sum_{k=0}^{n}\\frac{x^k}{k!}+o(x^n),\\quad\\sin x=\\sum_{k=0}^{n}\\frac{(-1)^kx^{2k+1}}{(2k+1)!}+o(x^{2n+2}),\\quad\\frac{1}{1-x}=\\sum_{k=0}^{n}x^k+o(x^n)",
+  "summary": "原书在带皮亚诺余项的泰勒定理后列出几个常用函数的麦克劳林展开式，用于求极限与近似计算。",
+  "conditions": "x→0；展开阶数需与问题中无穷小的阶匹配。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 27
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "limit-016",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "常用等价无穷小",
+  "category": "公式",
+  "importance": 5,
+  "tags": [
+    "无穷小",
+    "等价替换",
+    "常用"
+  ],
+  "latex": "x\\to0:\\ \\sin x\\sim\\tan x\\sim\\arcsin x\\sim\\arctan x\\sim x,\\quad 1-\\cos x\\sim\\frac{x^2}{2},\\quad e^x-1\\sim\\ln(1+x)\\sim x,\\quad (1+x)^a-1\\sim ax",
+  "summary": "原书等价无穷小替换定理配套的一组常用等价关系，是求 0/0 型极限最常用的工具。",
+  "conditions": "自变量趋于 0；替换只能在乘除因子中进行。",
+  "notes": "加减项中一般不能直接替换，需先用恒等变形化为乘除形式。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 17
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "series-002",
+  "subject": "higher-mathematics",
+  "chapter": "无穷级数",
+  "name": "级数收敛的定义与基本性质",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "级数",
+    "部分和",
+    "收敛"
+  ],
+  "latex": "\\sum_{n=1}^{\\infty}u_n=S\\iff\\lim_{n\\to\\infty}S_n=S,\\quad S_n=\\sum_{k=1}^{n}u_k;\\qquad\\sum(u_n\\pm v_n)=\\sum u_n\\pm\\sum v_n",
+  "summary": "级数收敛定义为部分和数列存在有限极限；收敛级数可逐项加减，添去有限项不改变敛散性。",
+  "conditions": "S 为有限常数。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 69
+  }
+}

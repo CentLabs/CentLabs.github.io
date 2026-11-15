@@ -1,0 +1,20 @@
+{
+  "id": "prob-047",
+  "subject": "probability-statistics",
+  "chapter": "参数估计",
+  "name": "矩估计法",
+  "category": "估计",
+  "importance": 5,
+  "tags": [
+    "矩估计",
+    "参数估计",
+    "样本矩"
+  ],
+  "latex": "E(X^k)=A_k=\\frac{1}{n}\\sum_{i=1}^{n}X_i^k\\quad(k=1,2,\\ldots)",
+  "summary": "用样本矩替换总体矩建立关于未知参数的方程组，解得的估计量即为矩估计量。",
+  "conditions": "总体相应阶矩存在；方程个数等于待估参数个数。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 174
+  }
+}

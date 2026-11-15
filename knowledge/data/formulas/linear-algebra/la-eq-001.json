@@ -1,0 +1,20 @@
+{
+  "id": "la-eq-001",
+  "subject": "linear-algebra",
+  "chapter": "线性方程组",
+  "name": "线性方程组的四种表示形式",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "线性方程组",
+    "矩阵表示",
+    "向量表示"
+  ],
+  "latex": "\\begin{cases}a_{11}x_1+\\cdots+a_{1n}x_n=b_1\\\\\\vdots\\\\a_{m1}x_1+\\cdots+a_{mn}x_n=b_m\\end{cases}\\iff A\\boldsymbol{x}=\\boldsymbol{b}\\iff x_1\\boldsymbol{\\alpha}_1+\\cdots+x_n\\boldsymbol{\\alpha}_n=\\boldsymbol{b}",
+  "summary": "原书给出线性方程组的一般表示式、Σ 记号表示式、矩阵表示式与向量表示式四种形式。",
+  "conditions": "b=0 时为齐次线性方程组，b≠0 时为非齐次线性方程组。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 132
+  }
+}

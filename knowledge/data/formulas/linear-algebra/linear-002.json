@@ -1,0 +1,15 @@
+{
+  "id": "linear-002",
+  "subject": "linear-algebra",
+  "chapter": "行列式",
+  "name": "范德蒙德行列式",
+  "category": "特殊行列式",
+  "importance": 4,
+  "tags": ["行列式", "范德蒙德", "特殊行列式"],
+  "latex": "\\begin{vmatrix}1&1&\\cdots&1\\\\x_1&x_2&\\cdots&x_n\\\\x_1^2&x_2^2&\\cdots&x_n^2\\\\\\vdots&\\vdots&\\ddots&\\vdots\\\\x_1^{n-1}&x_2^{n-1}&\\cdots&x_n^{n-1}\\end{vmatrix}=\\prod_{1\\le i<j\\le n}(x_j-x_i)",
+  "summary": "范德蒙德行列式的值等于所有下标对对应元素之差的连乘。",
+  "explanation": "范德蒙德行列式是各行为等比递增幂次的特殊行列式，其结果可表示为 ∏(xj-xi)，是线代中需牢记的结论。",
+  "conditions": "行列式为 n 阶，第 i 行（或列）元素为各变量的 i-1 次幂。",
+  "notes": "范德蒙德行列式 ≠ 0 当且仅当 x1,x2,...,xn 两两不同，可用于证明多项式插值的唯一性。",
+  "source": { "book": "张宇数学公式手册", "page": 96 }
+}

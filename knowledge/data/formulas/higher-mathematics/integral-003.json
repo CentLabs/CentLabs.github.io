@@ -1,0 +1,16 @@
+{
+  "id": "integral-003",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "分部积分法",
+  "category": "积分方法",
+  "importance": 5,
+  "tags": ["不定积分", "定积分", "分部积分"],
+  "latex": "\\int u\\,dv=uv-\\int v\\,du",
+  "summary": "积分形式下的乘积求导逆运算，用于两类不同类型函数相乘的积分。",
+  "explanation": "由乘积求导公式 (uv)' = u'v + uv' 积分得到，适用于被积函数为不同类型函数（如幂函数×对数、幂函数×指数）乘积的情形。",
+  "conditions": "u、v 可导，且 ∫v du 比 ∫u dv 更易计算。",
+  "notes": "选取 u、v 的优先级（口诀「反对幂指三」）：反三角函数、对数、幂、指数、三角依次优先作为 u。",
+  "example": "求 ∫x·e^x dx。解：令 u=x，dv=e^x dx，则 = x·e^x - ∫e^x dx = x·e^x - e^x + C。",
+  "source": { "book": "张宇数学公式手册", "page": 24 }
+}

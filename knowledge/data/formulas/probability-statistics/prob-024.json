@@ -1,0 +1,20 @@
+{
+  "id": "prob-024",
+  "subject": "probability-statistics",
+  "chapter": "二维随机变量及其分布",
+  "name": "Z=X+Y 的卷积公式",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "卷积公式",
+    "函数和",
+    "分布"
+  ],
+  "latex": "f_Z(z)=\\int_{-\\infty}^{+\\infty}f(x,z-x)\\,\\mathrm{d}x=\\int_{-\\infty}^{+\\infty}f_X(x)f_Y(z-x)\\,\\mathrm{d}x\\quad(X\\perp Y)",
+  "summary": "两个独立随机变量之和的密度由卷积给出；离散型对应卷积和 P{Z=k}=Σ P{X=i}P{Y=k−i}。",
+  "conditions": "连续型情形要求 X 与 Y 相互独立。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 161
+  }
+}

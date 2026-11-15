@@ -1,0 +1,20 @@
+{
+  "id": "la-vector-006",
+  "subject": "linear-algebra",
+  "chapter": "向量与向量空间",
+  "name": "施密特正交化方法",
+  "category": "计算",
+  "importance": 5,
+  "tags": [
+    "向量",
+    "正交化",
+    "施密特"
+  ],
+  "latex": "\\boldsymbol{\\beta}_1=\\boldsymbol{\\alpha}_1,\\quad\\boldsymbol{\\beta}_k=\\boldsymbol{\\alpha}_k-\\sum_{i=1}^{k-1}\\frac{(\\boldsymbol{\\alpha}_k,\\boldsymbol{\\beta}_i)}{(\\boldsymbol{\\beta}_i,\\boldsymbol{\\beta}_i)}\\boldsymbol{\\beta}_i\\quad(k=2,\\ldots,s)",
+  "summary": "把线性无关向量组逐步改造成与之等价的正交向量组，再单位化即得标准正交向量组。",
+  "conditions": "原向量组必须线性无关。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 126
+  }
+}

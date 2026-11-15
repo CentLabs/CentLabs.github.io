@@ -1,0 +1,20 @@
+{
+  "id": "quad-004",
+  "subject": "linear-algebra",
+  "chapter": "二次型",
+  "name": "用配方法化二次型为标准形",
+  "category": "计算",
+  "importance": 3,
+  "tags": [
+    "二次型",
+    "配方法",
+    "标准形"
+  ],
+  "latex": "f=\\sum_{i,j}a_{ij}x_ix_j\\xrightarrow{\\ \\text{逐项配方}\\ }\\sum_{k}d_ky_k^2,\\qquad \\boldsymbol{y}=C^{-1}\\boldsymbol{x}",
+  "summary": "通过逐个变量配方消去交叉项，得到标准形与所用可逆线性变换。",
+  "conditions": "配方过程需保证变换可逆。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 142
+  }
+}

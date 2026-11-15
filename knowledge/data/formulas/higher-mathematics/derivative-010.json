@@ -1,0 +1,19 @@
+{
+  "id": "derivative-010",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "反函数的导数",
+  "category": "法则",
+  "importance": 3,
+  "tags": [
+    "导数",
+    "反函数"
+  ],
+  "latex": "\\frac{\\mathrm{d}y}{\\mathrm{d}x}=\\frac{1}{\\dfrac{\\mathrm{d}x}{\\mathrm{d}y}},\\qquad \\varphi'(y)\\neq0",
+  "summary": "反函数的导数等于原函数导数的倒数。",
+  "conditions": "原函数导数不为零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 23
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "curveint-001",
+  "subject": "higher-mathematics",
+  "chapter": "曲线积分与曲面积分",
+  "name": "第一类曲线积分的计算",
+  "category": "计算",
+  "importance": 3,
+  "tags": [
+    "曲线积分",
+    "弧长",
+    "参数化"
+  ],
+  "latex": "\\int_L f(x,y)\\,\\mathrm{d}s=\\int_{\\alpha}^{\\beta}f\\big(x(t),y(t)\\big)\\sqrt{x'^2(t)+y'^2(t)}\\,\\mathrm{d}t",
+  "summary": "把第一类曲线积分按弧长微元 ds 化为关于参数的定积分。",
+  "conditions": "曲线 L 光滑、参数化后 t 从 α 到 β 且 α<β。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 64
+  }
+}

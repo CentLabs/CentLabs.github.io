@@ -1,0 +1,20 @@
+{
+  "id": "la-vector-001",
+  "subject": "linear-algebra",
+  "chapter": "向量与向量空间",
+  "name": "线性组合与线性表出",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "向量",
+    "线性组合",
+    "线性表出"
+  ],
+  "latex": "\\boldsymbol{\\beta}=k_1\\boldsymbol{\\alpha}_1+k_2\\boldsymbol{\\alpha}_2+\\cdots+k_s\\boldsymbol{\\alpha}_s",
+  "summary": "若存在一组数使 β 可由向量组线性表示，称 β 是该向量组的一个线性组合。",
+  "conditions": "系数 kᵢ 为任意实数。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 119
+  }
+}

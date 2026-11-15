@@ -1,0 +1,20 @@
+{
+  "id": "em-014",
+  "subject": "elementary-mathematics",
+  "chapter": "平面解析几何",
+  "name": "两点间距离与点到直线距离",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "解析几何",
+    "距离",
+    "直线"
+  ],
+  "latex": "d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2},\\qquad d=\\frac{|Ax_0+By_0+C|}{\\sqrt{A^2+B^2}}",
+  "summary": "平面内两点间距离公式与点到直线 Ax+By+C=0 的距离公式。",
+  "conditions": "直线方程中 A、B 不全为零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 188
+  }
+}

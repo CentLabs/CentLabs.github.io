@@ -1,0 +1,20 @@
+{
+  "id": "multi-001",
+  "subject": "higher-mathematics",
+  "chapter": "多元函数微分学",
+  "name": "偏导数的定义",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "偏导数",
+    "多元函数",
+    "定义"
+  ],
+  "latex": "f_x(x_0,y_0)=\\lim_{\\Delta x\\to0}\\frac{f(x_0+\\Delta x,y_0)-f(x_0,y_0)}{\\Delta x},\\quad f_y(x_0,y_0)=\\lim_{\\Delta y\\to0}\\frac{f(x_0,y_0+\\Delta y)-f(x_0,y_0)}{\\Delta y}",
+  "summary": "固定其余自变量，只对某一个自变量求导数即得偏导数。",
+  "conditions": "相应的一元极限存在。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 53
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "limit-010",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "极限的局部保号性",
+  "category": "性质",
+  "importance": 4,
+  "tags": [
+    "极限",
+    "保号性"
+  ],
+  "latex": "\\lim_{x\\to x_0}f(x)=A>0\\Rightarrow\\exists\\delta>0:\\ f(x)>0\\quad(0<|x-x_0|<\\delta)",
+  "summary": "若函数极限为正（负），则在 x₀ 的某去心邻域内函数值保持同号；反之由 f(x)≥0 可得 A≥0。",
+  "conditions": "A≠0；由函数值非负只能推出极限非负（不能保证严格大于零）。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 14
+  }
+}

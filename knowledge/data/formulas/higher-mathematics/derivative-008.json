@@ -1,0 +1,19 @@
+{
+  "id": "derivative-008",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "导数的四则运算法则",
+  "category": "法则",
+  "importance": 5,
+  "tags": [
+    "导数",
+    "四则运算"
+  ],
+  "latex": "(u\\pm v)'=u'\\pm v',\\quad(uv)'=u'v+uv',\\quad\\left(\\frac{u}{v}\\right)'=\\frac{u'v-uv'}{v^2}",
+  "summary": "和差积商的求导法则，是求导计算的基础。",
+  "conditions": "u、v 均可导；作商时 v≠0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 23
+  }
+}

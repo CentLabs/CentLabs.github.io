@@ -1,0 +1,20 @@
+{
+  "id": "eigen-004",
+  "subject": "linear-algebra",
+  "chapter": "矩阵的特征值和特征向量",
+  "name": "矩阵可对角化的条件",
+  "category": "判别",
+  "importance": 5,
+  "tags": [
+    "特征值",
+    "对角化",
+    "线性无关"
+  ],
+  "latex": "A\\sim\\Lambda=\\mathrm{diag}(\\lambda_1,\\ldots,\\lambda_n)\\iff A\\ \\text{有}\\ n\\ \\text{个线性无关的特征向量}",
+  "summary": "n 阶方阵可对角化的充要条件是有 n 个线性无关特征向量；有 n 个互异特征值是可对角化的充分条件。",
+  "conditions": "实对称矩阵必可正交对角化。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 139
+  }
+}

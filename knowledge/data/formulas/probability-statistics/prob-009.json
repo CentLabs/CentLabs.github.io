@@ -1,0 +1,20 @@
+{
+  "id": "prob-009",
+  "subject": "probability-statistics",
+  "chapter": "随机事件与概率",
+  "name": "古典概型与几何概型",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "古典概型",
+    "几何概型",
+    "概率"
+  ],
+  "latex": "P(A)=\\frac{n_A}{n_{\\Omega}}=\\frac{A\\ \\mathrm{包含的样本点数}}{\\Omega\\ \\mathrm{中样本点总数}},\\qquad P(A)=\\frac{\\mu(A)}{\\mu(\\Omega)}",
+  "summary": "古典概型要求样本点有限且等可能；几何概型把等可能性推广到几何区域上的度量之比。",
+  "conditions": "古典概型：有限等可能；几何概型：度量有限且非零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 150
+  }
+}

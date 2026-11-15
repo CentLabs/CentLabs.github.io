@@ -1,0 +1,20 @@
+{
+  "id": "multiint-004",
+  "subject": "higher-mathematics",
+  "chapter": "重积分",
+  "name": "三重积分的柱坐标与球坐标",
+  "category": "计算",
+  "importance": 4,
+  "tags": [
+    "三重积分",
+    "柱坐标",
+    "球坐标"
+  ],
+  "latex": "\\iiint\\limits_{\\Omega}f\\,\\mathrm{d}v=\\iiint f(r\\cos\\theta,r\\sin\\theta,z)\\,r\\,\\mathrm{d}r\\mathrm{d}\\theta\\mathrm{d}z=\\iiint f(r\\sin\\varphi\\cos\\theta,\\ldots)\\,r^2\\sin\\varphi\\,\\mathrm{d}r\\mathrm{d}\\varphi\\mathrm{d}\\theta",
+  "summary": "柱坐标体积元为 r dr dθ dz，球坐标体积元为 r² sinφ dr dφ dθ，适用于旋转对称区域。",
+  "conditions": "注意球坐标中 φ 为与 z 轴正向的夹角。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 60
+  }
+}

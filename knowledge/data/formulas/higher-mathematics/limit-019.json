@@ -1,0 +1,20 @@
+{
+  "id": "limit-019",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "间断点的分类",
+  "category": "定义",
+  "importance": 3,
+  "tags": [
+    "连续",
+    "间断点",
+    "分类"
+  ],
+  "latex": "f(x_0-0)=f(x_0+0)\\neq f(x_0)\\Rightarrow\\text{removable};\\qquad f(x_0-0)\\neq f(x_0+0)\\Rightarrow\\text{jump}",
+  "summary": "原书按左右极限是否存在把间断点分为第一类（可去、跳跃）与第二类（无穷、振荡等）。",
+  "conditions": "x₀ 为间断点，即连续性条件不成立。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 20
+  }
+}

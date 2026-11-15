@@ -1,0 +1,20 @@
+{
+  "id": "prob-025",
+  "subject": "probability-statistics",
+  "chapter": "二维随机变量及其分布",
+  "name": "最大值与最小值的分布",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "最大值",
+    "最小值",
+    "分布"
+  ],
+  "latex": "F_{\\max}(z)=F_X(z)F_Y(z),\\qquad F_{\\min}(z)=1-[1-F_X(z)][1-F_Y(z)]\\quad(X\\perp Y)",
+  "summary": "独立随机变量最大值 M=max(X,Y) 与最小值 N=min(X,Y) 的分布函数。",
+  "conditions": "X、Y 相互独立。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 162
+  }
+}

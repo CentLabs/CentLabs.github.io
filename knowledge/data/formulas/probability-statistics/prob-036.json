@@ -1,0 +1,20 @@
+{
+  "id": "prob-036",
+  "subject": "probability-statistics",
+  "chapter": "常用分布",
+  "name": "几何分布与超几何分布",
+  "category": "分布",
+  "importance": 3,
+  "tags": [
+    "几何分布",
+    "超几何分布",
+    "分布律"
+  ],
+  "latex": "P\\{X=k\\}=(1-p)^{k-1}p\\ (k=1,2,\\ldots);\\qquad P\\{X=k\\}=\\frac{\\binom{M}{k}\\binom{N-M}{n-k}}{\\binom{N}{n}}",
+  "summary": "几何分布描述首次成功所需试验次数；超几何分布描述不放回抽样中的成功个数。",
+  "conditions": "几何分布各次试验独立；超几何分布为不放回抽样。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 166
+  }
+}

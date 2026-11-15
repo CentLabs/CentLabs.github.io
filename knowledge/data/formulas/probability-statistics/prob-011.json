@@ -1,0 +1,20 @@
+{
+  "id": "prob-011",
+  "subject": "probability-statistics",
+  "chapter": "随机事件与概率",
+  "name": "事件的独立性",
+  "category": "定义",
+  "importance": 5,
+  "tags": [
+    "独立性",
+    "事件",
+    "乘法公式"
+  ],
+  "latex": "A\\perp B\\iff P(AB)=P(A)P(B);\\qquad A_1,\\ldots,A_n\\ \\text{相互独立}\\iff P\\Big(\\bigcap_{i\\in I}A_i\\Big)=\\prod_{i\\in I}P(A_i)",
+  "summary": "两事件独立等价于积事件概率等于概率之积；多个事件相互独立要求对任意子集都成立。",
+  "conditions": "两两独立不能推出相互独立。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 147
+  }
+}

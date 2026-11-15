@@ -1,0 +1,20 @@
+{
+  "id": "multiint-001",
+  "subject": "higher-mathematics",
+  "chapter": "重积分",
+  "name": "二重积分的直角坐标计算",
+  "category": "计算",
+  "importance": 5,
+  "tags": [
+    "二重积分",
+    "直角坐标",
+    "累次积分"
+  ],
+  "latex": "\\iint\\limits_D f(x,y)\\,\\mathrm{d}\\sigma=\\int_a^b\\mathrm{d}x\\int_{\\varphi_1(x)}^{\\varphi_2(x)}f(x,y)\\,\\mathrm{d}y",
+  "summary": "把二重积分化为先 y 后 x（或先 x 后 y）的累次积分，关键是确定积分区域的不等式表示。",
+  "conditions": "D 为 X 型（或 Y 型）区域，f 在 D 上连续。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 58
+  }
+}

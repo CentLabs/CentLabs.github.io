@@ -1,0 +1,20 @@
+{
+  "id": "integral-010",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "定积分的换元积分法",
+  "category": "计算",
+  "importance": 4,
+  "tags": [
+    "定积分",
+    "换元"
+  ],
+  "latex": "\\int_a^b f(x)\\,\\mathrm{d}x=\\int_{\\alpha}^{\\beta}f\\big(\\varphi(t)\\big)\\varphi'(t)\\,\\mathrm{d}t,\\quad \\varphi(\\alpha)=a,\\ \\varphi(\\beta)=b",
+  "summary": "定积分换元时必须同步更换积分上下限，换元后不必回代。",
+  "conditions": "φ 在 [α,β] 上单调可导，且值域落在 [a,b] 内。",
+  "notes": "最易错处是忘记换限。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 37
+  }
+}

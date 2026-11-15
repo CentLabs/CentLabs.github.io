@@ -1,0 +1,20 @@
+{
+  "id": "prob-033",
+  "subject": "probability-statistics",
+  "chapter": "常用分布",
+  "name": "均匀分布",
+  "category": "分布",
+  "importance": 4,
+  "tags": [
+    "均匀分布",
+    "概率密度",
+    "数字特征"
+  ],
+  "latex": "X\\sim U(a,b):\\quad f(x)=\\begin{cases}\\frac{1}{b-a},&a<x<b\\\\0,&\\text{otherwise}\\end{cases};\\qquad EX=\\frac{a+b}{2},\\ DX=\\frac{(b-a)^2}{12}",
+  "summary": "在区间 (a,b) 上密度为常数的连续型分布。",
+  "conditions": "a<b。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 167
+  }
+}

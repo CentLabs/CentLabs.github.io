@@ -1,0 +1,20 @@
+{
+  "id": "em-013",
+  "subject": "elementary-mathematics",
+  "chapter": "三角函数",
+  "name": "反三角函数的性质",
+  "category": "性质",
+  "importance": 3,
+  "tags": [
+    "反三角函数",
+    "恒等式",
+    "性质"
+  ],
+  "latex": "\\arcsin x+\\arccos x=\\frac{\\pi}{2},\\qquad \\arctan x+\\operatorname{arccot}x=\\frac{\\pi}{2},\\qquad \\arcsin(-x)=-\\arcsin x",
+  "summary": "原书列出的反三角函数恒等式与奇偶性。",
+  "conditions": "x∈[−1,1]（反正弦、反余弦）。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 186
+  }
+}

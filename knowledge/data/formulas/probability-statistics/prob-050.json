@@ -1,0 +1,20 @@
+{
+  "id": "prob-050",
+  "subject": "probability-statistics",
+  "chapter": "参数估计",
+  "name": "单个正态总体均值的置信区间",
+  "category": "估计",
+  "importance": 5,
+  "tags": [
+    "置信区间",
+    "正态总体",
+    "均值"
+  ],
+  "latex": "\\sigma^2\\ \\text{已知}:\\ \\Big(\\bar X-\\frac{\\sigma}{\\sqrt n}u_{\\alpha/2},\\ \\bar X+\\frac{\\sigma}{\\sqrt n}u_{\\alpha/2}\\Big);\\qquad \\sigma^2\\ \\text{未知}:\\ \\Big(\\bar X-\\frac{S}{\\sqrt n}t_{\\alpha/2}(n-1),\\ \\bar X+\\frac{S}{\\sqrt n}t_{\\alpha/2}(n-1)\\Big)",
+  "summary": "置信度 1−α 下单个正态总体均值的双侧置信区间；原书附有常用单个正态总体参数的置信区间表。",
+  "conditions": "总体服从正态分布；σ² 未知时用 t 分布分位数。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 176
+  }
+}

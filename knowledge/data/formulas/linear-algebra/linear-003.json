@@ -1,0 +1,16 @@
+{
+  "id": "linear-003",
+  "subject": "linear-algebra",
+  "chapter": "矩阵",
+  "name": "逆矩阵与伴随矩阵的关系",
+  "category": "矩阵",
+  "importance": 5,
+  "tags": ["矩阵", "逆矩阵", "伴随矩阵"],
+  "latex": "A^{-1}=\\frac{1}{|A|}\\,A^{*},\\quad A\\,A^{*}=A^{*}A=|A|\\,E",
+  "summary": "可逆矩阵的逆等于伴随矩阵除以行列式，是求逆矩阵的重要方法。",
+  "explanation": "伴随矩阵 A* 由代数余子式构成，满足 A·A* = A*·A = |A|·E。当 |A|≠0 时，A 可逆且逆矩阵为 A*/|A|。",
+  "conditions": "A 为 n 阶方阵且 |A|≠0（可逆）。",
+  "notes": "矩阵可逆的充要条件：|A|≠0 ⇔ A 可逆 ⇔ A 满秩 r(A)=n。",
+  "example": "二阶矩阵 A=[[a,b],[c,d]] 的逆为 A⁻¹ = 1/(ad-bc)·[[d,-b],[-c,a]]。",
+  "source": { "book": "张宇数学公式手册", "page": 98 }
+}

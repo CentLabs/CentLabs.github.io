@@ -1,0 +1,15 @@
+{
+  "id": "derivative-001",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "导数的定义式",
+  "category": "导数",
+  "importance": 5,
+  "tags": ["导数", "微分", "定义"],
+  "latex": "f'(x_0)=\\lim_{\\Delta x\\to 0}\\frac{\\Delta y}{\\Delta x}=\\lim_{\\Delta x\\to 0}\\frac{f(x_0+\\Delta x)-f(x_0)}{\\Delta x}",
+  "summary": "导数刻画函数在一点处的瞬时变化率，是函数增量与自变量增量之比的极限。",
+  "explanation": "导数反映函数在该点的变化快慢与方向，是微分学最核心的概念。其几何意义是曲线在该点切线的斜率。",
+  "conditions": "该极限存在（即函数在该点可导）。",
+  "notes": "等价形式：f'(x0) = lim(x→x0) [f(x)-f(x0)]/(x-x0)。可导必连续，反之不成立。",
+  "source": { "book": "张宇数学公式手册", "page": 21 }
+}

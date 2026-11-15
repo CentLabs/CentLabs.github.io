@@ -1,0 +1,20 @@
+{
+  "id": "la-eq-005",
+  "subject": "linear-algebra",
+  "chapter": "线性方程组",
+  "name": "齐次方程组解的结构与基础解系",
+  "category": "定理",
+  "importance": 5,
+  "tags": [
+    "线性方程组",
+    "基础解系",
+    "解空间"
+  ],
+  "latex": "\\boldsymbol{x}=c_1\\boldsymbol{\\xi}_1+\\cdots+c_{n-r}\\boldsymbol{\\xi}_{n-r},\\qquad r=r(A),\\ \\dim S=n-r",
+  "summary": "齐次方程组通解为基础解系的任意线性组合，基础解系含 n−r(A) 个线性无关解向量。",
+  "conditions": "基础解系不唯一，但所含向量个数由秩唯一确定。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 135
+  }
+}

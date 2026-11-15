@@ -1,0 +1,21 @@
+{
+  "id": "prob-035",
+  "subject": "probability-statistics",
+  "chapter": "常用分布",
+  "name": "正态分布与标准化",
+  "category": "分布",
+  "importance": 5,
+  "tags": [
+    "正态分布",
+    "标准化",
+    "3σ"
+  ],
+  "latex": "X\\sim N(\\mu,\\sigma^2):\\quad f(x)=\\frac{1}{\\sqrt{2\\pi}\\sigma}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}},\\qquad \\frac{X-\\mu}{\\sigma}\\sim N(0,1),\\quad P\\{|X-\\mu|<3\\sigma\\}\\approx0.9973",
+  "summary": "正态分布的密度、标准化变换与常用 3σ 结论；标准正态分布函数记为 Φ(x)。",
+  "conditions": "σ>0。",
+  "notes": "Φ(−x)=1−Φ(x)。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 167
+  }
+}

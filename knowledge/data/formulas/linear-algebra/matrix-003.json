@@ -1,0 +1,20 @@
+{
+  "id": "matrix-003",
+  "subject": "linear-algebra",
+  "chapter": "矩阵",
+  "name": "方阵的行列式性质",
+  "category": "性质",
+  "importance": 5,
+  "tags": [
+    "矩阵",
+    "行列式",
+    "乘法"
+  ],
+  "latex": "|A^T|=|A|,\\quad|kA|=k^n|A|,\\quad|AB|=|A||B|,\\quad|A^{-1}|=\\frac{1}{|A|}",
+  "summary": "方阵乘积的行列式等于行列式的乘积；A 为 n 阶方阵。",
+  "conditions": "A、B 为同阶方阵；求逆时要求 |A|≠0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 104
+  }
+}

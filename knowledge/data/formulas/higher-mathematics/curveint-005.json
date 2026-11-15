@@ -1,0 +1,20 @@
+{
+  "id": "curveint-005",
+  "subject": "higher-mathematics",
+  "chapter": "曲线积分与曲面积分",
+  "name": "高斯公式",
+  "category": "定理",
+  "importance": 5,
+  "tags": [
+    "高斯公式",
+    "曲面积分",
+    "散度"
+  ],
+  "latex": "\\iint\\limits_{\\Sigma}P\\,\\mathrm{d}y\\mathrm{d}z+Q\\,\\mathrm{d}z\\mathrm{d}x+R\\,\\mathrm{d}x\\mathrm{d}y=\\iiint\\limits_{\\Omega}\\left(\\frac{\\partial P}{\\partial x}+\\frac{\\partial Q}{\\partial y}+\\frac{\\partial R}{\\partial z}\\right)\\mathrm{d}v",
+  "summary": "把封闭曲面上的第二类曲面积分化为其所围空间区域上的三重积分。",
+  "conditions": "Σ 取外侧，Ω 为 Σ 所围闭区域，P、Q、R 有一阶连续偏导数。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 68
+  }
+}

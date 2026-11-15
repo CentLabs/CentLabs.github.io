@@ -1,0 +1,20 @@
+{
+  "id": "derivative-017",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "极值的充分条件",
+  "category": "判别",
+  "importance": 4,
+  "tags": [
+    "导数",
+    "极值",
+    "二阶导"
+  ],
+  "latex": "f'(x_0)=0,\\ f''(x_0)<0\\Rightarrow\\max;\\qquad f'(x_0)=0,\\ f''(x_0)>0\\Rightarrow\\min",
+  "summary": "可导点处极值的必要条件是 f′(x₀)=0；再用二阶导数符号判定极大还是极小。",
+  "conditions": "f″(x₀)≠0；若为零需用更高阶导数或一阶导数符号判定。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 29
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "eigen-005",
+  "subject": "linear-algebra",
+  "chapter": "矩阵的特征值和特征向量",
+  "name": "实对称矩阵的特征值性质",
+  "category": "性质",
+  "importance": 4,
+  "tags": [
+    "实对称矩阵",
+    "特征值",
+    "正交"
+  ],
+  "latex": "A^T=A\\Rightarrow\\lambda_i\\in\\mathbb{R},\\qquad \\lambda_i\\neq\\lambda_j\\Rightarrow\\boldsymbol{\\xi}_i\\perp\\boldsymbol{\\xi}_j",
+  "summary": "实对称矩阵的特征值全为实数，属于不同特征值的特征向量彼此正交。",
+  "conditions": "A 为实对称方阵。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 139
+  }
+}

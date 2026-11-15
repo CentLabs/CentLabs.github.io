@@ -1,0 +1,20 @@
+{
+  "id": "limit-009",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "极限的唯一性与局部有界性",
+  "category": "性质",
+  "importance": 3,
+  "tags": [
+    "极限",
+    "有界性",
+    "唯一性"
+  ],
+  "latex": "\\lim_{x\\to x_0}f(x)=A\\Rightarrow\\exists\\delta>0,\\ M>0:\\ |f(x)|\\le M\\quad(0<|x-x_0|<\\delta)",
+  "summary": "若极限存在，则函数在该点的某去心邻域内有界（局部有界性）；且极限值唯一。",
+  "conditions": "A 必须存在且有限。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 14
+  }
+}

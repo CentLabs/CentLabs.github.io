@@ -1,0 +1,20 @@
+{
+  "id": "integral-007",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "定积分的定义式",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "定积分",
+    "黎曼和",
+    "定义"
+  ],
+  "latex": "\\int_a^b f(x)\\,\\mathrm{d}x=\\lim_{\\lambda\\to0}\\sum_{i=1}^{n}f(\\xi_i)\\Delta x_i,\\qquad \\lambda=\\max_{1\\le i\\le n}\\Delta x_i",
+  "summary": "定积分是分割、近似、求和、取极限得到的黎曼和的极限。",
+  "conditions": "f 在 [a,b] 上可积。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 35
+  }
+}

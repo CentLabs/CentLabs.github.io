@@ -1,0 +1,20 @@
+{
+  "id": "series-007",
+  "subject": "higher-mathematics",
+  "chapter": "无穷级数",
+  "name": "交错级数的莱布尼茨判别法",
+  "category": "判别",
+  "importance": 4,
+  "tags": [
+    "交错级数",
+    "莱布尼茨",
+    "条件收敛"
+  ],
+  "latex": "\\sum_{n=1}^{\\infty}(-1)^{n-1}u_n,\\quad u_n\\searrow 0\\Rightarrow\\mathrm{convergent},\\quad |r_n|\\le u_{n+1}",
+  "summary": "若交错级数通项绝对值单调减少且趋于零，则级数收敛，且余项绝对值不超过第一个被舍去项。",
+  "conditions": "uₙ>0、单调不增且趋于 0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 72
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "la-vector-004",
+  "subject": "linear-algebra",
+  "chapter": "向量与向量空间",
+  "name": "极大无关组与向量组的秩",
+  "category": "定义",
+  "importance": 5,
+  "tags": [
+    "向量",
+    "极大无关组",
+    "秩"
+  ],
+  "latex": "r(\\boldsymbol{\\alpha}_1,\\ldots,\\boldsymbol{\\alpha}_s)=\\ \\text{极大无关组所含向量个数}\\ =r\\big([\\boldsymbol{\\alpha}_1,\\ldots,\\boldsymbol{\\alpha}_s]\\big)",
+  "summary": "向量组的极大线性无关组所含向量个数称为向量组的秩，等于该向量组所成矩阵的秩。",
+  "conditions": "任意两个极大无关组所含向量个数相同且彼此等价。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 124
+  }
+}

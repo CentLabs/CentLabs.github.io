@@ -1,0 +1,19 @@
+{
+  "id": "limit-014",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "无穷小量与极限的关系",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "极限",
+    "无穷小"
+  ],
+  "latex": "\\lim f(x)=A\\iff f(x)=A+\\alpha(x),\\quad\\lim\\alpha(x)=0",
+  "summary": "函数极限等于 A 的充要条件是 f(x) 可写成常数 A 与一个无穷小量之和。",
+  "conditions": "在同一极限过程下讨论。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 16
+  }
+}

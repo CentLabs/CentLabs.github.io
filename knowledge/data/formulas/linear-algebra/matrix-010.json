@@ -1,0 +1,22 @@
+{
+  "id": "matrix-010",
+  "subject": "linear-algebra",
+  "chapter": "矩阵",
+  "name": "矩阵等价、相似与合同",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "矩阵",
+    "等价",
+    "相似",
+    "合同"
+  ],
+  "latex": "A\\simeq B\\iff B=PAQ;\\qquad A\\sim B\\iff B=P^{-1}AP;\\qquad A\\cong B\\iff B=C^TAC\\quad(P,Q,C\\ \\text{可逆})",
+  "summary": "原书归纳的三种矩阵关系：等价经初等变换得到，相似经可逆矩阵共轭得到，合同经二次型的坐标变换得到。",
+  "conditions": "相似、合同均要求方阵；P、Q、C 可逆。",
+  "notes": "相似必等价、合同必等价，反之不成立。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 116
+  }
+}

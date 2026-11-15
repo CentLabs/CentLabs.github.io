@@ -1,0 +1,20 @@
+{
+  "id": "la-vector-002",
+  "subject": "linear-algebra",
+  "chapter": "向量与向量空间",
+  "name": "向量组线性相关的定义",
+  "category": "定义",
+  "importance": 5,
+  "tags": [
+    "向量",
+    "线性相关",
+    "线性无关"
+  ],
+  "latex": "k_1\\boldsymbol{\\alpha}_1+\\cdots+k_s\\boldsymbol{\\alpha}_s=\\boldsymbol{0}\\ \\text{有非零解}\\iff\\text{线性相关};\\qquad\\text{仅零解}\\iff\\text{线性无关}",
+  "summary": "齐次线性组合为零向量是否只有零解，是判定向量组线性相关性的定义。",
+  "conditions": "系数不全为零时成立即线性相关。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 121
+  }
+}

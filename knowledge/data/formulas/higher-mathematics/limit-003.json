@@ -1,0 +1,15 @@
+{
+  "id": "limit-003",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "夹逼准则",
+  "category": "极限存在准则",
+  "importance": 4,
+  "tags": ["极限", "夹逼准则", "极限存在准则"],
+  "latex": "g(x)\\le f(x)\\le h(x),\\ \\lim g(x)=\\lim h(x)=A\\ \\Rightarrow\\ \\lim f(x)=A",
+  "summary": "若函数被夹在两个趋于同一极限的函数之间，则它也趋于该极限。",
+  "explanation": "夹逼准则（又称迫敛性）是证明极限存在与求极限的重要方法，尤其适用于含取整、求和、三角函数等难以直接计算的极限。",
+  "conditions": "在 x0 的某个去心邻域内恒有 g(x) ≤ f(x) ≤ h(x)，且 lim g(x) = lim h(x) = A。",
+  "notes": "数列形式同样成立：若 yn ≤ xn ≤ zn 且 lim yn = lim zn = a，则 lim xn = a。",
+  "source": { "book": "张宇数学公式手册", "page": 14 }
+}

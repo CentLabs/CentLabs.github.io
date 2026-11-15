@@ -1,0 +1,20 @@
+{
+  "id": "prob-022",
+  "subject": "probability-statistics",
+  "chapter": "二维随机变量及其分布",
+  "name": "随机变量的独立性",
+  "category": "判别",
+  "importance": 5,
+  "tags": [
+    "独立性",
+    "随机变量",
+    "联合分布"
+  ],
+  "latex": "X\\perp Y\\iff F(x,y)=F_X(x)F_Y(y)\\iff f(x,y)=f_X(x)f_Y(y)\\ (\\mathrm{a.e.})",
+  "summary": "二维随机变量独立的定义及用联合分布、边缘分布（密度、分布律）判别的等价条件。",
+  "conditions": "离散型用 pᵢⱼ=pᵢ·p·ⱼ，连续型用密度乘积（几乎处处）。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 160
+  }
+}

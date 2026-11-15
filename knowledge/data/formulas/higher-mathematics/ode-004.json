@@ -1,0 +1,20 @@
+{
+  "id": "ode-004",
+  "subject": "higher-mathematics",
+  "chapter": "常微分方程",
+  "name": "伯努利方程",
+  "category": "方程",
+  "importance": 4,
+  "tags": [
+    "微分方程",
+    "伯努利",
+    "变量代换"
+  ],
+  "latex": "y'+P(x)y=Q(x)y^n\\ (n\\neq0,1),\\quad z=y^{1-n}\\Rightarrow z'+(1-n)P(x)z=(1-n)Q(x)",
+  "summary": "通过代换 z=y^(1−n) 把伯努利方程化为关于 z 的一阶线性微分方程。",
+  "conditions": "n≠0,1；y>0（涉及非整数幂时）。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 83
+  }
+}

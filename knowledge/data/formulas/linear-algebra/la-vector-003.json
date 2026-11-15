@@ -1,0 +1,20 @@
+{
+  "id": "la-vector-003",
+  "subject": "linear-algebra",
+  "chapter": "向量与向量空间",
+  "name": "线性相关性的判定定理",
+  "category": "判别",
+  "importance": 5,
+  "tags": [
+    "向量",
+    "线性相关",
+    "秩"
+  ],
+  "latex": "\\boldsymbol{\\alpha}_1,\\ldots,\\boldsymbol{\\alpha}_s\\ \\text{线性无关}\\iff r(\\boldsymbol{\\alpha}_1,\\ldots,\\boldsymbol{\\alpha}_s)=s;\\qquad s>n\\Rightarrow\\text{必线性相关}",
+  "summary": "把向量组按列排成矩阵，用矩阵的秩判定；向量个数超过维数时必线性相关。",
+  "conditions": "部分组相关则整体相关；整体无关则部分组无关。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 122
+  }
+}

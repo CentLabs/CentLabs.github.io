@@ -1,0 +1,20 @@
+{
+  "id": "la-vector-008",
+  "subject": "linear-algebra",
+  "chapter": "向量与向量空间",
+  "name": "基变换与坐标变换",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "向量空间",
+    "基",
+    "过渡矩阵"
+  ],
+  "latex": "(\\boldsymbol{\\eta}_1,\\ldots,\\boldsymbol{\\eta}_n)=(\\boldsymbol{\\xi}_1,\\ldots,\\boldsymbol{\\xi}_n)C,\\qquad X=CY",
+  "summary": "两组基之间的过渡矩阵 C 为可逆矩阵；同一向量在两组基下的坐标满足 X=CY。",
+  "conditions": "C 可逆；由标准正交基到标准正交基的过渡矩阵是正交矩阵。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 129
+  }
+}

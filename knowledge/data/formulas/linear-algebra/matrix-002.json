@@ -1,0 +1,20 @@
+{
+  "id": "matrix-002",
+  "subject": "linear-algebra",
+  "chapter": "矩阵",
+  "name": "方阵的幂与转置的性质",
+  "category": "性质",
+  "importance": 4,
+  "tags": [
+    "矩阵",
+    "转置",
+    "幂"
+  ],
+  "latex": "(A^T)^T=A,\\quad(A+B)^T=A^T+B^T,\\quad(AB)^T=B^TA^T,\\quad(kA)^T=kA^T",
+  "summary": "原书在矩阵运算部分列出的转置运算规律，特别注意乘积转置需反序。",
+  "conditions": "运算在维数相容时成立。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 104
+  }
+}

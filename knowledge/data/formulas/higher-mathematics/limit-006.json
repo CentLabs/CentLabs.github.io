@@ -1,0 +1,20 @@
+{
+  "id": "limit-006",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "数列极限的定义",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "极限",
+    "数列",
+    "ε-N"
+  ],
+  "latex": "\\lim_{n\\to\\infty}x_n=A\\iff\\forall\\varepsilon>0,\\ \\exists N\\in\\mathbb{N},\\ n>N\\Rightarrow|x_n-A|<\\varepsilon",
+  "summary": "数列 {xₙ} 收敛于常数 A 的 ε-N 定义：任意给定 ε>0，存在正整数 N，使得 n>N 时恒有 |xₙ−A|<ε。",
+  "conditions": "A 为有限常数；ε 可以任意小。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 13
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "prob-027",
+  "subject": "probability-statistics",
+  "chapter": "随机变量的数字特征",
+  "name": "数学期望的性质",
+  "category": "性质",
+  "importance": 4,
+  "tags": [
+    "期望",
+    "线性性质",
+    "独立性"
+  ],
+  "latex": "E(C)=C,\\quad E(aX+bY)=aE(X)+bE(Y),\\quad E(XY)=E(X)E(Y)\\ (X\\perp Y)",
+  "summary": "期望的线性性质不要求独立；乘积的期望等于期望之积则需 X 与 Y 独立。",
+  "conditions": "各期望存在；乘积情形要求独立。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 164
+  }
+}

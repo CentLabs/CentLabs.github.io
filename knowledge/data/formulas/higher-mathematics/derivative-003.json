@@ -1,0 +1,15 @@
+{
+  "id": "derivative-003",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "莱布尼茨公式",
+  "category": "高阶导数",
+  "importance": 3,
+  "tags": ["高阶导数", "莱布尼茨", "乘积求导"],
+  "latex": "(uv)^{(n)}=\\sum_{k=0}^{n}C_n^{k}\\,u^{(n-k)}v^{(k)}",
+  "summary": "两个函数乘积的 n 阶导数公式，是二项式定理在求导中的类比。",
+  "explanation": "设 u=u(x)、v=v(x) 均 n 阶可导，则其乘积的 n 阶导数可表示为各阶导数线性组合，系数为组合数 C(n,k)。",
+  "conditions": "u、v 均 n 阶可导。",
+  "notes": "与二项式定理 (u+v)^n 形式完全类比，是记忆要点。",
+  "source": { "book": "张宇数学公式手册", "page": 24 }
+}

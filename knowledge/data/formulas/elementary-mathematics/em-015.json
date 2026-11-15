@@ -1,0 +1,21 @@
+{
+  "id": "em-015",
+  "subject": "elementary-mathematics",
+  "chapter": "平面解析几何",
+  "name": "二次曲线的标准方程",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "解析几何",
+    "椭圆",
+    "双曲线",
+    "抛物线"
+  ],
+  "latex": "\\frac{x^2}{a^2}+\\frac{y^2}{b^2}=1;\\quad\\frac{x^2}{a^2}-\\frac{y^2}{b^2}=1;\\quad y^2=2px;\\qquad c^2=a^2-b^2\\ (\\text{椭圆})",
+  "summary": "原书在平面解析几何部分列出的圆、椭圆、双曲线、抛物线的标准方程及相关几何量。",
+  "conditions": "a、b、p 为正参数。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 189
+  }
+}

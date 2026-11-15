@@ -1,0 +1,19 @@
+{
+  "id": "series-004",
+  "subject": "higher-mathematics",
+  "chapter": "无穷级数",
+  "name": "正项级数的比较判别法",
+  "category": "判别",
+  "importance": 5,
+  "tags": [
+    "正项级数",
+    "比较判别法"
+  ],
+  "latex": "0\\le u_n\\le v_n:\\ \\sum v_n<\\infty\\Rightarrow\\sum u_n<\\infty;\\qquad\\lim_{n\\to\\infty}\\frac{u_n}{v_n}=l\\in(0,+\\infty)\\Rightarrow\\sum u_n\\sim\\sum v_n",
+  "summary": "通过与已知敛散性的正项级数比较（或取比值的极限）判定敛散性。",
+  "conditions": "通项非负；极限形式要求 l 为有限正数。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 70
+  }
+}

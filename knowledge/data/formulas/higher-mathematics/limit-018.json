@@ -1,0 +1,21 @@
+{
+  "id": "limit-018",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "函数连续的定义",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "连续",
+    "定义",
+    "增量"
+  ],
+  "latex": "\\lim_{\\Delta x\\to0}\\Delta y=\\lim_{\\Delta x\\to0}\\big[f(x_0+\\Delta x)-f(x_0)\\big]=0\\iff\\lim_{x\\to x_0}f(x)=f(x_0)",
+  "summary": "函数在 x₀ 连续等价于增量趋于零，也等价于极限值等于函数值。",
+  "conditions": "要求函数在 x₀ 的某邻域内有定义。",
+  "notes": "左连续、右连续分别用左极限、右极限定义。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 18
+  }
+}

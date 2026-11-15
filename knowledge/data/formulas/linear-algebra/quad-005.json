@@ -1,0 +1,20 @@
+{
+  "id": "quad-005",
+  "subject": "linear-algebra",
+  "chapter": "二次型",
+  "name": "用正交变换化实二次型为标准形",
+  "category": "计算",
+  "importance": 5,
+  "tags": [
+    "二次型",
+    "正交变换",
+    "特征值"
+  ],
+  "latex": "Q^TAQ=\\Lambda=\\mathrm{diag}(\\lambda_1,\\ldots,\\lambda_n),\\qquad \\boldsymbol{x}=Q\\boldsymbol{y}\\Rightarrow f=\\sum_{i=1}^{n}\\lambda_iy_i^2",
+  "summary": "求出实对称矩阵 A 的特征值并构造正交矩阵 Q，用正交变换 x=Qy 把二次型化为以特征值为系数的标准形。",
+  "conditions": "Q 为正交矩阵；正交变换保持向量长度不变。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 142
+  }
+}

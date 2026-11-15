@@ -1,0 +1,20 @@
+{
+  "id": "ode-008",
+  "subject": "higher-mathematics",
+  "chapter": "常微分方程",
+  "name": "二阶常系数非齐次线性微分方程",
+  "category": "方程",
+  "importance": 4,
+  "tags": [
+    "微分方程",
+    "非齐次",
+    "待定系数法"
+  ],
+  "latex": "y''+py'+qy=e^{\\lambda x}P_m(x)\\Rightarrow y^*=x^k e^{\\lambda x}Q_m(x),\\quad k=\\begin{cases}0,&\\lambda\\ \\mathrm{not\\ a\\ root}\\\\1,&\\lambda\\ \\mathrm{single\\ root}\\\\2,&\\lambda\\ \\mathrm{double\\ root}\\end{cases}",
+  "summary": "自由项为指数函数乘多项式时，用待定系数法设特解；k 由 λ 是否为特征根及其重数决定。",
+  "conditions": "Q_m 为与 P_m 同次的待定多项式。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 88
+  }
+}

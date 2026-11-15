@@ -1,0 +1,21 @@
+{
+  "id": "vector-004",
+  "subject": "higher-mathematics",
+  "chapter": "向量代数与空间解析几何",
+  "name": "两向量夹角与平行垂直条件",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "向量",
+    "夹角",
+    "垂直",
+    "平行"
+  ],
+  "latex": "\\cos\\theta=\\frac{\\boldsymbol{a}\\cdot\\boldsymbol{b}}{|\\boldsymbol{a}||\\boldsymbol{b}|};\\qquad \\boldsymbol{a}\\perp\\boldsymbol{b}\\iff\\boldsymbol{a}\\cdot\\boldsymbol{b}=0;\\qquad \\boldsymbol{a}\\parallel\\boldsymbol{b}\\iff\\boldsymbol{a}\\times\\boldsymbol{b}=\\boldsymbol{0}",
+  "summary": "由数量积求夹角余弦；点积为零对应垂直，叉积为零对应平行。",
+  "conditions": "a、b 为非零向量。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 48
+  }
+}

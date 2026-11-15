@@ -1,0 +1,20 @@
+{
+  "id": "multi-005",
+  "subject": "higher-mathematics",
+  "chapter": "多元函数微分学",
+  "name": "方向导数与梯度",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "方向导数",
+    "梯度",
+    "多元函数"
+  ],
+  "latex": "\\frac{\\partial f}{\\partial \\boldsymbol{l}}=f_x\\cos\\alpha+f_y\\cos\\beta+f_z\\cos\\gamma=\\nabla f\\cdot\\boldsymbol{e}_l,\\qquad \\nabla f=(f_x,f_y,f_z)",
+  "summary": "函数沿方向 l 的变化率等于梯度在该方向上的投影；梯度方向是函数增长最快的方向。",
+  "conditions": "f 可微，方向向量取单位向量。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 55
+  }
+}

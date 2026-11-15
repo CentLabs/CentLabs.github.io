@@ -1,0 +1,20 @@
+{
+  "id": "la-vector-007",
+  "subject": "linear-algebra",
+  "chapter": "向量与向量空间",
+  "name": "正交矩阵",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "矩阵",
+    "正交矩阵",
+    "标准正交"
+  ],
+  "latex": "A^TA=AA^T=E\\iff A^{-1}=A^T\\iff A\\ \\text{的列（行）向量组为标准正交向量组}",
+  "summary": "满足 AᵀA=E 的实方阵称为正交矩阵，其行列式为 ±1，对应两组标准正交基之间的过渡矩阵。",
+  "conditions": "A 为实方阵。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 127
+  }
+}

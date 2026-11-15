@@ -1,0 +1,20 @@
+{
+  "id": "em-011",
+  "subject": "elementary-mathematics",
+  "chapter": "三角函数",
+  "name": "倍角公式与半角公式",
+  "category": "恒等式",
+  "importance": 4,
+  "tags": [
+    "三角函数",
+    "倍角",
+    "半角"
+  ],
+  "latex": "\\sin2\\alpha=2\\sin\\alpha\\cos\\alpha,\\quad\\cos2\\alpha=\\cos^2\\alpha-\\sin^2\\alpha=2\\cos^2\\alpha-1=1-2\\sin^2\\alpha,\\quad\\sin^2\\frac{\\alpha}{2}=\\frac{1-\\cos\\alpha}{2}",
+  "summary": "二倍角与半角公式，常用于积分中的三角恒等变形。",
+  "conditions": "半角公式开方时符号由角所在象限决定。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 185
+  }
+}

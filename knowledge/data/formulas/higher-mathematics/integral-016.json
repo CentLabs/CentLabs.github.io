@@ -1,0 +1,20 @@
+{
+  "id": "integral-016",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "平面曲线段的弧长",
+  "category": "应用",
+  "importance": 3,
+  "tags": [
+    "定积分",
+    "弧长",
+    "极坐标"
+  ],
+  "latex": "s=\\int_a^b\\sqrt{1+y'^2}\\,\\mathrm{d}x=\\int_{\\alpha}^{\\beta}\\sqrt{r^2+r'^2}\\,\\mathrm{d}\\theta",
+  "summary": "直角坐标与极坐标下平面曲线弧长的计算公式。",
+  "conditions": "曲线光滑（一阶导数连续）。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 44
+  }
+}

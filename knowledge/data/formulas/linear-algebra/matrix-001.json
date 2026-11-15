@@ -1,0 +1,21 @@
+{
+  "id": "matrix-001",
+  "subject": "linear-algebra",
+  "chapter": "矩阵",
+  "name": "矩阵的加法、数乘与乘法",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "矩阵",
+    "运算",
+    "乘法"
+  ],
+  "latex": "(AB)_{ij}=\\sum_{k=1}^{n}a_{ik}b_{kj},\\qquad A_{m\\times n}B_{n\\times p}=C_{m\\times p}",
+  "summary": "矩阵乘法要求左矩阵列数等于右矩阵行数；乘积第 i 行第 j 列元素为对应行与列的内积。",
+  "conditions": "AB 有意义时 BA 未必有意义；矩阵乘法不满足交换律与消去律。",
+  "notes": "由 AB=O 不能推出 A=O 或 B=O。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 102
+  }
+}

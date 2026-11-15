@@ -1,0 +1,20 @@
+{
+  "id": "matrix-005",
+  "subject": "linear-algebra",
+  "chapter": "矩阵",
+  "name": "逆矩阵的定义与性质",
+  "category": "定义",
+  "importance": 5,
+  "tags": [
+    "矩阵",
+    "逆矩阵",
+    "性质"
+  ],
+  "latex": "AB=BA=E\\Rightarrow B=A^{-1};\\qquad (AB)^{-1}=B^{-1}A^{-1},\\quad (A^T)^{-1}=(A^{-1})^T",
+  "summary": "满足 AB=BA=E 的矩阵 B 称为 A 的逆矩阵；乘积的逆需反序。",
+  "conditions": "A、B 为同阶方阵且可逆。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 105
+  }
+}

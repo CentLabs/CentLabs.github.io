@@ -1,0 +1,19 @@
+{
+  "id": "prob-023",
+  "subject": "probability-statistics",
+  "chapter": "二维随机变量及其分布",
+  "name": "二维均匀分布与二维正态分布",
+  "category": "分布",
+  "importance": 3,
+  "tags": [
+    "二维均匀分布",
+    "二维正态分布"
+  ],
+  "latex": "f(x,y)=\\begin{cases}\\frac{1}{S_D},&(x,y)\\in D\\\\0,&\\text{otherwise}\\end{cases};\\qquad f(x,y)=\\frac{1}{2\\pi\\sigma_1\\sigma_2\\sqrt{1-\\rho^2}}\\exp\\Big\\{-\\frac{1}{2(1-\\rho^2)}\\Big[\\frac{(x-\\mu_1)^2}{\\sigma_1^2}-\\frac{2\\rho(x-\\mu_1)(y-\\mu_2)}{\\sigma_1\\sigma_2}+\\frac{(y-\\mu_2)^2}{\\sigma_2^2}\\Big]\\Big\\}",
+  "summary": "原书在二维常见分布部分列出二维均匀分布与二维正态分布的联合概率密度。",
+  "conditions": "二维正态分布要求 σ₁,σ₂>0，|ρ|<1。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 161
+  }
+}

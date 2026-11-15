@@ -1,0 +1,20 @@
+{
+  "id": "prob-044",
+  "subject": "probability-statistics",
+  "chapter": "数理统计基本概念",
+  "name": "χ² 分布",
+  "category": "分布",
+  "importance": 4,
+  "tags": [
+    "卡方分布",
+    "抽样分布",
+    "正态总体"
+  ],
+  "latex": "\\chi^2=X_1^2+\\cdots+X_n^2\\sim\\chi^2(n),\\qquad E\\chi^2=n,\\quad D\\chi^2=2n;\\qquad \\frac{(n-1)S^2}{\\sigma^2}\\sim\\chi^2(n-1)",
+  "summary": "n 个独立标准正态变量平方和服从自由度 n 的 χ² 分布；正态总体样本方差满足上述抽样分布。",
+  "conditions": "Xᵢ 独立且服从 N(0,1)；总体为正态分布。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 172
+  }
+}

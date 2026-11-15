@@ -1,0 +1,20 @@
+{
+  "id": "limit-021",
+  "subject": "higher-mathematics",
+  "chapter": "函数、极限、连续",
+  "name": "介值定理",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "连续",
+    "介值",
+    "零点"
+  ],
+  "latex": "f\\in C[a,b],\\ \\mu\\in\\Big(\\min\\{f(a),f(b)\\},\\max\\{f(a),f(b)\\}\\Big)\\Rightarrow\\exists\\xi\\in(a,b):f(\\xi)=\\mu",
+  "summary": "闭区间上连续函数必取得介于两端值之间的一切值；取 μ=0 即为零点定理。",
+  "conditions": "f(a)≠f(b) 时取开区间内的 μ。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 20
+  }
+}

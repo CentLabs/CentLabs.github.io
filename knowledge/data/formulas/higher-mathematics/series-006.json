@@ -1,0 +1,20 @@
+{
+  "id": "series-006",
+  "subject": "higher-mathematics",
+  "chapter": "无穷级数",
+  "name": "正项级数的根值判别法",
+  "category": "判别",
+  "importance": 4,
+  "tags": [
+    "正项级数",
+    "根值判别法",
+    "柯西"
+  ],
+  "latex": "\\lim_{n\\to\\infty}\\sqrt[n]{u_n}=\\rho:\\quad\\rho<1\\Rightarrow\\mathrm{convergent},\\quad\\rho>1\\Rightarrow\\mathrm{divergent},\\quad\\rho=1\\Rightarrow\\mathrm{inconclusive}",
+  "summary": "把比值判别法中的比值换成 n 次根即得根值判别法，结论与文字叙述均不变。",
+  "conditions": "通项非负；适用于通项含 n 次幂的情形。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 71
+  }
+}

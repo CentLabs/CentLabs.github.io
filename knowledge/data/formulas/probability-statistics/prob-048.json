@@ -1,0 +1,20 @@
+{
+  "id": "prob-048",
+  "subject": "probability-statistics",
+  "chapter": "参数估计",
+  "name": "最大似然估计法",
+  "category": "估计",
+  "importance": 5,
+  "tags": [
+    "最大似然估计",
+    "似然函数",
+    "对数似然"
+  ],
+  "latex": "L(\\theta)=\\prod_{i=1}^{n}f(x_i;\\theta),\\qquad \\frac{\\mathrm{d}\\ln L(\\theta)}{\\mathrm{d}\\theta}=0\\Rightarrow\\hat\\theta_{\\mathrm{MLE}}",
+  "summary": "构造样本似然函数（连续型为联合密度、离散型为联合分布律），取使其达到最大的参数值作为估计。",
+  "conditions": "似然函数可微；驻点不在参数空间内时需考察边界。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 174
+  }
+}

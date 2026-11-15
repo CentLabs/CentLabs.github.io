@@ -1,0 +1,16 @@
+{
+  "id": "integral-004",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "第一换元积分法（凑微分法）",
+  "category": "积分方法",
+  "importance": 4,
+  "tags": ["不定积分", "换元积分", "凑微分"],
+  "latex": "\\int f[\\varphi(x)]\\,\\varphi'(x)\\,dx=\\int f(u)\\,du,\\quad u=\\varphi(x)",
+  "summary": "把被积函数凑成复合函数与内层导数之积的形式后积分。",
+  "explanation": "第一换元积分法（凑微分法）是复合函数求导的逆过程，通过凑出内层函数的微分 du = φ'(x)dx 来简化积分。",
+  "conditions": "被积函数能写成 f[φ(x)]·φ'(x) 的形式，且 ∫f(u)du 可求。",
+  "notes": "核心是识别被积函数中哪部分是某个函数的导数，凑出 du。",
+  "example": "求 ∫sin(2x) dx。解：= (1/2)∫sin(2x) d(2x) = -(1/2)cos(2x) + C。",
+  "source": { "book": "张宇数学公式手册", "page": 24 }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "quad-001",
+  "subject": "linear-algebra",
+  "chapter": "二次型",
+  "name": "二次型的定义与矩阵表示",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "二次型",
+    "矩阵表示",
+    "实对称"
+  ],
+  "latex": "f(x_1,\\ldots,x_n)=\\boldsymbol{x}^TA\\boldsymbol{x}=\\sum_{i,j=1}^{n}a_{ij}x_ix_j,\\qquad A^T=A",
+  "summary": "二次型可唯一地用实对称矩阵 A 表示，A 称为二次型的矩阵，其秩称为二次型的秩。",
+  "conditions": "A 必须取实对称矩阵表示才唯一。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 140
+  }
+}

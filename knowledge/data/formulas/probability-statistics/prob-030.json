@@ -1,0 +1,20 @@
+{
+  "id": "prob-030",
+  "subject": "probability-statistics",
+  "chapter": "随机变量的数字特征",
+  "name": "常见分布的数字特征",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "数字特征",
+    "常见分布",
+    "期望方差"
+  ],
+  "latex": "X\\sim B(n,p):\\ EX=np,\\ DX=np(1-p);\\qquad X\\sim P(\\lambda):\\ EX=DX=\\lambda;\\qquad X\\sim N(\\mu,\\sigma^2):\\ EX=\\mu,\\ DX=\\sigma^2",
+  "summary": "原书在数字特征部分汇总的常见分布期望与方差，是解题时最常用的查表结论。",
+  "conditions": "各分布参数满足其定义域要求。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 167
+  }
+}

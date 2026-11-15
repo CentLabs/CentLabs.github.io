@@ -1,0 +1,21 @@
+{
+  "id": "prob-029",
+  "subject": "probability-statistics",
+  "chapter": "随机变量的数字特征",
+  "name": "协方差与相关系数",
+  "category": "公式",
+  "importance": 5,
+  "tags": [
+    "协方差",
+    "相关系数",
+    "不相关"
+  ],
+  "latex": "\\operatorname{Cov}(X,Y)=E(XY)-E(X)E(Y),\\qquad \\rho_{XY}=\\frac{\\operatorname{Cov}(X,Y)}{\\sqrt{D(X)}\\sqrt{D(Y)}},\\qquad |\\rho_{XY}|\\le1",
+  "summary": "协方差与相关系数刻画两个随机变量的线性相关程度；ρ=0 称不相关。",
+  "conditions": "D(X)、D(Y) 均大于零。",
+  "notes": "独立必不相关，不相关一般不能推出独立（二维正态情形例外）。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 167
+  }
+}

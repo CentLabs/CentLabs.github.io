@@ -1,0 +1,20 @@
+{
+  "id": "series-010",
+  "subject": "higher-mathematics",
+  "chapter": "无穷级数",
+  "name": "幂级数的常用展开式",
+  "category": "展开式",
+  "importance": 5,
+  "tags": [
+    "幂级数",
+    "展开式",
+    "麦克劳林级数"
+  ],
+  "latex": "\\frac{1}{1-x}=\\sum_{n=0}^{\\infty}x^n,\\quad e^x=\\sum_{n=0}^{\\infty}\\frac{x^n}{n!},\\quad\\sin x=\\sum_{n=0}^{\\infty}\\frac{(-1)^nx^{2n+1}}{(2n+1)!},\\quad\\ln(1+x)=\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}x^n}{n}",
+  "summary": "原书在幂级数部分列出七个常用函数的展开式，是把函数展开成幂级数和求级数和的基础。",
+  "conditions": "各展开式有对应的收敛域，几何级数要求 |x|<1。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 78
+  }
+}

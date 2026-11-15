@@ -1,0 +1,20 @@
+{
+  "id": "ode-009",
+  "subject": "higher-mathematics",
+  "chapter": "常微分方程",
+  "name": "欧拉方程",
+  "category": "方程",
+  "importance": 3,
+  "tags": [
+    "微分方程",
+    "欧拉方程",
+    "变量代换"
+  ],
+  "latex": "x^2y''+pxy'+qy=f(x),\\quad x=e^t\\Rightarrow\\frac{\\mathrm{d}^2y}{\\mathrm{d}t^2}+(p-1)\\frac{\\mathrm{d}y}{\\mathrm{d}t}+qy=f(e^t)",
+  "summary": "通过代换 x=eᵗ 把变系数的欧拉方程化为常系数线性微分方程。",
+  "conditions": "x>0；x<0 时令 x=−eᵗ。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 89
+  }
+}

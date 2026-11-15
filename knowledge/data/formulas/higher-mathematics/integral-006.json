@@ -1,0 +1,21 @@
+{
+  "id": "integral-006",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数积分学",
+  "name": "第二换元积分法",
+  "category": "计算",
+  "importance": 4,
+  "tags": [
+    "不定积分",
+    "换元",
+    "第二换元"
+  ],
+  "latex": "x=\\varphi(t):\\quad\\int f(x)\\,\\mathrm{d}x=\\int f\\big(\\varphi(t)\\big)\\varphi'(t)\\,\\mathrm{d}t",
+  "summary": "通过作变量代换 x=φ(t) 化去根式或三角结构，求出结果后再回代。",
+  "conditions": "φ 单调可导且 φ′(t)≠0；回代时需用反函数。",
+  "notes": "常用于含 √(a²−x²)、√(x²+a²) 等根式的积分。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 34
+  }
+}

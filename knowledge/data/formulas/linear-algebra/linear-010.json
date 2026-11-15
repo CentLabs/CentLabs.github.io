@@ -1,0 +1,20 @@
+{
+  "id": "linear-010",
+  "subject": "linear-algebra",
+  "chapter": "行列式",
+  "name": "拉普拉斯展开式",
+  "category": "定理",
+  "importance": 3,
+  "tags": [
+    "行列式",
+    "拉普拉斯",
+    "分块"
+  ],
+  "latex": "|A|=\\sum_{1\\le j_1<\\cdots<j_k\\le n}(-1)^{\\sum i_\\alpha+\\sum j_\\beta}\\det A\\begin{pmatrix}i_1\\cdots i_k\\\\j_1\\cdots j_k\\end{pmatrix}\\cdot\\det A\\begin{pmatrix}i_1\\cdots i_k\\\\j_1\\cdots j_k\\end{pmatrix}^{c}",
+  "summary": "取定 k 行，行列式等于这 k 行元素组成的所有 k 阶子式与其代数余子式乘积之和，是按一行展开定理的推广。",
+  "conditions": "常用于分块行列式的计算。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 97
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "vector-008",
+  "subject": "higher-mathematics",
+  "chapter": "向量代数与空间解析几何",
+  "name": "空间直线的方程",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "空间解析几何",
+    "直线",
+    "方程"
+  ],
+  "latex": "\\frac{x-x_0}{m}=\\frac{y-y_0}{n}=\\frac{z-z_0}{p};\\qquad \\begin{cases}x=x_0+mt\\\\y=y_0+nt\\\\z=z_0+pt\\end{cases}",
+  "summary": "空间直线的对称式（标准式）与参数式方程，(m,n,p) 为方向向量。",
+  "conditions": "对称式要求方向向量各分量非零；为零时分子相应写为等式。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 49
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "em-007",
+  "subject": "elementary-mathematics",
+  "chapter": "初等几何",
+  "name": "三角形与梯形的面积",
+  "category": "公式",
+  "importance": 3,
+  "tags": [
+    "几何",
+    "三角形",
+    "面积"
+  ],
+  "latex": "S_{\\triangle}=\\frac{1}{2}ah=\\frac{1}{2}ab\\sin C=\\sqrt{p(p-a)(p-b)(p-c)},\\quad p=\\frac{a+b+c}{2};\\qquad S_{\\text{梯形}}=\\frac{a+b}{2}h",
+  "summary": "三角形面积的多种形式（底高、两边夹角、海伦公式）与梯形面积公式。",
+  "conditions": "海伦公式要求三边可构成三角形。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 182
+  }
+}

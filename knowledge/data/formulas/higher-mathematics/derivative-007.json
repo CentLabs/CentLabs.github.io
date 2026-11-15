@@ -1,0 +1,20 @@
+{
+  "id": "derivative-007",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "微分的定义式",
+  "category": "定义",
+  "importance": 4,
+  "tags": [
+    "微分",
+    "导数",
+    "定义"
+  ],
+  "latex": "\\mathrm{d}y=f'(x)\\,\\mathrm{d}x,\\qquad \\Delta y=f'(x)\\Delta x+o(\\Delta x)",
+  "summary": "函数增量可分解为线性主部（微分）与高阶无穷小两部分，可微的充要条件是可导。",
+  "conditions": "f 在 x 处可导。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 21
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "vector-007",
+  "subject": "higher-mathematics",
+  "chapter": "向量代数与空间解析几何",
+  "name": "点到平面的距离",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "空间解析几何",
+    "距离",
+    "平面"
+  ],
+  "latex": "d=\\frac{|Ax_0+By_0+Cz_0+D|}{\\sqrt{A^2+B^2+C^2}}",
+  "summary": "点 (x₀,y₀,z₀) 到平面 Ax+By+Cz+D=0 的距离。",
+  "conditions": "平面方程为一般式，A、B、C 不全为零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 49
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "la-eq-002",
+  "subject": "linear-algebra",
+  "chapter": "线性方程组",
+  "name": "克拉默法则",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "线性方程组",
+    "克拉默法则",
+    "行列式"
+  ],
+  "latex": "|A|\\neq0\\Rightarrow x_j=\\frac{|A_j|}{|A|}\\quad(j=1,2,\\ldots,n)",
+  "summary": "系数行列式非零时，方程组有唯一解，解由常数列替换第 j 列所得行列式与系数行列式之商给出。",
+  "conditions": "方程个数等于未知量个数且 |A|≠0。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 133
+  }
+}

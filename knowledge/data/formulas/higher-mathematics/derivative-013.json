@@ -1,0 +1,19 @@
+{
+  "id": "derivative-013",
+  "subject": "higher-mathematics",
+  "chapter": "一元函数微分学",
+  "name": "罗尔定理",
+  "category": "定理",
+  "importance": 4,
+  "tags": [
+    "中值定理",
+    "罗尔"
+  ],
+  "latex": "f\\in C[a,b],\\ f\\in D(a,b),\\ f(a)=f(b)\\Rightarrow\\exists\\xi\\in(a,b):f'(\\xi)=0",
+  "summary": "闭区间连续、开区间可导且端点值相等，则区间内至少存在一点导数为零。",
+  "conditions": "三个条件缺一不可。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 25
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "curveint-003",
+  "subject": "higher-mathematics",
+  "chapter": "曲线积分与曲面积分",
+  "name": "曲线积分与路径无关的条件",
+  "category": "定理",
+  "importance": 5,
+  "tags": [
+    "曲线积分",
+    "路径无关",
+    "全微分"
+  ],
+  "latex": "\\frac{\\partial P}{\\partial y}=\\frac{\\partial Q}{\\partial x}\\iff\\oint_L P\\,\\mathrm{d}x+Q\\,\\mathrm{d}y=0\\iff\\exists u:\\ \\mathrm{d}u=P\\mathrm{d}x+Q\\mathrm{d}y",
+  "summary": "在单连通区域内，偏导数相等、沿任意闭曲线积分为零、被积式为某函数的全微分，三者等价。",
+  "conditions": "区域必须是单连通的，P、Q 有一阶连续偏导数。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 65
+  }
+}

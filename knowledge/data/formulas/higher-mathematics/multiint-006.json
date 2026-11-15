@@ -1,0 +1,20 @@
+{
+  "id": "multiint-006",
+  "subject": "higher-mathematics",
+  "chapter": "重积分",
+  "name": "重积分的物理应用（质心）",
+  "category": "应用",
+  "importance": 3,
+  "tags": [
+    "重积分",
+    "质心",
+    "物理应用"
+  ],
+  "latex": "\\bar{x}=\\frac{\\iiint_{\\Omega}x\\rho\\,\\mathrm{d}v}{\\iiint_{\\Omega}\\rho\\,\\mathrm{d}v},\\quad \\bar{y}=\\frac{\\iiint_{\\Omega}y\\rho\\,\\mathrm{d}v}{\\iiint_{\\Omega}\\rho\\,\\mathrm{d}v},\\quad \\bar{z}=\\frac{\\iiint_{\\Omega}z\\rho\\,\\mathrm{d}v}{\\iiint_{\\Omega}\\rho\\,\\mathrm{d}v}",
+  "summary": "原书在重积分的应用部分给出质心、转动惯量、引力等物理量的积分表达式。",
+  "conditions": "ρ 为密度函数，分母为总质量。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 62
+  }
+}

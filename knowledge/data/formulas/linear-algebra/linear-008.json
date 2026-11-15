@@ -1,0 +1,20 @@
+{
+  "id": "linear-008",
+  "subject": "linear-algebra",
+  "chapter": "行列式",
+  "name": "三角形与对角形行列式",
+  "category": "公式",
+  "importance": 4,
+  "tags": [
+    "行列式",
+    "上三角",
+    "对角"
+  ],
+  "latex": "\\begin{vmatrix}a_{11}&a_{12}&\\cdots&a_{1n}\\\\0&a_{22}&\\cdots&a_{2n}\\\\\\vdots&&\\ddots&\\vdots\\\\0&0&\\cdots&a_{nn}\\end{vmatrix}=a_{11}a_{22}\\cdots a_{nn}",
+  "summary": "上（下）三角形行列式与对角形行列式的值等于主对角线上元素的乘积。",
+  "conditions": "主对角线一侧元素全为零。",
+  "source": {
+    "book": "张宇数学公式手册",
+    "page": 95
+  }
+}
