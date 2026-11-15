@@ -177,16 +177,43 @@ a:hover{text-decoration:underline}
 @keyframes kb-rotate{to{transform:rotate(360deg)}}
 
 /* ---------- 三栏阅读布局 ---------- */
-.kb-read-layout{display:grid;grid-template-columns:250px minmax(0,1fr) 270px;gap:22px;align-items:start}
+.kb-read-layout{display:grid;grid-template-columns:220px minmax(0,1fr) 240px;gap:20px;align-items:start}
+/* 显式固定三列位置：左栏=第1列、正文=第2列、右栏=第3列，
+   避免任一子项 display:none 后其余子项自动前移错位 */
+.kb-read-side{grid-column:1}
+.kb-read-layout > div:not(.kb-side-mask){grid-column:2;min-width:0}
+.kb-read-aside{grid-column:3}
 .kb-read-side{position:sticky;top:calc(var(--nav-h) + 16px);max-height:calc(100vh - var(--nav-h) - 32px);
   overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-  padding:14px;box-shadow:var(--shadow-sm)}
-.kb-read-side h4{margin:10px 6px 6px;font-size:11px;color:var(--text-3);letter-spacing:1.5px;text-transform:uppercase}
-.kb-read-side .toc-item{display:block;padding:6px 9px;border-radius:7px;font-size:12.5px;
-  color:var(--text-2);cursor:pointer;line-height:1.5;border:1px solid transparent;word-break:break-all}
+  padding:12px;box-shadow:var(--shadow-sm)}
+
+/* 目录树：分组（来源文件/章节目录）与章节（章）均可折叠 */
+.kb-read-side .toc-group{margin-bottom:6px}
+.kb-read-side .toc-group-head,.kb-read-side .toc-chapter-head{
+  display:flex;align-items:center;gap:6px;padding:7px 8px;border-radius:7px;
+  font-size:12.5px;font-weight:600;color:var(--text);cursor:pointer;user-select:none;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kb-read-side .toc-group-head{font-size:11px;color:var(--text-3);letter-spacing:1px;text-transform:uppercase}
+.kb-read-side .toc-group-head:hover,.kb-read-side .toc-chapter-head:hover{background:var(--surface-2)}
+.kb-read-side .arw{flex:none;width:14px;font-size:10px;color:var(--text-3);transition:transform .15s}
+.kb-read-side .toc-group-body,.kb-read-side .toc-chapter-body{display:none;padding-left:8px;margin-top:2px}
+.kb-read-side .toc-group.open > .toc-group-body{display:block}
+.kb-read-side .toc-chapter.open > .toc-chapter-body{display:block}
+.kb-read-side .toc-chapter-body .toc-item,
+.kb-read-side .toc-group-body > .toc-item,
+.kb-read-side .toc-group-body .toc-chapter > .toc-item{padding-left:16px}
+
+.kb-read-side .toc-item{display:block;padding:5px 8px;border-radius:6px;font-size:12.5px;
+  color:var(--text-2);cursor:pointer;line-height:1.45;border:1px solid transparent;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kb-read-side .toc-item:hover{background:var(--surface-2);color:var(--text)}
-.kb-read-side .toc-item.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.kb-read-side .toc-item.on,.kb-read-side .toc-chapter-head.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
 .kb-read-side .toc-item .no{color:var(--text-3);font-size:11px;margin-right:5px}
+.kb-read-side .toc-leaf{border-left:1px solid var(--line);border-radius:0 6px 6px 0;margin-left:6px}
+/* 无子节的章：可点击章节点（无箭头、直接跳转） */
+.kb-read-side .toc-chapter-leaf{font-weight:600;color:var(--text);margin-top:2px}
+.kb-read-side .toc-chapter-leaf:hover{color:var(--accent)}
+
 .kb-read-aside{position:sticky;top:calc(var(--nav-h) + 16px);display:flex;flex-direction:column;gap:14px}
 .kb-aside-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
   padding:14px 16px;box-shadow:var(--shadow-sm);font-size:13px}
@@ -203,9 +230,24 @@ a:hover{text-decoration:underline}
 /* 遮罩层：始终 fixed，脱离 grid 布局流（否则会占 grid 格子，把正文挤到右侧） */
 .kb-side-mask{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:199;display:none}
 .kb-side-mask.show{display:block}
-@media(max-width:1180px){.kb-read-layout{grid-template-columns:220px minmax(0,1fr)}.kb-read-aside{display:none}}
+
+/* 正文列顶部工具条：折叠目录按钮 + 移动端目录按钮，普通流式布局（不悬浮） */
+.kb-col-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.kb-side-toggle .kb-btn{font-size:12px;padding:5px 11px;background:var(--surface);box-shadow:var(--shadow-sm)}
+/* 收起态：左栏隐藏、正文变宽（子项位置仍由 grid-column 固定，不错位） */
+.kb-read-layout.side-collapsed{grid-template-columns:0 minmax(0,1fr) 240px}
+.kb-read-layout.side-collapsed .kb-read-side{display:none}
+@media(max-width:1180px){
+  .kb-read-layout{grid-template-columns:220px minmax(0,1fr)}
+  .kb-read-aside{display:none}
+  .kb-read-layout.side-collapsed{grid-template-columns:0 minmax(0,1fr)}
+}
 @media(max-width:860px){
   .kb-read-layout{grid-template-columns:1fr}
+  .kb-read-side{grid-column:auto}
+  .kb-read-layout > div:not(.kb-side-mask){grid-column:auto}
+  .kb-read-aside{grid-column:auto}
+  .kb-side-toggle{display:none}
   .kb-read-side{position:fixed;left:0;top:0;bottom:0;width:290px;max-height:none;z-index:200;
     border-radius:0 14px 14px 0;transform:translateX(-105%);transition:transform .25s ease;box-shadow:var(--shadow-lg)}
   .kb-read-side.open{transform:translateX(0)}
@@ -260,6 +302,26 @@ html[data-theme="dark"] .kb-prose h3{color:#a98bff}
   display:flex;gap:8px;align-items:flex-start}
 .kb-src-mark .ic{flex:none;font-size:14px}
 .kb-src-mark .path{word-break:break-all}
+/* 关键词/术语高亮（reader.js 智能渲染注入） */
+.kb-prose .kb-term{color:var(--accent);font-weight:600}
+.kb-prose .kb-term.warn{color:var(--warn)}
+html[data-theme="dark"] .kb-prose .kb-term{color:#8ab0ff}
+html[data-theme="dark"] .kb-prose .kb-term.warn{color:#e8b24a}
+/* 目录条目（OCR 目录页「标题……页码」） */
+.kb-prose .kb-toc-entry{display:flex;align-items:baseline;gap:8px;margin:4px 0;
+  padding:4px 8px;border-radius:6px;font-size:14px;color:var(--text-2);line-height:1.6}
+.kb-prose .kb-toc-entry .t{flex:1;min-width:0;word-break:break-word}
+.kb-prose .kb-toc-entry .p{flex:none;color:var(--text-3);font-size:12.5px;font-variant-numeric:tabular-nums}
+.kb-prose .kb-toc-entry + .kb-toc-entry{margin-top:2px}
+.kb-prose .kb-toc-entry:hover{background:var(--surface-2)}
+.kb-prose .kb-toc-entry.clickable{cursor:pointer}
+.kb-prose .kb-toc-entry.clickable:hover{background:var(--accent-soft)}
+.kb-prose .kb-toc-entry.clickable:hover .t{color:var(--accent)}
+/* 乱码折叠占位（扫描公式/特殊字体，原始文本无法还原） */
+.kb-prose .kb-garbled{display:flex;align-items:center;gap:8px;margin:10px 0;padding:8px 12px;
+  border:1px dashed var(--line-strong);border-radius:8px;background:var(--surface-2);
+  font-size:12.5px;color:var(--text-3);line-height:1.5}
+.kb-prose .kb-garbled .ic{flex:none;font-size:14px}
 .kb-line-hl{background:rgba(255,213,79,.45);border-radius:3px;padding:1px 2px;margin:1px -3px}
 html[data-theme="dark"] .kb-line-hl{background:rgba(120,95,20,.55)}
 mark{background:#ffe58f;color:#1c2230;padding:0 2px;border-radius:2px}

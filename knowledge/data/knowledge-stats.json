@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-14T23:56:41",
+ "generatedAt": "2026-11-15T23:42:26",
  "totalRawFiles": 1124,
  "uniqueExtractedFiles": 623,
  "duplicateExtractedFiles": 190,
@@ -7,7 +7,7 @@
  "scannedFiles": 192,
  "parsedFailedFiles": 73,
  "corpusBlocks": 27,
- "totalCorpusCharacters": 13452588,
+ "totalCorpusCharacters": 12157759,
  "chapterDocuments": 21,
  "chapterCharacters": 1551329,
  "knowledgeCards": 843,
@@ -21,7 +21,7 @@
    "duplicateFiles": 15,
    "parsedFailedFiles": 7,
    "corpusBlocks": 10,
-   "corpusChars": 2401050,
+   "corpusChars": 2075339,
    "chapterDocuments": 6,
    "chapterChars": 508053,
    "knowledgeCards": 353
@@ -35,7 +35,7 @@
    "duplicateFiles": 48,
    "parsedFailedFiles": 66,
    "corpusBlocks": 8,
-   "corpusChars": 9025847,
+   "corpusChars": 8254020,
    "chapterDocuments": 4,
    "chapterChars": 471431,
    "knowledgeCards": 155
@@ -49,7 +49,7 @@
    "duplicateFiles": 1,
    "parsedFailedFiles": 0,
    "corpusBlocks": 3,
-   "corpusChars": 580549,
+   "corpusChars": 499934,
    "chapterDocuments": 6,
    "chapterChars": 254130,
    "knowledgeCards": 70
@@ -63,7 +63,7 @@
    "duplicateFiles": 0,
    "parsedFailedFiles": 0,
    "corpusBlocks": 6,
-   "corpusChars": 1445142,
+   "corpusChars": 1328466,
    "chapterDocuments": 5,
    "chapterChars": 317715,
    "knowledgeCards": 265
