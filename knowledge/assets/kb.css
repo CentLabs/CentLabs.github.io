@@ -317,11 +317,12 @@ html[data-theme="dark"] mark{background:#6b5a1e;color:#fff}
   .kb-prose{border:0;box-shadow:none;padding:0}
 }
 
-/* ---------- 数学学科首页 · 方案 A（作用域隔离，不影响其它学科页/工作台） ----------
+/* ---------- 四大学科首页 · 方案 A（作用域隔离，不影响知识库首页/阅读页/工作台） ----------
    1) auto-fit 折叠空轨道；2) 单卡区块改「介绍 + 信息面板」横向分栏；
-   3) 逐章列表补右侧信息列；4) 修复窄视口 r-title 撑破页面。 */
-body.kb-math-home .kb-cards{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-body.kb-math-home .kb-cards.kb-split{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
+   3) 逐章列表补右侧信息列；4) 修复窄视口 r-title 撑破页面。
+   数学页额外使用 .kb-split / .kb-side（公式库、数一数三专题）。 */
+body.kb-subject-home .kb-cards{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+body.kb-subject-home .kb-cards.kb-split{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
 .kb-split > .kb-card{display:flex;flex-direction:column}
 .kb-split > .kb-card .kb-tag{align-self:flex-start}
 .kb-split > .kb-card .kb-split-cta{margin-top:auto;padding-top:14px}
@@ -346,16 +347,16 @@ body.kb-math-home .kb-cards.kb-split{grid-template-columns:minmax(0,3fr) minmax(
 .kb-side .kb-cover th{color:var(--text-3);font-weight:400;font-size:11.5px}
 .kb-side .kb-cover .yes{color:var(--ok)}
 .kb-side .kb-cover .no{color:var(--text-3)}
-body.kb-math-home .kb-list-row .r-aside{margin-left:auto;display:flex;align-items:center;
+body.kb-subject-home .kb-list-row .r-aside{margin-left:auto;display:flex;align-items:center;
   gap:12px;flex:none;white-space:nowrap;font-size:12px;color:var(--text-3)}
-body.kb-math-home .kb-list-row .r-pill{font-size:11px;padding:2px 9px;border-radius:20px;
+body.kb-subject-home .kb-list-row .r-pill{font-size:11px;padding:2px 9px;border-radius:20px;
   background:var(--surface-2);color:var(--text-2)}
-body.kb-math-home .kb-list-row .r-go{font-size:12.5px;color:var(--accent)}
+body.kb-subject-home .kb-list-row .r-go{font-size:12.5px;color:var(--accent)}
 /* .r-title 原是 inline span，nowrap + overflow:hidden 不生效，390px 视口会撑破整页 */
-body.kb-math-home .kb-list-row .r-title{display:block}
-@media(max-width:900px){body.kb-math-home .kb-cards.kb-split{grid-template-columns:1fr}}
+body.kb-subject-home .kb-list-row .r-title{display:block}
+@media(max-width:900px){body.kb-subject-home .kb-cards.kb-split{grid-template-columns:1fr}}
 @media(max-width:640px){
-  body.kb-math-home .kb-list-row .r-title,
-  body.kb-math-home .kb-list-row .r-sub{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.45}
-  body.kb-math-home .kb-list-row .r-aside{display:none}
+  body.kb-subject-home .kb-list-row .r-title,
+  body.kb-subject-home .kb-list-row .r-sub{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.45}
+  body.kb-subject-home .kb-list-row .r-aside{display:none}
 }
