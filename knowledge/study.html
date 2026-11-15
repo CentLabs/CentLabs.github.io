@@ -127,8 +127,17 @@
 
 <!-- 我的学习 -->
 <section class="kb-wb-view" id="v-mystudy">
-<div class="kb-note">学习数据仅保存在本地浏览器（localStorage），不上传、无需注册。可随时清除。</div>
-<div style="margin-bottom:8px"><button class="kb-btn" id="clearStudy">🗑 清除全部学习数据</button></div>
+<div class="kb-note">学习数据仅保存在本地浏览器（localStorage），不上传、无需注册。导出 JSON 可长期留存；导入会二次确认后覆盖对应记录；清除需二次确认。</div>
+<div class="kb-btn-row" style="flex-wrap:wrap;gap:8px;margin-bottom:10px">
+<button class="kb-btn" id="exportStudy">⬇ 导出 JSON</button>
+<button class="kb-btn" id="importStudy">⬆ 导入 JSON</button>
+<button class="kb-btn" id="backupStudy">💾 创建本地备份</button>
+<button class="kb-btn" id="restoreStudy">↩ 恢复本地备份</button>
+<button class="kb-btn" id="clearStudy">🗑 清除全部学习数据</button>
+<input type="file" id="importStudyFile" accept="application/json,.json" style="display:none">
+</div>
+<div class="kb-note" id="studyDataMsg" style="display:none"></div>
+<div class="kb-note" id="backupInfo" style="font-size:12.5px;color:var(--text-3)"></div>
 <div class="kb-metrics" id="studyMetrics"></div>
 <div class="kb-section"><h2>📅 今日待复习</h2><div id="reviewList"></div></div>
 <div class="kb-section"><h2>❌ 错题本</h2><div id="wrongList"></div></div>
@@ -141,6 +150,28 @@
 <div class="kb-modal-mask" id="kpModal">
 <div class="kb-modal" id="kpModalBody"><button class="close">✕</button><div class="kb-empty">加载中…</div></div>
 </div>
+
+<!-- COS 下载链接失效友好提示（P0-3：不改 href / 不改 COS 结构） -->
+<div class="kb-modal-mask" id="cosModal">
+<div class="kb-modal" style="max-width:520px"><button class="close" id="cosClose">✕</button>
+<h3 style="margin:0 0 8px">⚠️ 下载链接暂时不可用</h3>
+<div class="kb-note" id="cosTip" style="line-height:1.8"></div>
+<div class="kb-note" style="font-size:12.5px;color:var(--text-3);margin-top:8px" id="cosName"></div>
+<div class="kb-btn-row" style="flex-wrap:wrap;gap:8px;margin-top:14px">
+<button class="kb-btn" id="cosCopy">📋 复制链接</button>
+<button class="kb-btn" id="cosTry">↗ 仍要尝试打开</button>
+<button class="kb-btn" id="cosCancel">关闭</button>
+</div></div></div>
+
+<!-- 通用二次确认（P0-4：清除 / 导入 / 恢复） -->
+<div class="kb-modal-mask" id="confirmModal">
+<div class="kb-modal" style="max-width:460px"><button class="close" id="confirmClose">✕</button>
+<h3 style="margin:0 0 8px" id="confirmTitle">请确认</h3>
+<div class="kb-note" id="confirmBody" style="line-height:1.8"></div>
+<div class="kb-btn-row" style="flex-wrap:wrap;gap:8px;margin-top:14px">
+<button class="kb-btn" id="confirmYes">确认</button>
+<button class="kb-btn" id="confirmNo">取消</button>
+</div></div></div>
 
 <div class="kb-footer">
 <span>Study Library · 27 考研知识库 · 逐章精读 · 知识点卡片 · 资料索引 · 全文语料 · 全文检索</span>
@@ -164,10 +195,27 @@ var ztCat='all', ztType='all';
 function jget(u){return fetch(u).then(function(r){if(!r.ok)throw new Error(u+' '+r.status);return r.json();});}
 function tget(u){return fetch(u).then(function(r){if(!r.ok)throw new Error(u+' '+r.status);return r.text();});}
 
-/* ---------- 初始化 ---------- */
-Promise.all([jget('data/knowledge-stats.json'),jget('data/chapters.json'),jget('data/corpus.json'),jget('data/knowledge-points.json'),jget('data/zhenti-index.json')])
-.then(function(rs){
-  KS=rs[0];CH=rs[1];CO=rs[2];KP=rs[3];ZT=rs[4].blocks||[];
+/* ---------- 初始化：逐文件独立加载（重试 + 超时 + 分视图降级） ----------
+   修复 P0-2：原单个 Promise.all 全有或全无，任一 JSON 抖动即让 7 个视图全部空白。
+   现在每个数据文件独立请求、独立渲染、独立重试；失败只影响对应视图。 */
+function jgetRetry(u, tries, timeoutMs){
+  tries=tries||0;
+  return new Promise(function(resolve,reject){
+    var done=false, ctrl=(typeof AbortController!=='undefined')?new AbortController():null;
+    var timer=setTimeout(function(){if(ctrl){try{ctrl.abort();}catch(e){}}reject(new Error('请求超时'));},timeoutMs||15000);
+    function fail(e){
+      if(done)return;done=true;clearTimeout(timer);
+      if(tries<2){setTimeout(function(){jgetRetry(u,tries+1,timeoutMs).then(resolve,reject);},400*Math.pow(2,tries));}
+      else reject(e);
+    }
+    fetch(u,ctrl?{signal:ctrl.signal}:{}).then(function(r){
+      if(!r.ok)throw new Error(u+' '+r.status);
+      return r.json();
+    }).then(function(d){if(done)return;done=true;clearTimeout(timer);resolve(d);},fail);
+  });
+}
+function renderWbStats(){
+  if(!KS)return;
   $('#wb-stats').innerHTML=
     '<div class="kb-metric"><div class="num">'+KS.chapterDocuments+'</div><div class="label">逐章精读</div></div>'+
     '<div class="kb-metric"><div class="num">'+(KS.chapterCharacters/10000).toFixed(0)+' 万</div><div class="label">精读字符</div></div>'+
@@ -175,12 +223,62 @@ Promise.all([jget('data/knowledge-stats.json'),jget('data/chapters.json'),jget('
     '<div class="kb-metric"><div class="num">'+KS.corpusBlocks+'</div><div class="label">语料板块</div></div>'+
     '<div class="kb-metric"><div class="num">'+(KS.totalCorpusCharacters/10000).toFixed(0)+' 万</div><div class="label">语料字符</div></div>'+
     '<div class="kb-metric"><div class="num">'+KS.totalRawFiles+'</div><div class="label">原始资料</div></div>';
-  renderChapSide();renderKpChips();renderPoints();renderCoChips();renderCorpus();loadFiles();renderZtChips();renderZhenti();
-  dataReady=true;
-  /* 数据就绪后重跑一次路由（修复：带 hash 直达时数据未加载导致空白） */
-  if(pendingRoute){var pr=pendingRoute;pendingRoute=null;handleRoute(pr);}
-})
-.catch(function(e){$('#wb-stats').innerHTML='<div class="kb-note">数据加载失败：'+esc(e.message)+'</div>';});
+}
+var DATA_SRC=[
+  {k:'KS',u:'data/knowledge-stats.json',label:'统计数据',sel:null,apply:function(d){KS=d;renderWbStats();}},
+  {k:'CH',u:'data/chapters.json',label:'逐章精读',sel:'#v-chapters',apply:function(d){CH=d;renderChapSide();}},
+  {k:'KP',u:'data/knowledge-points.json',label:'知识点卡片',sel:'#v-points',apply:function(d){KP=d;renderKpChips();renderPoints();}},
+  {k:'CO',u:'data/corpus.json',label:'全文语料',sel:'#v-corpus',apply:function(d){CO=d;renderCoChips();renderCorpus();}},
+  {k:'ZT',u:'data/zhenti-index.json',label:'真题练习',sel:'#v-zhenti',apply:function(d){ZT=d.blocks||[];renderZtChips();renderZhenti();}}
+];
+var loadState={};
+var statusEl=document.createElement('div'); statusEl.id='wb-load-status';
+$('#wb-stats').parentNode.insertBefore(statusEl,$('#wb-stats'));
+function renderLoadStatus(){
+  var bad=Object.keys(loadState).filter(function(k){return loadState[k]==='fail';});
+  if(!bad.length){statusEl.innerHTML='';return;}
+  var names=bad.map(function(k){var s=DATA_SRC.filter(function(x){return x.k===k;})[0];return s?s.label:(k==='FILES'?'资料索引':k);});
+  statusEl.innerHTML='<div class="kb-note" style="background:var(--surface-2);border:1px dashed var(--line-strong);border-radius:10px;padding:10px 14px;margin-bottom:14px;line-height:1.7">'+
+    '⚠️ 有 '+bad.length+' 个数据模块加载失败（'+esc(names.join('、'))+'），<b>其余功能不受影响</b>。可点击对应视图内的「重试」，或'+
+    '<button class="kb-btn" id="wbRetryAll" style="margin-left:8px;height:30px;padding:0 12px" type="button">全部重试</button></div>';
+  var b=$('#wbRetryAll');
+  if(b)b.onclick=function(){bad.forEach(function(k){
+    if(k==='FILES'){loadFilesSafely();return;}
+    var s=DATA_SRC.filter(function(x){return x.k===k;})[0];if(s)loadOne(s);
+  });};
+}
+function viewErr(sel,label,retry){
+  var v=$(sel);if(!v)return;
+  var old=v.querySelector('.kb-load-err');if(old)old.remove();
+  var d=document.createElement('div');d.className='kb-load-err kb-note';
+  d.style.cssText='background:var(--surface-2);border:1px dashed var(--line-strong);border-radius:10px;padding:10px 14px;margin-bottom:12px;line-height:1.7';
+  d.innerHTML='⚠️ 「'+esc(label)+'」数据暂时无法加载（网络波动）。'+
+    '<button class="kb-btn" style="margin-left:8px;height:30px;padding:0 12px" type="button">重试</button>';
+  d.querySelector('button').onclick=retry;
+  v.insertBefore(d,v.firstChild);
+}
+function viewOk(sel){var v=$(sel);if(!v)return;var old=v.querySelector('.kb-load-err');if(old)old.remove();}
+function loadOne(s){
+  loadState[s.k]='loading';renderLoadStatus();
+  return jgetRetry(s.u).then(function(d){
+    try{s.apply(d);}catch(e){console.warn('[KB] render '+s.k+' failed:',e);}
+    loadState[s.k]='ok';if(s.sel)viewOk(s.sel);renderLoadStatus();
+  },function(e){
+    loadState[s.k]='fail';
+    if(s.sel)viewErr(s.sel,s.label,function(){loadOne(s);});
+    else $('#wb-stats').innerHTML='<div class="kb-note">统计加载失败</div>';
+    renderLoadStatus();
+  });
+}
+function initAll(){
+  return Promise.all(DATA_SRC.map(function(s){return loadOne(s);})).then(function(){
+    loadFilesSafely();
+    dataReady=true;
+    /* 数据就绪后重跑一次路由（修复：带 hash 直达时数据未加载导致空白） */
+    if(pendingRoute){var pr=pendingRoute;pendingRoute=null;handleRoute(pr);}
+  });
+}
+initAll();
 
 /* ---------- 标签页切换 ---------- */
 $$('.kb-wb-tab').forEach(function(t){t.addEventListener('click',function(){
@@ -339,13 +437,85 @@ function openKpModal(id){
   }
 }
 $('#kpModal').addEventListener('click',function(e){if(e.target===$('#kpModal')||e.target.classList.contains('close'))$('#kpModal').classList.remove('show');});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')$('#kpModal').classList.remove('show');});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){
+  $('#kpModal').classList.remove('show');
+  closeCosModal();closeConfirm();
+}});
 
 /* ---------- 资料索引 ---------- */
 function loadFiles(){
-  return Promise.all(CATS.map(function(c){return jget('data/cat-'+c+'.json').then(function(d){CATDATA[c]=d;}).catch(function(){});}))
-  .then(function(){renderFileChips();renderFiles();});
+  return Promise.all(CATS.map(function(c){return jgetRetry('data/cat-'+c+'.json').then(function(d){CATDATA[c]=d;}).catch(function(){});}))
+  .then(function(){
+    if(!Object.keys(CATDATA).length)throw new Error('资料索引全部加载失败');
+    renderFileChips();renderFiles();
+  });
 }
+function loadFilesSafely(){
+  loadState.FILES='loading';
+  return loadFiles().then(function(){loadState.FILES='ok';viewOk('#v-files');renderLoadStatus();},
+    function(e){loadState.FILES='fail';viewErr('#v-files','资料索引',function(){loadFilesSafely();});renderLoadStatus();});
+}
+
+/* ---------- COS 下载链接可用性（P0-3） ----------
+   只读取核验快照 data/cos-status.json，不改任何 href / COS 结构 / 权限。
+   对已知失效链接：显示醒目标记 + 拦截默认跳转给出友好提示，仍保留「复制链接 / 仍要打开」。 */
+var COS_STATUS=null;
+jgetRetry('data/cos-status.json',0,8000).then(function(d){COS_STATUS=d;if($('#v-files').classList.contains('on'))renderFiles();},function(){COS_STATUS=null;});
+function cosBad(url,cid){
+  if(!COS_STATUS||!url)return false;
+  var c=(COS_STATUS.categories||{})[cid];
+  if(c&&c.status==='all-unavailable')return true;
+  return (COS_STATUS.knownFailedUrls||[]).indexOf(url)>=0;
+}
+function cosTag(url,cid){
+  return cosBad(url,cid)?'<span class="kb-tag warn" title="最近核验返回 404">⚠️ 链接暂不可用</span>':'';
+}
+function cosLinkAttrs(url,cid){
+  return cosBad(url,cid)?' data-cos-bad="1"':'';
+}
+function cosBanner(cid){
+  if(!COS_STATUS)return '';
+  var c=(COS_STATUS.categories||{})[cid];
+  if(!c||c.status!=='all-unavailable')return '';
+  return '<div class="kb-note" style="background:var(--surface-2);border:1px dashed var(--line-strong);border-radius:10px;padding:10px 14px;margin-bottom:12px;line-height:1.8">'+
+    '⚠️ <b>'+esc(CAT_NAME[cid]||cid)+'</b> 学科共 '+c.checked+' 个下载链接，在 '+esc(COS_STATUS.checkedAt)+
+    ' 的核验中全部返回 404，<b>当前暂不可用</b>。原始资料仍完整保存在本地资料库，不影响在线阅读、精读与知识点学习。'+
+    '<br><span style="font-size:12px;color:var(--text-3)">'+esc(COS_STATUS.scopeNote||'')+'</span></div>';
+}
+var cosPendingUrl='';
+function openCosModal(url,name){
+  cosPendingUrl=url;
+  $('#cosName').textContent=name?('资料：'+name):'';
+  var h=COS_STATUS&&COS_STATUS.help;
+  $('#cosTip').innerHTML=(h?esc(h.body):'该链接最近核验返回 404，可能尚未上传到 COS。')+
+    '<br><span style="font-size:12px;color:var(--text-3)">核验日期：'+esc(COS_STATUS?COS_STATUS.checkedAt:'—')+
+    ' · 原始下载链接与 COS 对象存储结构保持不变</span>';
+  $('#cosModal').classList.add('show');
+}
+function closeCosModal(){$('#cosModal').classList.remove('show');cosPendingUrl='';}
+$('#cosClose').addEventListener('click',closeCosModal);
+$('#cosCancel').addEventListener('click',closeCosModal);
+$('#cosModal').addEventListener('click',function(e){if(e.target===$('#cosModal'))closeCosModal();});
+$('#cosTry').addEventListener('click',function(){if(cosPendingUrl)window.open(cosPendingUrl,'_blank','noopener');closeCosModal();});
+$('#cosCopy').addEventListener('click',function(){
+  if(!cosPendingUrl)return;
+  var done=function(){$('#cosCopy').textContent='✓ 已复制';setTimeout(function(){$('#cosCopy').textContent='📋 复制链接';},1600);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(cosPendingUrl).then(done,function(){fallbackCopy(cosPendingUrl,done);});
+  }else fallbackCopy(cosPendingUrl,done);
+});
+function fallbackCopy(text,done){
+  var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}
+  document.body.removeChild(ta);
+}
+/* 事件委托：资料索引（平铺 + 目录树）内的已知失效链接 */
+document.addEventListener('click',function(e){
+  var a=e.target&&e.target.closest?e.target.closest('a[data-cos-bad]'):null;
+  if(!a)return;
+  e.preventDefault();
+  openCosModal(a.getAttribute('href'),a.getAttribute('data-cos-name')||a.textContent||'');
+},true);
 function renderFileChips(){
   var h='';
   CATS.forEach(function(cid){var d=CATDATA[cid];if(!d)return;
@@ -367,7 +537,7 @@ function renderFiles(){
   if(!CATDATA[fileCat])return;
   var d=CATDATA[fileCat];
   if(fileTreeMode){
-    $('#fileList').innerHTML='<div class="kb-note">目录树视图（'+CAT_NAME[fileCat]+' · '+d.fileCount+' 份）· 重复/扫描版已标注 · 下载链接指向 COS</div><div id="fileTree" style="max-height:600px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:10px"></div>';
+    $('#fileList').innerHTML=cosBanner(fileCat)+'<div class="kb-note">目录树视图（'+CAT_NAME[fileCat]+' · '+d.fileCount+' 份）· 重复/扫描版已标注 · 下载链接指向 COS</div><div id="fileTree" style="max-height:600px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:10px"></div>';
     var box=$('#fileTree');
     function count(node){var n=(node.__files__||[]).length;Object.keys(node.__children__||{}).forEach(function(k){n+=count(node.__children__[k]);});return n;}
     function dh(node,depth){
@@ -378,7 +548,8 @@ function renderFiles(){
       });
       (node.__files__||[]).forEach(function(f){
         s+='<div style="margin-left:'+(depth*14+22)+'px;padding:4px 8px;font-size:13px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap">'+
-        '<a href="'+f.url+'" target="_blank" rel="noopener" style="word-break:break-all">'+esc(f.name)+'</a>'+
+        '<a href="'+f.url+'" target="_blank" rel="noopener" data-cos-name="'+esc(f.name)+'"'+cosLinkAttrs(f.url,fileCat)+' style="word-break:break-all">'+esc(f.name)+'</a>'+
+        cosTag(f.url,fileCat)+
         '<span style="color:var(--text-3);font-size:11.5px">'+esc(f.sizeHuman||'')+(f.pages?' · '+f.pages+'页':'')+'</span>'+
         (f.duplicate?'<span class="kb-tag warn">重复</span>':'')+(f.scanned?'<span class="kb-tag">扫描版</span>':'')+'</div>';
       });
@@ -399,13 +570,14 @@ function renderFiles(){
   var all=flatFiles(fileCat);
   var list=all.filter(function(x){return !q||(x.f.name+x.dir).toLowerCase().indexOf(q)>=0;}).slice(0,300);
   var sc=all.filter(function(x){return x.f.scanned;}).length, dup=all.filter(function(x){return x.f.duplicate;}).length;
-  $('#fileList').innerHTML='<div class="kb-note">'+CAT_NAME[fileCat]+' 共 '+all.length+' 份 · 扫描版（无文字层，仅索引）'+sc+' · 重复已标注 '+dup+' · 当前显示 '+list.length+' 条</div>'+
+  $('#fileList').innerHTML=cosBanner(fileCat)+
+    '<div class="kb-note">'+CAT_NAME[fileCat]+' 共 '+all.length+' 份 · 扫描版（无文字层，仅索引）'+sc+' · 重复已标注 '+dup+' · 当前显示 '+list.length+' 条</div>'+
     '<div class="kb-cards">'+list.map(function(x){
       return '<div class="kb-card"><div class="kb-tags">'+
       (x.f.duplicate?'<span class="kb-tag warn">⚠️ 重复</span>':'')+(x.f.scanned?'<span class="kb-tag">🖼️ 扫描版</span>':'')+
-      '<span class="kb-tag">'+esc((x.f.ext||'').toUpperCase())+'</span></div>'+
+      '<span class="kb-tag">'+esc((x.f.ext||'').toUpperCase())+'</span>'+cosTag(x.f.url,fileCat)+'</div>'+
       '<h3>'+esc(x.f.name)+'</h3><p>'+esc(x.dir)+'</p><p>'+esc(x.f.sizeHuman||'')+(x.f.pages?' · '+x.f.pages+' 页':'')+'</p>'+
-      (x.f.url?'<a href="'+esc(x.f.url)+'" target="_blank" rel="noopener">下载原文 ↗</a>':'')+'</div>';
+      (x.f.url?'<a href="'+esc(x.f.url)+'" target="_blank" rel="noopener" data-cos-name="'+esc(x.f.name)+'"'+cosLinkAttrs(x.f.url,fileCat)+'>下载原文 ↗</a>':'')+'</div>';
     }).join('')+'</div>';
 }
 $('#fileq').addEventListener('input',function(){renderFiles();});
@@ -551,6 +723,7 @@ function renderMyStudy(){
     ST.setMastery(id, s&&s.title||id, s&&s.cat||'', b.getAttribute('data-state'));
     renderMyStudy();
   });});
+  if(typeof refreshBackupInfo==='function')refreshBackupInfo();
 }
 function ztHref(qid){
   // qid 格式：zt:{blockId}:{q} → 阅读页 + 行号锚点
@@ -572,9 +745,151 @@ function corpusHref(docId){
   var pid=file.replace('corpus/','').replace('.txt','');
   return 'read/'+cid+'/'+pid+'/';
 }
-$('#clearStudy').addEventListener('click',function(){
-  if(window.StudyTools){window.StudyTools.clearAll();renderMyStudy();}
+/* ---------- 学习数据管理（P0-4） ----------
+   兼容既有 7 个 localStorage 键（study-tools.js 的 6 个 + kb.js 的 kb-theme），
+   不迁移、不改名、不覆盖旧数据。导入/恢复一律「合并」，保证历史记录不丢失。 */
+var STUDY_KEYS=['kb-recent','kb-progress','kb-fav','kb-bookmark','kb-wrong','kb-srs','kb-theme'];
+var STUDY_BACKUP_KEY='kb-local-backup-v1';
+var confirmAction=null;
+
+function studyMsg(text,ok){
+  var el=$('#studyDataMsg');
+  el.textContent=text;
+  el.style.display='block';
+  el.style.color=ok===false?'var(--danger,#d93a3a)':'var(--green,#1f8a53)';
+  clearTimeout(studyMsg._t);studyMsg._t=setTimeout(function(){el.style.display='none';},6000);
+}
+function askConfirm(title,body,onYes){
+  $('#confirmTitle').textContent=title;
+  $('#confirmBody').innerHTML=body;
+  confirmAction=onYes;
+  $('#confirmModal').classList.add('show');
+}
+function closeConfirm(){$('#confirmModal').classList.remove('show');confirmAction=null;}
+$('#confirmClose').addEventListener('click',closeConfirm);
+$('#confirmNo').addEventListener('click',closeConfirm);
+$('#confirmModal').addEventListener('click',function(e){if(e.target===$('#confirmModal'))closeConfirm();});
+$('#confirmYes').addEventListener('click',function(){var f=confirmAction;closeConfirm();if(f)f();});
+
+function snapshotStudy(){
+  var d={},n=0;
+  STUDY_KEYS.forEach(function(k){var v=null;try{v=localStorage.getItem(k);}catch(e){}
+    if(v!==null){d[k]=v;n++;}});
+  return {app:'SL Study Library',schema:'study-data-v1',
+    exportedAt:new Date().toISOString(),keys:STUDY_KEYS,count:n,data:d};
+}
+function validateStudyPayload(o){
+  if(!o||typeof o!=='object'||Array.isArray(o))return '文件不是有效的 JSON 对象';
+  if(o.schema&&o.schema!=='study-data-v1')return '数据版本不兼容：'+esc(String(o.schema));
+  if(!o.data||typeof o.data!=='object'||Array.isArray(o.data))return '缺少 data 字段（不是本知识库导出的学习数据）';
+  var ks=Object.keys(o.data);
+  if(!ks.length)return '文件内没有任何学习数据';
+  var bad=ks.filter(function(k){return STUDY_KEYS.indexOf(k)<0;});
+  if(bad.length)return '包含未知字段：'+esc(bad.slice(0,3).join('、'));
+  for(var i=0;i<ks.length;i++){
+    if(typeof o.data[ks[i]]!=='string')return '字段 '+esc(ks[i])+' 的值格式不正确';
+    if(ks[i]!=='kb-theme'){
+      try{JSON.parse(o.data[ks[i]]);}catch(e){return '字段 '+esc(ks[i])+' 不是合法 JSON';}
+    }
+  }
+  return null;
+}
+function parseRaw(k,raw){try{var v=JSON.parse(raw);return (v&&typeof v==='object')?v:null;}catch(e){return null;}}
+/* 合并：数组按 id/JSON 去重并集（保留已有）；对象按键并集（保留已有，避免覆盖历史进度） */
+function mergeStudyPayload(o){
+  var added=0;
+  Object.keys(o.data).forEach(function(k){
+    var raw=String(o.data[k]);
+    if(k==='kb-theme'){
+      var has=false;try{has=localStorage.getItem(k)!==null;}catch(e){}
+      if(!has){localStorage.setItem(k,raw);added++;}
+      return;
+    }
+    var inc=parseRaw(k,raw);if(!inc)return;
+    var cur=parseRaw(k,localStorage.getItem(k)||'');
+    if(Array.isArray(inc)){
+      var base=Array.isArray(cur)?cur.slice():[];
+      var seen={};base.forEach(function(x){seen[(x&&x.id)||JSON.stringify(x)]=1;});
+      inc.forEach(function(x){var key=(x&&x.id)||JSON.stringify(x);if(!seen[key]){seen[key]=1;base.push(x);added++;}});
+      localStorage.setItem(k,JSON.stringify(base));
+    }else if(inc&&typeof inc==='object'){
+      var obj=(cur&&!Array.isArray(cur)&&typeof cur==='object')?cur:{};
+      Object.keys(inc).forEach(function(key){if(!(key in obj)){obj[key]=inc[key];added++;}});
+      localStorage.setItem(k,JSON.stringify(obj));
+    }
+  });
+  return added;
+}
+function downloadJSON(obj,filename){
+  var blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');a.href=url;a.download=filename;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);},1000);
+}
+function refreshBackupInfo(){
+  var el=$('#backupInfo');if(!el)return;
+  var raw=null;try{raw=localStorage.getItem(STUDY_BACKUP_KEY);}catch(e){}
+  if(!raw){el.textContent='本地备份：尚未创建';return;}
+  var o=null;try{o=JSON.parse(raw);}catch(e){}
+  el.textContent=o&&o.exportedAt
+    ? '本地备份：'+new Date(o.exportedAt).toLocaleString()+'（'+Object.keys(o.data||{}).length+' 项，仅存于本浏览器）'
+    : '本地备份：已存在';
+}
+$('#exportStudy').addEventListener('click',function(){
+  var snap=snapshotStudy();
+  if(!snap.count){studyMsg('当前没有可导出的学习数据',false);return;}
+  downloadJSON(snap,'study-library-学习数据-'+new Date().toISOString().slice(0,10)+'.json');
+  studyMsg('已导出 '+snap.count+' 项学习数据（JSON 文件）',true);
 });
+$('#backupStudy').addEventListener('click',function(){
+  var snap=snapshotStudy();
+  if(!snap.count){studyMsg('当前没有可备份的学习数据',false);return;}
+  try{localStorage.setItem(STUDY_BACKUP_KEY,JSON.stringify(snap));}
+  catch(e){studyMsg('本地备份失败：'+e.message,false);return;}
+  refreshBackupInfo();studyMsg('已创建本地备份（'+snap.count+' 项），可用于数据恢复',true);
+});
+$('#restoreStudy').addEventListener('click',function(){
+  var raw=null;try{raw=localStorage.getItem(STUDY_BACKUP_KEY);}catch(e){}
+  if(!raw){studyMsg('尚无本地备份，请先点击「创建本地备份」',false);return;}
+  var o=null;try{o=JSON.parse(raw);}catch(e){}
+  var err=validateStudyPayload(o);
+  if(err){studyMsg('备份校验失败：'+err,false);return;}
+  askConfirm('恢复本地备份','将把 '+esc(new Date(o.exportedAt||Date.now()).toLocaleString())+
+    ' 的本地备份<b>合并</b>回现有学习数据。<br>合并只增不删，当前收藏、错题与阅读历史不会丢失。',
+    function(){var n=mergeStudyPayload(o);refreshBackupInfo();renderMyStudy();studyMsg('已恢复备份，新增 '+n+' 条记录',true);});
+});
+$('#importStudy').addEventListener('click',function(){$('#importStudyFile').click();});
+$('#importStudyFile').addEventListener('change',function(e){
+  var file=e.target.files&&e.target.files[0];if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(){
+    var o=null;try{o=JSON.parse(String(reader.result));}catch(err){studyMsg('导入失败：文件不是合法 JSON',false);return;}
+    var errMsg=validateStudyPayload(o);
+    if(errMsg){studyMsg('导入失败：'+errMsg,false);return;}
+    var cnt=Object.keys(o.data).length;
+    askConfirm('导入学习数据','将把文件中 <b>'+cnt+'</b> 项数据<b>合并</b>到本浏览器。<br>'+
+      '导出时间：'+esc(o.exportedAt?new Date(o.exportedAt).toLocaleString():'未知')+
+      '<br>合并只增不删，现有收藏、错题与阅读历史不会丢失。',
+      function(){var n=mergeStudyPayload(o);refreshBackupInfo();renderMyStudy();studyMsg('导入完成，新增 '+n+' 条记录',true);});
+  };
+  reader.onerror=function(){studyMsg('导入失败：文件读取错误',false);};
+  reader.readAsText(file,'utf-8');
+  e.target.value='';
+});
+$('#clearStudy').addEventListener('click',function(){
+  var ST=window.StudyTools;
+  var fav=ST?ST.getFav().length:0, wrong=ST?ST.getWrong().length:0, recent=ST?ST.getRecent().length:0;
+  askConfirm('⚠️ 清除全部学习数据',
+    '此操作将<b>不可恢复</b>地删除本浏览器中的：收藏 '+fav+' 条、错题 '+wrong+' 条、最近阅读 '+recent+
+    ' 条，以及阅读进度、书签与复习计划。<br><br>建议先「导出 JSON」或「创建本地备份」。'+
+    '<br><b>本地备份不会被清除</b>，之后仍可用「恢复本地备份」找回。',
+    function(){
+      askConfirm('再次确认清除','请再次确认：真的要清除全部学习数据吗？此操作不可撤销。',
+        function(){if(window.StudyTools)window.StudyTools.clearAll();renderMyStudy();refreshBackupInfo();studyMsg('已清除学习数据（本地备份仍保留）',true);});
+    });
+});
+refreshBackupInfo();
 
 /* ---------- hash 路由：#/chapter/{id}(/L{n}) · #/point/{id} · #/points/{cid} ---------- */
 var dataReady=false, pendingRoute=null;

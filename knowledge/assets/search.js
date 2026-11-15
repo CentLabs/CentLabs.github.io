@@ -47,6 +47,9 @@
     });
 
     function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    /* Blob Worker 的 base URL 是 blob:<origin>/<uuid>，相对路径在其中无法解析，
+       必须在主线程把清单里的文件路径解析成绝对 URL 再 postMessage。 */
+    function absUrl(u) { try { return new URL(u, location.href).href; } catch (e) { return u; } }
     function mark(text, terms) {
       var s = esc(text);
       terms.forEach(function (t) {
@@ -74,16 +77,21 @@
       });
     }
 
-    /* Worker：逐文件 fetch + 逐行 AND 匹配 */
+    /* Worker：逐文件 fetch + 逐行 AND 匹配
+       注意：Worker 由 Blob URL 创建，f.file 必须是绝对 URL（主线程已用 absUrl 转换）。
+       失败不再静默忽略：累计 failed 并上报，单次网络抖动重试一次。 */
     var WORKER_SRC = [
       'self.onmessage=function(e){',
       ' var files=e.data.files, terms=e.data.terms.map(function(t){return t.toLowerCase();}), max=e.data.max;',
-      ' var results=[], idx=0, totalHits=0;',
+      ' var results=[], idx=0, totalHits=0, failed=0;',
+      ' function load(f,tries){',
+      '  return fetch(f.file).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.text();})',
+      '   .catch(function(err){if(tries>0)return load(f,tries-1);throw err;});',
+      ' }',
       ' function next(){',
-      '  if(idx>=files.length||results.length>=max||totalHits>3000){self.postMessage({done:true,total:totalHits,results:results});return;}',
+      '  if(idx>=files.length||results.length>=max||totalHits>3000){self.postMessage({done:true,total:totalHits,results:results,failed:failed});return;}',
       '  var f=files[idx];',
-      '  fetch(f.file).then(function(r){if(!r.ok)throw 0;return r.text();})',
-      '  .then(function(t){',
+      '  load(f,1).then(function(t){',
       '   var lines=t.split("\\n"), hits=0, ln;',
       '   for(var i=0;i<lines.length;i++){',
       '    ln=lines[i];',
@@ -94,9 +102,9 @@
       '     if(hits<=40&&results.length<max){results.push({i:f.i,type:f.type,cat:f.cat,id:f.id,name:f.name,line:i+1,text:ln.trim().slice(0,300)});}',
       '    }',
       '   }',
-      '   idx++;self.postMessage({progress:idx,of:files.length,results:results.length,total:totalHits,partial:true,inc:[{i:f.i,type:f.type,cat:f.cat,id:f.id,name:f.name,hits:Math.min(hits,40),lines:null}]});',
+      '   idx++;self.postMessage({progress:idx,of:files.length,results:results.length,total:totalHits,failed:failed,partial:true,inc:[{i:f.i,type:f.type,cat:f.cat,id:f.id,name:f.name,hits:Math.min(hits,40),lines:null}]});',
       '   setTimeout(next,0);',
-      '  }).catch(function(){idx++;self.postMessage({progress:idx,of:files.length,results:results.length,total:totalHits,partial:true});setTimeout(next,0);});',
+      '  }).catch(function(){failed++;idx++;self.postMessage({progress:idx,of:files.length,results:results.length,total:totalHits,failed:failed,partial:true,failName:f.name});setTimeout(next,0);});',
       ' };',
       ' next();',
       '};'
@@ -111,7 +119,7 @@
       loadManifest().then(function (m) {
         var files = m.map(function (f, i) {
           var catKey = f.type === 'chapter' ? 'chapters' : f.cat;
-          return { i: i, type: f.type, cat: f.cat, id: f.id, name: f.name, file: f.file, _catKey: catKey };
+          return { i: i, type: f.type, cat: f.cat, id: f.id, name: f.name, file: absUrl(f.file), _catKey: catKey };
         }).filter(function (f) {
           var ok = selected[f._catKey];
           if (cfg.fixedCat) ok = ok && f.cat === cfg.fixedCat;
@@ -122,14 +130,30 @@
         statBox.textContent = '正在按需加载并检索 ' + files.length + ' 个文档…';
         hitsBox.innerHTML = '';
         try { worker = new Worker(URL.createObjectURL(new Blob([WORKER_SRC], { type: 'text/javascript' }))); }
-        catch (e) { hitsBox.innerHTML = '<div class="kb-empty">当前浏览器不支持 Worker，无法全文检索</div>'; return; }
+        catch (e) {
+          prog.style.display = 'none';
+          hitsBox.innerHTML = '<div class="kb-empty">当前浏览器不支持 Worker，无法全文检索</div>';
+          return;
+        }
+        var lastQ = q;
+        worker.onerror = function (ev) {
+          prog.style.display = 'none';
+          statBox.textContent = '检索线程异常';
+          hitsBox.innerHTML = '<div class="kb-empty">检索线程异常：' + esc(ev.message || '未知错误') +
+            '<br><button class="kb-btn" style="margin-top:10px" id="kb-retry-search">重试</button></div>';
+          var rb = document.getElementById('kb-retry-search');
+          if (rb) rb.onclick = function () { runSearch(lastQ); };
+          try { worker.terminate(); } catch (e) {}
+          worker = null;
+        };
         var shown = 0;
         worker.onmessage = function (ev) {
           if (abort) return;
           var d = ev.data;
           if (d.progress != null) bar.style.width = Math.round(d.progress / d.of * 100) + '%';
           if (d.partial) {
-            statBox.textContent = '已检索 ' + d.progress + ' / ' + d.of + ' 个文档 · 命中 ' + d.total + ' 行';
+            statBox.textContent = '已检索 ' + d.progress + ' / ' + d.of + ' 个文档 · 命中 ' + d.total + ' 行' +
+              (d.failed ? ' · ⚠️ ' + d.failed + ' 个文档加载失败' : '');
             var inc = d.inc && d.inc[0];
             if (inc && inc.hits > 0) {
               shown++;
@@ -143,20 +167,38 @@
           if (d.done) {
             prog.style.display = 'none';
             worker.terminate(); worker = null;
-            statBox.textContent = '关键词「' + q + '」共命中 ' + d.total + ' 行 · 展示 ' + d.results.length + ' 条';
-            renderResults(d.results, terms, d.total);
+            statBox.textContent = '关键词「' + q + '」共命中 ' + d.total + ' 行 · 展示 ' + d.results.length + ' 条' +
+              (d.failed ? ' · ⚠️ ' + d.failed + ' 个文档加载失败' : '');
+            renderResults(d.results, terms, d.total, d.failed || 0, q);
           }
         };
         worker.postMessage({ files: files, terms: terms, max: cfg.maxHits });
+      }).catch(function (err) {
+        prog.style.display = 'none';
+        statBox.textContent = '清单加载失败';
+        hitsBox.innerHTML = '<div class="kb-empty">检索清单加载失败：' + esc(err && err.message || err) +
+          '<br><button class="kb-btn" style="margin-top:10px" id="kb-retry-search">重试</button></div>';
+        var rb = document.getElementById('kb-retry-search');
+        if (rb) rb.onclick = function () { runSearch(qInput.value); };
       });
     }
 
-    function renderResults(res, terms, total) {
+    function renderResults(res, terms, total, failed, q) {
       if (!res.length) {
-        hitsBox.innerHTML = '<div class="kb-empty">未命中。尝试更换或减少关键词（多词为 AND 关系，同时满足才命中）。</div>';
+        if (failed) {
+          hitsBox.innerHTML = '<div class="kb-empty">⚠️ 有 ' + failed + ' 个文档加载失败（网络波动），本次结果不完整，请勿据此判断「无匹配」。' +
+            '<br><button class="kb-btn" style="margin-top:10px" id="kb-retry-search">重新检索</button></div>';
+          var rb = document.getElementById('kb-retry-search');
+          if (rb) rb.onclick = function () { runSearch(q || qInput.value); };
+        } else {
+          hitsBox.innerHTML = '<div class="kb-empty">未命中。尝试更换或减少关键词（多词为 AND 关系，同时满足才命中）。</div>';
+        }
         return;
       }
-      var html = '';
+      var html = failed
+        ? '<div class="kb-empty" style="border:1px dashed var(--line-strong);margin-bottom:10px">⚠️ 有 ' + failed +
+          ' 个文档加载失败（网络波动），以下结果可能不完整。可稍后重新检索。</div>'
+        : '';
       res.forEach(function (h) {
         var catKey = h.type === 'chapter' ? 'chapters' : h.cat;
         html += '<div class="kb-hit" data-type="' + h.type + '" data-id="' + esc(h.id) + '" data-line="' + h.line + '">' +
